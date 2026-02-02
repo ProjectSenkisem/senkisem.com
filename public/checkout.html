@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Senkisem</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #000000 0%, #111111 25%, #1a1a1a 50%, #0f0f0f 100%);
+      min-height: 100vh;
+      color: #ffffff;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(20px);
+    }
+
+    .checkout-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .checkout-header h1 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+    }
+
+    .checkout-header p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.1rem;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .form-section {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+    }
+
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .input-group select option {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 0.5rem;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus {
+      outline: none;
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .input-group input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .flex {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* Shipping info banner */
+    .shipping-info {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .shipping-info-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .shipping-info-desc {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Order Summary */
+    .order-summary {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      position: sticky;
+      top: 2rem;
+    }
+
+    .order-summary h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+    }
+
+    .cart-items {
+      margin-bottom: 1.5rem;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-name {
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      color: #ffffff;
+    }
+
+    .cart-item-price {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .size-selector {
+      margin-top: 0.5rem;
+    }
+
+    .size-selector select {
+      padding: 0.3rem 0.5rem;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      border-radius: 4px;
+    }
+
+    .size-selector select option {
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 0.5rem;
+    }
+
+    .order-totals {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 1rem;
+    }
+
+    .order-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .order-line.total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #ffffff;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .back-links {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: linear-gradient(135deg, #ffffff, #f0f0f0);
+      color: #000000;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    /* Terms acceptance */
+    .terms-acceptance {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+
+    .terms-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    .terms-checkbox input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .terms-text {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .terms-link {
+      color: #ffffff;
+      text-decoration: underline;
+      font-weight: 600;
+      transition: opacity 0.3s ease;
+    }
+
+    .terms-link:hover {
+      opacity: 0.8;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .checkout-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .order-summary {
+        position: static;
+      }
+
+      .flex {
+        grid-template-columns: 1fr;
+      }
+
+      .back-links {
+        flex-direction: column;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+
+      .terms-acceptance {
+        margin: 1rem 0;
+        padding: 0.75rem;
+      }
+      
+      .terms-text {
+        font-size: 0.9rem;
+      }
+      
+      .terms-checkbox input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="checkout-header">
+      <h1>Complete Your Order</h1>
+      <p>Enter your details to finalize your purchase</p>
+    </div>
+
+    <div class="back-links">
+      <a href="index.html" class="back-btn">
+        ← Back to homepage
+      </a>
+      <a href="index.html#clothing" class="back-btn">
+        🛒 Modify cart
+      </a>
+    </div>
+
+    <form id="checkout-form">
+      <div class="checkout-grid">
+        <div class="left-column">
+          <!-- Billing Information -->
+          <div class="form-section">
+            <h3 class="section-title">
+              📋 Billing Information
+            </h3>
+            
+            <div class="input-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+            </div>
+            
+            <div class="input-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="email@example.com">
+            </div>
+
+            <div class="input-group">
+              <label for="phone">Phone Number *</label>
+              <input type="text" id="phone" name="phone" required placeholder="+1 234 567 8900 or any format">
+            </div>
+            
+            <div class="flex">
+              <div class="input-group">
+                <label for="country">Country *</label>
+                <select id="country" name="country" required>
+                  <option value="">Select country</option>
+                  <option value="United States">United States</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Germany">Germany</option>
+                  <option value="France">France</option>
+                  <option value="Spain">Spain</option>
+                  <option value="Italy">Italy</option>
+                  <option value="Netherlands">Netherlands</option>
+                  <option value="Belgium">Belgium</option>
+                  <option value="Austria">Austria</option>
+                  <option value="Switzerland">Switzerland</option>
+                  <option value="Poland">Poland</option>
+                  <option value="Czech Republic">Czech Republic</option>
+                  <option value="Slovakia">Slovakia</option>
+                  <option value="Romania">Romania</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="zip">ZIP/Postal Code *</label>
+                <input type="text" id="zip" name="zip" required placeholder="12345">
+              </div>
+            </div>
+            
+            <div class="input-group">
+              <label for="city">City *</label>
+              <input type="text" id="city" name="city" required placeholder="New York">
+            </div>
+            
+            <div class="input-group">
+              <label for="address">Street Address *</label>
+              <input type="text" id="address" name="address" required placeholder="123 Main Street, Apt 4B">
+            </div>
+          </div>
+
+          <!-- Shipping Information -->
+          <div class="form-section">
+            <h3 class="section-title">
+              🚚 Shipping Information
+            </h3>
+            
+            <div class="shipping-info">
+              <div class="shipping-info-title">
+                🏠 Home Delivery - $15.00
+              </div>
+              <div class="shipping-info-desc">
+                All orders are shipped to your address. Delivery typically takes 5-10 business days depending on your location. You'll receive a tracking number once your order ships.
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="deliveryAddress">Delivery Address (if different from billing)</label>
+              <input type="text" id="deliveryAddress" name="deliveryAddress" 
+                     placeholder="Leave blank if same as billing address">
+            </div>
+            
+            <div class="flex">
+              <div class="input-group">
+                <label for="deliveryCity">Delivery City</label>
+                <input type="text" id="deliveryCity" name="deliveryCity" placeholder="Optional">
+              </div>
+              <div class="input-group">
+                <label for="deliveryZip">Delivery ZIP/Postal Code</label>
+                <input type="text" id="deliveryZip" name="deliveryZip" placeholder="Optional">
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="deliveryCountry">Delivery Country</label>
+              <input type="text" id="deliveryCountry" name="deliveryCountry" 
+                     placeholder="Leave blank if same as billing">
+            </div>
+
+            <div class="input-group">
+              <label for="deliveryNote">Delivery Instructions</label>
+              <input type="text" id="deliveryNote" name="deliveryNote" 
+                     placeholder="e.g., Ring doorbell twice, leave at back door">
+            </div>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <!-- Order Summary -->
+          <div class="order-summary">
+            <h3>Order Summary</h3>
+            
+            <div class="cart-items" id="cart-items-summary">
+              <div class="loading active">Loading cart...</div>
+            </div>
+            
+            <div class="order-totals">
+              <div class="order-line">
+                <span>Subtotal:</span>
+                <span id="subtotal">$0.00</span>
+              </div>
+              <div class="order-line">
+                <span>Shipping:</span>
+                <span id="shipping-cost">$0.00</span>
+              </div>
+              <div class="order-line total">
+                <span>Total:</span>
+                <span id="total-price">$0.00</span>
+              </div>
+            </div>
+
+            <div class="terms-acceptance">
+              <label class="terms-checkbox">
+                <input type="checkbox" id="terms-agree" name="terms-agree" required>
+                <span class="checkmark"></span>
+                <span class="terms-text">
+                  I have read and accept the 
+                  <a href="assets/ASZF.pdf" target="_blank" class="terms-link">Terms and Conditions</a>
+                </span>
+              </label>
+            </div>
+
+            <div class="terms-acceptance">
+              <label class="terms-checkbox">
+                <input type="checkbox" id="email-consent" name="email-consent" required>
+                <span class="checkmark"></span>
+                <span class="terms-text">
+                  I agree to receive order confirmations and updates via email
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              Place Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Global variables
+    let cart = [];
+
+    // Initialize checkout
+    document.addEventListener('DOMContentLoaded', function() {
+      loadCart();
+      setupEventListeners();
+    });
+
+    function loadCart() {
+      const cartData = localStorage.getItem('cart');
+      cart = cartData ? JSON.parse(cartData) : [];
+      
+      if (cart.length === 0) {
+        showEmptyCart();
+        return;
+      }
+
+      renderCartSummary();
+      calculateTotals();
+    }
+
+    function showEmptyCart() {
+      const cartSummary = document.getElementById('cart-items-summary');
+      cartSummary.innerHTML = `
+        <div style="text-align: center; padding: 2rem; color: rgba(255, 255, 255, 0.6);">
+          <p>Your cart is empty</p>
+          <a href="index.html" style="color: #ffffff; text-decoration: underline;">
+            Back to homepage
+          </a>
+        </div>
+      `;
+      document.querySelector('.submit-btn').disabled = true;
+    }
+
+    function renderCartSummary() {
+      const cartSummary = document.getElementById('cart-items-summary');
+      const ebookId = 2;
+      const physicalBookId = 1;
+      
+      cartSummary.innerHTML = cart.map(item => {
+        const price = typeof item.price === 'string' ? 
+            parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
+        const quantity = item.quantity || 1;
+        const totalPrice = price * quantity;
+        
+        // E-book
+        if (item.id === ebookId) {
+          return `
+            <div class="cart-item">
+              <img src="${item.image}" alt="${item.name}">
+              <div class="cart-item-details">
+                <div class="cart-item-name">${item.name}${quantity > 1 ? ` (${quantity}x)` : ''}</div>
+                <div class="cart-item-price">$${totalPrice.toFixed(2)}</div>
+                <span style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">Digital product</span>
+              </div>
+            </div>
+          `;
+        }
+        
+        // Physical book (ID = 1) - A5 size automatic
+        if (item.id === physicalBookId) {
+          return `
+            <div class="cart-item">
+              <img src="${item.image}" alt="${item.name}">
+              <div class="cart-item-details">
+                <div class="cart-item-name">${item.name}${quantity > 1 ? ` (${quantity}x)` : ''}</div>
+                <div class="cart-item-price">$${totalPrice.toFixed(2)}</div>
+                <span style="font-size: 0.85rem; color: rgba(255,255,255,0.7); font-weight: 500;">
+                  📏 Size: A5 (5.8 x 8.3 in)
+                </span>
+              </div>
+            </div>
+          `;
+        }
+        
+        // Clothing products
+        return `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-details">
+              <div class="cart-item-name">${item.name}${quantity > 1 ? ` (${quantity}x)` : ''}</div>
+              <div class="cart-item-price">$${totalPrice.toFixed(2)}</div>
+              ${item.size ? 
+                `<span style="font-size: 0.85rem; color: rgba(255,255,255,0.7); font-weight: 500;">
+                  📏 Size: ${item.size}
+                </span>` 
+                : 
+                `<div class="size-selector">
+                  <select class="size-select" data-id="${item.id}" required>
+                    <option value="">Select size</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                  </select>
+                </div>`
+              }
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setupEventListeners() {
+      // Form submit
+      document.getElementById('checkout-form').addEventListener('submit', handleFormSubmit);
+      
+      // Auto-fill delivery address from billing
+      document.getElementById('zip').addEventListener('change', function() {
+        if (!document.getElementById('deliveryZip').value) {
+          document.getElementById('deliveryZip').value = this.value;
+        }
+      });
+      
+      document.getElementById('city').addEventListener('change', function() {
+        if (!document.getElementById('deliveryCity').value) {
+          document.getElementById('deliveryCity').value = this.value;
+        }
+      });
+
+      document.getElementById('country').addEventListener('change', function() {
+        calculateTotals();
+      });
+    }
+
+    function calculateTotals() {
+      const ebookId = 2;
+      
+      // Calculate subtotal with quantity support
+      const subtotal = cart.reduce((sum, item) => {
+        const price = typeof item.price === 'string' ? 
+          parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
+        const quantity = item.quantity || 1;
+        return sum + (price * quantity);
+      }, 0);
+      
+      // Calculate shipping cost
+      let shippingCost = 0;
+      const hasPhysicalProducts = cart.some(item => item.id !== ebookId);
+      
+      if (hasPhysicalProducts) {
+        shippingCost = 15; // Unified $15 shipping for all non-digital products
+      }
+      
+      const total = subtotal + shippingCost;
+      
+      document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('shipping-cost').textContent = `$${shippingCost.toFixed(2)}`;
+      document.getElementById('total-price').textContent = `$${total.toFixed(2)}`;
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      if (!validateForm()) return;
+      
+      const submitBtn = document.querySelector('.submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Processing...';
+      
+      try {
+        const orderData = collectOrderData();
+        await processOrder(orderData);
+      } catch (error) {
+        console.error('Order processing failed:', error);
+        alert('An error occurred while processing your order. Please try again!');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Place Order';
+      }
+    }
+
+    function validateForm() {
+      const requiredFields = ['fullName', 'email', 'phone', 'address', 'city', 'country', 'zip'];
+      let isValid = true;
+      
+      // Check required fields
+      requiredFields.forEach(field => {
+        const element = document.getElementById(field);
+        if (!element.value.trim()) {
+          element.style.borderColor = '#ff4444';
+          isValid = false;
+        } else {
+          element.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        }
+      });
+
+      // Check terms acceptance
+      const termsCheckbox = document.getElementById('terms-agree');
+      if (!termsCheckbox.checked) {
+        alert('Please accept the Terms and Conditions to continue!');
+        termsCheckbox.focus();
+        return false;
+      }
+
+      // Check email consent
+      const emailConsent = document.getElementById('email-consent');
+      if (!emailConsent.checked) {
+        alert('Please agree to receive order confirmations via email!');
+        emailConsent.focus();
+        return false;
+      }
+      
+      // Check size selection for physical products (excluding book ID = 1)
+      const ebookId = 2;
+      const physicalBookId = 1;
+      const needsSizeSelection = cart.some(item => 
+        item.id !== ebookId && 
+        item.id !== physicalBookId && 
+        !item.size
+      );
+
+      if (needsSizeSelection) {
+        const sizeSelects = document.querySelectorAll('.size-select');
+        let allSizesSelected = true;
+        sizeSelects.forEach(select => {
+          if (!select.value) {
+            select.style.borderColor = '#ff4444';
+            allSizesSelected = false;
+          } else {
+            select.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+          }
+        });
+        
+        if (!allSizesSelected) {
+          alert('Please select size for all clothing items!');
+          return false;
+        }
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const email = document.getElementById('email').value;
+      if (!emailRegex.test(email)) {
+        document.getElementById('email').style.borderColor = '#ff4444';
+        alert('Please enter a valid email address!');
+        return false;
+      }
+      
+      return isValid;
+    }
+
+    function collectOrderData() {
+      const form = document.getElementById('checkout-form');
+      const formData = new FormData(form);
+      const ebookId = 2;
+      const physicalBookId = 1;
+      
+      // Collect size selections
+      const sizeMap = {};
+      
+      // Physical book automatic A5 size
+      cart.forEach(item => {
+        if (item.id === physicalBookId) {
+          sizeMap[physicalBookId] = 'A5';
+        }
+        // Use existing size if already selected
+        if (item.size) {
+          sizeMap[item.id] = item.size;
+        }
+      });
+      
+      // Clothing size selection
+      document.querySelectorAll('.size-select').forEach(select => {
+        if (select.value) {
+          sizeMap[select.dataset.id] = select.value;
+        }
+      });
+      
+      // Prepare customer data
+      const customerData = {
+        fullName: formData.get('fullName'),
+        email: formData.get('email'),
+        phone: formData.get('phone') || '',
+        address: formData.get('address'),
+        city: formData.get('city'),
+        country: formData.get('country'),
+        zip: formData.get('zip'),
+        shippingMethod: 'home',
+        deliveryAddress: formData.get('deliveryAddress'),
+        deliveryCity: formData.get('deliveryCity'),
+        deliveryZip: formData.get('deliveryZip'),
+        deliveryCountry: formData.get('deliveryCountry'),
+        deliveryNote: formData.get('deliveryNote')
+      };
+      
+      // Prepare cart for payment with quantity support
+      const cartForPayment = cart.map(item => {
+        const baseItem = {
+          id: item.id,
+          name: item.name,
+          price: typeof item.price === 'string' ? 
+            parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price,
+          image: item.image,
+          quantity: item.quantity || 1
+        };
+        
+        if (item.id !== ebookId && sizeMap[item.id]) {
+          baseItem.size = sizeMap[item.id];
+        }
+        
+        return baseItem;
+      });
+      
+      return {
+        cart: cartForPayment,
+        customerData: customerData
+      };
+    }
+
+    async function processOrder(orderData) {
+      try {
+        // Create Stripe payment session
+        const response = await fetch('https://senkisem.com/create-payment-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(orderData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.payment_url) {
+          // Clear cart and redirect to payment
+          localStorage.removeItem('cart');
+          window.location.href = data.payment_url;
+        } else {
+          throw new Error(data.error || 'Payment session creation failed');
+        }
+      } catch (error) {
+        console.error('Order processing error:', error);
+        throw error;
+      }
+    }
+  </script>
+</body>
+</html>

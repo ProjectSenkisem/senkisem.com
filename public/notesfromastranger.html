@@ -1,0 +1,3593 @@
+<!doctype html>
+<html dir="ltr" lang="en-US" prefix="og: https://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+        <!-- REPLACE -->
+<title> Senkisem - Notes from a Stranger</title>
+
+<meta name="description" content="Senkisem - Notes from a Stranger. A book that questions, dismantles, then rearranges. It doesn't tell a story, doesn't give advice. It's about You.">
+<meta name="keywords" content="notes from a stranger, senkisem book, self-knowledge book, philosophical book, thoughts book">
+<meta name="language" content="English">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:title" content="Senkisem - Notes from a Stranger">
+<meta property="og:description" content="A book that questions, dismantles, then rearranges. It doesn't tell a story, doesn't give advice. It's about You.">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta property="twitter:title" content="Senkisem - Notes from a Stranger">
+<meta property="twitter:description" content="A book that questions, dismantles, then rearranges. It's about You.">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://senkisem.com/">
+        <style>
+            img:is([sizes="auto" i], [sizes^="auto," i]) {
+                contain-intrinsic-size: 3000px 1500px
+            }
+.elementor-element-3afa14b::before {
+  display: none !important;
+}
+
+.elementor-element-01d6ff8 .elementor-icon-box-icon,
+.elementor-element-b9ec783 .elementor-icon-box-icon {
+    display: none !important;
+}
+
+.elementor-element-d93199b::before {
+display: none !important;
+}
+
+/* MINDEN SZAR ELTÁVOLÍTÁSA A KÖNYV KÖRÜL */
+.elementor-element-176a6c6::before,
+.elementor-element-176a6c6::after,
+.elementor-element-5a0929a::before,
+.elementor-element-5a0929a::after,
+.elementor-element-01fb589::before,
+.elementor-element-01fb589::after,
+.elementor-element-8e16111::before,
+.elementor-element-8e16111::after {
+    display: none !important;
+    content: none !important;
+}
+
+.elementor-element-176a6c6,
+.elementor-element-5a0929a,
+.elementor-element-01fb589,
+.elementor-element-8e16111,
+.elementor-element-176a6c6 *,
+.elementor-element-5a0929a *,
+.elementor-element-01fb589 *,
+.elementor-element-8e16111 * {
+    background: none !important;
+    background-image: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* CSAK A KÖNYV KÉPE */
+.elementor-element-7435d7f img {
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000; /* Tiszta fekete */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999; /* Magasabb z-index */
+    transition: opacity 0.8s ease;
+    flex-direction: column;
+    opacity: 1;
+}
+
+.loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    animation: fadeIn 1.8s ease forwards;
+}
+
+.loading-text {
+    color: var(--text-primary);
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    animation: pulse 2.4s ease-in-out infinite;
+    text-transform: uppercase;
+}
+
+.loading-subtext {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    background: linear-gradient(90deg, #ffffff, #b8b8b8, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: fadeInSub 3s ease forwards 1.5s;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; text-shadow: 0 0 6px rgba(255,255,255,0.2); }
+    50% { opacity: 1; text-shadow: 0 0 12px rgba(255,255,255,0.6); }
+}
+
+@keyframes fadeInSub {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 0.9; transform: translateY(0); }
+}
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 3rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--text-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-icon {
+    background: var(--glass-white);
+    border: 1px solid var(--glass-border);
+    padding: 0.7rem;
+    border-radius: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    font-size: 1rem;
+    position: relative;
+}
+#menu-icon {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: flex;
+    }
+}
+
+.nav-icon:hover {
+    background: var(--accent-subtle);
+    transform: translateY(-1px);
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--text-primary);
+    color: var(--primary-dark);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* Mobile menu */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(40px);
+    border-right: 1px solid var(--glass-border);
+    z-index: 2001;
+    transition: left 0.4s ease;
+    padding: 2rem;
+    flex-direction: column;
+}
+
+.mobile-menu.active {
+    left: 0;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.mobile-menu-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mobile-nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobile-nav-link:hover {
+    color: var(--text-primary);
+    padding-left: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem 1.5rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: flex;
+    }
+}
+ /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(30px);
+            border-top: 1px solid var(--glass-border);
+            padding: 6rem 3rem 3rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .social-icon:hover {
+            background: var(--accent-subtle);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(40px);
+            border-left: 1px solid var(--glass-border);
+            z-index: 2000;
+            transition: right 0.4s ease;
+            padding: 3rem;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.close-btn:hover {
+    color: var(--text-primary) !important;
+    background: none !important;
+    transform: none !important;
+}
+
+        @media (max-width: 768px) { /* Social grid - 3 cards per row on mobile */
+        .social-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .social-card {
+        padding: 1.5rem 0.5rem;
+        width: 100%;
+        min-height: auto;
+    }
+
+    /* Szövegek elrejtése mobilon */
+    .social-name,
+    .social-description {
+        display: none;
+    }
+
+    /* Ikonok egyenlő méretűre állítása */
+    .social-icon-large {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+        flex-shrink: 0;
+    }
+
+    /* TikTok SVG méretének fixálása */
+    .social-icon-large svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* TikTok specifikus javítás - gradient fix mobilon */
+    .social-card:nth-child(3) .social-icon-large {
+        color: #00f2ea;
+    }
+
+    .social-card:nth-child(3) .social-icon-large svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Hover effektek mobilon is maradjanak */
+    .social-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .social-card:nth-child(1) .social-icon-large i {
+        font-size: 1.8rem;
+    }
+
+    /* Instagram ikon méret fix */
+    .social-card:nth-child(2) .social-icon-large i {
+        font-size: 1.8rem;
+    }
+
+    /* TikTok szélesség/magasság fix */
+    .social-card:nth-child(3) .social-icon-large {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sidebar {
+        width: 100%;
+        right: -100%;
+        padding: 2rem;
+    }
+
+    .footer {
+        padding: 4rem 2rem 2rem;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .footer-content {
+        width: 100%;
+    }
+
+    .preview-modal-content {
+        gap: 1rem;
+        width: 90%;
+        max-width: 100%;
+    }
+    
+    .preview-modal-image {
+        max-height: 70vh;
+        width: 100%;
+        object-fit: contain;
+    }
+    
+    .preview-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .preview-close-btn {
+        top: -50px;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* CTA buttons mobile */
+    .cta-button {
+        font-size: 0.8rem;
+        padding: 0.9rem 1.5rem;
+        width: 100%;
+    }
+}
+
+
+
+/* Header scroll effect */
+
+.preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-modal.active {
+    display: flex;
+}
+
+.preview-modal-content {
+    position: relative;
+    max-width: 800px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 60px;
+}
+
+.preview-modal-image {
+    max-width: 100%;
+    max-height: 75vh;
+    width: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+}
+
+.preview-modal-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.preview-nav-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 1rem;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-size: 1.5rem;
+}
+
+.preview-nav-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+}
+
+.preview-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.preview-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.8rem;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-size: 1.5rem;
+    z-index: 10;
+}
+
+.preview-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.preview-counter {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+
+
+.card-title {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 0.75rem !important;
+    background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card-description {
+    font-size: 0.95rem !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin-bottom: 1.5rem !important;
+    letter-spacing: 0.01em !important;
+}
+
+.price-wrapper .old-price {
+    font-size: 1rem !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    text-decoration: line-through !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.price-wrapper .current-price {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #ffffff, #e0e7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.03em !important;
+}
+
+.features-list {
+    margin: 1.5rem 0 2rem 0 !important;
+}
+
+.features-list li {
+    padding: 0.6rem 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.features-list li:last-child {
+    border-bottom: none !important;
+}
+
+.elementor-icon-list-icon {
+    display: none !important;
+}
+
+.elementor-icon-list-text {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    padding-left: 1.5rem !important;
+    position: relative !important;
+}
+
+.elementor-icon-list-text::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.purchase-btn {
+    width: 100% !important;
+    padding: 1rem 2rem !important;
+    border: none !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    display: block !important;
+    background: transparent !important;
+    
+    /* Ugyanaz a stílus, mint az elementor-heading-title */
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    color: inherit !important;
+}
+
+.purchase-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.primary-btn {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.primary-btn:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15) !important;
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Kedvezmény badge */
+.discount-badge {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(238, 90, 111, 0.4);
+    z-index: 10;
+    animation: pulseDiscount 2s ease-in-out infinite;
+}
+
+@keyframes pulseDiscount {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(238, 90, 111, 0.4);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(238, 90, 111, 0.6);
+    }
+}
+
+/* A kártya containernek kell position: relative */
+.book-option-card {
+    position: relative;
+}
+</style>
+
+        </style>
+        
+        <style>/* ============================================
+   LIMITÁLT KÉSZLET POP-UP
+   ============================================ */
+
+.limited-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.limited-popup.active {
+    display: flex;
+}
+
+.limited-popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.94);
+    backdrop-filter: blur(15px);
+}
+
+.limited-popup-content {
+    position: relative;
+    max-width: 1100px;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 0, 0, 0.15);
+    border-radius: 20px;
+    padding: 3rem 3rem;
+    box-shadow: 
+        0 8px 32px rgba(255, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+}
+
+/* Sötét scrollbar */
+.limited-popup-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.limited-popup-content::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 10px;
+}
+
+.limited-popup-content::-webkit-scrollbar-thumb {
+    background: rgba(80, 80, 80, 0.8);
+    border-radius: 10px;
+}
+
+.limited-popup-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 100, 100, 0.9);
+}
+
+/* Firefox scrollbar */
+.limited-popup-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(80, 80, 80, 0.8) rgba(20, 20, 20, 0.8);
+}
+
+.limited-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.limited-close:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Header */
+.limited-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.limited-warning {
+    font-size: 3rem;
+    color: rgba(255, 100, 100, 0.8);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+    animation: pulse-warning 2s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+    0%, 100% { 
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.limited-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.3rem);
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.limited-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Grid */
+.limited-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.limited-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 100, 100, 0.2);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+}
+
+.limited-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(10px);
+}
+
+.limited-badge.best {
+    background: rgba(255, 100, 100, 0.2);
+    border-color: rgba(255, 100, 100, 0.4);
+    color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.limited-single-book {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem auto 1.2rem;
+}
+
+.limited-book-image {
+    width: 200px;
+    height: auto;
+    border-radius: 6px;
+    opacity: 0.95;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.limited-card-title {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.limited-card-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    min-height: 140px;
+}
+
+.limited-card-desc strong {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+}
+
+.limited-price {
+    margin-bottom: 1rem;
+}
+
+.limited-old-price {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-decoration: line-through;
+    margin-right: 0.6rem;
+}
+
+.limited-new-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.limited-stock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    margin-bottom: 1.2rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.limited-stock.warning {
+    background: rgba(255, 100, 100, 0.1);
+    color: rgba(255, 150, 150, 0.9);
+}
+
+.limited-stock strong {
+    font-weight: 700;
+    color: rgba(255, 100, 100, 1);
+}
+
+.limited-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.limited-btn.primary {
+    background: rgba(255, 100, 100, 0.15);
+    border-color: rgba(255, 100, 100, 0.3);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.limited-btn.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Footer */
+.limited-footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.limited-footer-note {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.limited-footer-note.secondary {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* Floating Button */
+.limited-float-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 0.9rem 1.8rem;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 100, 100, 0.3);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    z-index: 4999;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+    display: none;
+    align-items: center;
+    gap: 0.6rem;
+    animation: pulse-float 3s ease-in-out infinite;
+}
+
+.limited-float-btn:hover {
+    background: rgba(10, 10, 10, 0.95);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 100, 100, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+}
+
+.limited-float-btn.show {
+    display: flex;
+}
+
+@keyframes pulse-float {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 6px 30px rgba(255, 0, 0, 0.5);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .limited-popup-content {
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+    
+    /* FONTOS: Scrollbar elrejtése mobilon */
+    .limited-popup-content::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .limited-popup-content {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .limited-title {
+        font-size: 1.6rem;
+    }
+
+    .limited-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .limited-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .limited-card {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .limited-book-image {
+        width: 150px;
+    }
+
+    .limited-card-desc {
+        font-size: 0.85rem;
+        min-height: auto;
+        line-height: 1.7;
+    }
+
+    .limited-float-btn {
+        bottom: 15px;
+        right: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.75rem;
+    }
+
+    
+}</style>
+       
+        <link rel='stylesheet' id='jkit-elements-main-css' href='https://silkroadmodels.com/wp-content/plugins/jeg-elementor-kit/assets/css/elements/main.css?ver=2.6.10' media='all'/>
+        <style id='wp-emoji-styles-inline-css'>
+            img.wp-smiley, img.emoji {
+                display: inline !important;
+                border: none !important;
+                box-shadow: none !important;
+                height: 1em !important;
+                width: 1em !important;
+                margin: 0 0.07em !important;
+                vertical-align: -0.1em !important;
+                background: none !important;
+                padding: 0 !important;
+            }
+        </style>
+        <style id='global-styles-inline-css'>
+            :root {
+                --wp--preset--aspect-ratio--square: 1;
+                --wp--preset--aspect-ratio--4-3: 4/3;
+                --wp--preset--aspect-ratio--3-4: 3/4;
+                --wp--preset--aspect-ratio--3-2: 3/2;
+                --wp--preset--aspect-ratio--2-3: 2/3;
+                --wp--preset--aspect-ratio--16-9: 16/9;
+                --wp--preset--aspect-ratio--9-16: 9/16;
+                --wp--preset--color--black: #000000;
+                --wp--preset--color--cyan-bluish-gray: #abb8c3;
+                --wp--preset--color--white: #ffffff;
+                --wp--preset--color--pale-pink: #f78da7;
+                --wp--preset--color--vivid-red: #cf2e2e;
+                --wp--preset--color--luminous-vivid-orange: #ff6900;
+                --wp--preset--color--luminous-vivid-amber: #fcb900;
+                --wp--preset--color--light-green-cyan: #7bdcb5;
+                --wp--preset--color--vivid-green-cyan: #00d084;
+                --wp--preset--color--pale-cyan-blue: #8ed1fc;
+                --wp--preset--color--vivid-cyan-blue: #0693e3;
+                --wp--preset--color--vivid-purple: #9b51e0;
+                --wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);
+                --wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);
+                --wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);
+                --wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);
+                --wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);
+                --wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);
+                --wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);
+                --wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);
+                --wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);
+                --wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);
+                --wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);
+                --wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);
+                --wp--preset--font-size--small: 13px;
+                --wp--preset--font-size--medium: 20px;
+                --wp--preset--font-size--large: 36px;
+                --wp--preset--font-size--x-large: 42px;
+                --wp--preset--spacing--20: 0.44rem;
+                --wp--preset--spacing--30: 0.67rem;
+                --wp--preset--spacing--40: 1rem;
+                --wp--preset--spacing--50: 1.5rem;
+                --wp--preset--spacing--60: 2.25rem;
+                --wp--preset--spacing--70: 3.38rem;
+                --wp--preset--spacing--80: 5.06rem;
+                --wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+                --wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+                --wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);
+                --wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);
+                --wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);
+                --glass-white: rgba(255, 255, 255, 0.08);
+--glass-border: rgba(255, 255, 255, 0.12);
+--accent-subtle: #333333;
+            }
+
+            :root {
+                --wp--style--global--content-size: 800px;
+                --wp--style--global--wide-size: 1200px;
+            }
+
+            :where(body) {
+                margin: 0;
+            }
+
+            .wp-site-blocks > .alignleft {
+                float: left;
+                margin-right: 2em;
+            }
+
+            .wp-site-blocks > .alignright {
+                float: right;
+                margin-left: 2em;
+            }
+
+            .wp-site-blocks > .aligncenter {
+                justify-content: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            :where(.wp-site-blocks) > * {
+                margin-block-start: 24px; margin-block-end: 0; }
+
+            :where(.wp-site-blocks) > :first-child {
+                margin-block-start: 0; }
+
+            :where(.wp-site-blocks) > :last-child {
+                margin-block-end: 0; }
+
+            :root {
+                --wp--style--block-gap: 24px;
+            }
+
+            :root :where(.is-layout-flow) > :first-child {
+                margin-block-start: 0;}
+
+            :root :where(.is-layout-flow) > :last-child {
+                margin-block-end: 0;}
+
+            :root :where(.is-layout-flow) > * {
+                margin-block-start: 24px;margin-block-end: 0;}
+
+            :root :where(.is-layout-constrained) > :first-child {
+                margin-block-start: 0;}
+
+            :root :where(.is-layout-constrained) > :last-child {
+                margin-block-end: 0;}
+
+            :root :where(.is-layout-constrained) > * {
+                margin-block-start: 24px;margin-block-end: 0;}
+
+            :root :where(.is-layout-flex) {
+                gap: 24px;
+            }
+
+            :root :where(.is-layout-grid) {
+                gap: 24px;
+            }
+
+            .is-layout-flow > .alignleft {
+                float: left;
+                margin-inline-start: 0;margin-inline-end: 2em;}
+
+            .is-layout-flow > .alignright {
+                float: right;
+                margin-inline-start: 2em;margin-inline-end: 0;}
+
+            .is-layout-flow > .aligncenter {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            .is-layout-constrained > .alignleft {
+                float: left;
+                margin-inline-start: 0;margin-inline-end: 2em;}
+
+            .is-layout-constrained > .alignright {
+                float: right;
+                margin-inline-start: 2em;margin-inline-end: 0;}
+
+            .is-layout-constrained > .aligncenter {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+                max-width: var(--wp--style--global--content-size);
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            .is-layout-constrained > .alignwide {
+                max-width: var(--wp--style--global--wide-size);
+            }
+
+            body .is-layout-flex {
+                display: flex;
+            }
+
+            .is-layout-flex {
+                flex-wrap: wrap;
+                align-items: center;
+            }
+
+            .is-layout-flex > :is(*, div) {
+                margin: 0;
+            }
+
+            body .is-layout-grid {
+                display: grid;
+            }
+
+            .is-layout-grid > :is(*, div) {
+                margin: 0;
+            }
+
+            body {
+                padding-top: 0px;
+                padding-right: 0px;
+                padding-bottom: 0px;
+                padding-left: 0px;
+            }
+
+            a:where(:not(.wp-element-button)) {
+                text-decoration: underline;
+            }
+
+            :root :where(.wp-element-button, .wp-block-button__link) {
+                background-color: #32373c;
+                border-width: 0;
+                color: #fff;
+                font-family: inherit;
+                font-size: inherit;
+                line-height: inherit;
+                padding: calc(0.667em + 2px) calc(1.333em + 2px);
+                text-decoration: none;
+            }
+
+            .has-black-color {
+                color: var(--wp--preset--color--black) !important;
+            }
+
+            .has-cyan-bluish-gray-color {
+                color: var(--wp--preset--color--cyan-bluish-gray) !important;
+            }
+
+            .has-white-color {
+                color: var(--wp--preset--color--white) !important;
+            }
+
+            .has-pale-pink-color {
+                color: var(--wp--preset--color--pale-pink) !important;
+            }
+
+            .has-vivid-red-color {
+                color: var(--wp--preset--color--vivid-red) !important;
+            }
+
+            .has-luminous-vivid-orange-color {
+                color: var(--wp--preset--color--luminous-vivid-orange) !important;
+            }
+
+            .has-luminous-vivid-amber-color {
+                color: var(--wp--preset--color--luminous-vivid-amber) !important;
+            }
+
+            .has-light-green-cyan-color {
+                color: var(--wp--preset--color--light-green-cyan) !important;
+            }
+
+            .has-vivid-green-cyan-color {
+                color: var(--wp--preset--color--vivid-green-cyan) !important;
+            }
+
+            .has-pale-cyan-blue-color {
+                color: var(--wp--preset--color--pale-cyan-blue) !important;
+            }
+
+            .has-vivid-cyan-blue-color {
+                color: var(--wp--preset--color--vivid-cyan-blue) !important;
+            }
+
+            .has-vivid-purple-color {
+                color: var(--wp--preset--color--vivid-purple) !important;
+            }
+
+            .has-black-background-color {
+                background-color: var(--wp--preset--color--black) !important;
+            }
+
+            .has-cyan-bluish-gray-background-color {
+                background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+            }
+
+            .has-white-background-color {
+                background-color: var(--wp--preset--color--white) !important;
+            }
+
+            .has-pale-pink-background-color {
+                background-color: var(--wp--preset--color--pale-pink) !important;
+            }
+
+            .has-vivid-red-background-color {
+                background-color: var(--wp--preset--color--vivid-red) !important;
+            }
+
+            .has-luminous-vivid-orange-background-color {
+                background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+            }
+
+            .has-luminous-vivid-amber-background-color {
+                background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+            }
+
+            .has-light-green-cyan-background-color {
+                background-color: var(--wp--preset--color--light-green-cyan) !important;
+            }
+
+            .has-vivid-green-cyan-background-color {
+                background-color: var(--wp--preset--color--vivid-green-cyan) !important;
+            }
+
+            .has-pale-cyan-blue-background-color {
+                background-color: var(--wp--preset--color--pale-cyan-blue) !important;
+            }
+
+            .has-vivid-cyan-blue-background-color {
+                background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+            }
+
+            .has-vivid-purple-background-color {
+                background-color: var(--wp--preset--color--vivid-purple) !important;
+            }
+
+            .has-black-border-color {
+                border-color: var(--wp--preset--color--black) !important;
+            }
+
+            .has-cyan-bluish-gray-border-color {
+                border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+            }
+
+            .has-white-border-color {
+                border-color: var(--wp--preset--color--white) !important;
+            }
+
+            .has-pale-pink-border-color {
+                border-color: var(--wp--preset--color--pale-pink) !important;
+            }
+
+            .has-vivid-red-border-color {
+                border-color: var(--wp--preset--color--vivid-red) !important;
+            }
+
+            .has-luminous-vivid-orange-border-color {
+                border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+            }
+
+            .has-luminous-vivid-amber-border-color {
+                border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+            }
+
+            .has-light-green-cyan-border-color {
+                border-color: var(--wp--preset--color--light-green-cyan) !important;
+            }
+
+            .has-vivid-green-cyan-border-color {
+                border-color: var(--wp--preset--color--vivid-green-cyan) !important;
+            }
+
+            .has-pale-cyan-blue-border-color {
+                border-color: var(--wp--preset--color--pale-cyan-blue) !important;
+            }
+
+            .has-vivid-cyan-blue-border-color {
+                border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+            }
+
+            .has-vivid-purple-border-color {
+                border-color: var(--wp--preset--color--vivid-purple) !important;
+            }
+
+            .has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+                background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+            }
+
+            .has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+                background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+            }
+
+            .has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+                background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+            }
+
+            .has-luminous-vivid-orange-to-vivid-red-gradient-background {
+                background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+            }
+
+            .has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+                background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+            }
+
+            .has-cool-to-warm-spectrum-gradient-background {
+                background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+            }
+
+            .has-blush-light-purple-gradient-background {
+                background: var(--wp--preset--gradient--blush-light-purple) !important;
+            }
+
+            .has-blush-bordeaux-gradient-background {
+                background: var(--wp--preset--gradient--blush-bordeaux) !important;
+            }
+
+            .has-luminous-dusk-gradient-background {
+                background: var(--wp--preset--gradient--luminous-dusk) !important;
+            }
+
+            .has-pale-ocean-gradient-background {
+                background: var(--wp--preset--gradient--pale-ocean) !important;
+            }
+
+            .has-electric-grass-gradient-background {
+                background: var(--wp--preset--gradient--electric-grass) !important;
+            }
+
+            .has-midnight-gradient-background {
+                background: var(--wp--preset--gradient--midnight) !important;
+            }
+
+            .has-small-font-size {
+                font-size: var(--wp--preset--font-size--small) !important;
+            }
+
+            .has-medium-font-size {
+                font-size: var(--wp--preset--font-size--medium) !important;
+            }
+
+            .has-large-font-size {
+                font-size: var(--wp--preset--font-size--large) !important;
+            }
+
+            .has-x-large-font-size {
+                font-size: var(--wp--preset--font-size--x-large) !important;
+            }
+
+            :root :where(.wp-block-pullquote) {
+                font-size: 1.5em;
+                line-height: 1.6;
+            }
+        </style>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel='stylesheet' id='elementor-frontend-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='swiper-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5' media='all'/>
+        <link rel='stylesheet' id='e-swiper-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='elementor-post-16-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-16.css?ver=1768259984' media='all'/>
+        <link rel='stylesheet' id='elementor-pro-css' href='https://silkroadmodels.com/wp-content/plugins/elementor-pro/assets/css/frontend.min.css?ver=3.22.1' media='all'/>
+        <link rel='stylesheet' id='e-animation-fadeIn-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/lib/animations/styles/fadeIn.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='widget-heading-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='widget-text-editor-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-text-editor.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='widget-image-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='e-animation-grow-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-grow.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='widget-icon-box-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-icon-box.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='mediaelement-css' href='https://silkroadmodels.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17' media='all'/>
+        <link rel='stylesheet' id='wp-mediaelement-css' href='https://silkroadmodels.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=6.7.4' media='all'/>
+        <link rel='stylesheet' id='widget-divider-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='widget-icon-list-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='widget-video-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-video.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='widget-accordion-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-accordion.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='elementor-post-9-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-9.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='hello-elementor-css' href='https://silkroadmodels.com/wp-content/themes/hello-elementor/style.min.css?ver=3.2.1' media='all'/>
+        <link rel='stylesheet' id='hello-elementor-theme-style-css' href='https://silkroadmodels.com/wp-content/themes/hello-elementor/theme.min.css?ver=3.2.1' media='all'/>
+        <link rel='stylesheet' id='hello-elementor-header-footer-css' href='https://silkroadmodels.com/wp-content/themes/hello-elementor/header-footer.min.css?ver=3.2.1' media='all'/>
+        <link rel='stylesheet' id='elementor-post-820-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-820.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='elementor-post-923-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-923.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='elementor-post-1567-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-1567.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='elementor-icons-ekiticons-css' href='https://silkroadmodels.com/wp-content/plugins/elementskit-lite/modules/elementskit-icon-pack/assets/css/ekiticons.css?ver=3.3.1' media='all'/>
+        <link rel='stylesheet' id='ekit-widget-styles-css' href='https://silkroadmodels.com/wp-content/plugins/elementskit-lite/widgets/init/assets/css/widget-styles.css?ver=3.3.1' media='all'/>
+        <link rel='stylesheet' id='ekit-responsive-css' href='https://silkroadmodels.com/wp-content/plugins/elementskit-lite/widgets/init/assets/css/responsive.css?ver=3.3.1' media='all'/>
+        <link rel='stylesheet' id='google-fonts-1-css' href='https://fonts.googleapis.com/css?family=Bebas+Neue%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CInter%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap&#038;ver=6.7.4' media='all'/>
+        <link rel='stylesheet' id='elementor-icons-jkiticon-css' href='https://silkroadmodels.com/wp-content/plugins/jeg-elementor-kit/assets/fonts/jkiticon/jkiticon.css?ver=2.6.10' media='all'/>
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <script src="https://silkroadmodels.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+        <script src="https://silkroadmodels.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+    
+
+        </script>
+        <style>
+            .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload), .e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+                background-image: none !important;
+            }
+
+            @media screen and (max-height: 1024px) {
+                .e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload), .e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+                    background-image: none !important;
+                }
+            }
+
+            @media screen and (max-height: 640px) {
+                .e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload), .e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+                    background-image: none !important;
+                }
+            }
+
+            
+        </style>
+    </head>
+
+    <body>
+    <!-- LIMITED STOCK POP-UP -->
+<div class="limited-popup" id="limited-popup">
+    <div class="limited-popup-overlay"></div>
+    <div class="limited-popup-content">
+        <button class="limited-close" onclick="closeLimitedPopup()">
+            <i class="ri-close-line"></i>
+        </button>
+
+        <div class="limited-header">
+    <div class="limited-warning">⚠</div>
+    <h2 class="limited-title">Exclusive Offer</h2>
+    <p class="limited-subtitle">
+    These bundles are exclusively available on this platform.<br>
+    Not available elsewhere.
+</p>
+</div>
+
+        <div class="limited-grid">
+    <!-- E-book Bundle -->
+    <div class="limited-card">
+        <div class="limited-badge best">Best Offer</div>
+        <div class="limited-single-book">
+            <img src="./assets/img/ketkonyv.png" alt="Complete Digital Collection" class="limited-book-image">
+        </div>
+        <h3 class="limited-card-title">Complete Digital Collection</h3>
+        <p class="limited-card-desc">
+    <strong>Notes from a Stranger</strong> and
+    <strong>Life User Manual</strong><br>
+    Two separate worlds, one thought process.
+    In digital format, with instant access.
+</p>
+        <div class="limited-price">
+            <span class="limited-old-price"> 25.98 $</span>
+            <span class="limited-new-price"> 19.99 $</span>
+        </div>
+        <div class="limited-stock">
+            <i class="ri-alert-line"></i>
+            <span>Digital edition · unlimited time access</span>
+        </div>
+        <button class="limited-btn primary" onclick="addLimitedProduct(300, 'bundle')">
+            View Bundle <i class="ri-arrow-right-line"></i>
+        </button>
+    </div>
+
+    <!-- Physical Books Bundle -->
+    <div class="limited-card">
+        <div class="limited-badge">-10%</div>
+        <div class="limited-single-book">
+            <img src="./assets/img/ketkonyv.png" alt="Complete Physical Collection" class="limited-book-image">
+        </div>
+        <h3 class="limited-card-title">Complete Physical Collection</h3>
+        <p class="limited-card-desc">
+    <strong>Notes from a Stranger</strong> and
+    <strong>Life User Manual</strong><br>
+    A5 size, premium quality.
+    Limited copies, one-time production.
+</p>
+        <div class="limited-price">
+            <span class="limited-old-price">55.98 $</span>
+            <span class="limited-new-price">49.49 $</span>
+        </div>
+        <div class="limited-stock warning">
+            <i class="ri-error-warning-line"></i>
+            <span>Limited copies · no reprint planned</span>
+        </div>
+        <button class="limited-btn secondary" onclick="addLimitedProduct(301, 'physical')">
+            Add to Cart <i class="ri-shopping-cart-line"></i>
+        </button>
+    </div>
+</div>
+
+<div class="limited-footer">
+            <p class="limited-footer-note">
+                <i class="ri-information-line"></i>
+                Cheaper together.
+            </p>
+            <p class="limited-footer-note secondary">
+                that's it:)
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Button -->
+<button class="limited-float-btn" id="limited-float-btn" onclick="openLimitedPopup()">
+    <i class="ri-notification-3-line"></i>
+    <span>Limited Offer</span>
+</button>
+
+<!-- Header -->
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">Senkisem</a>
+<ul class="nav-links">
+    <li><a href="/" class="nav-link">Home</a></li>
+    <li><a href="merch.html" class="nav-link">Merch</a></li>
+    <li><a href="books.html" class="nav-link">Books</a></li>
+</ul>
+        <div class="nav-actions">
+            <div class="nav-icon" id="wishlist-icon">
+                <i class="ri-heart-line"></i>
+                <span class="cart-count" id="wishlist-count" style="display: none;">0</span>
+            </div>
+            <div class="nav-icon" id="cart-icon">
+                <i class="ri-shopping-cart-2-line"></i>
+                <span class="cart-count" id="cart-count" style="display: none;">0</span>
+            </div>
+            <div class="nav-icon" id="menu-icon">
+                <i class="ri-menu-line"></i>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+        <div class="mobile-menu-logo">Senkisem</div>
+        <button class="mobile-menu-close" onclick="closeMobileMenu()">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link" onclick="closeMobileMenu()"><i class=""></i> Home</a></li>
+<li><a href="merch.html" class="mobile-nav-link" onclick="closeMobileMenu()"><i class=""></i> Merch</a></li>
+<li><a href="books.html" class="mobile-nav-link" onclick="closeMobileMenu()"><i class=""></i> Books</a></li>
+
+    </ul>
+</div>
+    
+
+    <body class="home page-template-default page page-id-9 wp-embed-responsive jkit-color-scheme elementor-default elementor-template-full-width elementor-kit-16 elementor-page elementor-page-9">
+        <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+        <div data-elementor-type="header" data-elementor-id="820" class="elementor elementor-820 elementor-location-header" data-elementor-post-type="elementor_library">
+            <div class="elementor-element elementor-element-36caa16a elementor-hidden-desktop e-flex e-con-boxed e-con e-parent" data-id="36caa16a" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                <div class="e-con-inner">
+                    <div class="elementor-element elementor-element-75028cf5 e-flex e-con-boxed e-con e-child" data-id="75028cf5" data-element_type="container">
+                        <div class="e-con-inner">
+                            <div class="elementor-element elementor-element-393eccc9 e-con-full e-flex e-con e-child" data-id="393eccc9" data-element_type="container">
+                                <div class="elementor-element elementor-element-38d24ed5 elementor-widget elementor-widget-image" data-id="38d24ed5" data-element_type="widget" data-widget_type="image.default">
+                                    <div class="elementor-widget-container">
+                                        <a href="https://silkroadmodels.com">
+                                            <img fetchpriority="high" width="800" height="246" src="https://silkroadmodels.com/wp-content/uploads/2024/10/Silk-Road-Models-Design-1-1024x315.png" class="attachment-large size-large wp-image-825" alt="" decoding="async" srcset="https://silkroadmodels.com/wp-content/uploads/2024/10/Silk-Road-Models-Design-1-1024x315.png 1024w, https://silkroadmodels.com/wp-content/uploads/2024/10/Silk-Road-Models-Design-1-300x92.png 300w, https://silkroadmodels.com/wp-content/uploads/2024/10/Silk-Road-Models-Design-1-768x236.png 768w, https://silkroadmodels.com/wp-content/uploads/2024/10/Silk-Road-Models-Design-1-1536x473.png 1536w, https://silkroadmodels.com/wp-content/uploads/2024/10/Silk-Road-Models-Design-1-2048x630.png 2048w" sizes="(max-width: 800px) 100vw, 800px"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div data-elementor-type="wp-page" data-elementor-id="9" class="elementor elementor-9" data-elementor-post-type="page">
+            <div class="elementor-element elementor-element-0c5de86 e-flex e-con-boxed e-con e-parent" data-id="0c5de86" data-element_type="container">
+                <div class="e-con-inner"></div>
+            </div>
+            <div class="elementor-element elementor-element-d9010c9 e-con-full e-flex e-con e-parent" data-id="d9010c9" data-element_type="container">
+                <div class="elementor-element elementor-element-e2e211c e-con-full e-flex e-con e-child" 
+     data-id="e2e211c" 
+     data-element_type="container" 
+     data-settings="{&quot;background_background&quot;:&quot;classic&quot;}"
+     style="background-image: url('assets/img/jgybg.png');">
+                    <div class="elementor-element elementor-element-cb2b89e e-con-full e-flex e-con e-child" data-id="cb2b89e" data-element_type="container">
+                        <div class="elementor-element elementor-element-3124d43 animated-slow elementor-invisible elementor-widget elementor-widget-heading" data-id="3124d43" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:300}" data-widget_type="heading.default">
+                            <div class="elementor-widget-container">
+                                <h1 class="elementor-heading-title elementor-size-default">Senkisem</h1>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-690dd70 animated-slow elementor-invisible elementor-widget elementor-widget-heading" data-id="690dd70" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:300}" data-widget_type="heading.default">
+                            <div class="elementor-widget-container">
+                                <h1 class="elementor-heading-title elementor-size-default">Notes </h1>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-7c7bdd0 elementor-invisible elementor-widget elementor-widget-elementskit-heading" data-id="7c7bdd0" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;}" data-widget_type="elementskit-heading.default">
+                            <div class="elementor-widget-container">
+                                <div class="ekit-wid-con">
+                                    <div class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-   ekit_heading_mobile-text_center">
+                                        <h1 class="ekit-heading--title elementskit-section-title text_fill">
+                                            From 
+                                            <span>
+                                                <span>a Stranger</span>
+                                            </span>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-6279525 animated-slow elementor-widget__width-initial elementor-invisible elementor-widget elementor-widget-text-editor" data-id="6279525" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:700}" data-widget_type="text-editor.default">
+                            <div class="elementor-widget-container">
+<p>
+Notes from a Stranger is not an ordinary book.<br>
+It doesn't tell a story.<br>
+It doesn't give advice.
+</p>
+
+<p>
+It questions.<br>
+It dismantles.<br>
+Then it rearranges.
+</p>
+
+<p>
+You're reading the notes of a Stranger.<br>
+Not a hero, not a teacher, not a savior, not a psychologist.<br>
+Just simply Nobody.
+</p>
+
+<p>
+But this book isn't about me...<br>
+<b>It's about You.</b>
+</p>
+
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-791bc5a elementor-widget elementor-widget-jkit_button" data-id="791bc5a" data-element_type="widget" data-widget_type="jkit_button.default">
+                            <div class="elementor-widget-container">
+                                <div class="jeg-elementor-kit jkit-button  icon-position-before jeg_module_9_4_696ad8b9ea935">
+<a href="#services" class="jkit-button-wrapper">Read it</a>                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="elementor-element elementor-element-e759949 e-con-full e-flex e-con e-parent" data-id="e759949" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+                <div class="elementor-element elementor-element-e943ff3 e-con-full e-flex e-con e-child" data-id="e943ff3" data-element_type="container" data-settings="{&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;motion_fx_translateX_effect&quot;:&quot;yes&quot;,&quot;motion_fx_translateX_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:5.9,&quot;sizes&quot;:[]},&quot;motion_fx_translateX_affectedRange&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;start&quot;:0,&quot;end&quot;:99}},&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}">
+                    <div class="elementor-element elementor-element-94c608b elementor-widget elementor-widget-heading" data-id="94c608b" data-element_type="widget" data-widget_type="heading.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">WE ARE</h2>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-a5e181f elementor-widget elementor-widget-heading" data-id="a5e181f" data-element_type="widget" data-settings="{&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-widget_type="heading.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">SENKISEM</h2>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-d9bb0fa elementor-widget elementor-widget-heading" data-id="d9bb0fa" data-element_type="widget" data-widget_type="heading.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">WE ARE</h2>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-c6000d7 elementor-widget elementor-widget-heading" data-id="c6000d7" data-element_type="widget" data-settings="{&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-widget_type="heading.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">SENKISEM</h2>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-5e8f42e elementor-widget elementor-widget-heading" data-id="5e8f42e" data-element_type="widget" data-widget_type="heading.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">WE ARE</h2>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-7ff15e4 elementor-widget elementor-widget-heading" data-id="7ff15e4" data-element_type="widget" data-settings="{&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-widget_type="heading.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">SENKISEM</h2>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-7e30fb5 elementor-widget elementor-widget-heading" data-id="7e30fb5" data-element_type="widget" data-widget_type="heading.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">WE ARE</h2>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-4dbbae2 elementor-widget elementor-widget-heading" data-id="4dbbae2" data-element_type="widget" data-settings="{&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-widget_type="heading.default">
+                        <div class="elementor-widget-container">
+                            <h2 class="elementor-heading-title elementor-size-default">SENKISEM</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="elementor-element elementor-element-4110e1f e-flex e-con-boxed e-con e-parent" data-id="4110e1f" data-element_type="container" id="about" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                <div class="e-con-inner">
+                    <div class="elementor-element elementor-element-5d5180c e-flex e-con-boxed e-con e-child" data-id="5d5180c" data-element_type="container">
+                        <div class="e-con-inner">
+                            <div class="elementor-element elementor-element-9c92977 e-flex e-con-boxed e-con e-child" data-id="9c92977" data-element_type="container">
+                                <div class="e-con-inner">
+                                    <div class="elementor-element elementor-element-fbe0e4d elementor-widget elementor-widget-image" data-id="fbe0e4d" data-element_type="widget" data-widget_type="image.default">
+                                        <div class="elementor-widget-container">
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-6782a00 animated-slow elementor-invisible elementor-widget elementor-widget-elementskit-heading" data-id="6782a00" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;}" data-widget_type="elementskit-heading.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="ekit-wid-con">
+                                                <div class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-   ekit_heading_mobile-text_center">
+                                                    <h2 class="ekit-heading--title elementskit-section-title text_fill">
+    What is <span><span>the book </span></span> about?
+</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-a30c987 animated-slow elementor-invisible elementor-widget elementor-widget-text-editor" data-id="a30c987" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:300}" data-widget_type="text-editor.default">
+                                        <div class="elementor-widget-container">
+                                            <p>This is not a book you simply "read".<br>
+It's a mirror you can't avoid.<br>
+A conversation you start with yourself.<br>
+A moment when you finally stop lying.</p>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-01d6ff8 elementor-view-stacked elementor-position-left elementor-vertical-align-middle animated-slow elementor-shape-circle elementor-mobile-position-top elementor-invisible elementor-widget elementor-widget-icon-box" data-id="01d6ff8" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:600}" data-widget_type="icon-box.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="elementor-icon-box-wrapper">
+                                                <div class="elementor-icon-box-icon">
+                                                    <span class="elementor-icon elementor-animation-grow">
+                                                    </span>
+                                                </div>
+                                                <div class="elementor-icon-box-content">
+                                                    <h3 class="elementor-icon-box-title">
+                                                        <span>Vision						</span>
+                                                    </h3>
+                                                    <p class="elementor-icon-box-description">A world where you don't have to pretend to be strong.
+Where it's not the loud ones who matter, but those who dare to feel.
+Senkisem doesn't follow trends; it gives space.<br>
+A place for those who no longer want to play roles.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-b9ec783 elementor-view-stacked elementor-shape-square elementor-position-left elementor-vertical-align-middle animated-slow elementor-mobile-position-top elementor-invisible elementor-widget elementor-widget-icon-box" data-id="b9ec783" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:800}" data-widget_type="icon-box.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="elementor-icon-box-wrapper">
+                                                <div class="elementor-icon-box-icon">
+                                                </div>
+                                                <div class="elementor-icon-box-content">
+                                                    <h3 class="elementor-icon-box-title">
+    <span>Mission</span>
+</h3>
+<p class="elementor-icon-box-description">To give words to what you've only felt so far.
+To ask questions where everyone else stays silent.
+Not to fix you,<br>but to remind you that you're not broken.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-element elementor-element-9f5e9c4 e-con-full e-flex e-con e-child" data-id="9f5e9c4" data-element_type="container">
+    <div class="elementor-element elementor-element-176a6c6 e-transform e-transform animated-slow e-flex e-con-boxed elementor-invisible e-con e-child" data-id="176a6c6" data-element_type="container" data-settings='{"_transform_rotateZ_effect":{"unit":"px","size":1,"sizes":[]},"_transform_skewX_effect":{"unit":"px","size":0,"sizes":[]},"_transform_skewY_effect":{"unit":"px","size":0,"sizes":[]},"animation":"fadeIn","animation_delay":1000,"_transform_rotateZ_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_rotateZ_effect_mobile":{"unit":"deg","size":"","sizes":[]},"_transform_skewX_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_skewX_effect_mobile":{"unit":"deg","size":"","sizes":[]},"_transform_skewY_effect_tablet":{"unit":"deg","size":"","sizes":[]},"_transform_skewY_effect_mobile":{"unit":"deg","size":"","sizes":[]}}'>
+        <div class="e-con-inner">
+            <div class="elementor-element elementor-element-5a0929a e-flex e-con-boxed e-con e-child" data-id="5a0929a" data-element_type="container">
+                <div class="e-con-inner">
+                    <div class="elementor-element elementor-element-01fb589 e-flex e-con-boxed e-con e-child" data-id="01fb589" data-element_type="container">
+                        <div class="e-con-inner">
+                            <div class="elementor-element elementor-element-04b660b elementor-widget elementor-widget-elementskit-heading" data-id="04b660b" data-element_type="widget" data-widget_type="elementskit-heading.default">
+                                <div class="elementor-widget-container">
+                                    <div class="ekit-wid-con">
+                                        <div class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-8e16111 e-con-full e-flex e-con e-child" data-id="8e16111" data-element_type="container">
+                        <div class="elementor-element elementor-element-7435d7f elementor-widget elementor-widget-image" data-id="7435d7f" data-element_type="widget" data-widget_type="image.default">
+                            
+                                <img loading="lazy" decoding="async" width="800" height="800" src="assets/img/könyv1.png" class="attachment-large size-large" alt="Senkisem Jegyzetek Egy Idegentől könyv" style="width: 100%; height: auto; border-radius: 8px;"/>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="elementor-element elementor-element-d93199b e-con-full e-flex e-con e-parent" data-id="d93199b" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+                <div class="elementor-element elementor-element-c5125a3 e-flex e-con-boxed e-con e-child" data-id="c5125a3" data-element_type="container">
+                    <div class="e-con-inner">
+                        <div class="elementor-element elementor-element-7c2048c e-flex e-con-boxed e-con e-child" data-id="7c2048c" data-element_type="container">
+                            <div class="e-con-inner">
+                                <div class="elementor-element elementor-element-28860f2 animated-slow e-flex e-con-boxed elementor-invisible e-con e-child" data-id="28860f2" data-element_type="container" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;}">
+                                    <div class="e-con-inner">
+                                        <div class="elementor-element elementor-element-29a806f elementor-widget elementor-widget-elementskit-heading" data-id="29a806f" data-element_type="widget" data-widget_type="elementskit-heading.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="ekit-wid-con">
+                                                    <div class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
+                                                        <h2 class="ekit-heading--title elementskit-section-title text_fill">
+                                                            <span>
+                                                                <span>2000+</span>
+                                                            </span>
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-4029b28 elementor-widget elementor-widget-text-editor" data-id="4029b28" data-element_type="widget" data-widget_type="text-editor.default">
+                                            <div class="elementor-widget-container">
+                                                <p>Follower</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-4dc64c4 animated-slow e-flex e-con-boxed elementor-invisible e-con e-child" data-id="4dc64c4" data-element_type="container" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;}">
+                                    <div class="e-con-inner">
+                                        <div class="elementor-element elementor-element-8ced0d0 elementor-widget elementor-widget-elementskit-heading" data-id="8ced0d0" data-element_type="widget" data-widget_type="elementskit-heading.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="ekit-wid-con">
+                                                    <div class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
+                                                        <h2 class="ekit-heading--title elementskit-section-title text_fill">
+                                                            <span>
+                                                                <span>742K+</span>
+                                                            </span>
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-8d0d069 elementor-widget elementor-widget-text-editor" data-id="8d0d069" data-element_type="widget" data-widget_type="text-editor.default">
+                                            <div class="elementor-widget-container">
+                                                <p>Views</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-c939eb9 e-flex e-con-boxed e-con e-child" data-id="c939eb9" data-element_type="container">
+                            <div class="e-con-inner">
+                                <div class="elementor-element elementor-element-8960fd9 animated-slow e-flex e-con-boxed elementor-invisible e-con e-child" data-id="8960fd9" data-element_type="container" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:600}">
+                                    <div class="e-con-inner">
+                                        <div class="elementor-element elementor-element-11edbaa elementor-widget elementor-widget-elementskit-heading" data-id="11edbaa" data-element_type="widget" data-widget_type="elementskit-heading.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="ekit-wid-con">
+                                                    <div class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
+                                                        <h2 class="ekit-heading--title elementskit-section-title text_fill">
+                                                            <span>
+                                                                <span>500+</span>
+                                                            </span>
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-e6365cf elementor-widget elementor-widget-text-editor" data-id="e6365cf" data-element_type="widget" data-widget_type="text-editor.default">
+                                            <div class="elementor-widget-container">
+                                                <p>Satisfied Reader</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="elementor-element elementor-element-26c26fa animated-slow e-flex e-con-boxed elementor-invisible e-con e-child" data-id="26c26fa" data-element_type="container" data-settings="{&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:900}">
+                                    <div class="e-con-inner">
+                                        <div class="elementor-element elementor-element-e022b04 elementor-widget elementor-widget-elementskit-heading" data-id="e022b04" data-element_type="widget" data-widget_type="elementskit-heading.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="ekit-wid-con">
+                                                    <div class="ekit-heading elementskit-section-title-wraper text_center   ekit_heading_tablet-   ekit_heading_mobile-">
+                                                        <h2 class="ekit-heading--title elementskit-section-title text_fill">
+                                                            <span>
+                                                                <span>100%</span>
+                                                            </span>
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-4c8a111 elementor-widget elementor-widget-text-editor" data-id="4c8a111" data-element_type="widget" data-widget_type="text-editor.default">
+                                            <div class="elementor-widget-container">
+                                                <p>Senkisem</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="elementor-element elementor-element-18fb5a0 e-flex e-con-boxed e-con e-parent" data-id="18fb5a0" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                <div class="e-con-inner">
+                    <div class="elementor-element elementor-element-b2a6613 e-con-full e-flex e-con e-child" data-id="b2a6613" data-element_type="container" data-settings="{&quot;sticky&quot;:&quot;top&quot;,&quot;sticky_offset&quot;:60,&quot;sticky_parent&quot;:&quot;yes&quot;,&quot;sticky_on&quot;:[&quot;desktop&quot;],&quot;sticky_effects_offset&quot;:0}">
+                        <div class="elementor-element elementor-element-da65e0e animated-slow elementor-invisible elementor-widget elementor-widget-elementskit-heading" data-id="da65e0e" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;}" data-widget_type="elementskit-heading.default">
+                            <div class="elementor-widget-container">
+                                <div class="ekit-wid-con">
+                                    <div class="ekit-heading elementskit-section-title-wraper text_left   ekit_heading_tablet-   ekit_heading_mobile-text_center">
+                                        <h2 class="ekit-heading--title elementskit-section-title text_fill">
+                                            Read a bit
+                                            <span>
+                                                <span></span>
+                                            </span>
+                    
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-793aa62 animated-slow elementor-invisible elementor-widget elementor-widget-text-editor" data-id="793aa62" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:300}" data-widget_type="text-editor.default">
+                            <div class="elementor-widget-container">
+                                <p>Not a spoiler.
+Not a quote collection.
+Just a piece of what happens when no one is watching.
+
+This book doesn't ask for your attention.
+But once you look into it, it doesn't let go easily.
+Some closed it after one page.
+Some couldn't put it down until dawn.
+
+If you scroll past now, nothing happens.
+If you read into it, maybe something does.</p>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-1974a7d elementor-widget-divider--view-line elementor-invisible elementor-widget elementor-widget-divider" data-id="1974a7d" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;,&quot;_animation_delay&quot;:500}" data-widget_type="divider.default">
+                            <div class="elementor-widget-container">
+                                <div class="elementor-divider">
+                                    <span class="elementor-divider-separator"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="elementor-element elementor-element-f4ba30b e-con-full e-flex e-con e-child" data-id="f4ba30b" data-element_type="container">
+                        <div class="elementor-element elementor-element-0bad322 animated-slow e-transform e-transform e-flex e-con-boxed elementor-invisible e-con e-child" data-id="0bad322" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:1000,&quot;_transform_rotateZ_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;_transform_rotateZ_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_rotateZ_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}">
+                            <div class="e-con-inner">
+                                <div class="elementor-element elementor-element-2116dde e-flex e-con-boxed e-con e-child" data-id="2116dde" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+                                    <div class="e-con-inner">
+                                        <div class="elementor-element elementor-element-272d122 elementor-widget elementor-widget-heading" data-id="272d122" data-element_type="widget" data-widget_type="heading.default">
+                                            <div class="elementor-widget-container">
+                                                <p class="elementor-heading-title elementor-size-default">Chapter 0</p>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-f99652c elementor-widget elementor-widget-heading" data-id="f99652c" data-element_type="widget" data-widget_type="heading.default">
+                                            <div class="elementor-widget-container">
+                                                <h4 class="elementor-heading-title elementor-size-default">Introduction</h4>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-a0e547c elementor-widget elementor-widget-text-editor" data-id="a0e547c" data-element_type="widget" data-widget_type="text-editor.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="page" title="Page 1">
+                                                    <div class="section">
+                                                        <div class="layoutArea">
+                                                            <div class="column">
+                                                                <p class="font_7 wixui-rich-text__text">You don't need to know why you're here.
+It's enough if you feel that something is missing.
+This book doesn't promise change, only honesty.
+And sometimes that's much more dangerous.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-5537272 elementor-widget elementor-widget-jkit_button" data-id="5537272" data-element_type="widget" data-widget_type="jkit_button.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="jeg-elementor-kit jkit-button  icon-position-before jeg_module_9_5_696ad8b9eac85">
+<a href="#" onclick="event.preventDefault(); openChapterPreview('bevezetes');" class="jkit-button-wrapper"> Read it </a>                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-14e4eda animated-slow e-con-full e-transform e-transform e-flex elementor-invisible e-con e-child" data-id="14e4eda" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:1000,&quot;_transform_rotateZ_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:-2,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;_transform_rotateZ_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_rotateZ_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}">
+                            <div class="elementor-element elementor-element-31c906d e-flex e-con-boxed e-con e-child" data-id="31c906d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+                                <div class="e-con-inner">
+                                    <div class="elementor-element elementor-element-5a8a4ef elementor-widget elementor-widget-heading" data-id="5a8a4ef" data-element_type="widget" data-widget_type="heading.default">
+                                        <div class="elementor-widget-container">
+                                            <p class="elementor-heading-title elementor-size-default">Chapter I</p>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-e2a4eb1 elementor-widget elementor-widget-heading" data-id="e2a4eb1" data-element_type="widget" data-widget_type="heading.default">
+                                        <div class="elementor-widget-container">
+                                            <h4 class="elementor-heading-title elementor-size-default">You are the first question.</h4>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-49cb75e elementor-widget elementor-widget-text-editor" data-id="49cb75e" data-element_type="widget" data-widget_type="text-editor.default">
+                                        <div class="elementor-widget-container">
+                                            <p>Before you start looking for answers, we stop for a moment.
+Not because of the world.
+Because of you.
+Because for too long, every important question was left out.</p>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-b9fe6a2 elementor-widget elementor-widget-jkit_button" data-id="b9fe6a2" data-element_type="widget" data-widget_type="jkit_button.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="jeg-elementor-kit jkit-button  icon-position-before jeg_module_9_6_696ad8b9eafc0">
+<a href="#" onclick="event.preventDefault(); openChapterPreview('elsokerdes');" class="jkit-button-wrapper">Read it</a>                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-beae74a animated-slow e-con-full e-transform e-transform e-flex elementor-invisible e-con e-child" data-id="beae74a" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:1000,&quot;_transform_rotateZ_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;_transform_rotateZ_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_rotateZ_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}">
+                            <div class="elementor-element elementor-element-5ba1cfd e-flex e-con-boxed e-con e-child" data-id="5ba1cfd" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+                                <div class="e-con-inner">
+                                    <div class="elementor-element elementor-element-6d53111 elementor-widget elementor-widget-heading" data-id="6d53111" data-element_type="widget" data-widget_type="heading.default">
+                                        <div class="elementor-widget-container">
+                                            <p class="elementor-heading-title elementor-size-default">Chapter II</p>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-987db75 elementor-widget elementor-widget-heading" data-id="987db75" data-element_type="widget" data-widget_type="heading.default">
+                                        <div class="elementor-widget-container">
+                                            <h4 class="elementor-heading-title elementor-size-default">Why do you hurt yourself so beautifully?</h4>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-664e3f2 elementor-widget elementor-widget-text-editor" data-id="664e3f2" data-element_type="widget" data-widget_type="text-editor.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="page" title="Page 1">
+                                                <div class="section">
+                                                    <div class="layoutArea">
+                                                        <div class="column">
+                                                            <p class="font_7 wixui-rich-text__text">This part doesn't caress.
+But it doesn't hurt either.
+It just says out loud what you've been using against yourself.
+And gives it back in a way that it finally doesn't hurt the same way.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-52dcff5 elementor-widget elementor-widget-jkit_button" data-id="52dcff5" data-element_type="widget" data-widget_type="jkit_button.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="jeg-elementor-kit jkit-button  icon-position-before jeg_module_9_7_696ad8b9eb2c5">
+<a href="#" onclick="event.preventDefault(); openChapterPreview('bantod');" class="jkit-button-wrapper">Read it</a>                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elementor-element elementor-element-9e18b2c animated-slow e-con-full e-transform e-transform e-flex elementor-invisible e-con e-child" data-id="9e18b2c" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:1000,&quot;_transform_rotateZ_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:-2,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;_transform_rotateZ_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_rotateZ_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewX_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect_tablet&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;_transform_skewY_effect_mobile&quot;:{&quot;unit&quot;:&quot;deg&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}">
+                            <div class="elementor-element elementor-element-f13074d e-flex e-con-boxed e-con e-child" data-id="f13074d" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+                                <div class="e-con-inner">
+                                    <div class="elementor-element elementor-element-e46f2f1 elementor-widget elementor-widget-heading" data-id="e46f2f1" data-element_type="widget" data-widget_type="heading.default">
+                                        <div class="elementor-widget-container">
+                                            <p class="elementor-heading-title elementor-size-default">Chapter VI</p>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-fb3d81d elementor-widget elementor-widget-heading" data-id="fb3d81d" data-element_type="widget" data-widget_type="heading.default">
+                                        <div class="elementor-widget-container">
+                                            <h4 class="elementor-heading-title elementor-size-default">I love you, just differently.</h4>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-05edc83 elementor-widget elementor-widget-text-editor" data-id="05edc83" data-element_type="widget" data-widget_type="text-editor.default">
+                                        <div class="elementor-widget-container">
+                                            <p>I'm not a great mystery either.
+I'm roughly like a badly folded letter:
+crumpled, a bit unreadable, but still interpretable.
+That's why… Learn me slowly, please.
+Be patient with my pages.</p>
+                                        </div>
+                                    </div>
+                                    <div class="elementor-element elementor-element-d043565 elementor-widget elementor-widget-jkit_button" data-id="d043565" data-element_type="widget" data-widget_type="jkit_button.default">
+                                        <div class="elementor-widget-container">
+                                            <div class="jeg-elementor-kit jkit-button  icon-position-before jeg_module_9_8_696ad8b9eb5c0">
+<a href="#" onclick="event.preventDefault(); openChapterPreview('szeretlek');" class="jkit-button-wrapper">Read it</a>                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="elementor-element elementor-element-3afa14b e-flex e-con-boxed e-con e-parent" data-id="3afa14b" data-element_type="container" id="services" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
+    <div class="e-con-inner">
+        <div class="elementor-element elementor-element-e5d1866 e-con-full e-flex e-con e-child" data-id="e5d1866" data-element_type="container">
+            <div class="elementor-element elementor-element-2de64e1 elementor-widget elementor-widget-heading" data-id="2de64e1" data-element_type="widget" data-settings="{&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;motion_fx_translateX_effect&quot;:&quot;yes&quot;,&quot;motion_fx_translateX_direction&quot;:&quot;negative&quot;,&quot;motion_fx_translateX_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:7,&quot;sizes&quot;:[]},&quot;motion_fx_translateX_affectedRange&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;start&quot;:0,&quot;end&quot;:100}},&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-widget_type="heading.default">
+                <div class="elementor-widget-container">
+                    <h2 class="elementor-heading-title elementor-size-default">Senkisem</h2>
+                </div>
+            </div>
+        </div>
+        <div class="elementor-element elementor-element-0b3ee20 e-con-full e-flex e-con e-child" data-id="0b3ee20" data-element_type="container">
+            <div class="elementor-element elementor-element-46a5cd2 elementor-widget elementor-widget-heading" data-id="46a5cd2" data-element_type="widget" data-settings="{&quot;motion_fx_motion_fx_scrolling&quot;:&quot;yes&quot;,&quot;motion_fx_translateX_effect&quot;:&quot;yes&quot;,&quot;motion_fx_translateX_speed&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:8.8,&quot;sizes&quot;:[]},&quot;motion_fx_translateX_affectedRange&quot;:{&quot;unit&quot;:&quot;%&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:{&quot;start&quot;:0,&quot;end&quot;:100}},&quot;motion_fx_devices&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;]}" data-widget_type="heading.default">
+                <div class="elementor-widget-container">
+                    <h2 class="elementor-heading-title elementor-size-default">Notes from a Stranger</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="elementor-element elementor-element-fb3e5bd e-con-full e-flex e-con e-child" data-id="fb3e5bd" data-element_type="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+            
+            <!-- E-KÖNYV KÁRTYA -->
+            <div class="elementor-element elementor-element-928ddbf e-con-full e-flex e-con e-child" data-id="928ddbf" data-element_type="container">
+                <div class="elementor-element elementor-element-9a726df elementor-widget__width-inherit elementor-testimonial--skin-default elementor-testimonial--layout-image_inline elementor-testimonial--align-center elementor-pagination-type-bullets elementor-widget elementor-widget-testimonial-carousel" data-id="9a726df" data-element_type="widget">
+                    <div class="elementor-widget-container">
+                        <div class="book-option-card ebook-card" >
+                            
+                            <!-- Sale Badge -->
+                            
+                            <div data-elementor-type="container" data-elementor-id="399" class="elementor elementor-399" data-elementor-post-type="elementor_library">
+                                <div class="elementor-element elementor-element-e932c3e e-flex e-con-boxed e-con e-parent" data-id="e932c3e" data-element_type="container">
+                                    <div class="e-con-inner">
+                                        <div class="elementor-element elementor-element-ceb317b e-con-full e-flex e-con e-child" data-id="ceb317b" data-element_type="container">
+                                            <div class="elementor-element elementor-element-08e2581 e-con-full e-flex e-con e-child" data-id="08e2581" data-element_type="container">
+                                                <div class="elementor-element elementor-element-040d1f7 e-con-full e-flex e-con e-child" data-id="040d1f7" data-element_type="container">
+                                                    
+                                                        <div class="discount-badge">-25%</div>
+
+                                                    <!-- Cím -->
+                                                    <div class="elementor-element elementor-element-ae576f8 elementor-widget elementor-widget-heading" data-id="ae576f8" data-element_type="widget" data-widget_type="heading.default">
+                                                        <div class="elementor-widget-container" style="text-align: center; margin-bottom: 1rem;">
+                                                            <h4 class="elementor-heading-title elementor-size-default card-title" style="color: white; font-size: 2rem; font-weight: 700; margin: 0;">E-Book</h4>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Leírás -->
+                                                    <div class="elementor-element elementor-element-e51c584 elementor-widget elementor-widget-text-editor" data-id="e51c584" data-element_type="widget" data-widget_type="text-editor.default">
+                                                        <div class="elementor-widget-container" style="text-align: center; margin-bottom: 1.5rem;">
+                                                            <p class="card-description" style="color: rgba(255,255,255,0.9); font-size: 1rem; line-height: 1.6;">Digital format, instant access</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Ár -->
+                                                    <div class="elementor-element elementor-element-2ad3dcc animated-slow elementor-widget elementor-widget-elementskit-heading" data-id="2ad3dcc" data-element_type="widget" data-widget_type="elementskit-heading.default">
+                                                        <div class="elementor-widget-container" style="text-align: center; margin-bottom: 1.5rem;">
+                                                            <div class="ekit-wid-con">
+                                                                <div class="ekit-heading elementskit-section-title-wraper text_center price-wrapper">
+                                                                    <h2 class="ekit-heading--title elementskit-section-title current-price" style="color: white; font-size: 3rem; font-weight: 800; margin: 0;">
+                                                                        <span> 12.99 $</span>
+                                                                    </h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Funkciók lista -->
+                                                    <div class="elementor-element elementor-element-e0da665 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="e0da665" data-element_type="widget" data-widget_type="icon-list.default">
+                                                        <div class="elementor-widget-container" style="margin-bottom: 2rem;">
+                                                            <ul class="elementor-icon-list-items features-list" style="list-style: none; padding: 0; margin: 0;">
+                                                                <li class="elementor-icon-list-item" style="color: white; padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                                                    <span class="elementor-icon-list-icon" style="flex-shrink: 0; margin-top: 0.25rem;">
+                                                                        <i aria-hidden="true" class="jki jki-checked1-light" style="color: #4ade80; font-size: 1.2rem;"></i>
+                                                                    </span>
+                                                                    <span class="elementor-icon-list-text" style="color: rgba(255,255,255,0.9); line-height: 1.6;">Instant download</span>
+                                                                </li>
+                                                                <li class="elementor-icon-list-item" style="color: white; padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                                                    <span class="elementor-icon-list-icon" style="flex-shrink: 0; margin-top: 0.25rem;">
+                                                                        <i aria-hidden="true" class="jki jki-checked1-light" style="color: #4ade80; font-size: 1.2rem;"></i>
+                                                                    </span>
+                                                                    <span class="elementor-icon-list-text" style="color: rgba(255,255,255,0.9); line-height: 1.6;">Readable on every device</span>
+                                                                </li>
+                                                                <li class="elementor-icon-list-item" style="color: white; padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 0.75rem;">
+                                                                    <span class="elementor-icon-list-icon" style="flex-shrink: 0; margin-top: 0.25rem;">
+                                                                        <i aria-hidden="true" class="jki jki-checked1-light" style="color: #4ade80; font-size: 1.2rem;"></i>
+                                                                    </span>
+                                                                    <span class="elementor-icon-list-text" style="color: rgba(255,255,255,0.9); line-height: 1.6;">Lifetime access</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Vásárlás gomb -->
+                                                    <div style="text-align: center;">
+                                                       <button class="purchase-btn primary-btn elementor-heading-title elementor-size-default" onclick="purchaseBook('ebook')">
+    Read it
+</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIZIKAI KÖNYV KÁRTYA -->
+            <div class="elementor-element e-con-full e-flex e-con e-child" data-element_type="container">
+                <div class="elementor-widget elementor-widget-testimonial-carousel">
+                    <div class="elementor-widget-container">
+                        <div class="book-option-card physical-card featured">
+                            
+                            <!-- Featured Badge -->                            
+                            <div data-elementor-type="container" data-elementor-id="713" class="elementor elementor-713" data-elementor-post-type="elementor_library">
+                                <div class="elementor-element elementor-element-2c9082ed e-flex e-con-boxed e-con e-parent" data-id="2c9082ed" data-element_type="container">
+                                    <div class="e-con-inner">
+                                        <div class="elementor-element elementor-element-1ecc2798 e-con-full e-flex e-con e-child" data-id="1ecc2798" data-element_type="container">
+                                            <div class="elementor-element elementor-element-516dde04 e-con-full e-flex e-con e-child" data-id="516dde04" data-element_type="container">
+                                                <div class="elementor-element elementor-element-38496d67 e-con-full e-flex e-con e-child" data-id="38496d67" data-element_type="container">
+
+                                                    
+                                                    <!-- Cím -->
+                                                    <div class="elementor-element elementor-element-2bb8af2f elementor-widget elementor-widget-heading" data-id="2bb8af2f" data-element_type="widget" data-widget_type="heading.default">
+                                                        <div class="elementor-widget-container" style="text-align: center; margin-bottom: 1rem;">
+                                                            <h4 class="elementor-heading-title elementor-size-default card-title" style="color: white; font-size: 2rem; font-weight: 700; margin: 0;">Book (Physical Copy)</h4>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Leírás -->
+                                                    <div class="elementor-element elementor-element-771571d7 elementor-widget elementor-widget-text-editor" data-id="771571d7" data-element_type="widget" data-widget_type="text-editor.default">
+                                                        <div class="elementor-widget-container" style="text-align: center; margin-bottom: 1.5rem;">
+                                                            <p class="card-description" style="color: rgba(255,255,255,0.9); font-size: 1rem; line-height: 1.6;">A5 size - Premium quality</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Ár -->
+                                                    <div class="elementor-element elementor-element-1f2e805d animated-slow elementor-widget elementor-widget-elementskit-heading" data-id="1f2e805d" data-element_type="widget" data-widget_type="elementskit-heading.default">
+                                                        <div class="elementor-widget-container" style="text-align: center; margin-bottom: 1.5rem;">
+                                                            <div class="ekit-wid-con">
+                                                                <div class="ekit-heading elementskit-section-title-wraper text_center price-wrapper">
+                                                                    <h2 class="ekit-heading--title elementskit-section-title current-price" style="color: white; font-size: 3rem; font-weight: 800; margin: 0;">
+                                                                        <span>27.99 $</span>
+                                                                    </h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Funkciók lista -->
+                                                    <div class="elementor-element elementor-element-223a5570 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="223a5570" data-element_type="widget" data-widget_type="icon-list.default">
+                                                        <div class="elementor-widget-container" style="margin-bottom: 2rem;">
+                                                            <ul class="elementor-icon-list-items features-list" style="list-style: none; padding: 0; margin: 0;">
+                                                                <li class="elementor-icon-list-item" style="color: white; padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                                                    <span class="elementor-icon-list-icon" style="flex-shrink: 0; margin-top: 0.25rem;">
+                                                                        <i aria-hidden="true" class="jki jki-checked1-light" style="color: #4ade80; font-size: 1.2rem;"></i>
+                                                                    </span>
+                                                                    <span class="elementor-icon-list-text" style="color: rgba(255,255,255,0.9); line-height: 1.6;">Gift included in packaging</span>
+                                                                </li>
+                                                                <li class="elementor-icon-list-item" style="color: white; padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                                                    <span class="elementor-icon-list-icon" style="flex-shrink: 0; margin-top: 0.25rem;">
+                                                                        <i aria-hidden="true" class="jki jki-checked1-light" style="color: #4ade80; font-size: 1.2rem;"></i>
+                                                                    </span>
+                                                                    <span class="elementor-icon-list-text" style="color: rgba(255,255,255,0.9); line-height: 1.6;">Premium quality</span>
+                                                                </li>
+                                                                <li class="elementor-icon-list-item" style="color: white; padding: 0.75rem 0; display: flex; align-items: flex-start; gap: 0.75rem;">
+                                                                    <span class="elementor-icon-list-icon" style="flex-shrink: 0; margin-top: 0.25rem;">
+                                                                        <i aria-hidden="true" class="jki jki-checked1-light" style="color: #4ade80; font-size: 1.2rem;"></i>
+                                                                    </span>
+                                                                    <span class="elementor-icon-list-text" style="color: rgba(255,255,255,0.9); line-height: 1.6;">Limited copies</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Vásárlás gomb -->
+                                                    <div style="text-align: center;">
+                                                        <button class="purchase-btn secondary-btn elementor-heading-title elementor-size-default" onclick="purchaseBook('physical')">
+    Add to Cart
+</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+           
+            
+            <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Senkisem</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    Not a brand; <br>
+                    Message.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Community</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/senkisem.hu/" target="_blank" class="social-icon">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@senkisem.hu" target="_blank" class="social-icon" title="TikTok">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.04-.1z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:senkisem.info@gmail.com" class="social-icon">
+                        <i class="ri-mail-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#contact">senkisem.info@gmail.com</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Info</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">About Us</a></li>
+                    <li><a href="assets/ÁSZF.pdf">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Senkisem - All rights reserved</p>
+        </div>
+    </footer>
+
+    <div class="preview-modal" id="preview-modal">
+    <div class="preview-modal-content">
+        <button class="preview-close-btn" onclick="closePreviewModal()">
+            <i class="ri-close-line"></i>
+        </button>
+        <img id="preview-modal-image" src="" alt="Előnézet" class="preview-modal-image">
+        <div class="preview-modal-nav">
+            <button class="preview-nav-btn" id="preview-prev-btn" onclick="previousPreview()">
+                <i class="ri-arrow-left-line"></i>
+            </button>
+            <span class="preview-counter" id="preview-counter">1 / 4</span>
+            <button class="preview-nav-btn" id="preview-next-btn" onclick="nextPreview()">
+                <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Sidebar for Cart/Wishlist -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title" id="sidebar-title">Cart</h2>
+            <button class="close-btn" onclick="closeSidebar()">&times;</button>
+        </div>
+        <div id="sidebar-content">
+            <p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">
+                Your cart is currently empty
+            </p>
+        </div>
+    </div>
+       
+
+        <!-- End Meta Pixel Event Code -->
+        <script type='text/javascript'>
+            const lazyloadRunObserver = () => {
+                const lazyloadBackgrounds = document.querySelectorAll(`.e-con.e-parent:not(.e-lazyloaded)`);
+                const lazyloadBackgroundObserver = new IntersectionObserver( (entries) => {
+                    entries.forEach( (entry) => {
+                        if (entry.isIntersecting) {
+                            let lazyloadBackground = entry.target;
+                            if (lazyloadBackground) {
+                                lazyloadBackground.classList.add('e-lazyloaded');
+                            }
+                            lazyloadBackgroundObserver.unobserve(entry.target);
+                        }
+                    }
+                    );
+                }
+                ,{
+                    rootMargin: '200px 0px 200px 0px'
+                });
+                lazyloadBackgrounds.forEach( (lazyloadBackground) => {
+                    lazyloadBackgroundObserver.observe(lazyloadBackground);
+                }
+                );
+            }
+            ;
+            const events = ['DOMContentLoaded', 'elementor/lazyload/observe', ];
+            events.forEach( (event) => {
+                document.addEventListener(event, lazyloadRunObserver);
+            }
+            );
+        </script>
+        <link rel='stylesheet' id='jeg-dynamic-style-css' href='https://silkroadmodels.com/wp-content/plugins/jeg-elementor-kit/lib/jeg-framework/assets/css/jeg-dynamic-styles.css?ver=1.3.0' media='all'/>
+        <link rel='stylesheet' id='elementor-post-235-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-235.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='widget-image-box-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-image-box.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='elementor-post-675-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-675.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='elementor-post-329-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-329.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='elementor-post-399-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-399.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='elementor-post-713-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-713.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='elementor-post-709-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-709.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='elementor-post-716-css' href='https://silkroadmodels.com/wp-content/uploads/elementor/css/post-716.css?ver=1768259985' media='all'/>
+        <link rel='stylesheet' id='widget-social-icons-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.25.10' media='all'/>
+        <link rel='stylesheet' id='e-apple-webkit-css' href='https://silkroadmodels.com/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=3.25.10' media='all'/>
+        <script id="mediaelement-core-js-before">
+            var mejsL10n = {
+                "language": "en",
+                "strings": {
+                    "mejs.download-file": "Download File",
+                    "mejs.install-flash": "You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https:\/\/get.adobe.com\/flashplayer\/",
+                    "mejs.fullscreen": "Fullscreen",
+                    "mejs.play": "Play",
+                    "mejs.pause": "Pause",
+                    "mejs.time-slider": "Time Slider",
+                    "mejs.time-help-text": "Use Left\/Right Arrow keys to advance one second, Up\/Down arrows to advance ten seconds.",
+                    "mejs.live-broadcast": "Live Broadcast",
+                    "mejs.volume-help-text": "Use Up\/Down Arrow keys to increase or decrease volume.",
+                    "mejs.unmute": "Unmute",
+                    "mejs.mute": "Mute",
+                    "mejs.volume-slider": "Volume Slider",
+                    "mejs.video-player": "Video Player",
+                    "mejs.audio-player": "Audio Player",
+                    "mejs.captions-subtitles": "Captions\/Subtitles",
+                    "mejs.captions-chapters": "Chapters",
+                    "mejs.none": "None",
+                    "mejs.afrikaans": "Afrikaans",
+                    "mejs.albanian": "Albanian",
+                    "mejs.arabic": "Arabic",
+                    "mejs.belarusian": "Belarusian",
+                    "mejs.bulgarian": "Bulgarian",
+                    "mejs.catalan": "Catalan",
+                    "mejs.chinese": "Chinese",
+                    "mejs.chinese-simplified": "Chinese (Simplified)",
+                    "mejs.chinese-traditional": "Chinese (Traditional)",
+                    "mejs.croatian": "Croatian",
+                    "mejs.czech": "Czech",
+                    "mejs.danish": "Danish",
+                    "mejs.dutch": "Dutch",
+                    "mejs.english": "English",
+                    "mejs.estonian": "Estonian",
+                    "mejs.filipino": "Filipino",
+                    "mejs.finnish": "Finnish",
+                    "mejs.french": "French",
+                    "mejs.galician": "Galician",
+                    "mejs.german": "German",
+                    "mejs.greek": "Greek",
+                    "mejs.haitian-creole": "Haitian Creole",
+                    "mejs.hebrew": "Hebrew",
+                    "mejs.hindi": "Hindi",
+                    "mejs.hungarian": "Hungarian",
+                    "mejs.icelandic": "Icelandic",
+                    "mejs.indonesian": "Indonesian",
+                    "mejs.irish": "Irish",
+                    "mejs.italian": "Italian",
+                    "mejs.japanese": "Japanese",
+                    "mejs.korean": "Korean",
+                    "mejs.latvian": "Latvian",
+                    "mejs.lithuanian": "Lithuanian",
+                    "mejs.macedonian": "Macedonian",
+                    "mejs.malay": "Malay",
+                    "mejs.maltese": "Maltese",
+                    "mejs.norwegian": "Norwegian",
+                    "mejs.persian": "Persian",
+                    "mejs.polish": "Polish",
+                    "mejs.portuguese": "Portuguese",
+                    "mejs.romanian": "Romanian",
+                    "mejs.russian": "Russian",
+                    "mejs.serbian": "Serbian",
+                    "mejs.slovak": "Slovak",
+                    "mejs.slovenian": "Slovenian",
+                    "mejs.spanish": "Spanish",
+                    "mejs.swahili": "Swahili",
+                    "mejs.swedish": "Swedish",
+                    "mejs.tagalog": "Tagalog",
+                    "mejs.thai": "Thai",
+                    "mejs.turkish": "Turkish",
+                    "mejs.ukrainian": "Ukrainian",
+                    "mejs.vietnamese": "Vietnamese",
+                    "mejs.welsh": "Welsh",
+                    "mejs.yiddish": "Yiddish"
+                }
+            };
+        </script>
+        <script src="https://silkroadmodels.com/wp-includes/js/mediaelement/mediaelement-and-player.min.js?ver=4.2.17" id="mediaelement-core-js"></script>
+        <script src="https://silkroadmodels.com/wp-includes/js/mediaelement/mediaelement-migrate.min.js?ver=6.7.4" id="mediaelement-migrate-js"></script>
+        <script id="mediaelement-js-extra">
+            var _wpmejsSettings = {
+                "pluginPath": "\/wp-includes\/js\/mediaelement\/",
+                "classPrefix": "mejs-",
+                "stretching": "responsive",
+                "audioShortcodeLibrary": "mediaelement",
+                "videoShortcodeLibrary": "mediaelement"
+            };
+        </script>
+        <script src="https://silkroadmodels.com/wp-includes/js/mediaelement/wp-mediaelement.min.js?ver=6.7.4" id="wp-mediaelement-js"></script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.22.1" id="e-sticky-js"></script>
+        <script src="https://silkroadmodels.com/wp-includes/js/imagesloaded.min.js?ver=5.0.0" id="imagesloaded-js"></script>
+        <script src="https://silkroadmodels.com/wp-content/themes/hello-elementor/assets/js/hello-frontend.min.js?ver=3.2.1" id="hello-theme-frontend-js"></script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementskit-lite/libs/framework/assets/js/frontend-script.js?ver=3.3.1" id="elementskit-framework-js-frontend-js"></script>
+        <script id="elementskit-framework-js-frontend-js-after">
+            var elementskit = {
+                resturl: 'https://silkroadmodels.com/wp-json/elementskit/v1/',
+            }
+        </script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementskit-lite/widgets/init/assets/js/widget-scripts.js?ver=3.3.1" id="ekit-widget-scripts-js"></script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/google-site-kit/dist/assets/js/googlesitekit-events-provider-optin-monster-e6fa11a9d13d20a7ece5.js" id="googlesitekit-events-provider-optin-monster-js" defer></script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.25.10" id="elementor-webpack-runtime-js"></script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.25.10" id="elementor-frontend-modules-js"></script>
+        <script src="https://silkroadmodels.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
+        <script id="elementor-frontend-js-before">
+            var elementorFrontendConfig = {
+                "environmentMode": {
+                    "edit": false,
+                    "wpPreview": false,
+                    "isScriptDebug": false
+                },
+                "i18n": {
+                    "shareOnFacebook": "Share on Facebook",
+                    "shareOnTwitter": "Share on Twitter",
+                    "pinIt": "Pin it",
+                    "download": "Download",
+                    "downloadImage": "Download image",
+                    "fullscreen": "Fullscreen",
+                    "zoom": "Zoom",
+                    "share": "Share",
+                    "playVideo": "Play Video",
+                    "previous": "Previous",
+                    "next": "Next",
+                    "close": "Close",
+                    "a11yCarouselWrapperAriaLabel": "Carousel | Horizontal scrolling: Arrow Left & Right",
+                    "a11yCarouselPrevSlideMessage": "Previous slide",
+                    "a11yCarouselNextSlideMessage": "Next slide",
+                    "a11yCarouselFirstSlideMessage": "This is the first slide",
+                    "a11yCarouselLastSlideMessage": "This is the last slide",
+                    "a11yCarouselPaginationBulletMessage": "Go to slide"
+                },
+                "is_rtl": false,
+                "breakpoints": {
+                    "xs": 0,
+                    "sm": 480,
+                    "md": 768,
+                    "lg": 1025,
+                    "xl": 1440,
+                    "xxl": 1600
+                },
+                "responsive": {
+                    "breakpoints": {
+                        "mobile": {
+                            "label": "Mobile Portrait",
+                            "value": 767,
+                            "default_value": 767,
+                            "direction": "max",
+                            "is_enabled": true
+                        },
+                        "mobile_extra": {
+                            "label": "Mobile Landscape",
+                            "value": 880,
+                            "default_value": 880,
+                            "direction": "max",
+                            "is_enabled": false
+                        },
+                        "tablet": {
+                            "label": "Tablet Portrait",
+                            "value": 1024,
+                            "default_value": 1024,
+                            "direction": "max",
+                            "is_enabled": true
+                        },
+                        "tablet_extra": {
+                            "label": "Tablet Landscape",
+                            "value": 1200,
+                            "default_value": 1200,
+                            "direction": "max",
+                            "is_enabled": false
+                        },
+                        "laptop": {
+                            "label": "Laptop",
+                            "value": 1366,
+                            "default_value": 1366,
+                            "direction": "max",
+                            "is_enabled": false
+                        },
+                        "widescreen": {
+                            "label": "Widescreen",
+                            "value": 2400,
+                            "default_value": 2400,
+                            "direction": "min",
+                            "is_enabled": false
+                        }
+                    },
+                    "hasCustomBreakpoints": false
+                },
+                "version": "3.25.10",
+                "is_static": false,
+                "experimentalFeatures": {
+                    "e_font_icon_svg": true,
+                    "additional_custom_breakpoints": true,
+                    "container": true,
+                    "e_swiper_latest": true,
+                    "e_nested_atomic_repeaters": true,
+                    "e_optimized_control_loading": true,
+                    "e_onboarding": true,
+                    "e_css_smooth_scroll": true,
+                    "theme_builder_v2": true,
+                    "hello-theme-header-footer": true,
+                    "home_screen": true,
+                    "nested-elements": true,
+                    "editor_v2": true,
+                    "e_element_cache": true,
+                    "link-in-bio": true,
+                    "floating-buttons": true,
+                    "display-conditions": true,
+                    "form-submissions": true,
+                    "taxonomy-filter": true
+                },
+                "urls": {
+                    "assets": "https:\/\/silkroadmodels.com\/wp-content\/plugins\/elementor\/assets\/",
+                    "ajaxurl": "https:\/\/silkroadmodels.com\/wp-admin\/admin-ajax.php",
+                    "uploadUrl": "https:\/\/silkroadmodels.com\/wp-content\/uploads"
+                },
+                "nonces": {
+                    "floatingButtonsClickTracking": "524b6309ba"
+                },
+                "swiperClass": "swiper",
+                "settings": {
+                    "page": [],
+                    "editorPreferences": []
+                },
+                "kit": {
+                    "body_background_background": "classic",
+                    "active_breakpoints": ["viewport_mobile", "viewport_tablet"],
+                    "global_image_lightbox": "yes",
+                    "lightbox_enable_counter": "yes",
+                    "lightbox_enable_fullscreen": "yes",
+                    "lightbox_enable_zoom": "yes",
+                    "lightbox_enable_share": "yes",
+                    "lightbox_title_src": "title",
+                    "lightbox_description_src": "description",
+                    "hello_header_logo_type": "title",
+                    "hello_header_menu_layout": "horizontal",
+                    "hello_footer_logo_type": "logo"
+                },
+                "post": {
+                    "id": 9,
+                    "title": "Home%20-%20Empowering%20Asian%20Models%20%7C%20SilkRoad%20Models",
+                    "excerpt": "",
+                    "featuredImage": false
+                }
+            };
+        </script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.25.10" id="elementor-frontend-js"></script>
+        <script id="elementor-frontend-js-after">
+            var jkit_ajax_url = "https://silkroadmodels.com/?jkit-ajax-request=jkit_elements"
+              , jkit_nonce = "dd7b9af37b";
+        </script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/jeg-elementor-kit/assets/js/elements/sticky-element.js?ver=2.6.10" id="jkit-sticky-element-js"></script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.22.1" id="elementor-pro-webpack-runtime-js"></script>
+        <script src="https://silkroadmodels.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6" id="wp-hooks-js"></script>
+        <script src="https://silkroadmodels.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6" id="wp-i18n-js"></script>
+        <script id="wp-i18n-js-after">
+            wp.i18n.setLocaleData({
+                'text direction\u0004ltr': ['ltr']
+            });
+        </script>
+        <script id="elementor-pro-frontend-js-before">
+            var ElementorProFrontendConfig = {
+                "ajaxurl": "https:\/\/silkroadmodels.com\/wp-admin\/admin-ajax.php",
+                "nonce": "60977d15df",
+                "urls": {
+                    "assets": "https:\/\/silkroadmodels.com\/wp-content\/plugins\/elementor-pro\/assets\/",
+                    "rest": "https:\/\/silkroadmodels.com\/wp-json\/"
+                },
+                "shareButtonsNetworks": {
+                    "facebook": {
+                        "title": "Facebook",
+                        "has_counter": true
+                    },
+                    "twitter": {
+                        "title": "Twitter"
+                    },
+                    "linkedin": {
+                        "title": "LinkedIn",
+                        "has_counter": true
+                    },
+                    "pinterest": {
+                        "title": "Pinterest",
+                        "has_counter": true
+                    },
+                    "reddit": {
+                        "title": "Reddit",
+                        "has_counter": true
+                    },
+                    "vk": {
+                        "title": "VK",
+                        "has_counter": true
+                    },
+                    "odnoklassniki": {
+                        "title": "OK",
+                        "has_counter": true
+                    },
+                    "tumblr": {
+                        "title": "Tumblr"
+                    },
+                    "digg": {
+                        "title": "Digg"
+                    },
+                    "skype": {
+                        "title": "Skype"
+                    },
+                    "stumbleupon": {
+                        "title": "StumbleUpon",
+                        "has_counter": true
+                    },
+                    "mix": {
+                        "title": "Mix"
+                    },
+                    "telegram": {
+                        "title": "Telegram"
+                    },
+                    "pocket": {
+                        "title": "Pocket",
+                        "has_counter": true
+                    },
+                    "xing": {
+                        "title": "XING",
+                        "has_counter": true
+                    },
+                    "whatsapp": {
+                        "title": "WhatsApp"
+                    },
+                    "email": {
+                        "title": "Email"
+                    },
+                    "print": {
+                        "title": "Print"
+                    },
+                    "x-twitter": {
+                        "title": "X"
+                    },
+                    "threads": {
+                        "title": "Threads"
+                    }
+                },
+                "facebook_sdk": {
+                    "lang": "en_US",
+                    "app_id": ""
+                },
+                "lottie": {
+                    "defaultAnimationUrl": "https:\/\/silkroadmodels.com\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"
+                }
+            };
+        </script>
+
+
+<script>
+    // Initialize the page
+let loadingStartTime = Date.now();
+let pageLoaded = false;
+let minimumLoadingTime = window.innerWidth <= 768 ? 2500 : 4000;
+
+document.addEventListener('DOMContentLoaded', function() {
+    pageLoaded = true;
+    checkLoadingComplete();
+});
+
+function checkLoadingComplete() {
+    const elapsedTime = Date.now() - loadingStartTime;
+    const remainingTime = Math.max(0, minimumLoadingTime - elapsedTime);
+    
+    if (pageLoaded) {
+        setTimeout(() => {
+            hideLoadingScreen();
+        }, remainingTime);
+    }
+}
+
+function hideLoadingScreen() {
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.classList.add('hidden');
+        setTimeout(() => {
+            loading.remove();
+        }, 500);
+    }
+}
+
+window.addEventListener('load', function() {
+    checkLoadingComplete();
+});
+
+// Fallback: ensure loading screen never shows longer than timeout
+setTimeout(() => {
+    if (document.getElementById('loading')) {
+        console.log('Force hiding loading screen after timeout');
+        hideLoadingScreen();
+    }
+}, window.innerWidth <= 768 ? 7000 : 9000);
+
+
+// Mobile menu functions
+function openMobileMenu() {
+    document.getElementById('mobile-menu').classList.add('active');
+}
+
+function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.remove('active');
+}
+
+// Header scroll effect
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    const isMobile = window.innerWidth <= 768;
+    
+    if (window.scrollY > 50) {
+        header.style.background = 'rgba(0, 0, 0, 0.9)';
+        if (!isMobile) {
+            header.style.padding = '1.5rem 3rem';
+        }
+    } else {
+        header.style.background = 'rgba(0, 0, 0, 0.4)';
+        if (!isMobile) {
+            header.style.padding = '2rem 3rem';
+        }
+    }
+});
+
+// Navbar event listeners
+document.getElementById('menu-icon').addEventListener('click', openMobileMenu);
+
+// Close mobile menu on ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('mobile-menu').classList.contains('active')) {
+        closeMobileMenu();
+    }
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (!mobileMenu.contains(e.target) && 
+        e.target.id !== 'menu-icon' && 
+        !e.target.closest('#menu-icon') &&
+        mobileMenu.classList.contains('active')) {
+        closeMobileMenu();
+    }
+});
+</script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.22.1" id="elementor-pro-frontend-js"></script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.22.1" id="pro-elements-handlers-js"></script>
+        <script src="https://silkroadmodels.com/wp-content/plugins/elementskit-lite/widgets/init/assets/js/animate-circle.min.js?ver=3.3.1" id="animate-circle-js"></script>
+        <script id="elementskit-elementor-js-extra">
+            var ekit_config = {
+                "ajaxurl": "https:\/\/silkroadmodels.com\/wp-admin\/admin-ajax.php",
+                "nonce": "b3b08b3c2c"
+            };
+        </script>
+     
+     <script src="https://silkroadmodels.com/wp-content/plugins/elementskit-lite/widgets/init/assets/js/elementor.js?ver=3.3.1" id="elementskit-elementor-js"></script>
+    
+     <script>
+    // Book purchase function
+function purchaseBook(type) {
+    let product;
+    
+    if (type === 'ebook') {
+        product = {
+            id: 2,
+            name: "Senkisem - Notes from a Stranger E-Book",
+            price: 12.99,
+            image: "./assets/img/könyv2.png"
+        };
+        
+        // E-könyv esetén direkt checkout2-re irányítás
+        let cart = [product];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        window.location.href = 'checkout2.html';
+    } else if (type === 'physical') {
+        product = {
+            id: 1,
+            name: "Senkisem - Notes from a Stranger Book",
+            price: 27.99,
+            image: "./assets/img/könyv1.png",
+            size: "A5"
+        };
+        
+        // Fizikai könyv hozzáadása a kosárhoz
+        addToCart(product);
+        openSidebar('cart');
+    }
+}
+
+// Add to cart function (ha még nincs)
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    const existingItem = cart.find(item => item.id === product.id && (item.size || '') === (product.size || ''));
+    
+    if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+    } else {
+        cart.push({...product, quantity: 1});
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    showNotification(product.name, 'Added to cart!');
+}
+
+function showNotification(productName, message) {
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="ri-check-line" style="font-size: 1.5rem;"></i>
+            </div>
+            <div>
+                <div style="font-weight: 600; font-size: 1rem; margin-bottom: 0.2rem;">${message}</div>
+                <div style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.7);">${productName}</div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100px)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 300);
+    }, 3000);
+}
+
+// Update cart count
+function updateCartCount() {
+    const cartCount = document.getElementById('cart-count');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    
+    if (totalItems > 0) {
+        cartCount.textContent = totalItems;
+        cartCount.style.display = 'flex';
+    } else {
+        cartCount.style.display = 'none';
+    }
+}
+
+// Open sidebar
+function openSidebar(type) {
+    const sidebar = document.getElementById('sidebar');
+    const title = document.getElementById('sidebar-title');
+    
+    title.textContent = type === 'cart' ? 'Cart' : 'Favorites';
+    sidebar.classList.add('active');
+    
+    if (type === 'cart') {
+        renderCart();
+    }
+}
+
+// Close sidebar
+function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('active');
+}
+
+// Render cart
+function renderCart() {
+    const content = document.getElementById('sidebar-content');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    if (cart.length === 0) {
+        content.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">Your cart is currenty empty</p>';
+        return;
+    }
+    
+    const total = cart.reduce((sum, item) => {
+        const price = typeof item.price === 'string' ? 
+            parseInt(item.price.replace(/\D/g, '')) : item.price;
+        const quantity = item.quantity || 1;
+        return sum + (price * quantity);
+    }, 0);
+    
+    content.innerHTML = `
+        ${cart.map(item => {
+            const price = typeof item.price === 'string' ? item.price : `${item.price} $`;
+            const itemPrice = typeof item.price === 'string' ? 
+                parseInt(item.price.replace(/\D/g, '')) : item.price;
+            const quantity = item.quantity || 1;
+            const sizeText = item.size ? ` (${item.size})` : '';
+            return `
+                <div style="display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--glass-border);">
+                    <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                    <div style="flex: 1;">
+                        <div style="font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">${item.name}${sizeText}</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">${itemPrice.toLocaleString('hu-HU')} $ / db</div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                            <button onclick="updateQuantity(${item.id}, '${item.size || ''}', -1); event.stopPropagation();" 
+                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                                −
+                            </button>
+                            <span style="min-width: 30px; text-align: center; color: var(--text-primary); font-weight: 600;">${quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, '${item.size || ''}', 1); event.stopPropagation();" 
+                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${item.id}, '${item.size || ''}'); event.stopPropagation();" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem; align-self: flex-start;">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+            `;
+        }).join('')}
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); text-align: center;">
+            <div style="font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">${total.toLocaleString()} $ </div>
+            <button onclick="goToCheckout()" style="width: 100%; padding: 1rem; background: #ffffff; color: #000000; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: var(--transition);">
+                Checkout <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+    `;
+}
+
+// Update quantity function
+function updateQuantity(productId, size = '', change) {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const item = cart.find(item => item.id === productId && (item.size || '') === size);
+    
+    if (item) {
+        const newQuantity = (item.quantity || 1) + change;
+        
+        if (newQuantity <= 0) {
+            // Ha 0 vagy kevesebb lesz, töröljük a terméket
+            cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
+        } else {
+            item.quantity = newQuantity;
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+    }
+}
+
+// Remove from cart
+// Remove from cart
+function removeFromCart(productId, size = '') {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+    // NE hívjuk meg a closeSidebar()-t!
+}
+
+// Go to checkout
+function goToCheckout() {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    const isOnlyEbook = cart.length === 1 && cart[0].id === 2;
+    
+    if (isOnlyEbook) {
+        window.location.href = 'checkout2.html';
+    } else {
+        window.location.href = 'checkout.html';
+    }
+}
+
+// Initialize cart count on page load
+updateCartCount();
+
+// Cart icon click handler
+document.getElementById('cart-icon').addEventListener('click', () => openSidebar('cart'));
+
+// Close sidebar when clicking outside
+document.addEventListener('click', function(e) {
+    const sidebar = document.getElementById('sidebar');
+    
+    if (!sidebar.contains(e.target) && 
+        e.target.id !== 'cart-icon' && 
+        !e.target.closest('#cart-icon') &&
+        sidebar.classList.contains('active')) {
+        closeSidebar();
+    }
+});
+
+const chapterImages = {
+    'bevezetes': [
+        { src: './assets/img/page.01.png', title: 'Introduction - Page 1' },
+        { src: './assets/img/page.02.png', title: 'Introduction - Page 2' },
+        { src: './assets/img/page.03.png', title: 'Introduction - Page 3' },
+        { src: './assets/img/page.04.png', title: 'Introduction - Page 4' }
+    ],
+    'elsokerdes': [
+        { src: './assets/img/page.05.png', title: 'You Are the First Question - Page 1' },
+        { src: './assets/img/page.08.png', title: 'You Are the First Question - Page 2' },
+        { src: './assets/img/page.09.png', title: 'You Are the First Question - Page 3' },
+        { src: './assets/img/page.11.png', title: 'You Are the First Question - Page 4' },
+    ],
+    'bantod': [
+        { src: './assets/img/page.30.png', title: 'Why Do You Hurt Yourself - Page 1' },
+        { src: './assets/img/page.35.png', title: 'Why Do You Hurt Yourself - Page 2' },
+        { src: './assets/img/page.36.png', title: 'Why Do You Hurt Yourself - Page 3' },
+    ],
+    'szeretlek': [
+        { src: './assets/img/page.82.png', title: 'I Love You Just Differently - Page 1' },
+        { src: './assets/img/page.85.png', title: 'I Love You Just Differently - Page 2' },
+        { src: './assets/img/page.86.png', title: 'I Love You Just Differently - Page 3' },
+    ]
+};
+
+let currentChapter = '';
+let currentPreviewIndex = 0;
+
+function openChapterPreview(chapterId) {
+    currentChapter = chapterId;
+    currentPreviewIndex = 0;
+    updatePreviewModal();
+    document.getElementById('preview-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function updatePreviewModal() {
+    const images = chapterImages[currentChapter];
+    const img = document.getElementById('preview-modal-image');
+    const counter = document.getElementById('preview-counter');
+    const prevBtn = document.getElementById('preview-prev-btn');
+    const nextBtn = document.getElementById('preview-next-btn');
+    
+    img.src = images[currentPreviewIndex].src;
+    img.alt = images[currentPreviewIndex].title;
+    counter.textContent = `${currentPreviewIndex + 1} / ${images.length}`;
+    
+    prevBtn.disabled = currentPreviewIndex === 0;
+    nextBtn.disabled = currentPreviewIndex === images.length - 1;
+}
+
+function nextPreview() {
+    const images = chapterImages[currentChapter];
+    if (currentPreviewIndex < images.length - 1) {
+        currentPreviewIndex++;
+        updatePreviewModal();
+    }
+}
+
+function previousPreview() {
+    if (currentPreviewIndex > 0) {
+        currentPreviewIndex--;
+        updatePreviewModal();
+    }
+}
+
+function closePreviewModal() {
+    document.getElementById('preview-modal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// ESC billentyű
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('preview-modal').classList.contains('active')) {
+        closePreviewModal();
+    }
+});
+
+// ============================================
+// LIMITÁLT KÉSZLET POP-UP
+// ============================================
+
+function initLimitedPopup() {
+    // Csak a floating gombot mutassuk
+    document.getElementById('limited-float-btn').classList.add('show');
+}
+
+function openLimitedPopup() {
+    document.getElementById('limited-popup').classList.add('active');
+    document.getElementById('limited-float-btn').classList.remove('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLimitedPopup() {
+    document.getElementById('limited-popup').classList.remove('active');
+    document.getElementById('limited-float-btn').classList.add('show');
+    document.body.style.overflow = 'auto';
+    
+    // Jegyezzük fel a bezárás idejét
+    localStorage.setItem('limitedPopupClosed', new Date().getTime().toString());
+}
+
+function addLimitedProduct(productId, variant) {
+    let cart = [];
+    
+    if (productId === 300) {
+        // E-könyv csomag
+        if (variant === 'bundle') {
+            const product = {
+                id: 300,
+                name: "Complete Digital Collection (Notes + User Manual)",
+                price: 19.99,
+                image: "./assets/img/ketkonyv.png",
+                isBundle: true,
+                isLimited: true
+            };
+            cart = [product];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = 'checkout2.html';
+        }
+    } else if (productId === 301) {
+        // Fizikai könyvek csomag
+        if (variant === 'physical') {
+            const product = {
+                id: 301,
+                name: "Complete Physical Collection (Notes + User Manual)",
+                price: 49.49,
+                image: "./assets/img/ketkonyv.png",
+                size: "A5",
+                quantity: 1,
+                isLimited: true,
+                isPhysicalBundle: true
+            };
+            cart = [product];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Kosár megnyitása
+            closeLimitedPopup();
+            openSidebar('cart');
+        }
+    }
+}
+
+// Inicializálás
+document.addEventListener('DOMContentLoaded', function() {
+    initLimitedPopup();
+});
+
+// ESC billentyű
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('limited-popup').classList.contains('active')) {
+        closeLimitedPopup();
+    }
+});
+
+// Kattintás az overlay-re
+document.querySelector('.limited-popup-overlay')?.addEventListener('click', closeLimitedPopup);
+
+// Global export
+window.openLimitedPopup = openLimitedPopup;
+window.closeLimitedPopup = closeLimitedPopup;
+window.addLimitedProduct = addLimitedProduct;
+
+// Global exports
+window.updateCartCount = updateCartCount;
+window.openSidebar = openSidebar;
+window.closeSidebar = closeSidebar;
+window.removeFromCart = removeFromCart;
+window.goToCheckout = goToCheckout;
+window.updateQuantity = updateQuantity; // ÚJ SOR
+window.purchaseBook = purchaseBook;
+</script>
+    
+    </body>
+</html>

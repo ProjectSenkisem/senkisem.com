@@ -1,0 +1,409 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Senkisem - Notes from a Stranger Book",
+      "category": "book",
+      "type": "physical",
+      "price": 27.99,
+      "oldPrice": null,
+      "description": "A5 size, premium quality. Limited edition, one-time production.",
+      "image": "./assets/img/könyv1.png",
+      "sizes": ["A5"],
+      "features": [
+        "Gift in the package",
+        "Premium quality",
+        "Limited copies"
+      ],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 2,
+      "name": "Senkisem - Notes from a Stranger E-Book",
+      "category": "book",
+      "type": "ebook",
+      "price": 12.99,
+      "oldPrice": 17.99,
+      "description": "Digital format, instant access",
+      "image": "./assets/img/könyv1.png",
+      "sizes": ["Digital"],
+      "features": [
+        "Instant download",
+        "Readable on all devices",
+        "Lifetime access"
+      ],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 3,
+      "name": "Senkisem - User Manual for Life Book",
+      "category": "book",
+      "type": "physical",
+      "price": 27.99,
+      "oldPrice": null,
+      "description": "A5 size · Premium quality",
+      "image": "./assets/img/huae.png",
+      "sizes": ["A5"],
+      "features": [
+        "Gift in the package",
+        "Premium quality",
+        "Limited copies"
+      ],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 4,
+      "name": "Senkisem - User Manual for Life E-Book",
+      "category": "book",
+      "type": "ebook",
+      "price": 12.99,
+      "oldPrice": 17.99,
+      "description": "Digital format, instant access",
+      "image": "./assets/img/huae.png",
+      "sizes": ["Digital"],
+      "features": [
+        "Instant download",
+        "Readable on all devices",
+        "Lifetime access"
+      ],
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 201,
+      "name": "Senkisem Watch - Gold",
+      "category": "accessories",
+      "type": "physical",
+      "price": 69.99,
+      "oldPrice": null,
+      "description": "Premium quality watch in gold color",
+      "image": "./assets/img/watch-gold.png",
+      "sizes": ["Universal"],
+      "collection": "Accessories - Timeless",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 202,
+      "name": "Senkisem Watch - Silver",
+      "category": "accessories",
+      "type": "physical",
+      "price": 69.99,
+      "oldPrice": null,
+      "description": "Premium quality watch in silver color",
+      "image": "./assets/img/watch-silver.png",
+      "sizes": ["Universal"],
+      "collection": "Accessories - Timeless",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 203,
+      "name": "Senkisem Women's Watch - White Strap",
+      "category": "accessories",
+      "type": "physical",
+      "price": 69.99,
+      "oldPrice": null,
+      "description": "Women's watch with white strap",
+      "image": "./assets/img/watch-white-women.png",
+      "sizes": ["Universal"],
+      "collection": "Accessories - Timeless",
+      "inStock": false,
+      "featured": false,
+      "outOfStock": true
+    },
+    {
+      "id": 204,
+      "name": "Senkisem Women's Watch - Black Strap",
+      "category": "accessories",
+      "type": "physical",
+      "price": 69.99,
+      "oldPrice": null,
+      "description": "Women's watch with black strap",
+      "image": "./assets/img/watch-black-women.png",
+      "sizes": ["Universal"],
+      "collection": "Accessories - Timeless",
+      "inStock": false,
+      "featured": false,
+      "outOfStock": true
+    },
+    {
+      "id": 301,
+      "name": "Long Sleeve V-Neck Kimono",
+      "category": "clothing",
+      "type": "physical",
+      "price": 22.99,
+      "oldPrice": null,
+      "description": "Black kimono piece in modern urban interpretation",
+      "image": "./assets/img/kimono-vneck.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Shadow Garden - Sakura Heritage",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 302,
+      "name": "Twisted Tie Pants",
+      "category": "clothing",
+      "type": "physical",
+      "price": 39.99,
+      "oldPrice": null,
+      "description": "Modern urban ninja style pants",
+      "image": "./assets/img/pants-twisted.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Shadow Garden - Sakura Heritage",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 303,
+      "name": "Senkisem Short Kimono",
+      "category": "clothing",
+      "type": "physical",
+      "price": 49.99,
+      "oldPrice": null,
+      "description": "Short black kimono for urban wear",
+      "image": "./assets/img/kimono-short.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Shadow Garden - Sakura Heritage",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 304,
+      "name": "Complete Set",
+      "category": "clothing",
+      "type": "physical",
+      "price": 99.99,
+      "oldPrice": 114.97,
+      "description": "Complete Shadow Garden set - kimono, pants and accessories",
+      "image": "./assets/img/full-set.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Shadow Garden - Sakura Heritage",
+      "inStock": true,
+      "featured": true,
+      "sale": true
+    },
+    {
+      "id": 401,
+      "name": "Hooded Sweater with Zip Mask",
+      "category": "clothing",
+      "type": "physical",
+      "price": 64.99,
+      "oldPrice": null,
+      "description": "Urban ninja style hooded sweater with mask",
+      "image": "./assets/img/hoodie-zip-mask.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Phantom",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 402,
+      "name": "Hooded Sweater with Bedouin Mask",
+      "category": "clothing",
+      "type": "physical",
+      "price": 64.99,
+      "oldPrice": null,
+      "description": "Urban shadows collection bedouin mask hoodie",
+      "image": "./assets/img/hoodie-bedouin-mask.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Phantom",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 403,
+      "name": "Senkisem Black Sneakers",
+      "category": "footwear",
+      "type": "physical",
+      "price": 69.99,
+      "oldPrice": null,
+      "description": "Black urban sneakers",
+      "image": "./assets/img/sneakers-black.png",
+      "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+      "collection": "Phantom",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 404,
+      "name": "High-Top Black Sneakers",
+      "category": "footwear",
+      "type": "physical",
+      "price": 69.99,
+      "oldPrice": null,
+      "description": "High-top black sneakers",
+      "image": "./assets/img/high-sneakers-black.png",
+      "sizes": ["38", "39", "40", "41", "42", "43", "44", "45"],
+      "collection": "Phantom",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 501,
+      "name": "Senkisem T-Shirt - Printed",
+      "category": "clothing",
+      "type": "physical",
+      "price": 32.99,
+      "oldPrice": null,
+      "description": "Signature Edition t-shirt with printed logo",
+      "image": "./assets/img/tshirt-printed.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Signature Edition",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 502,
+      "name": "Senkisem T-Shirt - Written",
+      "category": "clothing",
+      "type": "physical",
+      "price": 32.99,
+      "oldPrice": null,
+      "description": "Signature Edition t-shirt with written logo",
+      "image": "./assets/img/tshirt-written.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Signature Edition",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 503,
+      "name": "Senkisem Cap",
+      "category": "accessories",
+      "type": "physical",
+      "price": 19.99,
+      "oldPrice": null,
+      "description": "Classic baseball cap with Senkisem logo",
+      "image": "./assets/img/cap-baseball.png",
+      "sizes": ["Universal"],
+      "collection": "Signature Edition",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 504,
+      "name": "Senkisem Sweater - Printed",
+      "category": "clothing",
+      "type": "physical",
+      "price": 49.99,
+      "oldPrice": null,
+      "description": "Signature Edition sweater with printed logo",
+      "image": "./assets/img/sweater-printed.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Signature Edition",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 505,
+      "name": "Senkisem Sweater - Written",
+      "category": "clothing",
+      "type": "physical",
+      "price": 49.99,
+      "oldPrice": null,
+      "description": "Signature Edition sweater with written logo",
+      "image": "./assets/img/sweater-written.png",
+      "sizes": ["S", "M", "L", "XL"],
+      "collection": "Signature Edition",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 506,
+      "name": "Senkisem Beanie",
+      "category": "accessories",
+      "type": "physical",
+      "price": 17.99,
+      "oldPrice": null,
+      "description": "Knitted winter beanie with Senkisem logo",
+      "image": "./assets/img/cap-winter.png",
+      "sizes": ["Universal"],
+      "collection": "Signature Edition",
+      "inStock": true,
+      "featured": false
+    },
+    {
+      "id": 300,
+      "name": "Complete Digital Collection",
+      "category": "bundle",
+      "type": "ebook",
+      "price": 19.99,
+      "oldPrice": 25.98,
+      "description": "Notes from a Stranger and User Manual for Life - digital bundle",
+      "image": "./assets/img/ketkonyv.png",
+      "sizes": ["Digital"],
+      "features": [
+        "Instant download of both books",
+        "Readable on all devices",
+        "Unlimited time access",
+        "Two separate worlds, one thought process"
+      ],
+      "inStock": true,
+      "featured": true,
+      "isBundle": true,
+      "isLimited": true,
+      "bundleContains": [2, 4]
+    },
+    {
+      "id": 311,
+      "name": "Complete Physical Collection",
+      "category": "bundle",
+      "type": "physical",
+      "price": 49.49,
+      "oldPrice": 55.98,
+      "description": "Notes from a Stranger and User Manual for Life - physical books bundle",
+      "image": "./assets/img/ketkonyv.png",
+      "sizes": ["A5"],
+      "features": [
+        "Both books in A5 size",
+        "Premium quality",
+        "Limited copies",
+        "No reprint planned"
+      ],
+      "inStock": true,
+      "featured": true,
+      "isBundle": true,
+      "isLimited": true,
+      "isPhysicalBundle": true,
+      "bundleContains": [1, 3]
+    }
+  ],
+  "collections": {
+    "accessories": {
+      "name": "Timeless Collection",
+      "description": "Timeless accessories - watches and caps"
+    },
+    "shadow_garden": {
+      "name": "Shadow Garden - Sakura Heritage",
+      "description": "Japanese shadow garden - black kimono pieces in modern urban interpretation"
+    },
+    "phantom": {
+      "name": "Phantom",
+      "description": "Urban shadows - mysterious, dark, urban ninja style"
+    },
+    "signature": {
+      "name": "Signature Edition",
+      "description": "Signed collection - classic pieces with timeless design"
+    },
+    "books": {
+      "name": "Books",
+      "description": "Senkisem books in digital and physical format"
+    },
+    "bundles": {
+      "name": "Limited Bundles",
+      "description": "Exclusive book bundles at discounted prices"
+    }
+  },
+  "categories": {
+    "book": "Books",
+    "clothing": "Clothing",
+    "footwear": "Footwear",
+    "accessories": "Accessories",
+    "bundle": "Bundles"
+  }
+}

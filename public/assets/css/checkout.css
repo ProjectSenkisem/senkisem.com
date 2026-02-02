@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #1a1a1a; /* Dark background for the entire page */
+    color: #e0e0e0; /* Light gray text for readability */
+    line-height: 1.6;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 25px;
+    background: linear-gradient(135deg, #1e1e1e, #2a2a2a, #3a3a3a); /* Subtle dark gradient */
+}
+
+/* Form Styling */
+.container form {
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    background: rgba(30, 30, 30, 0.9); /* Darker, slightly transparent background */
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Softer white border */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+    transition: all 0.3s ease-in-out;
+}
+
+.container form:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+form .row {
+    display: flex;
+    gap: 30px; /* Increased gap for better spacing */
+    flex-wrap: wrap;
+}
+
+.row .column {
+    flex: 1 1 300px;
+}
+
+.column .title,
+.cart-section .title {
+    font-size: 24px; /* Slightly larger title */
+    color: #f0f0f0; /* Brighter title color */
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #555; /* Subtle underline */
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.column p {
+    color: #b0b0b0; /* Lighter gray for instructional text */
+    margin-bottom: 20px;
+}
+
+.column .input-box,
+.cart-section .cart-items {
+    margin: 20px 0; /* More vertical spacing */
+}
+
+.input-box span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #c0c0c0; /* Medium gray for labels */
+    font-size: 16px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 12px 18px; /* Slightly larger padding */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtler border */
+    border-radius: 8px; /* Slightly less rounded corners */
+    font-size: 16px;
+    background: rgba(50, 50, 50, 0.7); /* Darker input background */
+    color: #f0f0f0; /* Light text in input */
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.input-box input::placeholder {
+    color: #909090; /* Darker placeholder text */
+}
+
+.input-box input:focus {
+    border-color: #777; /* Highlight border on focus */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Soft glow on focus */
+}
+
+.column .flex {
+    display: flex;
+    gap: 20px; /* Increased gap */
+}
+
+.flex .input-box {
+    flex: 1;
+    margin-top: 0; /* Adjusted margin */
+}
+
+/* Cart Section Styling */
+.cart-section {
+    margin-top: 40px; /* More space above cart */
+}
+
+.cart-items {
+    background: rgba(50, 50, 50, 0.7); /* Darker background for cart items */
+    padding: 20px; /* More padding */
+    border-radius: 15px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cart-items .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0; /* More padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtler border */
+    font-size: 16px;
+    color: #f0f0f0;
+}
+
+.cart-items .item:last-child {
+    border-bottom: none;
+}
+
+.shipping-fee {
+    font-weight: 500;
+    font-size: 1.1rem; /* Slightly smaller for shipping */
+    color: #c0c0c0;
+    margin: 15px 0 25px 0;
+}
+
+.total-price {
+    font-weight: bold;
+    font-size: 2rem; /* Larger total price */
+    color: #ffffff;
+    margin-bottom: 40px; /* More space before button */
+    text-align: right; /* Align total price to the right */
+}
+
+/* Button Styling */
+form .btn {
+    background: linear-gradient(135deg, #4a4a4a, #6a6a6a); /* Dark gray gradient for button */
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem; /* Larger button text */
+    padding: 1.2rem 2.5rem; /* More padding */
+    border: none;
+    border-radius: 10px; /* Slightly less rounded */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Softer shadow */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Increased letter spacing */
+    width: 100%;
+    position: relative; /* For subtle pseudo-element effects */
+    overflow: hidden; /* Hide overflow for hover effect */
+}
+
+form .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.7s ease-in-out;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 0;
+}
+
+form .btn:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+}
+
+form .btn:hover {
+    background: linear-gradient(135deg, #6a6a6a, #4a4a4a); /* Invert gradient on hover */
+    transform: translateY(-3px); /* Subtle lift */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #555, #777); /* Darker gray gradient */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #777, #555); /* Invert gradient on hover */
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+/* Select Box */
+.size-select {
+    width: 100%;
+    padding: 12px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(50, 50, 50, 0.7);
+    color: #f0f0f0; /* Light text color */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='70,105 20,40 120,40' fill='%23cccccc'/%3E%3C/svg%3E"); /* Lighter arrow */
+    background-repeat: no-repeat;
+    background-position: right 15px center; /* Adjusted position */
+    background-size: 10px; /* Slightly smaller arrow */
+    cursor: pointer;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.size-select option {
+    background-color: #3a3a3a; /* Darker background for options */
+    color: #f0f0f0;
+}
+
+.size-select:focus {
+    border-color: #777;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Preorder Notice */
+.preorder-notice {
+    background: rgba(50, 50, 50, 0.7); /* Darker background */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px; /* Slightly less rounded */
+    padding: 1.2rem 2.5rem; /* More padding */
+    margin: 2.5rem auto; /* More margin */
+    text-align: center;
+    color: #d0d0d0; /* Softer white */
+    font-size: 1.1rem; /* Slightly larger text */
+    max-width: 80%; /* Slightly narrower */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+}
+.preorder-notice p {
+    margin: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    form .row {
+        flex-direction: column;
+    }
+}
+
+/* Cart Section Styling */
+.cart-section {
+    margin-top: 40px; /* More space above cart */
+}
+
+.cart-items {
+    background: rgba(50, 50, 50, 0.7); /* Darker background for cart items */
+    padding: 20px; /* More padding */
+    border-radius: 15px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cart-items .item {
+    display: flex;
+    align-items: center; /* Képet és szöveget középre igazítja vertikálisan */
+    justify-content: space-between;
+    padding: 10px 0; /* More padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtler border */
+    font-size: 16px;
+    color: #f0f0f0;
+}
+
+/* --- IDE ADD HOZZÁ EZT A RÉSZT! --- */
+.cart-items .item img {
+    width: 100px;   /* Állítsd be a kívánt szélességet */
+    height: 140px;  /* Állítsd be a kívánt magasságot, vagy auto-ra, hogy megtartsa az arányokat */
+    object-fit: cover; /* Kitölti a megadott méretet, levágva a felesleget */
+    border-radius: 8px; /* Lekerekített sarkok a képnek */
+    margin-right: 15px; /* Hely a kép és a szöveg között */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Árnyék a képnek */
+}
+
+/* Ezen kívül érdemes még egy div-et használni a név és ár csoportosítására */
+.cart-items .item .item-details {
+    flex-grow: 1; /* Hogy kitöltse a rendelkezésre álló helyet */
+    display: flex;
+    flex-direction: column; /* Név és ár egymás alá */
+}
+
+.cart-items .item .item-details .item-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #f0f0f0;
+}
+
+.cart-items .item .item-details .item-price {
+    font-size: 0.95em;
+    color: #b0b0b0;
+}
+/* --- VÉGE A HOZZÁADANDÓ RÉSZNEK --- */
+
+
+.cart-items .item:last-child {
+    border-bottom: none;
+}
+
+/* ... a többi CSS kód ... */
+
+/* ÁSZF elfogadás */
+.terms-acceptance {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.terms-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.terms-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.terms-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.terms-link {
+  color: #ffffff;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.terms-link:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .terms-acceptance {
+    margin: 1rem 0;
+    padding: 0.75rem;
+  }
+  
+  .terms-text {
+    font-size: 0.9rem;
+  }
+  
+  .terms-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+}

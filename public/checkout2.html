@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Senkisem (Digital)</title>
+    <link rel="stylesheet" href="./assets/css/checkout.css">
+    <meta name="description" content="Checkout page for Senkisem digital products. Complete your purchase for instant digital download.">
+    <meta name="keywords" content="checkout, e-book purchase, Senkisem, order, download, online payment">
+</head>
+
+<body>
+
+    <div class="container">
+        <form id="checkout-form">
+            <div class="row">
+                <div class="column">
+                    <h3 class="title">Billing and Delivery Information</h3>
+                    <p>The ordered product will be sent to the provided email address after payment.</p>
+
+                    <div class="input-box">
+                        <span>Full Name:</span>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-box">
+                        <span>Email Address:</span>
+                        <input type="email" name="email" placeholder="email@email.com" required>
+                    </div>
+                    <div class="input-box">
+                        <span>Address (street, number):</span>
+                        <input type="text" name="address" placeholder="Street, Number">
+                    </div>
+                    <div class="input-box">
+                        <span>City:</span>
+                        <input type="text" name="city" placeholder="City">
+                    </div>
+
+                    <div class="flex">
+                        <div class="input-box">
+                            <span>Country:</span>
+                            <input type="text" name="country" placeholder="United States">
+                        </div>
+                        <div class="input-box">
+                            <span>ZIP/Postal Code:</span>
+                            <input type="text" name="zip" placeholder="12345">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="cart-section">
+                <h3 class="title">Cart Contents</h3>
+                <a href="index.html" class="back-btn">Back to homepage</a>
+                <div id="cart-items" class="cart-items"></div>
+
+                <h3 class="title">Shipping Fee</h3>
+                <div id="shipping-fee" class="shipping-fee"></div>
+                <h3 class="title">Total</h3>
+                <div id="total-price" class="total-price">$0</div>
+            </div>
+
+            <div class="terms-acceptance">
+              <label class="terms-checkbox">
+                <input type="checkbox" id="terms-agree" name="terms-agree" required>
+                <span class="checkmark"></span>
+                <span class="terms-text">
+                  I have read and accept the 
+                  <a href="assets/ÁSZF.pdf" target="_blank" class="terms-link">Terms and Conditions</a>
+                </span>
+              </label>
+            </div>
+
+            <div class="terms-acceptance">
+              <label class="terms-checkbox">
+                <input type="checkbox" id="email-consent" name="email-consent" required>
+                <span class="checkmark"></span>
+                <span class="terms-text">
+                  I agree to receive order confirmations and updates via email
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn">Place Order and Pay</button>
+        </form>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    const shippingFeeElement = document.getElementById('shipping-fee');
+    const checkoutForm = document.getElementById('checkout-form');
+
+    let cart = [];
+    let totalPrice = 0;
+    const shippingCost = 0; // $0 for e-books
+
+    try {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            cart = JSON.parse(storedCart);
+        }
+    } catch (e) {
+        console.error('Error loading cart:', e);
+        cart = []; 
+    }
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Your cart is empty. <a href='index.html'>Back to homepage</a></p>";
+        shippingFeeElement.textContent = '$0 (Digital product)';
+        totalPriceElement.textContent = "$0";
+        if (checkoutForm.querySelector('.btn')) {
+            checkoutForm.querySelector('.btn').disabled = true; 
+        }
+        return;
+    }
+
+    cart.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('item'); 
+        
+        itemElement.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="item-details">
+                <p class="item-name"><strong>${item.name}</strong></p>
+                <p class="item-price">${typeof item.price === 'string' ? item.price : '$' + item.price}</p>
+            </div>
+        `;
+        cartItemsContainer.appendChild(itemElement);
+
+        // Price calculation fix
+        const numericPrice = typeof item.price === 'string' ? 
+            parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
+        totalPrice += numericPrice;
+    });
+
+    shippingFeeElement.textContent = `$${shippingCost.toFixed(2)} (Digital product)`;
+    totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+
+    checkoutForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Check terms acceptance
+        const termsCheckbox = document.getElementById('terms-agree');
+        if (!termsCheckbox.checked) {
+          alert('Please accept the Terms and Conditions to continue!');
+          termsCheckbox.focus();
+          return;
+        }
+
+        // Check email consent
+        const emailConsent = document.getElementById('email-consent');
+        if (!emailConsent.checked) {
+          alert('Please agree to receive order confirmations via email!');
+          emailConsent.focus();
+          return;
+        }
+
+        const formData = new FormData(checkoutForm);
+        const customerData = {
+            fullName: formData.get('fullName'),
+            email: formData.get('email'),
+            address: formData.get('address'), 
+            city: formData.get('city'),
+            country: formData.get('country'),
+            zip: formData.get('zip'),
+        };
+
+        if (!customerData.fullName || !customerData.email) {
+            alert('Please fill in your full name and email address!');
+            return;
+        }
+
+        const cartForPayment = cart.map(item => ({
+            id: item.id, 
+            name: item.name,
+            price: typeof item.price === 'string' ? 
+                parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price,
+            image: item.image
+        }));
+
+        try {
+            const response = await fetch('https://senkisem.com/create-payment-session', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    cart: cartForPayment,
+                    customerData: customerData
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.payment_url) {
+                window.location.href = data.payment_url;
+                localStorage.removeItem('cart');
+            } else {
+                console.error('Error:', data.error);
+                alert(`An error occurred: ${data.error || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+            alert('A network error occurred. Please try again!');
+        }
+    });
+});
+</script>
+
+</body>
+</html>

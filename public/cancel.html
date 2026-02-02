@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cancelled Purchase - Senkisem</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
+
+    .cancel-container {
+      max-width: 480px;
+      width: 100%;
+      background: rgba(15, 15, 15, 0.95);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      animation: containerFadeIn 0.6s ease-out;
+    }
+
+    @keyframes containerFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .cancel-container::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, 
+        rgba(255, 82, 82, 0.3), 
+        rgba(255, 138, 0, 0.2), 
+        rgba(255, 0, 110, 0.2), 
+        rgba(255, 82, 82, 0.3)
+      );
+      background-size: 300% 300%;
+      border-radius: 16px;
+      z-index: -1;
+      animation: borderGlow 4s linear infinite;
+      filter: blur(6px);
+      opacity: 0.35;
+    }
+
+    @keyframes borderGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .cancel-icon-wrapper {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1.25rem;
+      position: relative;
+      animation: iconBounce 0.5s ease-out 0.1s;
+    }
+
+    @keyframes iconBounce {
+      0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1) rotate(10deg);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    .cancel-icon-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(255, 82, 82, 0.08);
+      border: 2px solid rgba(255, 82, 82, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 15px rgba(255, 82, 82, 0.2);
+    }
+
+    .cancel-icon-circle i {
+      font-size: 2.2rem;
+      color: rgba(255, 82, 82, 0.9);
+      animation: iconDraw 0.4s ease-out 0.3s backwards;
+    }
+
+    @keyframes iconDraw {
+      from {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .cancel-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+      animation: titleSlide 0.6s ease-out 0.2s backwards;
+    }
+
+    @keyframes titleSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cancel-text {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+      animation: textFade 0.6s ease-out 0.3s backwards;
+    }
+
+    @keyframes textFade {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cancel-text i {
+      color: rgba(255, 82, 82, 0.8);
+      margin-right: 0.4rem;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+
+    .cancel-info {
+      background: rgba(255, 82, 82, 0.03);
+      border: 1px solid rgba(255, 82, 82, 0.15);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+      text-align: left;
+      animation: infoSlide 0.6s ease-out 0.4s backwards;
+    }
+
+    @keyframes infoSlide {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .cancel-info h3 {
+      font-size: 1rem;
+      margin-bottom: 0.9rem;
+      color: rgba(255, 82, 82, 0.9);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cancel-info h3 i {
+      font-size: 1.1rem;
+    }
+
+    .cancel-info p {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin: 0.5rem 0;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .info-text {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      animation: textFade 0.6s ease-out 0.5s backwards;
+    }
+
+    .info-text i {
+      color: rgba(255, 82, 82, 0.8);
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      margin: 0.75rem 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      animation: buttonPop 0.5s ease-out 0.6s backwards;
+    }
+
+    @keyframes buttonPop {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border-color: rgba(255, 82, 82, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary {
+      background: rgba(255, 82, 82, 0.1);
+      border-color: rgba(255, 82, 82, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: rgba(255, 82, 82, 0.2);
+      border-color: rgba(255, 82, 82, 0.6);
+    }
+
+    .buttons-container {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .social-section {
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      animation: socialFade 0.6s ease-out 0.7s backwards;
+    }
+
+    @keyframes socialFade {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .social-title {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.3rem;
+    }
+
+    .social-icon:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-icon:nth-child(1):hover {
+      color: #1877f2;
+      border-color: rgba(24, 119, 242, 0.5);
+    }
+
+    .social-icon:nth-child(2):hover {
+      color: #dd2a7b;
+      border-color: rgba(221, 42, 123, 0.5);
+    }
+
+    .social-icon:nth-child(3):hover {
+      color: #00f2ea;
+      border-color: rgba(0, 242, 234, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .cancel-container {
+        padding: 1.75rem 1.25rem;
+      }
+
+      .cancel-title {
+        font-size: 1.4rem;
+      }
+
+      .cancel-icon-wrapper {
+        width: 65px;
+        height: 65px;
+      }
+
+      .cancel-icon-circle {
+        width: 65px;
+        height: 65px;
+      }
+
+      .cancel-icon-circle i {
+        font-size: 2rem;
+      }
+
+      .cancel-info {
+        padding: 1rem;
+      }
+
+      .btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.8rem;
+      }
+    }
+    .language-switch {
+  margin-top: 1rem;
+  animation: buttonPop 0.5s ease-out 0.65s backwards;
+}
+
+.btn-language {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.6rem 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.btn-language:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-language i {
+  font-size: 1rem;
+}
+
+.footer-links {
+  margin-top: 1rem;
+}
+
+.footer-link {
+  color: rgba(0, 255, 136, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.footer-link:hover {
+  color: rgba(0, 255, 136, 1);
+  border-bottom-color: rgba(0, 255, 136, 0.5);
+}
+
+  </style>
+</head>
+<body>
+  <div class="cancel-container">
+    <div class="cancel-icon-wrapper">
+      <div class="cancel-icon-circle">
+        <i class="ri-close-line"></i>
+      </div>
+    </div>
+
+    <h1 class="cancel-title">Purchase Cancelled</h1>
+    
+    <p class="cancel-text">
+      <i class="ri-information-line"></i>
+      You have cancelled the payment process, and the order has not been processed.
+    </p>
+
+    <div class="cancel-info">
+      <h3><i class="ri-shopping-cart-line"></i> What happens now?</h3>
+      <p>Your cart contents have been saved, and you can return anytime to complete your purchase.</p>
+      <p>No charges have been made to your account.</p>
+    </div>
+    
+    <div class="footer-links">
+  <p class="info-text">
+    <i class="ri-customer-service-2-line"></i>
+    Questions? Contact us: senkisem.info@gmail.com
+  </p>
+  <p class="info-text">
+    <i class="ri-file-text-line"></i>
+    <a href="./terms.html" class="footer-link">Terms and Conditions</a>
+  </p>
+</div>
+
+    <div class="buttons-container">
+      <a href="/" class="btn">
+        <i class="ri-home-4-line"></i>
+        Homepage
+      </a>
+      <a href="./index-en.html#shop" class="btn btn-primary">
+        <i class="ri-shopping-cart-line"></i>
+        Back to shop
+      </a>
+    </div>
+
+    <div class="language-switch">
+  <a href="https://senkisem.hu/cancel.html" class="btn-language">
+    <i class="ri-global-line"></i>
+    For Hungarian Click Here (Magyar)
+  </a>
+</div>
+
+    <div class="social-section">
+      <p class="social-title">Follow Us</p>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61582294742221" target="_blank" class="social-icon" title="Facebook">
+          <i class="ri-facebook-fill"></i>
+        </a>
+        <a href="https://www.instagram.com/senkisem.hu/" target="_blank" class="social-icon" title="Instagram">
+          <i class="ri-instagram-line"></i>
+        </a>
+        <a href="https://www.tiktok.com/@senkisem.com" target="_blank" class="social-icon" title="TikTok">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.04-.1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

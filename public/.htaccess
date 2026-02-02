@@ -1,0 +1,9 @@
+# Block Silk Road related searches
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_REFERER} silkroad [NC,OR]
+RewriteCond %{HTTP_REFERER} silk-road [NC,OR]
+RewriteCond %{QUERY_STRING} silkroad [NC,OR]
+RewriteCond %{QUERY_STRING} silk-road [NC]
+RewriteRule .* - [F,L]
+</IfModule>

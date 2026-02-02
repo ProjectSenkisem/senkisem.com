@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Senkisem - Not a Brand; Message | Streetwear, Books, Philosophy</title>
+    
+    <!-- Basic SEO -->
+    <meta name="description" content="Senkisem - Not a brand; message. Hungarian streetwear brand with limited collections: Sakura Heritage, Phantom, Signature. Notes From a Stranger book: self-knowledge journal for the digital age. User Manual for Life - Senkisem's second book. Urban fashion, philosophy and community in one place.">
+    <meta name="keywords" content="senkisem, senkisem brand, hungarian streetwear, urban fashion hungary, limited clothing, notes from a stranger, self-knowledge book, User Manual for Life book, senkisem second book, Shadow Garden, phantom collection, signature edition, hungarian fashion brand, streetwear budapest, cyberpunk fashion, japanese style clothing, modern kimono, urban fashion, alternative fashion, underground streetwear, digital generation, self-knowledge book 2026, User Manual for Life, hungarian influencer brand, tiktok brand, instagram fashion, limited pieces, exclusive collection, premium streetwear, hungarian design, local brand, senkisem.hu, senkisem t-shirt, senkisem hoodie, senkisem book, senkisem watch, senkisem accessories">
+    <meta name="author" content="Senkisem">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="geo.region" content="HU">
+    <meta name="geo.placename" content="Hungary">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://senkisem.hu/">
+    <meta property="og:site_name" content="Senkisem">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Senkisem - Not a Brand; Message | Streetwear, Books, Philosophy">
+    <meta property="og:description" content="Hungarian streetwear brand with limited collections (Garden, Phantom, Signature). Notes From a Stranger: self-knowledge book for the digital age. User Manual for Life: Senkisem's second book. Urban fashion and philosophy in one place.">
+    <meta property="og:image" content="https://senkisem.hu/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@senkisem">
+    <meta name="twitter:title" content="Senkisem - Not a Brand; Message | Streetwear & Books">
+    <meta name="twitter:description" content="Hungarian streetwear brand (Sakura Heritage, Phantom, Signature) + Notes From a Stranger book. Urban fashion and philosophy.">
+    <meta name="twitter:image" content="https://senkisem.hu/img/og-image.jpg">
+    
+    <!-- Canonical & Mobile -->
+    <link rel="canonical" href="https://senkisem.hu/">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Senkisem",
+      "url": "https://senkisem.hu/",
+      "logo": "https://senkisem.hu/img/favicon.svg",
+      "description": "Hungarian streetwear brand with unique identity. Limited collections: Sakura Heritage, Phantom, Signature.",
+      "email": "senkisem.info@gmail.com",
+      "sameAs": [
+        "https://www.instagram.com/senkisem.hu/",
+        "https://www.tiktok.com/@senkisem.hu"
+      ]
+    }
+    </script>
+    
+    <style>
+      :root {
+        --primary-dark: #0a0a0a;
+        --text-primary: #ffffff;
+      }
+
+      .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.6s ease;
+        flex-direction: column;
+      }
+
+      .loading.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .loading-content {
+        text-align: center;
+        animation: fadeIn 1.8s ease forwards;
+      }
+
+      .loading-text {
+        color: var(--text-primary);
+        font-size: 2rem;
+        font-weight: 500;
+        letter-spacing: 0.4em;
+        animation: pulse 2.4s ease-in-out infinite;
+        text-transform: uppercase;
+      }
+
+      .loading-subtext {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        font-weight: 300;
+        letter-spacing: 0.15em;
+        background: linear-gradient(90deg, #ffffff, #b8b8b8, #ffffff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0;
+        animation: fadeInSub 3s ease forwards 1.5s;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 0.4; text-shadow: 0 0 6px rgba(255,255,255,0.2); }
+        50% { opacity: 1; text-shadow: 0 0 12px rgba(255,255,255,0.6); }
+      }
+
+      @keyframes fadeInSub {
+        from { opacity: 0; transform: translateY(5px); }
+        to { opacity: 0.9; transform: translateY(0); }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      /* Hide scrollbar in all browsers */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+    </style>
+  </head>
+  <body>
+    <div class="loading" id="loading">
+      <div class="loading-content">
+        <div class="loading-text">SENKISEM</div>
+        <div class="loading-subtext">Not a Brand;<br>Message.</div>
+      </div>
+    </div>
+
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      window.loadingDone = false;
+      const minimumLoadingTime = window.innerWidth <= 768 ? 2500 : 4000;
+
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          const loading = document.getElementById("loading");
+          if (loading) {
+            loading.classList.add("hidden");
+            setTimeout(() => {
+              loading.remove();
+              window.loadingDone = true;
+            }, 600);
+          } else {
+            window.loadingDone = true;
+          }
+        }, minimumLoadingTime);
+      });
+    </script>
+  </body>
+</html>

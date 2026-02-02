@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senkisem - Books</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Senkisem books - Choose between Notes from a Stranger and the User Manual for Life.">
+    <meta name="keywords" content="senkisem books, notes from a stranger, user manual for life">
+    <meta name="author" content="Senkisem">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.6);
+            --glass-white: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --accent-subtle: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #111111 25%, #1a1a1a 50%, #0f0f0f 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease;
+            flex-direction: column;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            color: var(--text-primary);
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: 0.4em;
+            animation: pulse 2.4s ease-in-out infinite;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-icon {
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            padding: 0.7rem;
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .nav-icon:hover {
+            background: var(--accent-subtle);
+            transform: translateY(-1px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--text-primary);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        #menu-icon {
+            display: none;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(40px);
+            border-right: 1px solid var(--glass-border);
+            z-index: 2001;
+            transition: left 0.4s ease;
+            padding: 2rem;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .mobile-menu-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--text-primary);
+            padding-left: 1rem;
+        }
+
+        /* Sidebar for Cart/Wishlist */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(40px);
+            border-left: 1px solid var(--glass-border);
+            z-index: 2000;
+            transition: right 0.4s ease;
+            padding: 3rem;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--text-secondary);
+        }
+
+        /* Main Content */
+        .books-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .books-content {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        .books-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .books-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.8));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .books-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .book-card {
+            position: relative;
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInScale 0.8s ease forwards;
+        }
+
+        .book-card:nth-child(1) {
+            animation-delay: 0.5s;
+        }
+
+        .book-card:nth-child(2) {
+            animation-delay: 0.7s;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .book-image-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+        }
+
+        .book-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .book-card:hover .book-image {
+            transform: scale(1.05);
+        }
+
+        .book-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .book-card:hover .book-overlay {
+            opacity: 1;
+        }
+
+        .book-cta {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .book-cta i {
+            transition: transform 0.3s ease;
+        }
+
+        .book-card:hover .book-cta i {
+            transform: translateX(5px);
+        }
+
+        .book-info {
+            padding: 2rem;
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .book-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(30px);
+            border-top: 1px solid var(--glass-border);
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--accent-subtle);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            #menu-icon {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .books-container {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .book-image-container {
+                height: 300px;
+            }
+
+            .footer {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            .sidebar {
+                width: 100%;
+                right: -100%;
+                padding: 2rem;
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .book-card:nth-child(2) .book-image {
+    object-fit: contain;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+}
+.book-card:nth-child(2) .book-image-container {
+    background: #000000;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">Senkisem</a>
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="merch.html" class="nav-link">Merch</a></li>
+                <li><a href="books.html" class="nav-link">Books</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="nav-icon" id="wishlist-icon">
+                    <i class="ri-heart-line"></i>
+                    <span class="cart-count" id="wishlist-count" style="display: none;">0</span>
+                </div>
+                <div class="nav-icon" id="cart-icon">
+                    <i class="ri-shopping-cart-2-line"></i>
+                    <span class="cart-count" id="cart-count" style="display: none;">0</span>
+                </div>
+                <div class="nav-icon" id="menu-icon">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">Senkisem</div>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="/" class="mobile-nav-link" onclick="closeMobileMenu()"><i class=""></i> Home</a></li>
+            <li><a href="merch.html" class="mobile-nav-link" onclick="closeMobileMenu()"><i class=""></i> Merch</a></li>
+            <li><a href="books.html" class="mobile-nav-link" onclick="closeMobileMenu()"><i class=""></i> Books</a></li>
+        </ul>
+    </div>
+
+    <!-- Sidebar for Cart/Wishlist -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title" id="sidebar-title">Cart</h2>
+            <button class="close-btn" onclick="closeSidebar()">&times;</button>
+        </div>
+        <div id="sidebar-content">
+            <p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">
+                Your cart is currently empty
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="books-container">
+        <div class="books-content">
+            <div class="books-header">
+                <h1>The Cornerstones of Senkisem</h1>
+                <p>Parts I and II of Senkisem.<br> Two different books. <br> Both are about the same thing: You.</p>
+            </div>
+
+            <div class="books-grid">
+                <!-- Notes from a Stranger -->
+                <a href="/notesfromastranger.html" class="book-card">
+                    <div class="book-image-container">
+                        <img src="assets/img/jgybg.png" alt="Notes from a Stranger" class="book-image">
+                        <div class="book-overlay">
+                            <div class="book-cta">
+                                Go to the book <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h2 class="book-title">Notes from a Stranger</h2>
+                        <p class="book-description">
+                            Questions that tear you apart. Thoughts that rearrange you.<br>
+                            This is not a book you "read"; it's a mirror you can't avoid.
+                        </p>
+                    </div>
+                </a>
+
+                <!-- User Manual for Life -->
+                <a href="/usermanual.html" class="book-card">
+                    <div class="book-image-container">
+                        <img src="assets/img/huae.png" alt="User Manual for Life" class="book-image">
+                        <div class="book-overlay">
+                            <div class="book-cta">
+                                Go to the book <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="book-info">
+                        <h2 class="book-title">User Manual for Life</h2>
+                        <p class="book-description">
+                            The silent dialogues from the first volume have become a system-level diagnostic. <br> This is not self-improvement. This is excavation. The realization that your personality is an algorithm. Your decisions are survival protocols.
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Senkisem</h3>
+                <p style="color: var(--text-secondary);">
+                    Not a brand;<br>
+                    A message.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Community</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/senkisem.hu/" target="_blank" class="social-icon">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@senkisem.hu" target="_blank" class="social-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.04-.1z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:senkisem.info@gmail.com" class="social-icon">
+                        <i class="ri-mail-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#contact">senkisem.info@gmail.com</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Information</h3>
+                <ul class="footer-links">
+                    <li><a href="/">About Us</a></li>
+                    <li><a href="assets/ÁSZF.pdf">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Senkisem - All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // State management
+        let cart = [];
+        let wishlist = [];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+        });
+
+        function initializePage() {
+            loadCartFromStorage();
+            loadWishlistFromStorage();
+            updateCartCount();
+            updateWishlistCount();
+            attachEventListeners();
+            initializeHeaderScroll();
+        }
+
+        // Load cart from localStorage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+        }
+
+        // Load wishlist from localStorage
+        function loadWishlistFromStorage() {
+            const savedWishlist = localStorage.getItem('wishlist');
+            if (savedWishlist) {
+                wishlist = JSON.parse(savedWishlist);
+            }
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            
+            if (totalItems > 0) {
+                cartCount.textContent = totalItems;
+                cartCount.style.display = 'flex';
+            } else {
+                cartCount.style.display = 'none';
+            }
+        }
+
+        // Update wishlist count
+        function updateWishlistCount() {
+            const wishlistCount = document.getElementById('wishlist-count');
+            
+            if (wishlist.length > 0) {
+                wishlistCount.textContent = wishlist.length;
+                wishlistCount.style.display = 'flex';
+            } else {
+                wishlistCount.style.display = 'none';
+            }
+        }
+
+        // Sidebar functions
+        function openSidebar(type) {
+            const sidebar = document.getElementById('sidebar');
+            const title = document.getElementById('sidebar-title');
+            
+            title.textContent = type === 'cart' ? 'Kosár' : 'Kedvencek';
+            sidebar.classList.add('active');
+            
+            if (type === 'cart') {
+                renderCart();
+            } else {
+                renderWishlist();
+            }
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('active');
+        }
+
+        // Render cart
+        function renderCart() {
+            const content = document.getElementById('sidebar-content');
+            
+            if (cart.length === 0) {
+                content.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">A kosár jelenleg üres</p>';
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => {
+                const price = typeof item.price === 'string' ? 
+                    parseInt(item.price.replace(/\D/g, '')) : item.price;
+                const quantity = item.quantity || 1;
+                return sum + (price * quantity);
+            }, 0);
+            
+            content.innerHTML = `
+                ${cart.map(item => {
+                    const price = typeof item.price === 'string' ? item.price : `${item.price} Ft`;
+                    const itemPrice = typeof item.price === 'string' ? 
+                        parseInt(item.price.replace(/\D/g, '')) : item.price;
+                    const quantity = item.quantity || 1;
+                    const sizeText = item.size ? ` (${item.size})` : '';
+                    return `
+                        <div style="display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--glass-border);">
+                            <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                            <div style="flex: 1;">
+                                <div style="font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">${item.name}${sizeText}</div>
+                                <div style="font-size: 0.9rem; color: var(--text-secondary);">${itemPrice.toLocaleString('hu-HU')} Ft / db</div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <button onclick="updateQuantity(${item.id}, '${item.size || ''}', -1); event.stopPropagation();" 
+                                            style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                                        −
+                                    </button>
+                                    <span style="min-width: 30px; text-align: center; color: var(--text-primary); font-weight: 600;">${quantity}</span>
+                                    <button onclick="updateQuantity(${item.id}, '${item.size || ''}', 1); event.stopPropagation();" 
+                                            style="background: rgba(255, 255, 255, 0.1); border:<button onclick="updateQuantity(${item.id}, '${item.size || ''}', -1); event.stopPropagation();" 
+                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                                −
+                            </button>
+                            <span style="min-width: 30px; text-align: center; color: var(--text-primary); font-weight: 600;">${quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, '${item.size || ''}', 1); event.stopPropagation();" 
+                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${item.id}, '${item.size || ''}'); event.stopPropagation();" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem; align-self: flex-start;">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+            `;
+        }).join('')}
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); text-align: center;">
+            <div style="font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">${total.toLocaleString()} Ft</div>
+            <button onclick="goToCheckout()" style="width: 100%; padding: 1rem; background: #ffffff; color: #000000; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: var(--transition);">
+                Fizetés <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+    `;
+}
+
+// Update quantity function
+function updateQuantity(productId, size = '', change) {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const item = cart.find(item => item.id === productId && (item.size || '') === size);
+    
+    if (item) {
+        const newQuantity = (item.quantity || 1) + change;
+        
+        if (newQuantity <= 0) {
+            // Ha 0 vagy kevesebb lesz, töröljük a terméket
+            cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
+        } else {
+            item.quantity = newQuantity;
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+    }
+}
+
+// Remove from cart
+// Remove from cart
+function removeFromCart(productId, size = '') {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+    // NE hívjuk meg a closeSidebar()-t!
+}
+
+// Go to checkout
+function goToCheckout() {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    if (cart.length === 0) {
+        alert('A kosár üres!');
+        return;
+    }
+    
+    const isOnlyEbook = cart.length === 1 && cart[0].id === 2;
+    
+    if (isOnlyEbook) {
+        window.location.href = 'checkout2.html';
+    } else {
+        window.location.href = 'checkout.html';
+    }
+}
+
+// Render wishlist
+        function renderWishlist() {
+            const content = document.getElementById('sidebar-content');
+            
+            if (wishlist.length === 0) {
+                content.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">Nincs még kedvenc termék</p>';
+                return;
+            }
+            
+            content.innerHTML = wishlist.map(item => {
+                const price = typeof item.price === 'string' ? item.price : `${item.price} Ft`;
+                return `
+                    <div style="display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--glass-border);">
+                        <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">${item.name}</div>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">${price}</div>
+                        </div>
+                        <button onclick="removeFromWishlist(${item.id})" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1rem;">
+                            <i class="ri-close-line"></i>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Remove from wishlist
+        function removeFromWishlist(productId) {
+            wishlist = wishlist.filter(item => item.id !== productId);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateWishlistCount();
+            renderWishlist();
+        }
+
+        // Mobile menu functions
+        function openMobileMenu() {
+            document.getElementById('mobile-menu').classList.add('active');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobile-menu').classList.remove('active');
+        }
+
+        // Event listeners
+        function attachEventListeners() {
+            // Cart icon
+            document.getElementById('cart-icon').addEventListener('click', () => openSidebar('cart'));
+            
+            // Wishlist icon
+            document.getElementById('wishlist-icon').addEventListener('click', () => openSidebar('wishlist'));
+            
+            // Menu icon (mobile)
+            document.getElementById('menu-icon').addEventListener('click', openMobileMenu);
+
+            // ESC key support for modals
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (document.getElementById('sidebar').classList.contains('active')) {
+                        closeSidebar();
+                    }
+                    if (document.getElementById('mobile-menu').classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                const mobileMenu = document.getElementById('mobile-menu');
+                
+                if (!mobileMenu.contains(e.target) && 
+                    e.target.id !== 'menu-icon' && 
+                    !e.target.closest('#menu-icon') &&
+                    mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        // Header scroll effect
+        function initializeHeaderScroll() {
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                const isMobile = window.innerWidth <= 768;
+                
+                if (window.scrollY > 50) {
+                    header.style.background = 'rgba(0, 0, 0, 0.9)';
+                    if (!isMobile) {
+                        header.style.padding = '1.5rem 3rem';
+                    }
+                } else {
+                    header.style.background = 'rgba(0, 0, 0, 0.4)';
+                    if (!isMobile) {
+                        header.style.padding = '2rem 3rem';
+                    }
+                }
+            });
+        }
+
+        // Global exports
+
+ // Global exports
+        window.updateCartCount = updateCartCount;
+        window.openSidebar = openSidebar;
+        window.closeSidebar = closeSidebar;
+        window.removeFromCart = removeFromCart;
+        window.removeFromWishlist = removeFromWishlist;
+        window.goToCheckout = goToCheckout;
+        window.updateQuantity = updateQuantity;
+        window.openMobileMenu = openMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
+</script>
+    
+    </body>
+</html>

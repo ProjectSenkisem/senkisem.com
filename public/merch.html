@@ -1,0 +1,5700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senkisem Clothing - Collections</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <meta name="description" content="Senkisem is a unique interactive journal, self-awareness book and clothing brand about non-conformity and inner freedom.">
+    <!-- SEO Meta Tags -->
+<meta name="description" content="Senkisem Store - Unique streetwear collections. Sakura Heritage, Phantom and Signature collections. Premium quality urban fashion in limited quantities.">
+<meta name="keywords" content="senkisem store, streetwear hungary, urban fashion, hungarian streetwear, limited clothing, sakura collection, phantom collection">
+<meta name="author" content="Senkisem">
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://senkisem.com/merch.html">
+<meta property="og:title" content="Senkisem Store - Urban Streetwear Collections">
+<meta property="og:description" content="Unique streetwear collections: Sakura Heritage, Phantom and Signature. Limited pieces, premium quality.">
+<meta property="og:image" content="https://senkisem.com/assets/img/ggg.png">
+<meta property="og:site_name" content="Senkisem Store">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://senkisem.com/merch.html">
+<meta property="twitter:title" content="Senkisem Store - Urban Streetwear">
+<meta property="twitter:description" content="Limited streetwear collections - Sakura Heritage, Phantom, Signature Edition">
+<meta property="twitter:image" content="https://senkisem.com/assets/img/ggg.png">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://senkisem.com/merch.html">
+<!-- Structured Data - Store -->
+
+<!-- Structured Data - Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://senkisem.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Store",
+      "item": "https://senkisem.com/merch.html"
+    }
+  ]
+}
+</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --tertiary-dark: #2a2a2a;
+            --accent-primary: #ffffff;
+            --accent-secondary: #888888;
+            --accent-subtle: #333333;
+            --glass-white: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.6);
+            --text-muted: rgba(255, 255, 255, 0.4);
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.4);
+            --transition: all 0.3s ease;
+            --color-dark: #000000;
+            --color-light: #ffffff;
+            --color-lightish: #f5f5f5;
+            --color-brand-pink: #ff006e;
+            --neon-cyan: #00ffff;
+            --neon-magenta: #ff00ff;
+            --neon-green: #00ff00;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #111111 25%, #1a1a1a 50%, #0f0f0f 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Glitch Lines Canvas */
+        .glitch-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    mix-blend-mode: difference;
+}
+        /* Film Grain Effect */
+        .glitch-film {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .glitch-film__scanline {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: scanline 6s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .glitch-film__noise {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==');
+            animation: noise 0.3s linear infinite;
+        }
+
+        @keyframes noise {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-1%, -1%); }
+            20% { transform: translate(1%, 1%); }
+            30% { transform: translate(-2%, -2%); }
+            40% { transform: translate(2%, 2%); }
+            50% { transform: translate(-1%, 1%); }
+            60% { transform: translate(1%, -1%); }
+            70% { transform: translate(2%, 1%); }
+            80% { transform: translate(-2%, -1%); }
+            90% { transform: translate(1%, 2%); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 3rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(40px);
+            border-right: 1px solid var(--glass-border);
+            z-index: 2001;
+            transition: left 0.4s ease;
+            padding: 2rem;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .mobile-menu-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--text-primary);
+            padding-left: 1rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-icon {
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            padding: 0.7rem;
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .nav-icon:hover {
+            background: var(--accent-subtle);
+            transform: translateY(-1px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--text-primary);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid transparent;
+            cursor: pointer;
+            background: none;
+        }
+
+        .cta-primary {
+            background: var(--text-primary);
+            color: var(--primary-dark);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            background: var(--accent-secondary);
+            color: var(--text-primary);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--glass-border);
+        }
+
+        .cta-secondary:hover {
+            transform: translateY(-2px);
+            background: var(--glass-white);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+/* Hero Section - MEGÚJÍTOTT */
+.merch-hero {
+    height: 100vh;
+    max-height: 75vw;
+    position: relative;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.merch-hero .container {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-bottom: 4rem;
+}
+
+/* BAL OLDALI EMBER KÉP */
+.hero-left-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 35%;
+    z-index: 1;
+    overflow: hidden;
+    opacity: 0.4;
+    filter: grayscale(0.5) contrast(1.2);
+    animation: heroImageGlitch 10s infinite;
+}
+
+.hero-left-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 255, 255, 0.1) 50%, 
+        transparent 100%);
+    animation: imageScanline 8s linear infinite;
+    z-index: 2;
+}
+
+.hero-left-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    mix-blend-mode: luminosity;
+}
+
+@keyframes heroImageGlitch {
+    0%, 90%, 100% {
+        opacity: 0.4;
+        filter: grayscale(0.5) contrast(1.2);
+    }
+    92% {
+        opacity: 0.7;
+        filter: grayscale(0) contrast(1.5) hue-rotate(45deg);
+    }
+    94% {
+        opacity: 0.3;
+        filter: grayscale(1) contrast(1.8);
+    }
+    96% {
+        opacity: 0.6;
+        filter: grayscale(0.5) contrast(1.2);
+    }
+}
+
+@keyframes imageScanline {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(200%);
+    }
+}
+
+/* HERO LOGO */
+.hero-message-logo {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInLogo 1.5s ease forwards 0.3s;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
+
+@keyframes fadeInLogo {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 0.9;
+        transform: translateY(0);
+    }
+}
+
+/* HERO MESSAGE - EGYSZERŰSÍTETT GLITCH STÍLUS */
+.hero-message {
+    position: relative;
+    max-width: 500px;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeInMessage 1.5s ease forwards 0.5s;
+}
+
+@keyframes fadeInMessage {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-message-text {
+    font-family: 'Inter', sans-serif;
+    text-align: right;
+    position: relative;
+    padding: 0;
+}
+
+.hero-static-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2);
+    min-height: 2.6em; /* FIX: Biztosítja, hogy ne ugráljon */
+}
+
+.hero-rotating-word {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.6),
+        0 0 40px rgba(255, 255, 255, 0.3);
+    position: relative;
+    display: inline-block;
+    animation: wordPulseWhite 2s ease-in-out infinite;
+}
+
+@keyframes wordPulseWhite {
+    0%, 100% { 
+        text-shadow: 
+            0 0 20px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.3);
+    }
+    50% { 
+        text-shadow: 
+            0 0 30px rgba(255, 255, 255, 0.9),
+            0 0 60px rgba(255, 255, 255, 0.5);
+    }
+}
+
+.hero-rotating-word.glitch-out {
+    animation: glitchOut 0.3s ease-out forwards;
+}
+
+.hero-rotating-word.glitch-in {
+    animation: glitchIn 0.3s ease-in forwards;
+}
+
+@keyframes glitchOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+    20% {
+        opacity: 0.8;
+        transform: translateX(-10px);
+        text-shadow: 
+            -3px 0 #ff0000,
+            3px 0 #00ffff,
+            0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    40% {
+        opacity: 0.6;
+        transform: translateX(5px);
+        text-shadow: 
+            3px 0 #ff0000,
+            -3px 0 #00ffff,
+            0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    60% {
+        opacity: 0.4;
+        transform: translateX(-3px);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(0);
+        filter: blur(5px);
+    }
+}
+
+@keyframes glitchIn {
+    0% {
+        opacity: 0;
+        transform: translateX(0);
+        filter: blur(5px);
+    }
+    40% {
+        opacity: 0.4;
+        transform: translateX(3px);
+        filter: blur(2px);
+    }
+    60% {
+        opacity: 0.6;
+        transform: translateX(-5px);
+        text-shadow: 
+            3px 0 #ff0000,
+            -3px 0 #00ffff,
+            0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    80% {
+        opacity: 0.8;
+        transform: translateX(10px);
+        text-shadow: 
+            -3px 0 #ff0000,
+            3px 0 #00ffff,
+            0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+        text-shadow: 
+            0 0 20px rgba(255, 255, 255, 0.6),
+            0 0 40px rgba(255, 255, 255, 0.3);
+    }
+}
+
+.hero-rotating-word::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 255, 255, 0.8) 50%, 
+        transparent 100%);
+    animation: scanlineWord 3s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes scanlineWord {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    10%, 90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(calc(100% + 50px));
+        opacity: 0;
+    }
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+}
+
+.background-watermark {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+}
+
+        /* About Section - MEGÚJÍTOTT CYBERPUNK + NATURE */
+.merch-about {
+    padding: 10rem 0 5rem;
+    position: relative;
+    background: #000000;
+    color: var(--color-light);
+    overflow: hidden;
+}
+
+/* Animated Grid Background */
+.merch-about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 255, 0.03) 2px,
+            rgba(0, 255, 255, 0.03) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 255, 0.03) 2px,
+            rgba(0, 255, 255, 0.03) 4px
+        );
+    pointer-events: none;
+    z-index: 1;
+    animation: gridPulse 4s ease-in-out infinite;
+}
+
+/* Organic shapes overlay */
+.merch-about::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 255, 100, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: organicFloat 15s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes organicFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50px, 50px) scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+/* SVG Decorations */
+.svg-decoration {
+    position: absolute;
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.svg-decoration.circuit-1 {
+    top: 15%;
+    left: 5%;
+    width: 200px;
+    height: 200px;
+    animation: circuitGlow 6s ease-in-out infinite;
+}
+
+.svg-decoration.circuit-2 {
+    bottom: 20%;
+    right: 8%;
+    width: 250px;
+    height: 250px;
+    animation: circuitGlow 8s ease-in-out infinite 2s;
+}
+
+.svg-decoration.leaf-1 {
+    top: 30%;
+    right: 15%;
+    width: 150px;
+    height: 150px;
+    animation: leafFloat 10s ease-in-out infinite;
+}
+
+@keyframes circuitGlow {
+    0%, 100% {
+        opacity: 0.1;
+        filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.3));
+    }
+    50% {
+        opacity: 0.3;
+        filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.6));
+    }
+}
+
+@keyframes leafFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.15;
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+        opacity: 0.25;
+    }
+}
+
+/* Paint Splatter Effect */
+.paint-splatter {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.paint-splatter.splatter-1 {
+    top: 5%;
+    left: 10%;
+    animation: splatPulse 7s ease-in-out infinite;
+}
+
+.paint-splatter.splatter-2 {
+    bottom: 15%;
+    left: 20%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.15) 0%, transparent 70%);
+    animation: splatPulse 9s ease-in-out infinite 3s;
+}
+
+@keyframes splatPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.6;
+    }
+}
+
+/* LED Line Accents */
+.led-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--neon-cyan) 50%, 
+        transparent 100%);
+    z-index: 1;
+    opacity: 0;
+    animation: ledSweep 8s ease-in-out infinite;
+}
+
+.led-line.led-1 {
+    top: 25%;
+    left: 0;
+    width: 40%;
+    animation-delay: 0s;
+}
+
+.led-line.led-2 {
+    bottom: 35%;
+    right: 0;
+    width: 50%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--neon-magenta) 50%, 
+        transparent 100%);
+    animation-delay: 4s;
+}
+
+@keyframes ledSweep {
+    0%, 100% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    20%, 80% {
+        opacity: 0.8;
+        transform: scaleX(1);
+    }
+}
+
+.merch-about .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.header-with-lines {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 0.75rem;
+}
+
+.bebas-40 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+.animated-lines {
+    width: 21rem;
+    margin-right: -1rem;
+}
+.animated-lines rect {
+animation: line-pulse 2s ease-in-out infinite;
+}
+.animated-lines rect:nth-child(2) { animation-delay: 0.1s; }
+.animated-lines rect:nth-child(3) { animation-delay: 0.2s; }
+.animated-lines rect:nth-child(4) { animation-delay: 0.3s; }
+.animated-lines rect:nth-child(5) { animation-delay: 0.4s; }
+@keyframes line-pulse {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.3; }
+}
+.merch-about__title {
+margin-bottom: 6rem;
+text-wrap: balance;
+font-size: clamp(2rem, 4vw, 4rem);
+position: relative;
+z-index: 2;
+color: #ffffff;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.02em;
+animation: glitchTitle 8s infinite;
+}
+@keyframes glitchTitle {
+0%, 90%, 100% {
+text-shadow:
+0 0 10px rgba(255, 255, 255, 0.3),
+0 0 20px rgba(255, 255, 255, 0.2),
+0 0 30px rgba(255, 255, 255, 0.1);
+transform: translate(0, 0);
+}
+91% {
+text-shadow:
+2px 0 #ff0000,
+-2px 0 #00ffff;
+transform: translate(-2px, 0);
+}
+93% {
+text-shadow:
+-2px 0 #ff0000,
+2px 0 #00ffff;
+transform: translate(2px, 0);
+}
+95% {
+text-shadow:
+0 0 10px rgba(255, 255, 255, 0.3);
+transform: translate(0, 0);
+}
+}
+.merch-about__content {
+position: relative;
+display: flex;
+align-items: center;
+gap: 6rem;
+margin-bottom: 12rem;
+z-index: 2;
+min-height: 400px;
+}
+.merch-about__desc {
+flex: 1;
+max-width: 600px;
+line-height: 1.9;
+text-wrap: balance;
+font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+color: #ffffff;
+position: relative;
+padding: 0;
+opacity: 0;
+transform: translateX(-100px);
+animation: slideInFromLeft 1.2s ease forwards;
+animation-delay: 0.3s;
+}
+@keyframes slideInFromLeft {
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+.merch-about__desc::before {
+content: '';
+position: absolute;
+left: -30px;
+top: 0;
+width: 4px;
+height: 100%;
+background: linear-gradient(180deg,
+transparent 0%,
+var(--neon-cyan) 20%,
+var(--neon-cyan) 80%,
+transparent 100%);
+animation: pulseBar 2s ease-in-out infinite;
+box-shadow: 0 0 10px var(--neon-cyan);
+}
+@keyframes pulseBar {
+0%, 100% {
+opacity: 0.5;
+box-shadow: 0 0 10px var(--neon-cyan);
+}
+50% {
+opacity: 1;
+box-shadow: 0 0 20px var(--neon-cyan);
+}
+}
+.merch-about__desc p {
+position: relative;
+animation: textGlitchSubtle 6s infinite;
+}
+@keyframes textGlitchSubtle {
+0%, 96%, 100% {
+text-shadow:
+0 0 5px rgba(255, 255, 255, 0.1);
+}
+97% {
+text-shadow:
+1px 0 #ff0000,
+-1px 0 #00ffff,
+0 0 10px rgba(255, 255, 255, 0.3);
+}
+98% {
+text-shadow:
+-1px 0 #ff0000,
+1px 0 #00ffff;
+}
+}
+.merch-about__image {
+width: 400px;
+height: auto;
+flex-shrink: 0;
+border-radius: 0;
+box-shadow: none;
+position: relative;
+opacity: 0;
+transform: translateX(100px);
+animation: slideInFromRight 1.2s ease forwards;
+animation-delay: 0.5s;
+filter: grayscale(0.3) contrast(1.1);
+}
+@keyframes slideInFromRight {
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+.merch-about__image::before {
+content: '';
+position: absolute;
+top: -10px;
+left: -10px;
+right: 10px;
+bottom: 10px;
+border: 2px solid rgba(0, 255, 255, 0.4);
+z-index: -1;
+animation: borderPulse 3s ease-in-out infinite;
+box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+@keyframes borderPulse {
+0%, 100% {
+border-color: rgba(0, 255, 255, 0.4);
+transform: translate(0, 0);
+box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+50% {
+border-color: rgba(0, 255, 255, 0.8);
+transform: translate(-5px, -5px);
+box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+}
+.merch-about__bottom-section {
+position: relative;
+display: flex;
+align-items: center;
+gap: 6rem;
+z-index: 2;
+min-height: 400px;
+}
+.merch-about__bottom-image {
+width: 400px;
+height: auto;
+flex-shrink: 0;
+border-radius: 0;
+box-shadow: none;
+position: relative;
+opacity: 0;
+transform: translateX(-100px);
+animation: slideInFromLeft 1.2s ease forwards;
+animation-delay: 0.5s;
+filter: grayscale(0.3) contrast(1.1);
+}
+.merch-about__bottom-image::before {
+content: '';
+position: absolute;
+top: 10px;
+left: 10px;
+right: -10px;
+bottom: -10px;
+border: 2px solid rgba(255, 0, 255, 0.4);
+z-index: -1;
+animation: borderPulseReverse 3s ease-in-out infinite;
+box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+}
+@keyframes borderPulseReverse {
+0%, 100% {
+border-color: rgba(255, 0, 255, 0.4);
+transform: translate(0, 0);
+box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+}
+50% {
+border-color: rgba(255, 0, 255, 0.8);
+transform: translate(5px, 5px);
+box-shadow: 0 0 25px rgba(255, 0, 255, 0.6);
+}
+}
+.merch-about__bottom-text {
+flex: 1;
+max-width: 600px;
+line-height: 1.9;
+font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+color: #ffffff;
+position: relative;
+padding: 0;
+opacity: 0;
+transform: translateX(100px);
+animation: slideInFromRight 1.2s ease forwards;
+animation-delay: 0.7s;
+}
+.merch-about__bottom-text::after {
+content: '';
+position: absolute;
+right: -30px;
+top: 0;
+width: 4px;
+height: 100%;
+background: linear-gradient(180deg,
+transparent 0%,
+var(--neon-magenta) 20%,
+var(--neon-magenta) 80%,
+transparent 100%);
+animation: pulseBar 2s ease-in-out infinite;
+animation-delay: 0.5s;
+box-shadow: 0 0 10px var(--neon-magenta);
+}
+.merch-about__bottom-text p {
+position: relative;
+animation: textGlitchSubtle 6s infinite;
+animation-delay: 1s;
+}/* Typing Section - MEGÚJÍTOTT */
+    .merch-more {
+        padding: 10rem 0;
+        position: relative;
+        background: #000000;
+        overflow: hidden;
+    }
+
+    .merch-more::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 255, 0.03) 2px,
+                rgba(0, 255, 255, 0.03) 4px
+            ),
+            repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 0, 255, 0.03) 2px,
+                rgba(255, 0, 255, 0.03) 4px
+            );
+        pointer-events: none;
+        animation: gridPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes gridPulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+    }
+
+    .merch-more::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, 
+            rgba(0, 255, 255, 0.1) 0%, 
+            transparent 70%);
+        transform: translate(-50%, -50%);
+        animation: pulse 3s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.3;
+        }
+        50% {
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 0.6;
+        }
+    }
+
+    .merch-more__inner {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .merch-more__typing {
+        max-width: 900px;
+        margin: 0 auto;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    .typing {
+        position: relative;
+        font-family: 'Courier New', monospace;
+        font-size: clamp(1.25rem, 2vw, 1.75rem);
+        text-transform: uppercase;
+        white-space: pre-wrap;
+        text-align: center;
+        color: white;
+        line-height: 1.8;
+        min-height: 300px;
+        text-shadow: 
+            0 0 10px rgba(0, 255, 255, 0.5),
+            0 0 20px rgba(0, 255, 255, 0.3),
+            0 0 30px rgba(0, 255, 255, 0.2);
+        animation: textFlicker 3s infinite;
+        display: inline-block;
+    }
+
+    @keyframes textFlicker {
+        0%, 100% {
+            text-shadow: 
+                0 0 10px rgba(0, 255, 255, 0.5),
+                0 0 20px rgba(0, 255, 255, 0.3),
+                0 0 30px rgba(0, 255, 255, 0.2);
+        }
+        50% {
+            text-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.8),
+                0 0 30px rgba(0, 255, 255, 0.5),
+                0 0 40px rgba(0, 255, 255, 0.3);
+        }
+    }
+
+    .typing-cursor {
+        display: inline-block;
+        animation: blink 1s infinite;
+        margin-left: 2px;
+        color: #00ffff;
+        text-shadow: 
+            0 0 10px rgba(255, 0, 255, 0.8),
+            0 0 20px rgba(255, 0, 255, 0.5);
+    }
+
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+
+    .merch-more__cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .cyber-login-btn {
+        position: relative;
+        padding: 1.2rem 3rem;
+        background: transparent;
+        border: 2px solid #00ffff;
+        color: #00ffff;
+        font-family: 'Courier New', monospace;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 
+            0 0 10px rgba(0, 255, 255, 0.3),
+            inset 0 0 10px rgba(0, 255, 255, 0.1);
+        animation: borderGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes borderGlow {
+        0%, 100% {
+            box-shadow: 
+                0 0 10px rgba(0, 255, 255, 0.3),
+                inset 0 0 10px rgba(0, 255, 255, 0.1);
+            border-color: #00ffff;
+        }
+        50% {
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.6),
+                inset 0 0 20px rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+        }
+    }
+
+    .cyber-login-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(0, 255, 255, 0.3),
+            transparent
+        );
+        transition: left 0.5s ease;
+    }
+
+    .cyber-login-btn:hover::before {
+        left: 100%;
+    }
+
+    .cyber-login-btn:hover {
+        background: rgba(0, 255, 255, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 
+            0 0 30px rgba(0, 255, 255, 0.6),
+            inset 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .cyber-login-btn::after {
+        content: '►';
+        position: absolute;
+        right: 1rem;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .cyber-login-btn:hover::after {
+        opacity: 1;
+        right: 1.5rem;
+    }
+
+    /* ÚJ: Continue without login button */
+    .continue-without-login {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+        margin-top: 1rem;
+    }
+
+    .continue-without-login.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .continue-btn {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.4);
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: underline;
+        padding: 0.5rem 1rem;
+    }
+
+    .continue-btn:hover {
+        color: rgba(255, 255, 255, 0.7);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .cyber-subtext {
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        text-align: center;
+        max-width: 500px;
+        line-height: 1.6;
+        position: relative;
+        padding: 0 2rem;
+    }
+
+    .cyber-subtext::before,
+    .cyber-subtext::after {
+        content: '///';
+        position: absolute;
+        color: #ff00ff;
+        opacity: 0.3;
+        font-size: 0.8rem;
+    }
+
+    .cyber-subtext::before {
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .cyber-subtext::after {
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .glitch-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .glitch-overlay::before,
+    .glitch-overlay::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 0, 255, 0.1) 50%,
+            transparent 100%
+        );
+        opacity: 0;
+        animation: glitchSweep 5s infinite;
+    }
+
+    .glitch-overlay::after {
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(0, 255, 255, 0.1) 50%,
+            transparent 100%
+        );
+        animation-delay: 2.5s;
+    }
+
+    @keyframes glitchSweep {
+        0%, 100% {
+            opacity: 0;
+            transform: translateX(-100%);
+        }
+        10%, 20% {
+            opacity: 1;
+            transform: translateX(100%);
+        }
+        21% {
+            opacity: 0;
+        }
+    }
+
+    /* PRODUCTS SECTION HIDDEN BY DEFAULT */
+    .products-section-wrapper {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.8s ease;
+    }
+
+    .products-section-wrapper.revealed {
+        max-height: none;
+        opacity: 1;
+    }
+
+    /* Section Styling - MEGÚJÍTOTT */
+    .section {
+        padding: 6rem 3rem;
+        position: relative;
+        background: linear-gradient(135deg, 
+            rgba(10, 10, 10, 0.95) 0%, 
+            rgba(20, 20, 20, 0.95) 50%,
+            rgba(10, 10, 10, 0.95) 100%);
+        overflow: hidden;
+    }
+
+    .section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 255, 255, 0.02) 10px,
+                rgba(0, 255, 255, 0.02) 20px
+            );
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .section::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(255, 0, 255, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: sectionGlow 10s ease-in-out infinite;
+        z-index: 1;
+    }
+
+    @keyframes sectionGlow {
+        0%, 100% {
+            transform: translate(0, 0);
+            opacity: 0.3;
+        }
+        50% {
+            transform: translate(-50px, 50px);
+            opacity: 0.6;
+        }
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 5rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .section-badge {
+        display: inline-block;
+        padding: 0.4rem 1.2rem;
+        background: var(--glass-white);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1.5rem;
+        backdrop-filter: blur(10px);
+    }
+
+    .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+    }
+
+    .section-description {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+/* Responsive grid beállítások */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1400px;
+    margin:0 auto;
+justify-items: center;
+}
+@media (max-width: 1400px) {
+.products-grid {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+@media (max-width: 1024px) {
+.products-grid {
+grid-template-columns: repeat(2, 1fr);
+gap: 1.5rem;
+}
+}
+@media (max-width: 480px) {
+.products-grid {
+gap: 1rem;
+}
+}
+
+    .product-card {
+    background: var(--glass-white);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: var(--transition);
+    backdrop-filter: blur(20px);
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: auto; /* VÁLTOZÁS: auto magasság */
+    min-height: 520px; /* Minimum magasság desktop-on */
+    display: flex;
+    flex-direction: column;
+}
+
+.product-image {
+    width: 100%;
+    height: 350px; /* ← CSÖKKENTETT, hogy több hely legyen alatta */
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ez biztosítja, hogy az egész kép látszódjon */
+    object-position: center;
+    padding: 1rem; /* Kis margó a kép körül */
+}
+
+.product-details {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+    min-height: 2.6rem; /* 2 sor helye */
+}
+
+.product-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 0.8rem;
+    padding: 0 1.5rem 1.5rem;
+}
+
+    .size-selection {
+        margin-bottom: 1.5rem;
+    }
+
+    .size-label {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .size-options {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .size-option {
+        padding: 0.4rem 0.8rem;
+        border: 1px solid var(--glass-border);
+        border-radius: 4px;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.8rem;
+        min-width: 40px;
+        text-align: center;
+    }
+
+    .size-option:hover, .size-option.selected {
+        background: var(--glass-white);
+        border-color: var(--text-primary);
+        color: var(--text-primary);
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 0.8rem;
+        padding: 0 1.5rem 1.5rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.2rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: var(--transition);
+        cursor: pointer;
+        border: 1px solid transparent;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        justify-content: center;
+    }
+
+    .btn-primary {
+        background: var(--text-primary);
+        color: var(--primary-dark);
+        flex: 1;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        background: var(--accent-secondary);
+        color: var(--text-primary);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: var(--text-secondary);
+        border-color: var(--glass-border);
+        flex: 1;
+    }
+
+    .btn-secondary:hover {
+        background: var(--glass-white);
+        color: var(--text-primary);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Product Image Modal */
+    .product-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        z-index: 3000;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        overflow-y: auto;
+    }
+
+    .product-modal.active {
+        display: flex;
+    }
+
+    .modal-content {
+        position: relative;
+        max-width: 900px;
+        width: 100%;
+        max-height: 90vh;
+        background: var(--glass-white);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        overflow: hidden;
+        backdrop-filter: blur(30px);
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--glass-border);
+        flex-shrink: 0;
+    }
+
+    .modal-title {
+        font-size: 1.1rem;
+        color: var(--text-primary);
+        font-weight: 500;
+    }
+
+    .modal-close {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 8px;
+        transition: var(--transition);
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-close:hover {
+        background: var(--glass-white);
+        color: var(--text-primary);
+        transform: rotate(90deg);
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+        overflow-y: auto;
+        flex: 1;
+    }
+
+    .modal-image {
+        width:100%;
+max-height: 400px;
+object-fit: contain;
+border-radius: 8px;
+background: rgba(255, 255, 255, 0.02);
+}.modal-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .modal-product-title {
+        font-size: 1.3rem;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .modal-product-price {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    /* Size Chart */
+    .size-chart {
+        background: var(--glass-white);
+        border: 1px solid var(--glass-border);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .size-chart-title {
+        font-size: 0.9rem;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .size-chart table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+    }
+
+    .size-chart th,
+    .size-chart td {
+        padding: 0.4rem 0.2rem;
+        text-align: center;
+        border: 1px solid var(--glass-border);
+    }
+
+    .size-chart th {
+        background: var(--glass-white);
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 0.75rem;
+    }
+
+    .size-chart td {
+        color: var(--text-secondary);
+    }
+
+    /* Sidebar */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: -450px;
+        width: 450px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(40px);
+        border-left: 1px solid var(--glass-border);
+        z-index: 2000;
+        transition: right 0.4s ease;
+        padding: 3rem;
+        overflow-y: auto;
+    }
+
+    .sidebar.active {
+        right: 0;
+    }
+
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--glass-border);
+        padding-bottom: 1rem;
+    }
+
+    .sidebar-title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .close-btn:hover {
+        color: var(--text-secondary);
+    }
+
+    .cart-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .cart-item img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .cart-item-details {
+        flex: 1;
+    }
+
+    .cart-item-title {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .cart-item-price {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+    }
+
+    .cart-total {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--glass-border);
+        text-align: center;
+    }
+
+    .cart-total-amount {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .checkout-btn {
+        width: 100%;
+        padding: 1rem;
+        background: var(--text-primary);
+        color: var(--primary-dark);
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .checkout-btn:hover {
+        background: var(--accent-secondary);
+        color: var(--text-primary);
+    }
+
+    /* Footer */
+    .footer {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(30px);
+        border-top: 1px solid var(--glass-border);
+        padding: 6rem 3rem 3rem;
+        margin-top: 8rem;
+    }
+
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 4rem;
+        margin-bottom: 3rem;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+        font-weight: 500;
+    }
+
+    .footer-links {
+        list-style: none;
+    }
+
+    .footer-links li {
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: var(--text-primary);
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .social-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--glass-white);
+        border: 1px solid var(--glass-border);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: var(--transition);
+        backdrop-filter: blur(10px);
+    }
+
+    .social-icon:hover {
+        background: var(--accent-subtle);
+        transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 3rem;
+        border-top: 1px solid var(--glass-border);
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    /* Cookie Banner */
+    .cookie-banner {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        right: 2rem;
+        max-width: 500px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 2rem;
+        z-index: 4000;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.5s ease;
+        display: none;
+    }
+
+    .cookie-banner.show {
+        display: block;
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .cookie-banner.hide {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    .cookie-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .cookie-icon {
+        font-size: 2rem;
+        text-align: center;
+        opacity: 0.8;
+    }
+
+    .cookie-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .cookie-text {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    .cookie-buttons {
+        display: flex;
+        gap: 0.8rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cookie-btn {
+        padding: 0.7rem 1.5rem;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        backdrop-filter: blur(10px);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .cookie-btn-accept {
+        background: var(--text-primary);
+        color: var(--primary-dark);
+        border-color: var(--text-primary);
+    }
+
+    .cookie-btn-accept:hover {
+        background: var(--accent-secondary);
+        color: var(--text-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    .cookie-btn-decline {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-secondary);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .cookie-btn-decline:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: var(--text-primary);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .cookie-btn-necessary {
+        background: transparent;
+        color: var(--text-muted);
+        border-color: rgba(255, 255, 255, 0.1);
+        font-size: 0.8rem;
+    }
+
+    .cookie-btn-necessary:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-secondary);
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-1px);
+    }
+
+    /* Sale Badge & Price Styles */
+    .sale-badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+        animation: pulse-sale 2s ease-in-out infinite;
+        z-index: 10;
+    }
+
+    @keyframes pulse-sale {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 68, 68, 0.6);
+        }
+    }
+
+    .price-container {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .old-price {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        text-decoration: line-through;
+        margin-bottom: 0.3rem;
+        position: relative;
+        display: inline-block;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .old-price::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        background: #ff4444;
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: strikethrough 0.6s ease 0.3s forwards;
+    }
+
+    @keyframes strikethrough {
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    /* Featured Section */
+    .featured-section {
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.04) 0%, 
+            rgba(255, 255, 255, 0.02) 50%,
+            rgba(255, 255, 255, 0.04) 100%);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .featured-section .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1400px;
+        gap: 2rem;
+    }
+
+    .featured-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, 
+            rgba(255, 255, 255, 0.03) 0%, 
+            transparent 70%);
+        animation: rotate 30s linear infinite;
+        pointer-events: none;
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .featured-badge {
+        background: linear-gradient(135deg, 
+            rgba(255, 215, 0, 0.15) 0%, 
+            rgba(255, 215, 0, 0.05) 100%);
+        border-color: rgba(255, 215, 0, 0.3);
+        color: rgba(255, 215, 0, 0.9);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+        0%, 100% {
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+    }
+
+    .featured-section .product-card {
+        position: relative;
+        border-color: rgba(255, 215, 0, 0.15);
+    }
+
+    .featured-section .product-card:hover {
+        border-color: rgba(255, 215, 0, 0.3);
+        box-shadow: 0 8px 30px rgba(255, 215, 0, 0.1);
+    }
+
+    .featured-section .sale-badge {
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        color: #000;
+        font-weight: 700;
+    }
+
+    /* Heritage Section */
+    .heritage-section {
+        background: linear-gradient(135deg, 
+            rgba(200, 160, 160, 0.03) 0%, 
+            rgba(180, 140, 140, 0.02) 50%,
+            rgba(200, 160, 160, 0.03) 100%);
+        border-top: 1px solid rgba(200, 160, 160, 0.1);
+        border-bottom: 1px solid rgba(200, 160, 160, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .heritage-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40%;
+        height: 100%;
+        background: radial-gradient(ellipse at top right, 
+            rgba(200, 160, 160, 0.08) 0%, 
+            transparent 60%);
+        pointer-events: none;
+    }
+
+    .heritage-section::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 300px;
+        height: 300px;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="rgba(200,160,160,0.15)" stroke-width="0.5"/><circle cx="100" cy="100" r="60" fill="none" stroke="rgba(200,160,160,0.1)" stroke-width="0.5"/><circle cx="100" cy="100" r="40" fill="none" stroke="rgba(200,160,160,0.08)" stroke-width="0.5"/></svg>') no-repeat center;
+        opacity: 0.3;
+        pointer-events: none;
+        animation: zen-pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes zen-pulse {
+        0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.5;
+            transform: scale(1.1);
+        }
+    }
+
+    .heritage-section .section-badge {
+        background: linear-gradient(135deg, 
+            rgba(200, 160, 160, 0.12) 0%, 
+            rgba(180, 140, 140, 0.08) 100%);
+        border-color: rgba(200, 160, 160, 0.25);
+        color: rgba(200, 160, 160, 0.95);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+        letter-spacing: 0.15em;
+        padding: 0.5rem 1.5rem;
+        position: relative;
+    }
+
+    .heritage-section .section-badge::before {
+        content: '桜';
+        position: absolute;
+        left: -1.5rem;
+        font-size: 1.2rem;
+        opacity: 0.4;
+    }
+
+    .heritage-section .section-title {
+        font-weight: 300;
+        letter-spacing: 0.05em;
+    }
+
+    .heritage-section .section-description {
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        opacity: 0.8;
+    }
+
+    .heritage-section .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        gap: 3rem;
+    }
+
+    .heritage-section .product-card {
+        position: relative;
+        border-color: rgba(200, 160, 160, 0.15);
+        background: rgba(200, 160, 160, 0.03);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .heritage-section .product-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(200, 160, 160, 0.3), 
+            transparent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .heritage-section .product-card:hover {
+        border-color: rgba(200, 160, 160, 0.35);
+        box-shadow: 0 12px 40px rgba(200, 160, 160, 0.15);
+        transform: translateY(-6px);
+    }
+
+    .heritage-section .product-card:hover::before {
+        opacity: 1;
+    }
+
+    .heritage-section .product-category {
+        color: rgba(200, 160, 160, 0.8);
+        font-weight: 400;
+        letter-spacing: 0.12em;
+    }
+
+    .heritage-section .product-title {
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+    }
+
+    .heritage-section .product-price {
+        color: rgba(200, 160, 160, 1);
+    }
+
+    /* Smooth Scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .featured-section .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 800px;
+        }
+        
+        .heritage-section .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .merch-about__content,
+        .merch-about__bottom-section {
+            flex-direction: column;
+        }
+
+        .merch-about__image,
+        .merch-about__bottom-image {
+            width: 100%;
+            max-width: 400px;
+        }
+    }
+
+    @media (max-width: 768px) {
+.hero-static-title {
+        font-size: clamp(1rem, 4vw, 1.4rem);
+        margin-bottom: 0.6rem;
+        min-height: 3.2em;
+        line-height: 1.4;
+    }
+
+    .hero-rotating-word {
+        font-size: clamp(1.4rem, 5vw, 2rem);
+        min-height: 1.3em;
+    }
+
+.hero-message-logo {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.hero-left-image {
+        width: 50%;
+        opacity: 0.2;
+    }
+    
+    .merch-hero .container {
+        align-items: flex-end;
+        justify-content: center;
+        padding: 2rem 1rem;
+        padding-bottom: 4rem; /* FIX: Lejjebb a szöveg */
+    }
+    
+    .hero-message {
+        max-width: 100%;
+    }
+    
+    .hero-message-text {
+        font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+        text-align: center;
+        line-height: 1.6;
+    }
+
+        .svg-decoration,
+        .paint-splatter,
+        .led-line {
+            display: none;
+        }
+
+        .merch-about {
+            padding: 6rem 0 3rem;
+        }
+
+        .merch-about__title {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 3rem;
+        }
+
+        .merch-about__content {
+        position: relative;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 6rem;
+        min-height: auto;
+    }
+
+    .merch-about__desc {
+        padding: 2rem 1rem 2rem 2rem;
+        max-width: 100%;
+        animation: none;
+        opacity: 1;
+        transform: none;
+        text-align: left;
+        position: relative;
+        z-index: 2;
+    }
+
+    .merch-about__desc::before {
+        display: none;
+    }
+
+    .merch-about__image {
+        position: absolute;
+        right: -10%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60%;
+        max-width: 250px;
+        opacity: 0.4;
+        z-index: 1;
+        animation: none;
+        filter: grayscale(0.2) contrast(1.1);
+    }
+
+    .merch-about__image::before {
+        display: none;
+    }
+
+    /* MÁSODIK SZEKCIÓ - herop.png balra, szöveg jobbra */
+    .merch-about__bottom-section {
+        position: relative;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 6rem;
+        min-height: auto;
+    }
+
+    .merch-about__bottom-text {
+        padding: 2rem 2rem 2rem 1rem;
+        max-width: 100%;
+        animation: none;
+        opacity: 1;
+        transform: none;
+        text-align: right;
+        position: relative;
+        z-index: 2;
+    }
+
+    .merch-about__bottom-text::after {
+        display: none;
+    }
+
+    .merch-about__bottom-image {
+        position: absolute;
+        left: -10%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60%;
+        max-width: 250px;
+        opacity: 0.4;
+        z-index: 1;
+        animation: none;
+        filter: grayscale(0.2) contrast(1.1);
+    }
+
+    .merch-about__bottom-image::before {
+        display: none;
+    }
+        .merch-more {
+            padding: 6rem 0;
+        }
+
+        .merch-more__typing {
+            min-height: 300px;
+            padding: 0 1rem;
+            gap: 2rem;
+        }
+
+        .typing {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            line-height: 1.6;
+        }
+
+        .cyber-login-btn {
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+        }
+
+        .cyber-subtext {
+            font-size: 0.75rem;
+            padding: 0 1rem;
+        }
+
+        .cyber-subtext::before,
+        .cyber-subtext::after {
+            display: none;
+        }
+
+        .header {
+            padding: 1.5rem 1.5rem;
+        }
+
+        .nav {
+            width: 100%;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .nav-actions {
+            flex-shrink: 0;
+        }
+        
+        .nav-links {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: flex;
+        }
+
+        .header-with-lines {
+            flex-direction: column;
+        }
+
+        .animated-lines {
+            width: 100%;
+        }
+        
+        .section {
+            padding: 4rem 1.5rem;
+        }
+        
+        .featured-section .products-grid,
+        .heritage-section .products-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 100%;
+        }
+
+        .products-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+    /* ... */
+    .product-card {
+        max-width: 100%;
+        min-height: auto; /* FIX: Mobil kompakt */
+        height: auto;
+    }
+
+    .product-image {
+        height: 180px; /* Kicsit nagyobb kép mobilon */
+    }
+
+    .product-details {
+        padding: 1rem;
+        gap: 0.6rem; /* FIX: Kisebb hézagok */
+    }
+
+    .product-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+        min-height: auto; /* FIX: Nincs kényszerített magasság */
+    }
+
+    .product-actions {
+        padding: 0 1rem 1rem;
+        margin-top: 0.5rem; /* FIX: Kisebb margó */
+    }
+        }
+
+        .product-details {
+            padding: 1rem;
+        }
+
+        .product-category {
+            font-size: 0.6rem;
+        }
+
+        
+
+        .product-price {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+       
+        .btn {
+            padding: 0.6rem 0.8rem;
+            font-size: 0.7rem;
+        }
+
+        .modal-body {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 1rem;
+            max-height: calc(95vh - 120px);
+        }
+
+        .modal-image {
+            max-height: 250px;
+            order: 1;
+        }
+
+        .modal-info {
+            order: 2;
+            gap: 1rem;
+        }
+
+        .modal-product-title {
+            font-size: 1.1rem;
+        }
+
+        .modal-product-price {
+            font-size: 1.4rem;
+        }
+
+        .size-chart {
+            padding: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .size-chart-title {
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .size-chart table {
+            font-size: 0.7rem;
+        }
+
+        .size-chart th,
+        .size-chart td {
+            padding: 0.3rem 0.1rem;
+            font-size: 0.65rem;
+        }
+
+        .sidebar {
+            width: 100%;
+            right: -100%;
+            padding: 2rem;
+        }
+        
+        .footer {
+            padding: 4rem 2rem 2rem;
+        }
+
+        .cookie-banner {
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            padding: 1.5rem;
+        }
+
+        .cookie-buttons {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .cookie-btn {
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .featured-section::before,
+        .heritage-section::before,
+        .heritage-section::after {
+            opacity: 0.5;
+        }
+        
+        .heritage-section .section-badge::before {
+            display: none;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .nav-icon#menu-icon {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .section {
+            padding: 3rem 1rem;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .product-image {
+            height: 140px;
+        }.product-details {
+padding: 0.8rem;
+}.product-title {
+            font-size: 0.75rem;
+        }
+
+        .product-price {
+            font-size: 0.9rem;
+        }
+
+        .product-actions {
+            padding: 0 0.8rem 0.8rem;
+        }
+
+        .btn {
+            padding: 0.5rem 0.6rem;
+            font-size: 0.65rem;
+        }
+
+        .modal-header {
+            padding: 0.8rem;
+        }
+
+        .modal-body {
+            padding: 0.8rem;
+        }
+
+        .modal-image {
+            max-height: 200px;
+        }
+
+        .size-chart th,
+        .size-chart td {
+            padding: 0.25rem 0.05rem;
+            font-size: 0.6rem;
+        }
+
+        .cookie-banner {
+            padding: 1.2rem;
+        }
+
+        .cookie-title {
+            font-size: 1.1rem;
+        }
+
+        .cookie-text {
+            font-size: 0.85rem;
+        }
+
+        .cookie-btn {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.8rem;
+        }
+    }
+
+    @keyframes pulse-float {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.5);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
+        }
+    }
+    /* ========================================
+   KIEGÉSZÍTŐK SZEKCIÓ - Luxus, arany árnyalatok
+   ======================================== */
+.accessories-section {
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%, 
+        #1a0f12 25%,
+        #0f0a0d 50%,
+        #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.accessories-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(183, 110, 121, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(232, 165, 163, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    animation: timelessPulse 8s ease-in-out infinite;
+}
+
+@keyframes timelessPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+.accessories-section::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(183, 110, 121, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: softGlow 10s ease-in-out infinite;
+}
+
+@keyframes softGlow {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+.accessories-section .section-badge {
+    background: linear-gradient(135deg, 
+        rgba(183, 110, 121, 0.2) 0%, 
+        rgba(232, 165, 163, 0.1) 100%);
+    border-color: rgba(183, 110, 121, 0.4);
+    color: #E8A5A3;
+    text-shadow: 0 0 10px rgba(232, 165, 163, 0.5);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+}
+
+.accessories-section .product-card {
+    border-color: rgba(183, 110, 121, 0.2);
+    background: rgba(183, 110, 121, 0.03);
+}
+
+.accessories-section .product-card:hover {
+    border-color: rgba(183, 110, 121, 0.4);
+    box-shadow: 0 12px 40px rgba(183, 110, 121, 0.2);
+}
+
+/* ========================================
+   SAKURA HERITAGE - CYBER-NATURE FUSION
+   ======================================== */
+.sakura-heritage-section {
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%, 
+        #14091a 25%,
+        #0d0a14 50%,
+        #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.sakura-heritage-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 20% 30%, rgba(138, 43, 226, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(75, 0, 130, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+    animation: purpleBreath 10s ease-in-out infinite;
+}
+
+@keyframes purpleBreath {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* CYBER-NATURE ELEMEK */
+.sakura-petals {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+
+/* LED Vonal Szirmok - Japán kártya stílus */
+.sakura-petal {
+    position: absolute;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(186, 85, 211, 0.8) 20%,
+        rgba(138, 43, 226, 1) 50%,
+        rgba(186, 85, 211, 0.8) 80%,
+        transparent 100%);
+    box-shadow: 
+        0 0 8px rgba(186, 85, 211, 0.6),
+        0 0 16px rgba(138, 43, 226, 0.4);
+    animation: sakuraLEDFall linear infinite;
+    opacity: 0;
+    transform-origin: center;
+}
+
+/* Különböző vonalak - Japán kalligráfia inspiráció */
+.sakura-petal:nth-child(1) { 
+    left: 15%; 
+    animation-duration: 12s; 
+    animation-delay: 0s; 
+    width: 100px;
+}
+.sakura-petal:nth-child(2) { 
+    left: 35%; 
+    animation-duration: 15s; 
+    animation-delay: 3s; 
+    width: 60px;
+    transform: rotate(25deg);
+}
+.sakura-petal:nth-child(3) { 
+    left: 55%; 
+    animation-duration: 18s; 
+    animation-delay: 6s; 
+    width: 90px;
+    transform: rotate(-15deg);
+}
+.sakura-petal:nth-child(4) { 
+    left: 75%; 
+    animation-duration: 14s; 
+    animation-delay: 2s; 
+    width: 70px;
+    transform: rotate(40deg);
+}
+.sakura-petal:nth-child(5) { 
+    left: 25%; 
+    animation-duration: 16s; 
+    animation-delay: 8s; 
+    width: 85px;
+}
+.sakura-petal:nth-child(6) { 
+    left: 65%; 
+    animation-duration: 13s; 
+    animation-delay: 5s; 
+    width: 95px;
+    transform: rotate(-30deg);
+}
+
+@keyframes sakuraLEDFall {
+    0% {
+        top: -10%;
+        opacity: 0;
+        box-shadow: 0 0 0px rgba(186, 85, 211, 0);
+    }
+    5% {
+        opacity: 0.8;
+        box-shadow: 
+            0 0 12px rgba(186, 85, 211, 0.8),
+            0 0 24px rgba(138, 43, 226, 0.6);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 
+            0 0 15px rgba(186, 85, 211, 1),
+            0 0 30px rgba(138, 43, 226, 0.8);
+    }
+    95% {
+        opacity: 0.8;
+    }
+    100% {
+        top: 110%;
+        opacity: 0;
+        box-shadow: 0 0 0px rgba(186, 85, 211, 0);
+    }
+}
+
+/* Geometriai Tech Pattern - Japán szimmetria */
+.sakura-heritage-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><linearGradient id="techGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgba(138,43,226,0.15);stop-opacity:1"/><stop offset="100%" style="stop-color:rgba(75,0,130,0.05);stop-opacity:1"/></linearGradient></defs><circle cx="100" cy="100" r="70" fill="none" stroke="url(%23techGrad)" stroke-width="0.5"/><circle cx="100" cy="100" r="50" fill="none" stroke="url(%23techGrad)" stroke-width="0.5"/><circle cx="100" cy="100" r="30" fill="none" stroke="url(%23techGrad)" stroke-width="0.5"/><line x1="100" y1="30" x2="100" y2="170" stroke="url(%23techGrad)" stroke-width="0.5"/><line x1="30" y1="100" x2="170" y2="100" stroke="url(%23techGrad)" stroke-width="0.5"/><line x1="50" y1="50" x2="150" y2="150" stroke="url(%23techGrad)" stroke-width="0.5"/><line x1="150" y1="50" x2="50" y2="150" stroke="url(%23techGrad)" stroke-width="0.5"/></svg>') no-repeat center;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 1;
+    animation: techRotate 30s linear infinite;
+}
+
+@keyframes techRotate {
+    0% { 
+        transform: rotate(0deg);
+        opacity: 0.3;
+    }
+    50% { 
+        opacity: 0.5;
+    }
+    100% { 
+        transform: rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+/* Tech Grid Overlay - Japán tatami inspiráció */
+.sakura-tech-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 100px,
+            rgba(138, 43, 226, 0.05) 100px,
+            rgba(138, 43, 226, 0.05) 101px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 100px,
+            rgba(138, 43, 226, 0.05) 100px,
+            rgba(138, 43, 226, 0.05) 101px
+        );
+    pointer-events: none;
+    z-index: 1;
+    animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* LED Accent Lines - Neon Japán kártya szélek */
+.sakura-led-accent {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(186, 85, 211, 0.8) 50%, 
+        transparent 100%);
+    box-shadow: 0 0 10px rgba(186, 85, 211, 0.6);
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+    animation: accentSweep 6s ease-in-out infinite;
+}
+
+.sakura-led-accent:nth-child(1) {
+    top: 20%;
+    left: 0;
+    width: 30%;
+    animation-delay: 0s;
+}
+
+.sakura-led-accent:nth-child(2) {
+    bottom: 30%;
+    right: 0;
+    width: 40%;
+    animation-delay: 3s;
+}
+
+@keyframes accentSweep {
+    0%, 100% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    20%, 80% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+.sakura-heritage-section .section-badge {
+    background: linear-gradient(135deg, 
+        rgba(138, 43, 226, 0.2) 0%, 
+        rgba(75, 0, 130, 0.1) 100%);
+    border-color: rgba(138, 43, 226, 0.4);
+    color: #BA55D3;
+    font-family: 'Playfair Display', serif;
+}
+
+.sakura-heritage-section .product-card {
+    border-color: rgba(138, 43, 226, 0.2);
+    background: rgba(138, 43, 226, 0.03);
+}
+
+.sakura-heritage-section .product-card:hover {
+    border-color: rgba(138, 43, 226, 0.4);
+    box-shadow: 0 12px 40px rgba(138, 43, 226, 0.2);
+}
+/* ========================================
+   PHANTOM - Rejtélyes, sötét, urban ninja
+   ======================================== */
+.phantom-section {
+    background: linear-gradient(135deg, 
+        #000000 0%, 
+        #0a0a0a 25%,
+        #050505 50%,
+        #000000 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.phantom-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 50px,
+            rgba(100, 100, 100, 0.02) 50px,
+            rgba(100, 100, 100, 0.02) 51px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 50px,
+            rgba(100, 100, 100, 0.02) 50px,
+            rgba(100, 100, 100, 0.02) 51px
+        );
+    pointer-events: none;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.phantom-section::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, 
+        rgba(80, 80, 80, 0.1) 0%, 
+        transparent 70%);
+    transform: translate(-50%, -50%);
+    animation: phantomPulse 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes phantomPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+/* Smoke effect */
+.phantom-smoke {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to top, 
+        rgba(50, 50, 50, 0.1) 0%, 
+        transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+    animation: smokeRise 10s ease-in-out infinite;
+}
+
+@keyframes smokeRise {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translateY(-20px);
+    }
+}
+
+.phantom-section .section-badge {
+    background: linear-gradient(135deg, 
+        rgba(100, 100, 100, 0.2) 0%, 
+        rgba(50, 50, 50, 0.1) 100%);
+    border-color: rgba(150, 150, 150, 0.3);
+    color: #A9A9A9;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.phantom-section .product-card {
+    border-color: rgba(100, 100, 100, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.phantom-section .product-card:hover {
+    border-color: rgba(150, 150, 150, 0.4);
+    box-shadow: 0 12px 40px rgba(100, 100, 100, 0.3);
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* ========================================
+   SIGNATURE EDITION - Klasszikus, elegáns
+   ======================================== */
+.signature-section {
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%, 
+        #151515 50%,
+        #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.signature-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Signature kézírás effekt */
+.signature-section::after {
+    content: 'Senkisem';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-5deg);
+    font-family: 'Playfair Display', serif;
+    font-size: 200px;
+    opacity: 0.02;
+    font-style: italic;
+    font-weight: 400;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.signature-section .section-badge {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+.signature-section .product-card {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.signature-section .product-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive módosítások */
+@media (max-width: 768px) {
+    .sakura-heritage-section::after,
+    .signature-section::after {
+        font-size: 100px;
+    }
+    
+    .accessories-section::after {
+        font-size: 100px;
+    }
+}
+/* Glitch effects container - only for hero and typing sections */
+.glitch-effects-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.glitch-effects-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+    .signature-section .products-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+    }
+}
+@media (min-width: 1024px) {
+    /* Baseball sapka */
+    .signature-section .product-card:nth-child(5) {
+        grid-column: 2 / 3;
+    }
+
+    /* Téli sapka */
+    .signature-section .product-card:nth-child(6) {
+        grid-column: 3 / 4;
+    }
+}
+/* ============================================
+   LIMITÁLT KÉSZLET POP-UP
+   ============================================ */
+
+.limited-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.limited-popup.active {
+    display: flex;
+}
+
+.limited-popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.94);
+    backdrop-filter: blur(15px);
+}
+
+.limited-popup-content {
+    position: relative;
+    max-width: 1100px;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 0, 0, 0.15);
+    border-radius: 20px;
+    padding: 3rem 3rem;
+    box-shadow: 
+        0 8px 32px rgba(255, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+}
+
+/* Sötét scrollbar */
+.limited-popup-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.limited-popup-content::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 10px;
+}
+
+.limited-popup-content::-webkit-scrollbar-thumb {
+    background: rgba(80, 80, 80, 0.8);
+    border-radius: 10px;
+}
+
+.limited-popup-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 100, 100, 0.9);
+}
+
+/* Firefox scrollbar */
+.limited-popup-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(80, 80, 80, 0.8) rgba(20, 20, 20, 0.8);
+}
+
+.limited-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.limited-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 1);
+    transform: rotate(90deg);
+}
+
+/* Header */
+.limited-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.limited-warning {
+    font-size: 3rem;
+    color: rgba(255, 100, 100, 0.8);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+    animation: pulse-warning 2s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+    0%, 100% { 
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.limited-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.3rem);
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.limited-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Grid */
+.limited-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* auto-fit helyett fix 2 oszlop */
+    gap: 2rem; /* 1.5rem helyett */
+    margin-bottom: 2rem;
+}
+
+.limited-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 100, 100, 0.2);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+}
+
+.limited-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(10px);
+}
+
+.limited-badge.best {
+    background: rgba(255, 100, 100, 0.2);
+    border-color: rgba(255, 100, 100, 0.4);
+    color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.limited-single-book {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem auto 1.2rem;
+}
+
+.limited-book-image {
+    width: 200px;
+    height: auto;
+    border-radius: 6px;
+    opacity: 0.95;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.limited-card-title {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.limited-card-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    min-height: 140px;
+}
+
+.limited-card-desc strong {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+}
+
+.limited-price {
+    margin-bottom: 1rem;
+}
+
+.limited-old-price {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-decoration: line-through;
+    margin-right: 0.6rem;
+}
+
+.limited-new-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.limited-stock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    margin-bottom: 1.2rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.limited-stock.warning {
+    background: rgba(255, 100, 100, 0.1);
+    color: rgba(255, 150, 150, 0.9);
+}
+
+.limited-stock strong {
+    font-weight: 700;
+    color: rgba(255, 100, 100, 1);
+}
+
+.limited-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+}
+
+.limited-btn.primary {
+    background: rgba(255, 100, 100, 0.15);
+    border-color: rgba(255, 100, 100, 0.3);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.limited-btn.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Footer */
+.limited-footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.limited-footer-note {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.limited-footer-note.secondary {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* Floating Button */
+.limited-float-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 0.9rem 1.8rem;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 100, 100, 0.3);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    z-index: 4999;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    display: none;
+    align-items: center;
+    gap: 0.6rem;
+    animation: pulse-float 3s ease-in-out infinite;
+}
+
+.limited-float-btn.show {
+    display: flex;
+}
+
+@keyframes pulse-float {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 6px 30px rgba(255, 0, 0, 0.5);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .limited-popup-content {
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+    
+    /* FONTOS: Scrollbar elrejtése mobilon */
+    .limited-popup-content::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .limited-popup-content {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .limited-title {
+        font-size: 1.6rem;
+    }
+
+    .limited-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .limited-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .limited-card {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .limited-book-image {
+        width: 150px;
+    }
+
+    .limited-card-desc {
+        font-size: 0.85rem;
+        min-height: auto;
+        line-height: 1.7;
+    }
+
+    .limited-float-btn {
+        bottom: 15px;
+        right: 15px;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.75rem;
+    }
+}
+/* Shadow Garden 3-column centered layout */
+@media (min-width: 1024px) {
+    .sakura-heritage-section .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        gap: 3rem;
+        justify-items: center;
+    }
+}
+</style>
+</head>
+<body>
+
+    <!-- LIMITED STOCK POP-UP -->
+<div class="limited-popup" id="limited-popup">
+    <div class="limited-popup-overlay"></div>
+    <div class="limited-popup-content">
+        <button class="limited-close" onclick="closeLimitedPopup()">
+            <i class="ri-close-line"></i>
+        </button>
+
+        <div class="limited-header">
+    <div class="limited-warning">⚠</div>
+    <h2 class="limited-title">Exclusive Offer</h2>
+    <p class="limited-subtitle">
+    These bundles are exclusively available on this platform.<br>
+    Not available elsewhere.
+</p>
+</div>
+
+        <div class="limited-grid">
+    <!-- E-book Bundle -->
+    <div class="limited-card">
+        <div class="limited-badge best">Best Offer</div>
+        <div class="limited-single-book">
+            <img src="./assets/img/ketkonyv.png" alt="Complete Digital Collection" class="limited-book-image">
+        </div>
+        <h3 class="limited-card-title">Complete Digital Collection</h3>
+        <p class="limited-card-desc">
+    <strong>Notes from a Stranger</strong> and
+    <strong>Life User Manual</strong><br>
+    Two separate worlds, one thought process.
+    In digital format, with instant access.
+</p>
+        <div class="limited-price">
+            <span class="limited-old-price"> 25.98 $ </span>
+            <span class="limited-new-price">19.99$ </span>
+        </div>
+        <div class="limited-stock">
+            <i class="ri-alert-line"></i>
+            <span>Digital edition · unlimited time access</span>
+        </div>
+        <button class="limited-btn primary" onclick="addLimitedProduct(300, 'bundle')">
+            View Bundle <i class="ri-arrow-right-line"></i>
+        </button>
+    </div>
+
+    <!-- Physical Books Bundle -->
+    <div class="limited-card">
+        <div class="limited-badge">-10%</div>
+        <div class="limited-single-book">
+            <img src="./assets/img/ketkonyv.png" alt="Complete Physical Collection" class="limited-book-image">
+        </div>
+        <h3 class="limited-card-title">Complete Physical Collection</h3>
+        <p class="limited-card-desc">
+    <strong>Notes from a Stranger</strong> and
+    <strong>Life User Manual</strong><br>
+    A5 size, premium quality.
+    Limited copies, one-time production.
+</p>
+        <div class="limited-price">
+            <span class="limited-old-price"> 55.98 $ </span>
+            <span class="limited-new-price"> 49.49 $ </span>
+        </div>
+        <div class="limited-stock warning">
+            <i class="ri-error-warning-line"></i>
+            <span>Limited copies · no reprint planned</span>
+        </div>
+        <button class="limited-btn secondary" onclick="addLimitedProduct(301, 'physical')">
+            Add to Cart <i class="ri-shopping-cart-line"></i>
+        </button>
+    </div>
+</div>
+
+<div class="limited-footer">
+            <p class="limited-footer-note">
+                <i class="ri-information-line"></i>
+                Cheaper together.
+            </p>
+            <p class="limited-footer-note secondary">
+                that's it:)
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Button -->
+<button class="limited-float-btn" id="limited-float-btn" onclick="openLimitedPopup()">
+    <i class="ri-notification-3-line"></i>
+    <span>Limited Offer</span>
+</button>
+    <!-- Glitch Effects -->
+<!-- Glitch Effects Wrapper -->
+<div class="glitch-effects-container">
+    <canvas class="glitch-lines"></canvas>
+    <div class="glitch-film">
+        <div class="glitch-film__scanline"></div>
+        <div class="glitch-film__noise"></div>
+    </div>
+</div>
+
+
+<!-- Header -->
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">Senkisem</a>
+<ul class="nav-links">
+    <li><a href="/" class="nav-link">Home</a></li>
+    <li><a href="merch.html" class="nav-link">Merch</a></li>
+    <li><a href="books.html" class="nav-link">Books</a></li>
+</ul>
+        <div class="nav-actions">
+            <div class="nav-icon" id="wishlist-icon">
+                <i class="ri-heart-line"></i>
+                <span class="cart-count" id="wishlist-count" style="display: none;">0</span>
+            </div>
+            <div class="nav-icon" id="cart-icon">
+                <i class="ri-shopping-cart-2-line"></i>
+                <span class="cart-count" id="cart-count" style="display: none;">0</span>
+            </div>
+            <div class="nav-icon" id="menu-icon">
+                <i class="ri-menu-line"></i>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+        <div class="mobile-menu-logo">Senkisem</div>
+        <button class="mobile-menu-close" onclick="closeMobileMenu()">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+        <li><a href="/" class="mobile-nav-link" onclick="closeMobileMenu()"><i class=""></i> Home</a></li>
+        <li><a href="merch.html" class="mobile-nav-link" onclick="closeMobileMenu()"><i class=""></i> Merch</a></li>
+        <li><a href="books.html" class="mobile-nav-link" onclick="closeMobileMenu()"><i class=""></i> Books</a></li>
+
+    </ul>
+</div>
+
+<!-- Hero Section -->
+<section class="merch-hero">
+    <div class="hero-background">
+        <canvas class="background-watermark"></canvas>
+        <video class="hero-bg-video" autoplay muted loop playsinline>
+            <source src="assets/img/merchvid.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    
+    <div class="container">
+    <!-- RIGHT SIDE MESSAGE -->
+    <div class="hero-message">
+    <div class="hero-message-text">
+        <div class="hero-static-title">Senkisem<br>is not just a brand;</div>
+        <div class="hero-rotating-word" id="rotating-word">Message.</div>
+    </div>
+</div>
+</div>
+</section>
+
+<!-- About Section -->
+<section class="merch-about">
+    <!-- SVG Decorations -->
+    <svg class="svg-decoration circuit-1" viewBox="0 0 200 200">
+        <path d="M20,100 L80,100 L80,60 L120,60 L120,140 L180,140" 
+              fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="80" cy="100" r="5" fill="currentColor"/>
+        <circle cx="120" cy="60" r="5" fill="currentColor"/>
+        <circle cx="120" cy="140" r="5" fill="currentColor"/>
+    </svg>
+    
+    <svg class="svg-decoration circuit-2" viewBox="0 0 200 200">
+        <path d="M180,50 L140,50 L140,100 L100,100 L100,150 L20,150" 
+              fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="140" cy="50" r="5" fill="currentColor"/>
+        <circle cx="100" cy="100" r="5" fill="currentColor"/>
+        <circle cx="100" cy="150" r="5" fill="currentColor"/>
+    </svg>
+
+    <svg class="svg-decoration leaf-1" viewBox="0 0 100 100">
+        <path d="M50,10 Q70,30 50,50 Q30,30 50,10 Z M50,10 L50,50" 
+              fill="currentColor" opacity="0.3"/>
+    </svg>
+
+    <!-- Paint Splatters -->
+    <div class="paint-splatter splatter-1"></div>
+    <div class="paint-splatter splatter-2"></div>
+
+    <!-- LED Lines -->
+    <div class="led-line led-1"></div>
+    <div class="led-line led-2"></div>
+
+    <div class="container">
+        <div class="header-with-lines">
+            <p class="bebas-40">Our Goal</p>
+            <svg class="animated-lines" viewBox="0 0 505 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <rect width="4" height="16"></rect>
+                <rect x="15" width="4" height="16"></rect>
+                <rect x="81" width="4" height="16"></rect>
+                <rect x="131" width="4" height="16"></rect>
+                <rect x="143" width="4" height="16"></rect>
+                <rect x="179" width="4" height="16"></rect>
+                <rect x="220" width="4" height="16"></rect>
+                <rect x="229" width="4" height="16"></rect>
+                <rect x="307" width="4" height="16"></rect>
+                <rect x="342" width="4" height="16"></rect>
+                <rect x="375" width="4" height="16"></rect>
+                <rect x="387" width="4" height="16"></rect>
+                <rect x="426" width="4" height="16"></rect>
+                <rect x="439" width="4" height="16"></rect>
+                <rect x="501" width="4" height="16"></rect>
+            </svg>
+        </div>
+
+        <div class="merch-about__title">
+            <h2>We don't wait for change. <br> We create it.</h2>
+        </div>
+
+        <div class="merch-about__content">
+            <div class="merch-about__desc">
+                                <p>Senkisem is more than a brand. A movement born from the digital revolution, rooted in the mindset of high-end streetwear culture.</p>
+                
+</div>
+<img src="assets/img/ggg.png" alt="Product" class="merch-about__image">
+</div><div class="merch-about__bottom-section">
+            <img src="assets/img/herop.png" alt="Product" class="merch-about__bottom-image">
+            <div class="merch-about__bottom-text">
+                <p>
+In a world where technology and culture collide with brutal force, we represent the bold, <br> the forward-thinking, and the unstoppable.</p>
+
+</div>
+</div><canvas class="background-watermark"></canvas>
+</section>
+
+<!-- Typing Section -->
+<section class="merch-more">
+    <div class="glitch-overlay"></div>
+    <div class="container">
+        <div class="merch-more__inner">
+            <div class="merch-more__typing">
+                <div class="typing" id="typing-text"></div>
+                <div class="merch-more__cta">
+                    <a href="#featured" class="cyber-login-btn" onclick="revealProducts()">View Collections</a>
+                    <p class="cyber-subtext">
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="products-section-wrapper" id="products-section-wrapper">
+    
+    <!-- ACCESSORIES SECTION -->
+    <section class="section accessories-section" id="accessories">
+    <div class="section-header">
+        <div class="section-badge">
+            <i class="ri-time-line"></i> Timeless
+        </div>
+        <h2 class="section-title">Timeless Collection</h2>
+        <p class="section-description">
+            Because you're never late when you live at your own pace.
+            
+        </p>
+    </div>
+    
+    <div class="products-grid" id="accessories-products-grid"></div>
+</section>
+
+    
+
+    <!-- PHANTOM SECTION -->
+    <section class="section phantom-section" id="phantom">
+        <div class="phantom-smoke"></div>
+        
+        <div class="section-header">
+            <div class="section-badge">
+                <i class="ri-ghost-2-line"></i> Phantom Collection
+            </div>
+            <h2 class="section-title">Urban Shadows</h2>
+            <p class="section-description">
+                Clothes for the city's darker side. <br> Function, not explanation.
+            </p>
+        </div>
+        
+        <div class="products-grid" id="phantom-products-grid"></div>
+    </section>
+
+    <!-- SAKURA HERITAGE SECTION -->
+    <section class="section sakura-heritage-section" id="sakura-heritage">
+    <!-- LED Lines -->
+    <div class="sakura-petals">
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+        <div class="sakura-petal"></div>
+    </div>
+    
+    <!-- Tech Grid Overlay -->
+    <div class="sakura-tech-grid"></div>
+    
+    <!-- LED Accent Lines -->
+    <div class="sakura-led-accent"></div>
+    <div class="sakura-led-accent"></div>
+    
+    <div class="section-header">
+        
+        <div class="section-header">
+            <div class="section-badge">
+    <i class="ri-moon-line"></i> Shadow Garden
+</div>
+<h2 class="section-title">Japanese Shadow Garden</h2>
+<p class="section-description">
+    
+    Black kimono pieces in modern urban interpretation. <br>The contrast of nature and urbanism.
+</p>
+        </div>
+        
+        <div class="products-grid" id="sakura-products-grid"></div>
+    </section>
+
+    <!-- SIGNATURE EDITION SECTION -->
+    <section class="section signature-section" id="signature">
+        <div class="section-header">
+            <div class="section-badge">
+                Signature Edition
+            </div>
+            <h2 class="section-title">Signature Collection</h2>
+            <p class="section-description">
+                The essence of Senkisem <br> Classic pieces with timeless design.
+            </p>
+        </div>
+        
+        <div class="products-grid" id="signature-products-grid"></div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Senkisem</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    Not a brand; <br>
+                    Message.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Community</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/senkisem.hu/" target="_blank" class="social-icon">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@senkisem.hu" target="_blank" class="social-icon" title="TikTok">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.04-.1z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:senkisem.info@gmail.com" class="social-icon">
+                        <i class="ri-mail-line"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#contact">senkisem.info@gmail.com</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Info</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">About Us</a></li>
+                    <li><a href="assets/ÁSZF.pdf">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Senkisem - All rights reserved</p>
+        </div>
+    </footer>
+</div>
+
+<!-- Sidebar for Cart/Wishlist -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2 class="sidebar-title" id="sidebar-title">Cart</h2>
+        <button class="close-btn" onclick="closeSidebar()">&times;</button>
+    </div>
+    <div id="sidebar-content">
+        <p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">
+            Your cart is currently empty
+        </p>
+    </div>
+</div>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookie-banner">
+    <div class="cookie-content">
+        <div class="cookie-icon">🍪</div>
+        <h3 class="cookie-title">Cookies and Privacy</h3>
+        <p class="cookie-text">
+            We use essential cookies for the operation of the site. We improve the user experience with analytical cookies.
+            Details in the <a href="#" style="color: var(--text-primary); text-decoration: underline;">Privacy Policy</a>.
+        </p>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">
+                <i class="ri-check-line"></i> Accept
+            </button>
+            <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">
+                <i class="ri-close-line"></i> Decline
+            </button>
+            <button class="cookie-btn cookie-btn-necessary" onclick="acceptNecessaryCookies()">
+                Only necessary
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Product Modal -->
+<div class="product-modal" id="product-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Product Details</h3>
+            <button class="modal-close" onclick="closeProductModal()">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <img class="modal-image" id="modal-image" src="" alt="Product image">
+            <div class="modal-info">
+                <h4 class="modal-product-title" id="modal-product-title"></h4>
+                <div class="modal-product-price" id="modal-product-price"></div>
+                
+                <div class="size-selection">
+                    <label class="size-label">Select size:</label>
+                    <div class="size-options" id="modal-size-options">
+                        <!-- Size options will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="size-chart">
+                    <h5 class="size-chart-title">European Size Chart</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Size</th>
+                                <th>Chest (cm)</th>
+                                <th>Waist (cm)</th>
+                                <th>Hips (cm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>S</td>
+                                <td>88-92</td>
+                                <td>72-76</td>
+                                <td>96-100</td>
+                            </tr>
+                            <tr>
+                                <td>M</td>
+                                <td>96-100</td>
+                                <td>80-84</td>
+                                <td>104-108</td>
+                            </tr>
+                            <tr>
+                                <td>L</td>
+                                <td>104-108</td>
+                                <td>88-92</td>
+                                <td>112-116</td>
+                            </tr>
+                            <tr>
+                                <td>XL</td>
+                                <td>112-116</td>
+                                <td>96-100</td>
+                                <td>120-124</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="product-actions" style="margin-top: 2rem;">
+                    <button class="btn btn-primary" id="modal-add-to-cart">
+                        Add to Cart <i class="ri-shopping-cart-line"></i>
+                    </button>
+                    <button class="btn btn-secondary" id="modal-add-to-wishlist">
+                        Wishlist <i class="ri-heart-line"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const products = [
+    // ========================================
+    // KIEGÉSZÍTŐK
+    // ========================================
+    {
+        id: 201,
+        name: "Senkisem Watch - Gold",
+        price: 69.99,
+        image: "./assets/img/watch-gold.png", // CSERÉLD SAJÁT KÉPRE
+        sizes: ["Universal"],
+        category: "Accessories",
+        sectionId: "accessories"
+    },
+    {
+        id: 202,
+        name: "Senkisem Watch - Silver",
+        price: 69.99,
+        image: "./assets/img/watch-silver.png", // CSERÉLD SAJÁT KÉPRE
+        sizes: ["Universal"],
+        category: "Accessories",
+        sectionId: "accessories"
+    },
+
+    {
+        id: 203,
+        name: "Senkisem Women's Watch - White Strap",
+        price: 69.99,
+        image: "./assets/img/watch-white-women.png",
+        sizes: ["Universal"],
+        category: "Accessories",
+        sectionId: "accessories",
+        outOfStock: true
+    },
+    {
+        id: 204,
+        name: "Senkisem Women's Watch - Black Strap",
+        price: 69.99,
+        image: "./assets/img/watch-black-women.png",
+        sizes: ["Universal"],
+        category: "Accessories",
+        sectionId: "accessories",
+        outOfStock: true
+    },
+    
+    // ========================================
+    // Shadow Garden
+    // ========================================
+    {
+        id: 301,
+        name: "Long Sleeve V-Neck Kimono",
+        price: 22.99,
+        image: "./assets/img/kimono-vneck.png", // CSERÉLD SAJÁT KÉPRE
+        sizes: ["S", "M", "L", "XL"],
+        category: "Shadow Garden",
+        sectionId: "sakura-heritage"
+    },
+    {
+        id: 302,
+        name: "Twisted Tie Pants",
+        price: 39.99,
+        image: "./assets/img/pants-twisted.png", // CSERÉLD SAJÁT KÉPRE
+        sizes: ["S", "M", "L", "XL"],
+        category: "Shadow Garden",
+        sectionId: "sakura-heritage"
+    },
+    {
+        id: 303,
+        name: "Senkisem Short Kimono",
+        price: 49.99,
+        image: "./assets/img/kimono-short.png", // CSERÉLD SAJÁT KÉPRE
+        sizes: ["S", "M", "L", "XL"],
+        category: "Shadow Garden",
+        sectionId: "sakura-heritage"
+    },
+    
+    // ========================================
+    // PHANTOM
+    // ========================================
+    {
+        id: 401,
+        name: "Hooded Sweater with Zip Mask",
+        price: 64.99,
+        image: "./assets/img/hoodie-zip-mask.png", // CSERÉLD SAJÁT KÉPRE
+        sizes: ["S", "M", "L", "XL"],
+        category: "Phantom",
+        sectionId: "phantom"
+    },
+    {
+        id: 402,
+        name: "Hooded Sweater with Bedouin Mask",
+        price: 64.99,
+        image: "./assets/img/hoodie-bedouin-mask.png", // CSERÉLD SAJÁT KÉPRE
+        sizes: ["S", "M", "L", "XL"],
+        category: "Phantom",
+        sectionId: "phantom"
+    },
+    {
+        id: 403,
+        name: "Senkisem Black Sneakers",
+        price: 69.99,
+        image: "./assets/img/sneakers-black.png", // CSERÉLD SAJÁT KÉPRE
+        sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
+        category: "Phantom",
+        sectionId: "phantom"
+    },
+    {
+        id: 404,
+        name: "High-Top Black Sneakers",
+        price: 69.99,
+        image: "./assets/img/high-sneakers-black.png", // CSERÉLD SAJÁT KÉPRE
+        sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
+        category: "Phantom",
+        sectionId: "phantom"
+    },
+    
+    // ========================================
+    // SIGNATURE EDITION
+    // ========================================
+    {
+        id: 501,
+        name: "Senkisem T-Shirt - Printed",
+        price: 32.99,
+        image: "./assets/img/tshirt-printed.png",
+        sizes: ["S", "M", "L", "XL"],
+        category: "Signature",
+        sectionId: "signature"
+    },
+    {
+        id: 502,
+        name: "Senkisem T-Shirt - Written",
+        price: 32.99,
+        image: "./assets/img/tshirt-written.png",
+        sizes: ["S", "M", "L", "XL"],
+        category: "Signature",
+        sectionId: "signature"
+    },
+    {
+        id: 504,
+        name: "Senkisem Sweater - Printed",
+        price: 49.99,
+        image: "./assets/img/sweater-printed.png",
+        sizes: ["S", "M", "L", "XL"],
+        category: "Signature",
+        sectionId: "signature"
+    },
+    {
+        id: 505,
+        name: "Senkisem Sweater - Written",
+        price: 49.99,
+        image: "./assets/img/sweater-written.png",
+        sizes: ["S", "M", "L", "XL"],
+        category: "Signature",
+        sectionId: "signature"
+    },
+    {
+        id: 503,
+        name: "Senkisem Cap",
+        price: 19.99,
+        image: "./assets/img/cap-baseball.png",
+        sizes: ["Universal"],
+        category: "Signature",
+        sectionId: "signature"
+    },
+    {
+        id: 506,
+        name: "Senkisem beanie",
+        price: 17.99,
+        image: "./assets/img/cap-winter.png",
+        sizes: ["Universal"],
+        category: "Signature",
+        sectionId: "signature"
+    }
+];
+
+    // State management
+    let selectedProduct = null;
+    let selectedSize = null;
+    let selectedColor = null;
+    let productsRevealed = false;
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+        initializePage();
+    });
+
+    function initializePage() {
+    loadProducts();
+    updateCartCount();
+    updateWishlistCount();
+    attachEventListeners();
+    initializeCookieBanner();
+    initializeGlitchEffects();
+    initializeWatermarkCanvases();
+    initializeTypingEffect();
+    showContinueButton();
+    initRotatingWords();
+}
+
+    // ÚJ: Show Continue Without Login button after 3 seconds
+    function showContinueButton() {
+        const typingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        const continueBtn = document.getElementById('continue-without-login');
+                        if (continueBtn) {
+                            continueBtn.classList.add('show');
+                        }
+                    }, 3000);
+                    typingObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const typingSection = document.querySelector('.merch-more');
+        if (typingSection) {
+            typingObserver.observe(typingSection);
+        }
+    }
+
+function revealProducts() {
+    if (!productsRevealed) {
+        const wrapper = document.getElementById('products-section-wrapper');
+        wrapper.classList.add('revealed');
+        productsRevealed = true;
+        
+        // Hide glitch effects when products are revealed
+        const glitchContainer = document.querySelector('.glitch-effects-container');
+        if (glitchContainer) {
+            glitchContainer.classList.add('hidden');
+        }
+        
+        // Smooth scroll to accessories section
+        setTimeout(() => {
+            document.getElementById('accessories').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 300);
+    }
+}
+
+function loadProducts() {
+    // Kiegészítők
+    const accessoriesGrid = document.getElementById('accessories-products-grid');
+    const accessoriesProducts = products.filter(p => p.sectionId === 'accessories');
+    if (accessoriesGrid && accessoriesProducts.length > 0) {
+        accessoriesGrid.innerHTML = accessoriesProducts.map(product => createProductCard(product)).join('');
+    }
+    
+    // Sakura Heritage
+    const sakuraGrid = document.getElementById('sakura-products-grid');
+    const sakuraProducts = products.filter(p => p.sectionId === 'sakura-heritage');
+    if (sakuraGrid && sakuraProducts.length > 0) {
+        sakuraGrid.innerHTML = sakuraProducts.map(product => createProductCard(product)).join('');
+    }
+    
+    // Phantom
+    const phantomGrid = document.getElementById('phantom-products-grid');
+    const phantomProducts = products.filter(p => p.sectionId === 'phantom');
+    if (phantomGrid && phantomProducts.length > 0) {
+        phantomGrid.innerHTML = phantomProducts.map(product => createProductCard(product)).join('');
+    }
+    
+    // Signature
+    const signatureGrid = document.getElementById('signature-products-grid');
+    const signatureProducts = products.filter(p => p.sectionId === 'signature');
+    if (signatureGrid && signatureProducts.length > 0) {
+        signatureGrid.innerHTML = signatureProducts.map(product => createProductCard(product)).join('');
+    }
+}
+
+    // Create product card HTML with lazy loading
+    function createProductCard(product) {
+        const priceHTML = product.sale && product.oldPrice ? `
+            <div class="price-container">
+                <div class="old-price">${product.oldPrice.toLocaleString()} $ </div>
+                <div class="product-price">${product.price.toLocaleString()} $ </div>
+            </div>
+        ` : `
+            <div class="product-price">${product.price.toLocaleString()} $ </div>
+        `;
+
+        const saleBadge = product.sale ? `<div class="sale-badge">-${Math.round((1 - product.price/product.oldPrice) * 100)}%</div>` : '';
+
+        // Színválasztó HTML (ha szükséges)
+        const colorSelectionHTML = product.colors ? `
+            <div class="size-selection">
+                <label class="size-label">Szín:</label>
+                <div class="size-options color-options">
+                    ${product.colors.map(color => 
+                        `<button class="size-option color-option" data-color="${color}">${color}</button>`
+                    ).join('')}
+                </div>
+            </div>
+        ` : '';
+
+        return `
+            <div class="product-card ${product.featured ? 'featured-product' : ''}">
+                ${saleBadge}
+               <div class="product-image" onclick="openProductModal(${product.id})">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                </div>
+                <div class="product-details">
+                    <div class="product-category">${product.category || 'Collection'}</div>
+                    <h3 class="product-title">${product.name}</h3>
+                    ${priceHTML}
+                    
+                    ${colorSelectionHTML}
+                    
+                    <div class="size-selection">
+                        <label class="size-label">Size:</label>
+                        <div class="size-options">
+                            ${product.sizes.map(size => 
+                                `<button class="size-option" data-size="${size}">${size}</button>`
+                            ).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="product-actions">
+    ${product.outOfStock ? `
+        <button class="btn btn-primary" style="background: #ff4444; cursor: not-allowed; opacity: 0.7;" disabled>
+            Out of Stock
+        </button>
+    ` : `
+        <button class="btn btn-primary" onclick="addToCartFromCard(${product.id}, this)">
+            Kosárba
+        </button>
+    `}
+                    <button class="btn btn-secondary" onclick="addToWishlist(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                        Kedvencek
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    // Product modal functions
+    function openProductModal(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+        
+        selectedProduct = product;
+        selectedSize = null;
+        
+        const modal = document.getElementById('product-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image');
+        const modalProductTitle = document.getElementById('modal-product-title');
+        const modalProductPrice = document.getElementById('modal-product-price');
+        const modalSizeOptions = document.getElementById('modal-size-options');
+        
+        modalTitle.textContent = product.name;
+        modalImage.src = product.image;
+        modalImage.alt = product.name;
+        modalProductTitle.textContent = product.name;
+        modalProductPrice.textContent = `${product.price.toLocaleString()} $`;
+        
+        // Populate size options
+        modalSizeOptions.innerHTML = product.sizes.map(size => 
+            `<button class="size-option" data-size="${size}" onclick="selectModalSize('${size}')">${size}</button>`
+        ).join('');
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+        const modal = document.getElementById('product-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        selectedProduct = null;
+        selectedSize = null;
+    }
+
+    function selectModalSize(size) {
+        selectedSize = size;
+        
+        // Update UI to show selected size
+        document.querySelectorAll('#modal-size-options .size-option').forEach(btn => {
+            btn.classList.remove('selected');
+            if (btn.dataset.size === size) {
+                btn.classList.add('selected');
+            }
+        });
+    }
+
+    function addToCartFromCard(productId, buttonElement) {
+        const product = products.find(p => p.id === productId);
+        if (!product) return;
+        
+        const card = buttonElement.closest('.product-card');
+        
+        // Szín kiválasztása (ha van)
+        let color = null;
+        if (product.requiresColor || product.colors) {
+            const selectedColorBtn = card.querySelector('.color-option.selected');
+            if (!selectedColorBtn) {
+                alert('Please select a color!');
+                return;
+            }
+            color = selectedColorBtn.dataset.color;
+        }
+        
+        // Méret kiválasztása
+        const selectedSizeBtn = card.querySelector('.size-option.selected:not(.color-option)');
+        if (!selectedSizeBtn) {
+            alert('Please select a size!');
+            return;
+        }
+        
+        const size = selectedSizeBtn.dataset.size;
+        
+        // Ha van szín, akkor azt is hozzáadjuk
+        if (color) {
+            addToCart({...product, size: `${size} (${color})`});
+        } else {
+            addToCart({...product, size});
+        }
+    }
+
+    function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        
+        const existingItem = cart.find(item => item.id === product.id && item.size === product.size);
+        
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+        } else {
+            cart.push({...product, quantity: 1});
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        showNotification(product.name, 'added to cart!');
+        
+        // Visual feedback
+        const button = event.target;
+        const originalText = button.textContent;
+        button.textContent = 'Hozzáadva!';
+        button.style.background = '#28a745';
+        button.disabled = true;
+        
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+            button.disabled = false;
+        }, 1500);
+    }
+
+    // Modal cart add function
+    document.getElementById('modal-add-to-cart').addEventListener('click', function() {
+        if (!selectedProduct) return;
+        
+        if (!selectedSize) {
+            alert('Please select a size!');
+            return;
+        }
+        
+        addToCart({...selectedProduct, size: selectedSize});
+        closeProductModal();
+    });
+
+    // Modal wishlist add function
+    document.getElementById('modal-add-to-wishlist').addEventListener('click', function() {
+        if (!selectedProduct) return;
+        addToWishlist(selectedProduct);
+    });
+
+    // Wishlist functions
+    function addToWishlist(product) {
+        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        
+        const existingItem = wishlist.find(item => item.id === product.id);
+        
+        if (!existingItem) {
+            wishlist.push(product);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateWishlistCount();
+showNotification(product.name, 'added to wishlist!');            
+            // Visual feedback
+            const button = event.target;
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<i class="ri-heart-fill"></i> Kedvencek';
+            button.style.background = 'rgba(255, 100, 100, 0.2)';
+            button.style.borderColor = 'rgba(255, 100, 100, 0.5)';
+            
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.style.background = 'transparent';
+                button.style.borderColor = 'var(--glass-border)';
+            }, 2000);
+        } else {
+        showNotification(product.name, 'already in wishlist!');
+        }
+    }
+
+    // Utility functions
+    function updateCartCount() {
+        const cartCount = document.getElementById('cart-count');
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        
+        if (totalItems > 0) {
+            cartCount.textContent = totalItems;
+            cartCount.style.display = 'flex';
+        } else {
+            cartCount.style.display = 'none';
+        }
+    }
+
+    function updateWishlistCount() {
+        const wishlistCount = document.getElementById('wishlist-count');
+        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        
+        if (wishlist.length > 0) {
+            wishlistCount.textContent = wishlist.length;
+            wishlistCount.style.display = 'flex';
+        } else {
+            wishlistCount.style.display = 'none';
+        }
+    }
+
+    function showNotification(productName, message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 120px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        z-index: 3000;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        max-width: 350px;
+        opacity: 0;
+        transform: translateX(100px);
+        transition: all 0.3s ease;
+    `;
+    
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <i class="ri-check-line" style="font-size: 1.5rem;"></i>
+            </div>
+            <div>
+                <div style="font-weight: 600; font-size: 1rem; margin-bottom: 0.2rem;">${message}</div>
+                <div style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.7);">${productName}</div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animáció megjelenéskor
+    setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(0)';
+    }, 10);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100px)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 300);
+    }, 3000);
+}
+
+    // Size selection handlers
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('size-option')) {
+            const card = e.target.closest('.product-card');
+            if (card) {
+                // Ha színgomb, csak a színgombokat cleanolja
+                if (e.target.classList.contains('color-option')) {
+                    card.querySelectorAll('.color-option').forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                } else {
+                    // Ha méretgomb, csak a méretgombokat cleanolja (nem a színeket)
+                    card.querySelectorAll('.size-option:not(.color-option)').forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                }
+                // Add selected class to clicked option
+                e.target.classList.add('selected');
+            }
+        }
+    });
+
+    // Sidebar functions
+    function openSidebar(type) {
+        const sidebar = document.getElementById('sidebar');
+        const title = document.getElementById('sidebar-title');
+        
+        title.textContent = type === 'cart' ? 'Cart' : 'Wishlist';
+        sidebar.classList.add('active');
+        
+        if (type === 'cart') {
+            renderCart();
+        } else {
+            renderWishlist();
+        }
+    }
+
+    function closeSidebar() {
+        document.getElementById('sidebar').classList.remove('active');
+    }
+
+    function renderCart() {
+    const content = document.getElementById('sidebar-content');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    if (cart.length === 0) {
+content.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">Your cart is currently empty</p>';        return;
+    }
+    
+    const total = cart.reduce((sum, item) => {
+        const price = typeof item.price === 'string' ? 
+            parseInt(item.price.replace(/\D/g, '')) : item.price;
+        const quantity = item.quantity || 1;
+        return sum + (price * quantity);
+    }, 0);
+    
+    content.innerHTML = `
+        ${cart.map(item => {
+            const price = typeof item.price === 'string' ? item.price : `${item.price} $`;
+            const itemPrice = typeof item.price === 'string' ? 
+                parseInt(item.price.replace(/\D/g, '')) : item.price;
+            const quantity = item.quantity || 1;
+            const sizeText = item.size ? ` (${item.size})` : '';
+            return `
+                <div style="display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--glass-border);">
+                    <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                    <div style="flex: 1;">
+                        <div style="font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">${item.name}${sizeText}</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">${itemPrice.toLocaleString('hu-HU')} $ / db</div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                            <button onclick="updateQuantity(${item.id}, '${item.size || ''}', -1); event.stopPropagation();" 
+                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                                −
+                            </button>
+                            <span style="min-width: 30px; text-align: center; color: var(--text-primary); font-weight: 600;">${quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, '${item.size || ''}', 1); event.stopPropagation();" 
+                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${item.id}, '${item.size || ''}'); event.stopPropagation();" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem; align-self: flex-start;">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+            `;
+        }).join('')}
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); text-align: center;">
+            <div style="font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">${total.toLocaleString()} $</div>
+            <button onclick="goToCheckout()" style="width: 100%; padding: 1rem; background: #ffffff; color: #000000; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: var(--transition);">
+Checkout <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+    `;
+}
+
+function updateQuantity(productId, size = '', change) {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const item = cart.find(item => item.id === productId && (item.size || '') === size);
+    
+    if (item) {
+        const newQuantity = (item.quantity || 1) + change;
+        
+        if (newQuantity <= 0) {
+            // Ha 0 vagy kevesebb lesz, töröljük a terméket
+            cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
+        } else {
+            item.quantity = newQuantity;
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+    }
+}
+
+    function renderWishlist() {
+        const content = document.getElementById('sidebar-content');
+        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        
+        if (wishlist.length === 0) {
+content.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">No favorite products yet</p>';            return;
+        }
+        
+        content.innerHTML = wishlist.map(item => {
+            const price = typeof item.price === 'string' ? item.price : `${item.price} $`;
+            return `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${price}</div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button onclick="moveToCart(${item.id})" class="btn" style="padding: 0.5rem; font-size: 0.8rem; background: var(--text-primary); color: var(--primary-dark);">
+                            <i class="ri-shopping-cart-line"></i>
+                        </button>
+                        <button onclick="removeFromWishlist(${item.id})" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1rem;">
+                            <i class="ri-close-line"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function removeFromCart(productId, size = '') {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+    // NE hívjuk meg a closeSidebar()-t!
+}
+
+    function removeFromWishlist(productId) {
+        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        wishlist = wishlist.filter(item => item.id !== productId);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        updateWishlistCount();
+        renderWishlist();
+    }
+
+    function moveToCart(productId) {
+        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        const product = wishlist.find(item => item.id === productId);
+        
+        if (product) {
+            // For moving from wishlist to cart, we need to prompt for size
+            const size = prompt('Select size (S, M, L, XL):');
+            if (size && ['S', 'M', 'L', 'XL'].includes(size.toUpperCase())) {
+                addToCart({...product, size: size.toUpperCase()});
+                removeFromWishlist(productId);
+            }
+        }
+    }
+
+    function goToCheckout() {
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+        
+        const isOnlyEbook = cart.length === 1 && cart[0].id === 2;
+        
+        if (isOnlyEbook) {
+            window.location.href = 'checkout2.html';
+        } else {
+            window.location.href = 'checkout.html';
+        }
+    }
+
+    // Mobile menu functions
+    function openMobileMenu() {
+        document.getElementById('mobile-menu').classList.add('active');
+    }
+
+    function closeMobileMenu() {
+        document.getElementById('mobile-menu').classList.remove('active');
+    }
+
+    // Event listeners
+    function attachEventListeners() {
+        // ESC key support for modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (document.getElementById('product-modal').classList.contains('active')) {
+                    closeProductModal();
+                }
+                if (document.getElementById('sidebar').classList.contains('active')) {
+                    closeSidebar();
+                }
+                if (document.getElementById('mobile-menu').classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            }
+        });
+
+        // Sidebar triggers
+        document.getElementById('cart-icon').addEventListener('click', () => openSidebar('cart'));
+        document.getElementById('wishlist-icon').addEventListener('click', () => openSidebar('wishlist'));
+        document.getElementById('menu-icon').addEventListener('click', openMobileMenu);
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const productModal = document.getElementById('product-modal');
+            
+            // Close sidebar
+            if (!sidebar.contains(e.target) && 
+                e.target.id !== 'cart-icon' && 
+                e.target.id !== 'wishlist-icon' && 
+                !e.target.closest('#cart-icon') &&
+                !e.target.closest('#wishlist-icon') &&
+                sidebar.classList.contains('active')) {
+                closeSidebar();
+            }
+
+            // Close mobile menu
+            if (!mobileMenu.contains(e.target) && 
+                e.target.id !== 'menu-icon' && 
+                !e.target.closest('#menu-icon') &&
+                mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+
+            // Close product modal
+            if (productModal.classList.contains('active') && 
+                e.target === productModal) {
+                closeProductModal();
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+
+    // Glitch Lines Canvas - slower and more realistic
+    function initializeGlitchEffects() {
+        const glitchCanvas = document.querySelector('.glitch-lines');
+        const ctx = glitchCanvas.getContext('2d');
+
+        function resizeCanvas() {
+            glitchCanvas.width = window.innerWidth;
+            glitchCanvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        function drawGlitchLines() {
+            ctx.clearRect(0, 0, glitchCanvas.width, glitchCanvas.height);
+            
+            // Random chance to show glitch (10% chance)
+            if (Math.random() > 0.1) return;
+            
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 1;
+
+            const lineCount = Math.floor(Math.random() * 3) + 1;
+
+            for (let i = 0; i < lineCount; i++) {
+                const y = Math.random() * glitchCanvas.height;
+                const width = Math.random() * (glitchCanvas.width * 0.3);
+                const x = Math.random() * (glitchCanvas.width - width);
+
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x + width, y);
+                ctx.stroke();
+            }
+        }
+
+        // Slower glitch interval (every 2 seconds instead of 100ms)
+        setInterval(drawGlitchLines, 2000);
+    }
+
+    // Watermark Canvas Animation
+    function initializeWatermarkCanvases() {
+        const watermarkCanvases = document.querySelectorAll('.background-watermark');
+        
+        watermarkCanvases.forEach(canvas => {
+            const watermarkCtx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            let particles = [];
+
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    radius: Math.random() * 2 + 1
+                });
+            }
+
+            function animateWatermark() {
+                watermarkCtx.clearRect(0, 0, canvas.width, canvas.height);
+                watermarkCtx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+
+                particles.forEach(p => {
+                    watermarkCtx.beginPath();
+                    watermarkCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    watermarkCtx.fill();
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                });
+
+                requestAnimationFrame(animateWatermark);
+            }
+
+            animateWatermark();
+        });
+    }
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        const isMobile = window.innerWidth <= 768;
+        
+        if (window.scrollY > 50) {
+            header.style.background = 'rgba(0, 0, 0, 0.9)';
+            if (!isMobile) {
+                header.style.padding = '1.5rem 3rem';
+            }
+        } else {
+            header.style.background = 'rgba(0, 0, 0, 0.4)';
+            if (!isMobile) {
+                header.style.padding = '2rem 3rem';
+            }
+        }
+    });
+
+    // Cookie Banner Management
+    function initializeCookieBanner() {
+        const cookieChoice = localStorage.getItem('cookieChoice');
+        
+        if (!cookieChoice) {
+            setTimeout(() => {
+                const banner = document.getElementById('cookie-banner');
+                banner.classList.add('show');
+            }, 2000);
+        } else {
+            applyCookieChoice(cookieChoice);
+        }
+    }
+
+    function acceptCookies() {
+        localStorage.setItem('cookieChoice', 'accepted');
+        applyCookieChoice('accepted');
+        hideCookieBanner();
+        console.log('🍪 Sütik elfogadva - Analytics engedélyezve');
+    }
+
+    function declineCookies() {
+        localStorage.setItem('cookieChoice', 'declined');
+        applyCookieChoice('declined');
+        hideCookieBanner();
+        console.log('🍪 Sütik elutasítva - Csak alapvető funkciók');
+    }
+
+    function acceptNecessaryCookies() {
+        localStorage.setItem('cookieChoice', 'necessary');
+        applyCookieChoice('necessary');
+        hideCookieBanner();
+        console.log('🍪 Csak szükséges sütik elfogadva');
+    }
+
+    function applyCookieChoice(choice) {
+        switch(choice) {
+            case 'accepted':
+                enableAnalytics();
+                enableMarketing();
+                break;
+            case 'declined':
+                disableAnalytics();
+                disableMarketing();
+                break;
+            case 'necessary':
+                disableAnalytics();
+                disableMarketing();
+                break;
+        }
+    }
+
+    function enableAnalytics() {
+        console.log('Analytics enabled');
+    }
+
+    function disableAnalytics() {
+        console.log('Analytics disabled');
+    }
+
+    function enableMarketing() {
+        console.log('Marketing cookies enabled');
+    }
+
+    function disableMarketing() {
+        console.log('Marketing cookies disabled');
+    }
+
+    function hideCookieBanner() {
+        const banner = document.getElementById('cookie-banner');
+        banner.classList.add('hide');
+        
+        setTimeout(() => {
+            banner.style.display = 'none';
+        }, 500);
+    }
+
+    function resetCookieChoice() {
+        localStorage.removeItem('cookieChoice');
+        location.reload();
+    }
+
+    // Typing Effect
+    function initializeTypingEffect() {
+        const typingElement = document.getElementById('typing-text');
+        const textToType = `This is not just clothing.
+This is a statement.
+A declaration. A heartbeat for the future. <br>
+Welcome to the new paradigm
+Welcome to Senkisem`;
+let charIndex = 0;function typeText() {
+            if (charIndex < textToType.length) {
+                typingElement.innerHTML = textToType.substring(0, charIndex + 1) + '<span class="typing-cursor">█</span>';
+                charIndex++;
+                setTimeout(typeText, 50);
+            } else {
+                typingElement.innerHTML = textToType + '<span class="typing-cursor">█</span>';
+            }
+        }
+
+        // Start typing when section is visible
+        const typingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && charIndex === 0) {
+                    typeText();
+                }
+            });
+        });
+
+        typingObserver.observe(typingElement);
+    }
+
+    // Parallax scroll effect for about section
+    function initParallax() {
+        const aboutImages = document.querySelectorAll('.merch-about__image, .merch-about__bottom-image');
+        
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            
+            aboutImages.forEach((img, index) => {
+                const speed = index % 2 === 0 ? 0.3 : -0.3;
+                const yPos = scrolled * speed;
+                img.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+    }
+
+    initParallax();
+
+    // Global function exports for onclick handlers
+    window.updateQuantity = updateQuantity;
+    window.openProductModal = openProductModal;
+    window.closeProductModal = closeProductModal;
+    window.selectModalSize = selectModalSize;
+    window.addToCartFromCard = addToCartFromCard;
+    window.addToCart = addToCart;
+    window.addToWishlist = addToWishlist;
+    window.removeFromCart = removeFromCart;
+    window.removeFromWishlist = removeFromWishlist;
+    window.moveToCart = moveToCart;
+    window.goToCheckout = goToCheckout;
+    window.openSidebar = openSidebar;
+    window.closeSidebar = closeSidebar;
+    window.openMobileMenu = openMobileMenu;
+    window.closeMobileMenu = closeMobileMenu;
+    window.acceptCookies = acceptCookies;
+    window.declineCookies = declineCookies;
+    window.acceptNecessaryCookies = acceptNecessaryCookies;
+window.resetCookieChoice = resetCookieChoice;
+window.revealProducts = revealProducts;
+
+
+function initRotatingWords() {
+const words = ['Message.', 'Movement.', 'Reminder.', 'Identity.', 'Future.'];
+    let currentIndex = 0;
+    const wordElement = document.getElementById('rotating-word');
+    
+    if (!wordElement) return;
+    
+    // FONTOS: Alapértelmezetten üres legyen
+    wordElement.textContent = '';
+    
+    let isTyping = false;
+    
+    
+    
+    async function typeWord(word) {
+        isTyping = true;
+        wordElement.textContent = '';
+        
+        // Type out the word
+        for (let i = 0; i < word.length; i++) {
+            await sleep(80 + Math.random() * 40); // Realistic typing speed with variance
+            wordElement.textContent += word[i];
+            
+            // Subtle glitch on random characters
+            if (Math.random() > 0.85) {
+                wordElement.style.textShadow = '2px 0 #ff0000, -2px 0 #00ffff';
+                await sleep(50);
+                wordElement.style.textShadow = '';
+            }
+        }
+        
+        // Wait before deleting
+        await sleep(2000);
+        
+        // Delete the word
+        for (let i = word.length; i >= 0; i--) {
+            await sleep(50);
+            wordElement.textContent = word.substring(0, i);
+        }
+        
+        isTyping = false;
+    }
+    
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    async function rotateWords() {
+        while (true) {
+            await typeWord(words[currentIndex]);
+            currentIndex = (currentIndex + 1) % words.length;
+            await sleep(300); // Short pause between words
+        }
+    }
+    
+    // Start the animation
+    rotateWords();
+}
+// ============================================
+// LIMITÁLT KÉSZLET POP-UP
+// ============================================
+
+function initLimitedPopup() {
+    // Csak a floating gombot mutassuk
+    document.getElementById('limited-float-btn').classList.add('show');
+}
+
+function openLimitedPopup() {
+    document.getElementById('limited-popup').classList.add('active');
+    document.getElementById('limited-float-btn').classList.remove('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLimitedPopup() {
+    document.getElementById('limited-popup').classList.remove('active');
+    document.getElementById('limited-float-btn').classList.add('show');
+    document.body.style.overflow = 'auto';
+    
+    // Jegyezzük fel a bezárás idejét
+    localStorage.setItem('limitedPopupClosed', new Date().getTime().toString());
+}
+
+function addLimitedProduct(productId, variant) {
+    let cart = [];
+    
+    if (productId === 300) {
+        // E-könyv csomag
+        if (variant === 'bundle') {
+            const product = {
+                id: 300,
+                name: "Complete Digital Collection (Notes + User Manual)",
+                price: 5000,
+                image: "./assets/img/ketkonyv.png",
+                isBundle: true,
+                isLimited: true
+            };
+            cart = [product];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = 'checkout2.html';
+        }
+    } else if (productId === 301) {
+        // Fizikai könyvek csomag
+        if (variant === 'physical') {
+            const product = {
+                id: 301,
+                name: "Complete Physical Collection (Notes + User Manual)",
+                price: 49.49,
+                image: "./assets/img/ketkonyv.png",
+                size: "A5",
+                quantity: 1,
+                isLimited: true,
+                isPhysicalBundle: true
+            };
+            cart = [product];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Kosár megnyitása
+            closeLimitedPopup();
+            openSidebar('cart');
+        }
+    }
+}
+
+// Inicializálás
+document.addEventListener('DOMContentLoaded', function() {
+    initLimitedPopup();
+});
+
+// ESC billentyű
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('limited-popup').classList.contains('active')) {
+        closeLimitedPopup();
+    }
+});
+
+// Kattintás az overlay-re
+document.querySelector('.limited-popup-overlay')?.addEventListener('click', closeLimitedPopup);
+// Global export
+window.openLimitedPopup = openLimitedPopup;
+window.closeLimitedPopup = closeLimitedPopup;
+window.addLimitedProduct = addLimitedProduct;
+</script>
+</body>
+</html>
