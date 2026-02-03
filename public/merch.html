@@ -1631,6 +1631,11 @@ grid-template-columns: repeat(3, 1fr);
 }
 }
 @media (max-width: 1024px) {
+
+    .hero-bg-video {
+        display: none;
+    }
+
 .products-grid {
 grid-template-columns: repeat(2, 1fr);
 gap: 1.5rem;
@@ -2816,9 +2821,12 @@ background: rgba(255, 255, 255, 0.02);
 
        
         .btn {
-            padding: 0.6rem 0.8rem;
-            font-size: 0.7rem;
-        }
+    padding: 0.5rem 0.6rem;
+    font-size: 0.65rem;
+}
+.product-actions {
+    gap: 0.5rem;
+}
 
         .modal-body {
             grid-template-columns: 1fr;
@@ -2941,9 +2949,13 @@ padding: 0.8rem;
         }
 
         .btn {
-            padding: 0.5rem 0.6rem;
-            font-size: 0.65rem;
-        }
+    padding: 0.4rem 0.5rem;
+    font-size: 0.6rem;
+}
+
+    .product-actions {
+    gap: 0.4rem;
+}
 
         .modal-header {
             padding: 0.8rem;
@@ -3946,6 +3958,7 @@ padding: 0.8rem;
         font-size: 0.75rem;
     }
 }
+
 /* Shadow Garden 3-column centered layout */
 @media (min-width: 1024px) {
     .sakura-heritage-section .products-grid {
@@ -4102,8 +4115,8 @@ padding: 0.8rem;
     <div class="hero-background">
         <canvas class="background-watermark"></canvas>
         <video class="hero-bg-video" autoplay muted loop playsinline>
-            <source src="assets/img/merchvid.mp4" type="video/mp4">
-        </video>
+    <!-- source tag törölve -->
+</video>
     </div>
     
     
@@ -4456,6 +4469,20 @@ In a world where technology and culture collide with brutal force, we represent 
 </div>
 
 <script>
+
+    (function() {
+    const video = document.querySelector('.hero-bg-video');
+    if (!video) return;
+
+    // Csak 1025px-nél és fölebb töltjük be a videót
+    if (window.innerWidth >= 1025) {
+        const source = document.createElement('source');
+        source.setAttribute('src', 'assets/img/merchvid.mp4');
+        source.setAttribute('type', 'video/mp4');
+        video.appendChild(source);
+        video.load();
+    }
+})();
 // ========================================
 // PRODUCTS DATA
 // ========================================

@@ -8,46 +8,59 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const [showScrollHint, setShowScrollHint] = useState(false);
   const [videoStartTime, setVideoStartTime] = useState<number | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const checkIntervalRef = useRef<number | null>(null);
 
+  // Eszköz méret detektálás
   useEffect(() => {
-    // Optimalizált loading check - interval helyett requestAnimationFrame
-    let frameId: number;
-    let lastCheck = 0;
-    const checkInterval = 100; // Check every 100ms instead of every frame
+    const checkDevice = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
     
-    const checkLoading = (timestamp: number) => {
-      if (timestamp - lastCheck >= checkInterval) {
-        lastCheck = timestamp;
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
+
+  // Video betöltés és lejátszás optimalizálás
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Előtöltés indítása
+    video.load();
+
+    const checkLoading = () => {
+      if ((window as any).loadingDone) {
+        // Próbáld elindítani a videót
+        const playPromise = video.play();
         
-        if ((window as any).loadingDone && videoRef.current) {
-          // Video lazy loading - csak amikor látható
-          const observer = new IntersectionObserver(
-            (entries) => {
-              if (entries[0].isIntersecting) {
-                videoRef.current?.play().catch(() => {});
-                setVideoStartTime(Date.now());
-                observer.disconnect();
-              }
-            },
-            { threshold: 0.25 }
-          );
-          
-          if (videoRef.current) {
-            observer.observe(videoRef.current);
-          }
-          return; // Stop checking
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              // Siker - állítsd be a start time-ot
+              setVideoStartTime(Date.now());
+            })
+            .catch((err) => {
+              console.log("Video autoplay delayed:", err);
+              // Ha nem sikerül, próbáld újra kicsit később
+              setTimeout(() => {
+                video.play()
+                  .then(() => {
+                    setVideoStartTime(Date.now());
+                  })
+                  .catch(() => {
+                    console.log("Video autoplay failed, waiting for user interaction");
+                  });
+              }, 100);
+            });
         }
+      } else {
+        requestAnimationFrame(checkLoading);
       }
-      frameId = requestAnimationFrame(checkLoading);
     };
     
-    frameId = requestAnimationFrame(checkLoading);
-    
-    return () => {
-      if (frameId) cancelAnimationFrame(frameId);
-    };
+    checkLoading();
   }, []);
 
   useEffect(() => {
@@ -67,28 +80,26 @@ const Hero = () => {
     }
   }, [showScrollHint]);
 
+  // GSAP animáció CSAK PC-n
   useGSAP(() => {
+    if (!isDesktop) return;
+
     gsap.set("#video-frame", {
       clipPath: "polygon(14% 0%, 72% 0%, 88% 90%, 0% 95%)",
       borderRadius: "0 0 10% 10%",
     });
 
-    const scrollTrigger = gsap.from("#video-frame", {
+    gsap.from("#video-frame", {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       borderRadius: "0 0 0 0",
       scrollTrigger: {
         trigger: "#video-frame",
         start: "center center",
         end: "bottom center",
-        scrub: 1, // Changed from true to 1 for smoother performance
-        invalidateOnRefresh: true,
+        scrub: true,
       },
     });
-
-    return () => {
-      scrollTrigger.scrollTrigger?.kill();
-    };
-  }, []);
+  }, [isDesktop]);
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
@@ -96,23 +107,23 @@ const Hero = () => {
         id="video-frame"
         className="relative z-10 h-dvh w-screen overflow-hidden bg-black"
       >
-        {/* HERO VIDEO with better attributes */}
+        {/* HERO VIDEO */}
         <video
           ref={videoRef}
           src="videos/hero-1.mp4"
           loop
           muted
           playsInline
-          preload="metadata" // Changed from auto to metadata
+          preload="auto"
+          webkit-playsinline="true"
           className="
             absolute left-1/2 top-1/2
             -translate-x-1/2 -translate-y-1/2
-            w-[140%] h-[70%]
+            w-[140%] h-[45%]
             object-fill
             bg-black
             md:w-full md:h-full md:object-cover
           "
-          style={{ willChange: 'auto' }} // Remove will-change when not animating
         />
 
         {/* SCROLL HINT */}

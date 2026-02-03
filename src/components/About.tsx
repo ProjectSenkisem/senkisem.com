@@ -37,33 +37,29 @@ const About = () => {
         <div className="flex flex-col items-center gap-6">
           <AnimateTitle
             sectionId="about"
-            title={`Not<b> a</b> Brand;`}
+            title={`Nem<b> Egy</b> Brand;`}
             containerClass="mt-5 text-center !text-black animate-title"
           />
-          
+
           <AnimateTitle
             sectionId="about-message"
-            title={`Message.`}
+            title={`Üzenet.`}
             containerClass="text-center !text-black animate-title"
           />
         </div>
 
         <div className="about-subtext text-center mt-8">
-          <p> "Senki sem" is a Hungarian phrase that translates to "nobody".</p>
+          <p>"Senki sem" is a Hungarian phrase that translates to "nobody"</p>
           <p className="text-gray-500"></p>
         </div>
       </div>
 
-      {/* VIDEO CLIP SECTION */}
+      {/* IMAGE CLIP SECTION */}
       <div className="h-screen w-screen" id="clip">
         <div className="mask-clip-path about-image relative overflow-hidden">
-          <video
-            src="videos/feature-1.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
+          <img
+            src="videos/about.png"
+            alt="About"
             className="absolute left-0 top-0 size-full object-cover border border-black"
           />
         </div>
