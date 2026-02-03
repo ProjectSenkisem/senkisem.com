@@ -2,11 +2,19 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import AnimateTitle from "./AnimateTitle";
+import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const clipTriggerRef = useRef<ScrollTrigger | null>(null);
+
   useGSAP(() => {
+    // Kill previous trigger if exists
+    if (clipTriggerRef.current) {
+      clipTriggerRef.current.kill();
+    }
+
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: "#clip",
@@ -15,8 +23,28 @@ const About = () => {
         scrub: 0.5,
         pin: true,
         pinSpacing: true,
+        invalidateOnRefresh: true,
+        onEnter: () => {
+          // Pause video when not in view
+          const video = document.querySelector('#clip video') as HTMLVideoElement;
+          if (video) video.play().catch(() => {});
+        },
+        onLeave: () => {
+          const video = document.querySelector('#clip video') as HTMLVideoElement;
+          if (video) video.pause();
+        },
+        onEnterBack: () => {
+          const video = document.querySelector('#clip video') as HTMLVideoElement;
+          if (video) video.play().catch(() => {});
+        },
+        onLeaveBack: () => {
+          const video = document.querySelector('#clip video') as HTMLVideoElement;
+          if (video) video.pause();
+        }
       },
     });
+
+    clipTriggerRef.current = clipAnimation.scrollTrigger || null;
 
     clipAnimation.to(".mask-clip-path", {
       width: "100vw",
@@ -24,6 +52,13 @@ const About = () => {
       borderRadius: 0,
       ease: "none",
     });
+
+    return () => {
+      clipAnimation.kill();
+      if (clipTriggerRef.current) {
+        clipTriggerRef.current.kill();
+      }
+    };
   }, []);
 
   return (
@@ -63,8 +98,9 @@ const About = () => {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className="absolute left-0 top-0 size-full object-cover border border-black"
+            style={{ willChange: 'auto' }}
           />
         </div>
       </div>

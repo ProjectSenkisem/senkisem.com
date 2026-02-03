@@ -4456,15 +4456,16 @@ In a world where technology and culture collide with brutal force, we represent 
 </div>
 
 <script>
-    const products = [
-    // ========================================
-    // KIEGÉSZÍTŐK
-    // ========================================
+// ========================================
+// PRODUCTS DATA
+// ========================================
+const products = [
+    // ACCESSORIES
     {
         id: 201,
         name: "Senkisem Watch - Gold",
         price: 69.99,
-        image: "./assets/img/watch-gold.png", // CSERÉLD SAJÁT KÉPRE
+        image: "./assets/img/watch-gold.png",
         sizes: ["Universal"],
         category: "Accessories",
         sectionId: "accessories"
@@ -4473,12 +4474,11 @@ In a world where technology and culture collide with brutal force, we represent 
         id: 202,
         name: "Senkisem Watch - Silver",
         price: 69.99,
-        image: "./assets/img/watch-silver.png", // CSERÉLD SAJÁT KÉPRE
+        image: "./assets/img/watch-silver.png",
         sizes: ["Universal"],
         category: "Accessories",
         sectionId: "accessories"
     },
-
     {
         id: 203,
         name: "Senkisem Women's Watch - White Strap",
@@ -4500,14 +4500,12 @@ In a world where technology and culture collide with brutal force, we represent 
         outOfStock: true
     },
     
-    // ========================================
-    // Shadow Garden
-    // ========================================
+    // SHADOW GARDEN
     {
         id: 301,
         name: "Long Sleeve V-Neck Kimono",
         price: 22.99,
-        image: "./assets/img/kimono-vneck.png", // CSERÉLD SAJÁT KÉPRE
+        image: "./assets/img/kimono-vneck.png",
         sizes: ["S", "M", "L", "XL"],
         category: "Shadow Garden",
         sectionId: "sakura-heritage"
@@ -4516,7 +4514,7 @@ In a world where technology and culture collide with brutal force, we represent 
         id: 302,
         name: "Twisted Tie Pants",
         price: 39.99,
-        image: "./assets/img/pants-twisted.png", // CSERÉLD SAJÁT KÉPRE
+        image: "./assets/img/pants-twisted.png",
         sizes: ["S", "M", "L", "XL"],
         category: "Shadow Garden",
         sectionId: "sakura-heritage"
@@ -4525,20 +4523,18 @@ In a world where technology and culture collide with brutal force, we represent 
         id: 303,
         name: "Senkisem Short Kimono",
         price: 49.99,
-        image: "./assets/img/kimono-short.png", // CSERÉLD SAJÁT KÉPRE
+        image: "./assets/img/kimono-short.png",
         sizes: ["S", "M", "L", "XL"],
         category: "Shadow Garden",
         sectionId: "sakura-heritage"
     },
     
-    // ========================================
     // PHANTOM
-    // ========================================
     {
         id: 401,
         name: "Hooded Sweater with Zip Mask",
         price: 64.99,
-        image: "./assets/img/hoodie-zip-mask.png", // CSERÉLD SAJÁT KÉPRE
+        image: "./assets/img/hoodie-zip-mask.png",
         sizes: ["S", "M", "L", "XL"],
         category: "Phantom",
         sectionId: "phantom"
@@ -4547,7 +4543,7 @@ In a world where technology and culture collide with brutal force, we represent 
         id: 402,
         name: "Hooded Sweater with Bedouin Mask",
         price: 64.99,
-        image: "./assets/img/hoodie-bedouin-mask.png", // CSERÉLD SAJÁT KÉPRE
+        image: "./assets/img/hoodie-bedouin-mask.png",
         sizes: ["S", "M", "L", "XL"],
         category: "Phantom",
         sectionId: "phantom"
@@ -4556,7 +4552,7 @@ In a world where technology and culture collide with brutal force, we represent 
         id: 403,
         name: "Senkisem Black Sneakers",
         price: 69.99,
-        image: "./assets/img/sneakers-black.png", // CSERÉLD SAJÁT KÉPRE
+        image: "./assets/img/sneakers-black.png",
         sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
         category: "Phantom",
         sectionId: "phantom"
@@ -4565,15 +4561,13 @@ In a world where technology and culture collide with brutal force, we represent 
         id: 404,
         name: "High-Top Black Sneakers",
         price: 69.99,
-        image: "./assets/img/high-sneakers-black.png", // CSERÉLD SAJÁT KÉPRE
+        image: "./assets/img/high-sneakers-black.png",
         sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
         category: "Phantom",
         sectionId: "phantom"
     },
     
-    // ========================================
     // SIGNATURE EDITION
-    // ========================================
     {
         id: 501,
         name: "Senkisem T-Shirt - Printed",
@@ -4630,356 +4624,413 @@ In a world where technology and culture collide with brutal force, we represent 
     }
 ];
 
-    // State management
-    let selectedProduct = null;
-    let selectedSize = null;
-    let selectedColor = null;
-    let productsRevealed = false;
+// ========================================
+// STATE MANAGEMENT
+// ========================================
+let selectedProduct = null;
+let selectedSize = null;
+let selectedColor = null;
+let productsRevealed = false;
 
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-        initializePage();
-    });
+// ========================================
+// INITIALIZATION
+// ========================================
+document.addEventListener('DOMContentLoaded', function() {
+    initializePage();
+});
 
-    function initializePage() {
+function initializePage() {
     loadProducts();
     updateCartCount();
     updateWishlistCount();
     attachEventListeners();
     initializeCookieBanner();
-    initializeGlitchEffects();
-    initializeWatermarkCanvases();
+    
+    // OPTIMIZED: Delayed initialization
+    setTimeout(() => {
+        initializeGlitchEffects();
+        initializeWatermarkCanvases();
+        initParallax();
+    }, 1000);
+    
+    initOptimizedHeaderScroll();
     initializeTypingEffect();
-    showContinueButton();
     initRotatingWords();
+    initLimitedPopup();
 }
 
-    // ÚJ: Show Continue Without Login button after 3 seconds
-    function showContinueButton() {
-        const typingObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        const continueBtn = document.getElementById('continue-without-login');
-                        if (continueBtn) {
-                            continueBtn.classList.add('show');
-                        }
-                    }, 3000);
-                    typingObserver.unobserve(entry.target);
-                }
-            });
-        });
-
-        const typingSection = document.querySelector('.merch-more');
-        if (typingSection) {
-            typingObserver.observe(typingSection);
-        }
-    }
-
-function revealProducts() {
-    if (!productsRevealed) {
-        const wrapper = document.getElementById('products-section-wrapper');
-        wrapper.classList.add('revealed');
-        productsRevealed = true;
-        
-        // Hide glitch effects when products are revealed
-        const glitchContainer = document.querySelector('.glitch-effects-container');
-        if (glitchContainer) {
-            glitchContainer.classList.add('hidden');
-        }
-        
-        // Smooth scroll to accessories section
-        setTimeout(() => {
-            document.getElementById('accessories').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }, 300);
-    }
-}
-
+// ========================================
+// PRODUCT LOADING
+// ========================================
 function loadProducts() {
-    // Kiegészítők
-    const accessoriesGrid = document.getElementById('accessories-products-grid');
-    const accessoriesProducts = products.filter(p => p.sectionId === 'accessories');
-    if (accessoriesGrid && accessoriesProducts.length > 0) {
-        accessoriesGrid.innerHTML = accessoriesProducts.map(product => createProductCard(product)).join('');
-    }
+    const sections = [
+        { grid: 'accessories-products-grid', sectionId: 'accessories' },
+        { grid: 'sakura-products-grid', sectionId: 'sakura-heritage' },
+        { grid: 'phantom-products-grid', sectionId: 'phantom' },
+        { grid: 'signature-products-grid', sectionId: 'signature' }
+    ];
     
-    // Sakura Heritage
-    const sakuraGrid = document.getElementById('sakura-products-grid');
-    const sakuraProducts = products.filter(p => p.sectionId === 'sakura-heritage');
-    if (sakuraGrid && sakuraProducts.length > 0) {
-        sakuraGrid.innerHTML = sakuraProducts.map(product => createProductCard(product)).join('');
-    }
-    
-    // Phantom
-    const phantomGrid = document.getElementById('phantom-products-grid');
-    const phantomProducts = products.filter(p => p.sectionId === 'phantom');
-    if (phantomGrid && phantomProducts.length > 0) {
-        phantomGrid.innerHTML = phantomProducts.map(product => createProductCard(product)).join('');
-    }
-    
-    // Signature
-    const signatureGrid = document.getElementById('signature-products-grid');
-    const signatureProducts = products.filter(p => p.sectionId === 'signature');
-    if (signatureGrid && signatureProducts.length > 0) {
-        signatureGrid.innerHTML = signatureProducts.map(product => createProductCard(product)).join('');
-    }
+    sections.forEach(({ grid, sectionId }) => {
+        const gridElement = document.getElementById(grid);
+        const sectionProducts = products.filter(p => p.sectionId === sectionId);
+        if (gridElement && sectionProducts.length > 0) {
+            gridElement.innerHTML = sectionProducts.map(product => createProductCard(product)).join('');
+        }
+    });
 }
 
-    // Create product card HTML with lazy loading
-    function createProductCard(product) {
-        const priceHTML = product.sale && product.oldPrice ? `
-            <div class="price-container">
-                <div class="old-price">${product.oldPrice.toLocaleString()} $ </div>
-                <div class="product-price">${product.price.toLocaleString()} $ </div>
+function createProductCard(product) {
+    const priceHTML = product.sale && product.oldPrice ? `
+        <div class="price-container">
+            <div class="old-price">$${product.oldPrice.toFixed(2)}</div>
+            <div class="product-price">$${product.price.toFixed(2)}</div>
+        </div>
+    ` : `
+        <div class="product-price">$${product.price.toFixed(2)}</div>
+    `;
+
+    const saleBadge = product.sale ? 
+        `<div class="sale-badge">-${Math.round((1 - product.price/product.oldPrice) * 100)}%</div>` : '';
+
+    return `
+        <div class="product-card ${product.featured ? 'featured-product' : ''}">
+            ${saleBadge}
+            <div class="product-image" onclick="openProductModal(${product.id})">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
             </div>
-        ` : `
-            <div class="product-price">${product.price.toLocaleString()} $ </div>
-        `;
-
-        const saleBadge = product.sale ? `<div class="sale-badge">-${Math.round((1 - product.price/product.oldPrice) * 100)}%</div>` : '';
-
-        // Színválasztó HTML (ha szükséges)
-        const colorSelectionHTML = product.colors ? `
-            <div class="size-selection">
-                <label class="size-label">Szín:</label>
-                <div class="size-options color-options">
-                    ${product.colors.map(color => 
-                        `<button class="size-option color-option" data-color="${color}">${color}</button>`
-                    ).join('')}
-                </div>
-            </div>
-        ` : '';
-
-        return `
-            <div class="product-card ${product.featured ? 'featured-product' : ''}">
-                ${saleBadge}
-               <div class="product-image" onclick="openProductModal(${product.id})">
-                    <img src="${product.image}" alt="${product.name}" loading="lazy">
-                </div>
-                <div class="product-details">
-                    <div class="product-category">${product.category || 'Collection'}</div>
-                    <h3 class="product-title">${product.name}</h3>
-                    ${priceHTML}
-                    
-                    ${colorSelectionHTML}
-                    
-                    <div class="size-selection">
-                        <label class="size-label">Size:</label>
-                        <div class="size-options">
-                            ${product.sizes.map(size => 
-                                `<button class="size-option" data-size="${size}">${size}</button>`
-                            ).join('')}
-                        </div>
+            <div class="product-details">
+                <div class="product-category">${product.category || 'Collection'}</div>
+                <h3 class="product-title">${product.name}</h3>
+                ${priceHTML}
+                
+                <div class="size-selection">
+                    <label class="size-label">Size:</label>
+                    <div class="size-options">
+                        ${product.sizes.map(size => 
+                            `<button class="size-option" data-size="${size}">${size}</button>`
+                        ).join('')}
                     </div>
                 </div>
-                <div class="product-actions">
-    ${product.outOfStock ? `
-        <button class="btn btn-primary" style="background: #ff4444; cursor: not-allowed; opacity: 0.7;" disabled>
-            Out of Stock
-        </button>
-    ` : `
-        <button class="btn btn-primary" onclick="addToCartFromCard(${product.id}, this)">
-            Kosárba
-        </button>
-    `}
-                    <button class="btn btn-secondary" onclick="addToWishlist(${JSON.stringify(product).replace(/"/g, '&quot;')})">
-                        Kedvencek
-                    </button>
-                </div>
             </div>
-        `;
-    }
+            <div class="product-actions">
+                ${product.outOfStock ? `
+                    <button class="btn btn-primary" style="background: #ff4444; cursor: not-allowed; opacity: 0.7;" disabled>
+                        Out of Stock
+                    </button>
+                ` : `
+                    <button class="btn btn-primary" onclick="addToCartFromCard(${product.id}, this)">
+                        Add to Cart
+                    </button>
+                `}
+                <button class="btn btn-secondary" onclick="addToWishlist(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                    Favorites
+                </button>
+            </div>
+        </div>
+    `;
+}
 
-    // Product modal functions
-    function openProductModal(productId) {
-        const product = products.find(p => p.id === productId);
-        if (!product) return;
-        
-        selectedProduct = product;
-        selectedSize = null;
-        
-        const modal = document.getElementById('product-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalImage = document.getElementById('modal-image');
-        const modalProductTitle = document.getElementById('modal-product-title');
-        const modalProductPrice = document.getElementById('modal-product-price');
-        const modalSizeOptions = document.getElementById('modal-size-options');
-        
-        modalTitle.textContent = product.name;
-        modalImage.src = product.image;
-        modalImage.alt = product.name;
-        modalProductTitle.textContent = product.name;
-        modalProductPrice.textContent = `${product.price.toLocaleString()} $`;
-        
-        // Populate size options
-        modalSizeOptions.innerHTML = product.sizes.map(size => 
-            `<button class="size-option" data-size="${size}" onclick="selectModalSize('${size}')">${size}</button>`
-        ).join('');
-        
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+// ========================================
+// PRODUCT MODAL
+// ========================================
+function openProductModal(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+    
+    selectedProduct = product;
+    selectedSize = null;
+    
+    const modal = document.getElementById('product-modal');
+    document.getElementById('modal-title').textContent = product.name;
+    document.getElementById('modal-image').src = product.image;
+    document.getElementById('modal-image').alt = product.name;
+    document.getElementById('modal-product-title').textContent = product.name;
+    document.getElementById('modal-product-price').textContent = `$${product.price.toFixed(2)}`;
+    
+    document.getElementById('modal-size-options').innerHTML = product.sizes.map(size => 
+        `<button class="size-option" data-size="${size}" onclick="selectModalSize('${size}')">${size}</button>`
+    ).join('');
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-    function closeProductModal() {
-        const modal = document.getElementById('product-modal');
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        selectedProduct = null;
-        selectedSize = null;
-    }
+function closeProductModal() {
+    document.getElementById('product-modal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+    selectedProduct = null;
+    selectedSize = null;
+}
 
-    function selectModalSize(size) {
-        selectedSize = size;
-        
-        // Update UI to show selected size
-        document.querySelectorAll('#modal-size-options .size-option').forEach(btn => {
-            btn.classList.remove('selected');
-            if (btn.dataset.size === size) {
-                btn.classList.add('selected');
-            }
-        });
-    }
+function selectModalSize(size) {
+    selectedSize = size;
+    document.querySelectorAll('#modal-size-options .size-option').forEach(btn => {
+        btn.classList.toggle('selected', btn.dataset.size === size);
+    });
+}
 
-    function addToCartFromCard(productId, buttonElement) {
-        const product = products.find(p => p.id === productId);
-        if (!product) return;
+// ========================================
+// CART FUNCTIONS
+// ========================================
+function addToCartFromCard(productId, buttonElement) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+    
+    const card = buttonElement.closest('.product-card');
+    const selectedSizeBtn = card.querySelector('.size-option.selected');
+    
+    if (!selectedSizeBtn) {
+        alert('Please select a size!');
+        return;
+    }
+    
+    addToCart({...product, size: selectedSizeBtn.dataset.size});
+}
+
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const existingItem = cart.find(item => item.id === product.id && item.size === product.size);
+    
+    if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+    } else {
+        cart.push({...product, quantity: 1});
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    showNotification(product.name, 'Added to cart!');
+    
+    // Visual feedback
+    const button = event.target;
+    const originalText = button.textContent;
+    button.textContent = 'Added!';
+    button.style.background = '#28a745';
+    button.disabled = true;
+    
+    setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = '';
+        button.disabled = false;
+    }, 1500);
+}
+
+function updateQuantity(productId, size = '', change) {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const item = cart.find(item => item.id === productId && (item.size || '') === size);
+    
+    if (item) {
+        const newQuantity = (item.quantity || 1) + change;
         
-        const card = buttonElement.closest('.product-card');
-        
-        // Szín kiválasztása (ha van)
-        let color = null;
-        if (product.requiresColor || product.colors) {
-            const selectedColorBtn = card.querySelector('.color-option.selected');
-            if (!selectedColorBtn) {
-                alert('Please select a color!');
-                return;
-            }
-            color = selectedColorBtn.dataset.color;
-        }
-        
-        // Méret kiválasztása
-        const selectedSizeBtn = card.querySelector('.size-option.selected:not(.color-option)');
-        if (!selectedSizeBtn) {
-            alert('Please select a size!');
-            return;
-        }
-        
-        const size = selectedSizeBtn.dataset.size;
-        
-        // Ha van szín, akkor azt is hozzáadjuk
-        if (color) {
-            addToCart({...product, size: `${size} (${color})`});
+        if (newQuantity <= 0) {
+            cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
         } else {
-            addToCart({...product, size});
-        }
-    }
-
-    function addToCart(product) {
-        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        
-        const existingItem = cart.find(item => item.id === product.id && item.size === product.size);
-        
-        if (existingItem) {
-            existingItem.quantity = (existingItem.quantity || 1) + 1;
-        } else {
-            cart.push({...product, quantity: 1});
+            item.quantity = newQuantity;
         }
         
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
-        showNotification(product.name, 'added to cart!');
+        renderCart();
+    }
+}
+
+function removeFromCart(productId, size = '') {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    renderCart();
+}
+
+function updateCartCount() {
+    const cartCount = document.getElementById('cart-count');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    
+    if (totalItems > 0) {
+        cartCount.textContent = totalItems;
+        cartCount.style.display = 'flex';
+    } else {
+        cartCount.style.display = 'none';
+    }
+}
+
+// ========================================
+// WISHLIST FUNCTIONS
+// ========================================
+function addToWishlist(product) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    const existingItem = wishlist.find(item => item.id === product.id);
+    
+    if (!existingItem) {
+        wishlist.push(product);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        updateWishlistCount();
+        showNotification(product.name, 'Added to favorites!');
         
         // Visual feedback
         const button = event.target;
-        const originalText = button.textContent;
-        button.textContent = 'Hozzáadva!';
-        button.style.background = '#28a745';
-        button.disabled = true;
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '<i class="ri-heart-fill"></i> Favorites';
+        button.style.background = 'rgba(255, 100, 100, 0.2)';
+        button.style.borderColor = 'rgba(255, 100, 100, 0.5)';
         
         setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = '';
-            button.disabled = false;
-        }, 1500);
+            button.innerHTML = originalHTML;
+            button.style.background = 'transparent';
+            button.style.borderColor = 'var(--glass-border)';
+        }, 2000);
+    } else {
+        showNotification(product.name, 'Already in favorites!');
     }
+}
 
-    // Modal cart add function
-    document.getElementById('modal-add-to-cart').addEventListener('click', function() {
-        if (!selectedProduct) return;
-        
-        if (!selectedSize) {
-            alert('Please select a size!');
-            return;
-        }
-        
-        addToCart({...selectedProduct, size: selectedSize});
-        closeProductModal();
-    });
+function removeFromWishlist(productId) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    wishlist = wishlist.filter(item => item.id !== productId);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    updateWishlistCount();
+    renderWishlist();
+}
 
-    // Modal wishlist add function
-    document.getElementById('modal-add-to-wishlist').addEventListener('click', function() {
-        if (!selectedProduct) return;
-        addToWishlist(selectedProduct);
-    });
+function updateWishlistCount() {
+    const wishlistCount = document.getElementById('wishlist-count');
+    let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    
+    if (wishlist.length > 0) {
+        wishlistCount.textContent = wishlist.length;
+        wishlistCount.style.display = 'flex';
+    } else {
+        wishlistCount.style.display = 'none';
+    }
+}
 
-    // Wishlist functions
-    function addToWishlist(product) {
-        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-        
-        const existingItem = wishlist.find(item => item.id === product.id);
-        
-        if (!existingItem) {
-            wishlist.push(product);
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            updateWishlistCount();
-showNotification(product.name, 'added to wishlist!');            
-            // Visual feedback
-            const button = event.target;
-            const originalHTML = button.innerHTML;
-            button.innerHTML = '<i class="ri-heart-fill"></i> Kedvencek';
-            button.style.background = 'rgba(255, 100, 100, 0.2)';
-            button.style.borderColor = 'rgba(255, 100, 100, 0.5)';
-            
-            setTimeout(() => {
-                button.innerHTML = originalHTML;
-                button.style.background = 'transparent';
-                button.style.borderColor = 'var(--glass-border)';
-            }, 2000);
-        } else {
-        showNotification(product.name, 'already in wishlist!');
+function moveToCart(productId) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    const product = wishlist.find(item => item.id === productId);
+    
+    if (product) {
+        const size = prompt('Select size (S, M, L, XL):');
+        if (size && ['S', 'M', 'L', 'XL'].includes(size.toUpperCase())) {
+            addToCart({...product, size: size.toUpperCase()});
+            removeFromWishlist(productId);
         }
     }
+}
 
-    // Utility functions
-    function updateCartCount() {
-        const cartCount = document.getElementById('cart-count');
-        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-        
-        if (totalItems > 0) {
-            cartCount.textContent = totalItems;
-            cartCount.style.display = 'flex';
-        } else {
-            cartCount.style.display = 'none';
-        }
+// ========================================
+// SIDEBAR FUNCTIONS
+// ========================================
+function openSidebar(type) {
+    const sidebar = document.getElementById('sidebar');
+    const title = document.getElementById('sidebar-title');
+    
+    title.textContent = type === 'cart' ? 'Cart' : 'Favorites';
+    sidebar.classList.add('active');
+    
+    if (type === 'cart') {
+        renderCart();
+    } else {
+        renderWishlist();
     }
+}
 
-    function updateWishlistCount() {
-        const wishlistCount = document.getElementById('wishlist-count');
-        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-        
-        if (wishlist.length > 0) {
-            wishlistCount.textContent = wishlist.length;
-            wishlistCount.style.display = 'flex';
-        } else {
-            wishlistCount.style.display = 'none';
-        }
+function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('active');
+}
+
+function renderCart() {
+    const content = document.getElementById('sidebar-content');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    if (cart.length === 0) {
+        content.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">Your cart is currently empty</p>';
+        return;
     }
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+    
+    content.innerHTML = `
+        ${cart.map(item => {
+            const quantity = item.quantity || 1;
+            const sizeText = item.size ? ` (${item.size})` : '';
+            return `
+                <div style="display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--glass-border);">
+                    <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                    <div style="flex: 1;">
+                        <div style="font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">${item.name}${sizeText}</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">$${item.price.toFixed(2)} / pc</div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                            <button onclick="updateQuantity(${item.id}, '${item.size || ''}', -1); event.stopPropagation();" 
+                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                                −
+                            </button>
+                            <span style="min-width: 30px; text-align: center; color: var(--text-primary); font-weight: 600;">${quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, '${item.size || ''}', 1); event.stopPropagation();" 
+                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${item.id}, '${item.size || ''}'); event.stopPropagation();" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem; align-self: flex-start;">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+            `;
+        }).join('')}
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); text-align: center;">
+            <div style="font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">$${total.toFixed(2)}</div>
+            <button onclick="goToCheckout()" style="width: 100%; padding: 1rem; background: #ffffff; color: #000000; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: var(--transition);">
+                Checkout <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+    `;
+}
 
-    function showNotification(productName, message) {
+function renderWishlist() {
+    const content = document.getElementById('sidebar-content');
+    let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    
+    if (wishlist.length === 0) {
+        content.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">No favorite products yet</p>';
+        return;
+    }
+    
+    content.innerHTML = wishlist.map(item => `
+        <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-details">
+                <div class="cart-item-title">${item.name}</div>
+                <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+                <button onclick="moveToCart(${item.id})" class="btn" style="padding: 0.5rem; font-size: 0.8rem; background: var(--text-primary); color: var(--primary-dark);">
+                    <i class="ri-shopping-cart-line"></i>
+                </button>
+                <button onclick="removeFromWishlist(${item.id})" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1rem;">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function goToCheckout() {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    const isOnlyEbook = cart.length === 1 && cart[0].id === 2;
+    window.location.href = isOnlyEbook ? 'checkout2.html' : 'checkout.html';
+}
+
+// ========================================
+// NOTIFICATIONS
+// ========================================
+function showNotification(productName, message) {
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed;
@@ -5000,7 +5051,7 @@ showNotification(product.name, 'added to wishlist!');
     `;
     
     notification.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
             <div style="width: 40px; height: 40px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                 <i class="ri-check-line" style="font-size: 1.5rem;"></i>
             </div>
@@ -5013,7 +5064,6 @@ showNotification(product.name, 'added to wishlist!');
     
     document.body.appendChild(notification);
     
-    // Animáció megjelenéskor
     setTimeout(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateX(0)';
@@ -5022,374 +5072,191 @@ showNotification(product.name, 'added to wishlist!');
     setTimeout(() => {
         notification.style.opacity = '0';
         notification.style.transform = 'translateX(100px)';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 300);
+        setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
-    // Size selection handlers
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('size-option')) {
-            const card = e.target.closest('.product-card');
-            if (card) {
-                // Ha színgomb, csak a színgombokat cleanolja
-                if (e.target.classList.contains('color-option')) {
-                    card.querySelectorAll('.color-option').forEach(btn => {
-                        btn.classList.remove('selected');
-                    });
-                } else {
-                    // Ha méretgomb, csak a méretgombokat cleanolja (nem a színeket)
-                    card.querySelectorAll('.size-option:not(.color-option)').forEach(btn => {
-                        btn.classList.remove('selected');
-                    });
-                }
-                // Add selected class to clicked option
-                e.target.classList.add('selected');
-            }
-        }
+// ========================================
+// OPTIMIZED EFFECTS
+// ========================================
+function initializeGlitchEffects() {
+    const glitchCanvas = document.querySelector('.glitch-lines');
+    if (!glitchCanvas) return;
+    
+    const ctx = glitchCanvas.getContext('2d', { 
+        alpha: true,
+        desynchronized: true 
     });
 
-    // Sidebar functions
-    function openSidebar(type) {
-        const sidebar = document.getElementById('sidebar');
-        const title = document.getElementById('sidebar-title');
-        
-        title.textContent = type === 'cart' ? 'Cart' : 'Wishlist';
-        sidebar.classList.add('active');
-        
-        if (type === 'cart') {
-            renderCart();
-        } else {
-            renderWishlist();
-        }
+    let isVisible = false;
+    let animationFrame = null;
+
+    function resizeCanvas() {
+        glitchCanvas.width = window.innerWidth;
+        glitchCanvas.height = window.innerHeight;
     }
 
-    function closeSidebar() {
-        document.getElementById('sidebar').classList.remove('active');
-    }
-
-    function renderCart() {
-    const content = document.getElementById('sidebar-content');
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    resizeCanvas();
     
-    if (cart.length === 0) {
-content.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">Your cart is currently empty</p>';        return;
-    }
-    
-    const total = cart.reduce((sum, item) => {
-        const price = typeof item.price === 'string' ? 
-            parseInt(item.price.replace(/\D/g, '')) : item.price;
-        const quantity = item.quantity || 1;
-        return sum + (price * quantity);
-    }, 0);
-    
-    content.innerHTML = `
-        ${cart.map(item => {
-            const price = typeof item.price === 'string' ? item.price : `${item.price} $`;
-            const itemPrice = typeof item.price === 'string' ? 
-                parseInt(item.price.replace(/\D/g, '')) : item.price;
-            const quantity = item.quantity || 1;
-            const sizeText = item.size ? ` (${item.size})` : '';
-            return `
-                <div style="display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--glass-border);">
-                    <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
-                    <div style="flex: 1;">
-                        <div style="font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">${item.name}${sizeText}</div>
-                        <div style="font-size: 0.9rem; color: var(--text-secondary);">${itemPrice.toLocaleString('hu-HU')} $ / db</div>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
-                            <button onclick="updateQuantity(${item.id}, '${item.size || ''}', -1); event.stopPropagation();" 
-                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
-                                −
-                            </button>
-                            <span style="min-width: 30px; text-align: center; color: var(--text-primary); font-weight: 600;">${quantity}</span>
-                            <button onclick="updateQuantity(${item.id}, '${item.size || ''}', 1); event.stopPropagation();" 
-                                    style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;">
-                                +
-                            </button>
-                        </div>
-                    </div>
-                    <button onclick="removeFromCart(${item.id}, '${item.size || ''}'); event.stopPropagation();" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem; align-self: flex-start;">
-                        <i class="ri-close-line"></i>
-                    </button>
-                </div>
-            `;
-        }).join('')}
-        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); text-align: center;">
-            <div style="font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem;">${total.toLocaleString()} $</div>
-            <button onclick="goToCheckout()" style="width: 100%; padding: 1rem; background: #ffffff; color: #000000; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: var(--transition);">
-Checkout <i class="ri-arrow-right-line"></i>
-            </button>
-        </div>
-    `;
-}
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resizeCanvas, 250);
+    });
 
-function updateQuantity(productId, size = '', change) {
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const item = cart.find(item => item.id === productId && (item.size || '') === size);
-    
-    if (item) {
-        const newQuantity = (item.quantity || 1) + change;
+    function drawGlitchLines() {
+        if (!isVisible) return;
         
-        if (newQuantity <= 0) {
-            // Ha 0 vagy kevesebb lesz, töröljük a terméket
-            cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
-        } else {
-            item.quantity = newQuantity;
-        }
+        ctx.clearRect(0, 0, glitchCanvas.width, glitchCanvas.height);
         
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        renderCart();
-    }
-}
+        if (Math.random() > 0.05) return;
+        
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 1;
 
-    function renderWishlist() {
-        const content = document.getElementById('sidebar-content');
-        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-        
-        if (wishlist.length === 0) {
-content.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 2rem;">No favorite products yet</p>';            return;
-        }
-        
-        content.innerHTML = wishlist.map(item => {
-            const price = typeof item.price === 'string' ? item.price : `${item.price} $`;
-            return `
-                <div class="cart-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="cart-item-details">
-                        <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">${price}</div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <button onclick="moveToCart(${item.id})" class="btn" style="padding: 0.5rem; font-size: 0.8rem; background: var(--text-primary); color: var(--primary-dark);">
-                            <i class="ri-shopping-cart-line"></i>
-                        </button>
-                        <button onclick="removeFromWishlist(${item.id})" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1rem;">
-                            <i class="ri-close-line"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
+        const lineCount = Math.floor(Math.random() * 2) + 1;
 
-    function removeFromCart(productId, size = '') {
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    cart = cart.filter(item => !(item.id === productId && (item.size || '') === size));
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    renderCart();
-    // NE hívjuk meg a closeSidebar()-t!
-}
+        for (let i = 0; i < lineCount; i++) {
+            const y = Math.random() * glitchCanvas.height;
+            const width = Math.random() * (glitchCanvas.width * 0.2);
+            const x = Math.random() * (glitchCanvas.width - width);
 
-    function removeFromWishlist(productId) {
-        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-        wishlist = wishlist.filter(item => item.id !== productId);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        updateWishlistCount();
-        renderWishlist();
-    }
-
-    function moveToCart(productId) {
-        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-        const product = wishlist.find(item => item.id === productId);
-        
-        if (product) {
-            // For moving from wishlist to cart, we need to prompt for size
-            const size = prompt('Select size (S, M, L, XL):');
-            if (size && ['S', 'M', 'L', 'XL'].includes(size.toUpperCase())) {
-                addToCart({...product, size: size.toUpperCase()});
-                removeFromWishlist(productId);
-            }
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + width, y);
+            ctx.stroke();
         }
     }
 
-    function goToCheckout() {
-        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        
-        if (cart.length === 0) {
-            alert('Your cart is empty!');
-            return;
-        }
-        
-        const isOnlyEbook = cart.length === 1 && cart[0].id === 2;
-        
-        if (isOnlyEbook) {
-            window.location.href = 'checkout2.html';
-        } else {
-            window.location.href = 'checkout.html';
-        }
-    }
-
-    // Mobile menu functions
-    function openMobileMenu() {
-        document.getElementById('mobile-menu').classList.add('active');
-    }
-
-    function closeMobileMenu() {
-        document.getElementById('mobile-menu').classList.remove('active');
-    }
-
-    // Event listeners
-    function attachEventListeners() {
-        // ESC key support for modals
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                if (document.getElementById('product-modal').classList.contains('active')) {
-                    closeProductModal();
-                }
-                if (document.getElementById('sidebar').classList.contains('active')) {
-                    closeSidebar();
-                }
-                if (document.getElementById('mobile-menu').classList.contains('active')) {
-                    closeMobileMenu();
-                }
-            }
-        });
-
-        // Sidebar triggers
-        document.getElementById('cart-icon').addEventListener('click', () => openSidebar('cart'));
-        document.getElementById('wishlist-icon').addEventListener('click', () => openSidebar('wishlist'));
-        document.getElementById('menu-icon').addEventListener('click', openMobileMenu);
-
-        // Close modals when clicking outside
-        document.addEventListener('click', function(e) {
-            const sidebar = document.getElementById('sidebar');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const productModal = document.getElementById('product-modal');
+    const observer = new IntersectionObserver(
+        (entries) => {
+            isVisible = entries[0].isIntersecting;
             
-            // Close sidebar
-            if (!sidebar.contains(e.target) && 
-                e.target.id !== 'cart-icon' && 
-                e.target.id !== 'wishlist-icon' && 
-                !e.target.closest('#cart-icon') &&
-                !e.target.closest('#wishlist-icon') &&
-                sidebar.classList.contains('active')) {
-                closeSidebar();
+            if (isVisible && !animationFrame) {
+                const animate = () => {
+                    if (!isVisible) {
+                        animationFrame = null;
+                        return;
+                    }
+                    drawGlitchLines();
+                    animationFrame = setTimeout(() => {
+                        requestAnimationFrame(animate);
+                    }, 2000);
+                };
+                animate();
             }
+        },
+        { threshold: 0.1 }
+    );
 
-            // Close mobile menu
-            if (!mobileMenu.contains(e.target) && 
-                e.target.id !== 'menu-icon' && 
-                !e.target.closest('#menu-icon') &&
-                mobileMenu.classList.contains('active')) {
-                closeMobileMenu();
-            }
+    observer.observe(glitchCanvas);
+}
 
-            // Close product modal
-            if (productModal.classList.contains('active') && 
-                e.target === productModal) {
-                closeProductModal();
-            }
+function initializeWatermarkCanvases() {
+    const watermarkCanvases = document.querySelectorAll('.background-watermark');
+    
+    watermarkCanvases.forEach(canvas => {
+        const watermarkCtx = canvas.getContext('2d', { 
+            alpha: true,
+            desynchronized: true 
         });
+        
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
 
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        let particles = [];
+        let isVisible = false;
+        let animationFrame = null;
+
+        for (let i = 0; i < 30; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                radius: Math.random() * 1.5 + 0.5
             });
-        });
-    }
-
-    // Glitch Lines Canvas - slower and more realistic
-    function initializeGlitchEffects() {
-        const glitchCanvas = document.querySelector('.glitch-lines');
-        const ctx = glitchCanvas.getContext('2d');
-
-        function resizeCanvas() {
-            glitchCanvas.width = window.innerWidth;
-            glitchCanvas.height = window.innerHeight;
         }
 
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        function drawGlitchLines() {
-            ctx.clearRect(0, 0, glitchCanvas.width, glitchCanvas.height);
-            
-            // Random chance to show glitch (10% chance)
-            if (Math.random() > 0.1) return;
-            
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
-            ctx.lineWidth = 1;
-
-            const lineCount = Math.floor(Math.random() * 3) + 1;
-
-            for (let i = 0; i < lineCount; i++) {
-                const y = Math.random() * glitchCanvas.height;
-                const width = Math.random() * (glitchCanvas.width * 0.3);
-                const x = Math.random() * (glitchCanvas.width - width);
-
-                ctx.beginPath();
-                ctx.moveTo(x, y);
-                ctx.lineTo(x + width, y);
-                ctx.stroke();
+        function animateWatermark() {
+            if (!isVisible) {
+                animationFrame = null;
+                return;
             }
+
+            watermarkCtx.clearRect(0, 0, canvas.width, canvas.height);
+            watermarkCtx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+
+            particles.forEach(p => {
+                watermarkCtx.beginPath();
+                watermarkCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                watermarkCtx.fill();
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+            });
+
+            animationFrame = requestAnimationFrame(animateWatermark);
         }
 
-        // Slower glitch interval (every 2 seconds instead of 100ms)
-        setInterval(drawGlitchLines, 2000);
-    }
+        const observer = new IntersectionObserver(
+            (entries) => {
+                isVisible = entries[0].isIntersecting;
+                if (isVisible && !animationFrame) {
+                    animateWatermark();
+                }
+            },
+            { threshold: 0.1 }
+        );
 
-    // Watermark Canvas Animation
-    function initializeWatermarkCanvases() {
-        const watermarkCanvases = document.querySelectorAll('.background-watermark');
+        observer.observe(canvas);
+    });
+}
+
+function initParallax() {
+    const aboutImages = document.querySelectorAll('.merch-about__image, .merch-about__bottom-image');
+    if (aboutImages.length === 0) return;
+    
+    let ticking = false;
+
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
         
-        watermarkCanvases.forEach(canvas => {
-            const watermarkCtx = canvas.getContext('2d');
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-
-            let particles = [];
-
-            for (let i = 0; i < 50; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    radius: Math.random() * 2 + 1
-                });
-            }
-
-            function animateWatermark() {
-                watermarkCtx.clearRect(0, 0, canvas.width, canvas.height);
-                watermarkCtx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-
-                particles.forEach(p => {
-                    watermarkCtx.beginPath();
-                    watermarkCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    watermarkCtx.fill();
-
-                    p.x += p.vx;
-                    p.y += p.vy;
-
-                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-                });
-
-                requestAnimationFrame(animateWatermark);
-            }
-
-            animateWatermark();
+        aboutImages.forEach((img, index) => {
+            const speed = index % 2 === 0 ? 0.2 : -0.2;
+            const yPos = scrolled * speed;
+            img.style.transform = `translateY(${yPos}px)`;
         });
+
+        ticking = false;
     }
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        const isMobile = window.innerWidth <= 768;
+
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, 16);
+    }, { passive: true });
+}
+
+function initOptimizedHeaderScroll() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    
+    let ticking = false;
+    const isMobile = window.innerWidth <= 768;
+
+    function updateHeader() {
+        const scrollY = window.pageYOffset;
         
-        if (window.scrollY > 50) {
+        if (scrollY > 50) {
             header.style.background = 'rgba(0, 0, 0, 0.9)';
             if (!isMobile) {
                 header.style.padding = '1.5rem 3rem';
@@ -5400,184 +5267,74 @@ content.innerHTML = '<p style="color: var(--text-secondary); text-align: center;
                 header.style.padding = '2rem 3rem';
             }
         }
-    });
-
-    // Cookie Banner Management
-    function initializeCookieBanner() {
-        const cookieChoice = localStorage.getItem('cookieChoice');
         
-        if (!cookieChoice) {
-            setTimeout(() => {
-                const banner = document.getElementById('cookie-banner');
-                banner.classList.add('show');
-            }, 2000);
-        } else {
-            applyCookieChoice(cookieChoice);
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
         }
-    }
+    }, { passive: true });
+}
 
-    function acceptCookies() {
-        localStorage.setItem('cookieChoice', 'accepted');
-        applyCookieChoice('accepted');
-        hideCookieBanner();
-        console.log('🍪 Sütik elfogadva - Analytics engedélyezve');
-    }
-
-    function declineCookies() {
-        localStorage.setItem('cookieChoice', 'declined');
-        applyCookieChoice('declined');
-        hideCookieBanner();
-        console.log('🍪 Sütik elutasítva - Csak alapvető funkciók');
-    }
-
-    function acceptNecessaryCookies() {
-        localStorage.setItem('cookieChoice', 'necessary');
-        applyCookieChoice('necessary');
-        hideCookieBanner();
-        console.log('🍪 Csak szükséges sütik elfogadva');
-    }
-
-    function applyCookieChoice(choice) {
-        switch(choice) {
-            case 'accepted':
-                enableAnalytics();
-                enableMarketing();
-                break;
-            case 'declined':
-                disableAnalytics();
-                disableMarketing();
-                break;
-            case 'necessary':
-                disableAnalytics();
-                disableMarketing();
-                break;
-        }
-    }
-
-    function enableAnalytics() {
-        console.log('Analytics enabled');
-    }
-
-    function disableAnalytics() {
-        console.log('Analytics disabled');
-    }
-
-    function enableMarketing() {
-        console.log('Marketing cookies enabled');
-    }
-
-    function disableMarketing() {
-        console.log('Marketing cookies disabled');
-    }
-
-    function hideCookieBanner() {
-        const banner = document.getElementById('cookie-banner');
-        banner.classList.add('hide');
-        
-        setTimeout(() => {
-            banner.style.display = 'none';
-        }, 500);
-    }
-
-    function resetCookieChoice() {
-        localStorage.removeItem('cookieChoice');
-        location.reload();
-    }
-
-    // Typing Effect
-    function initializeTypingEffect() {
-        const typingElement = document.getElementById('typing-text');
-        const textToType = `This is not just clothing.
+// ========================================
+// TYPING & ROTATING EFFECTS
+// ========================================
+function initializeTypingEffect() {
+    const typingElement = document.getElementById('typing-text');
+    if (!typingElement) return;
+    
+    const textToType = `This is not just clothing.
 This is a statement.
-A declaration. A heartbeat for the future. <br>
+A declaration. A heartbeat for the future.
 Welcome to the new paradigm
 Welcome to Senkisem`;
-let charIndex = 0;function typeText() {
-            if (charIndex < textToType.length) {
-                typingElement.innerHTML = textToType.substring(0, charIndex + 1) + '<span class="typing-cursor">█</span>';
-                charIndex++;
-                setTimeout(typeText, 50);
-            } else {
-                typingElement.innerHTML = textToType + '<span class="typing-cursor">█</span>';
-            }
+
+    let charIndex = 0;
+
+    function typeText() {
+        if (charIndex < textToType.length) {
+            typingElement.innerHTML = textToType.substring(0, charIndex + 1) + '<span class="typing-cursor">█</span>';
+            charIndex++;
+            setTimeout(typeText, 50);
+        } else {
+            typingElement.innerHTML = textToType + '<span class="typing-cursor">█</span>';
         }
-
-        // Start typing when section is visible
-        const typingObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && charIndex === 0) {
-                    typeText();
-                }
-            });
-        });
-
-        typingObserver.observe(typingElement);
     }
 
-    // Parallax scroll effect for about section
-    function initParallax() {
-        const aboutImages = document.querySelectorAll('.merch-about__image, .merch-about__bottom-image');
-        
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            aboutImages.forEach((img, index) => {
-                const speed = index % 2 === 0 ? 0.3 : -0.3;
-                const yPos = scrolled * speed;
-                img.style.transform = `translateY(${yPos}px)`;
-            });
+    const typingObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && charIndex === 0) {
+                typeText();
+            }
         });
-    }
+    });
 
-    initParallax();
-
-    // Global function exports for onclick handlers
-    window.updateQuantity = updateQuantity;
-    window.openProductModal = openProductModal;
-    window.closeProductModal = closeProductModal;
-    window.selectModalSize = selectModalSize;
-    window.addToCartFromCard = addToCartFromCard;
-    window.addToCart = addToCart;
-    window.addToWishlist = addToWishlist;
-    window.removeFromCart = removeFromCart;
-    window.removeFromWishlist = removeFromWishlist;
-    window.moveToCart = moveToCart;
-    window.goToCheckout = goToCheckout;
-    window.openSidebar = openSidebar;
-    window.closeSidebar = closeSidebar;
-    window.openMobileMenu = openMobileMenu;
-    window.closeMobileMenu = closeMobileMenu;
-    window.acceptCookies = acceptCookies;
-    window.declineCookies = declineCookies;
-    window.acceptNecessaryCookies = acceptNecessaryCookies;
-window.resetCookieChoice = resetCookieChoice;
-window.revealProducts = revealProducts;
-
+    typingObserver.observe(typingElement);
+}
 
 function initRotatingWords() {
-const words = ['Message.', 'Movement.', 'Reminder.', 'Identity.', 'Future.'];
+    const words = ['Message.', 'Movement.', 'Reminder.', 'Identity.', 'Future.'];
     let currentIndex = 0;
     const wordElement = document.getElementById('rotating-word');
     
     if (!wordElement) return;
     
-    // FONTOS: Alapértelmezetten üres legyen
     wordElement.textContent = '';
     
-    let isTyping = false;
-    
-    
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
     
     async function typeWord(word) {
-        isTyping = true;
         wordElement.textContent = '';
         
-        // Type out the word
         for (let i = 0; i < word.length; i++) {
-            await sleep(80 + Math.random() * 40); // Realistic typing speed with variance
+            await sleep(80 + Math.random() * 40);
             wordElement.textContent += word[i];
             
-            // Subtle glitch on random characters
             if (Math.random() > 0.85) {
                 wordElement.style.textShadow = '2px 0 #ff0000, -2px 0 #00ffff';
                 await sleep(50);
@@ -5585,39 +5342,52 @@ const words = ['Message.', 'Movement.', 'Reminder.', 'Identity.', 'Future.'];
             }
         }
         
-        // Wait before deleting
         await sleep(2000);
         
-        // Delete the word
         for (let i = word.length; i >= 0; i--) {
             await sleep(50);
             wordElement.textContent = word.substring(0, i);
         }
-        
-        isTyping = false;
-    }
-    
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
     }
     
     async function rotateWords() {
         while (true) {
             await typeWord(words[currentIndex]);
             currentIndex = (currentIndex + 1) % words.length;
-            await sleep(300); // Short pause between words
+            await sleep(300);
         }
     }
     
-    // Start the animation
     rotateWords();
 }
-// ============================================
-// LIMITÁLT KÉSZLET POP-UP
-// ============================================
 
+// ========================================
+// PRODUCTS REVEAL
+// ========================================
+function revealProducts() {
+    if (!productsRevealed) {
+        const wrapper = document.getElementById('products-section-wrapper');
+        wrapper.classList.add('revealed');
+        productsRevealed = true;
+        
+        const glitchContainer = document.querySelector('.glitch-effects-container');
+        if (glitchContainer) {
+            glitchContainer.classList.add('hidden');
+        }
+        
+        setTimeout(() => {
+            document.getElementById('accessories').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 300);
+    }
+}
+
+// ========================================
+// LIMITED POPUP
+// ========================================
 function initLimitedPopup() {
-    // Csak a floating gombot mutassuk
     document.getElementById('limited-float-btn').classList.add('show');
 }
 
@@ -5631,67 +5401,168 @@ function closeLimitedPopup() {
     document.getElementById('limited-popup').classList.remove('active');
     document.getElementById('limited-float-btn').classList.add('show');
     document.body.style.overflow = 'auto';
-    
-    // Jegyezzük fel a bezárás idejét
     localStorage.setItem('limitedPopupClosed', new Date().getTime().toString());
 }
 
 function addLimitedProduct(productId, variant) {
     let cart = [];
     
-    if (productId === 300) {
-        // E-könyv csomag
-        if (variant === 'bundle') {
-            const product = {
-                id: 300,
-                name: "Complete Digital Collection (Notes + User Manual)",
-                price: 5000,
-                image: "./assets/img/ketkonyv.png",
-                isBundle: true,
-                isLimited: true
-            };
-            cart = [product];
-            localStorage.setItem('cart', JSON.stringify(cart));
-            window.location.href = 'checkout2.html';
-        }
-    } else if (productId === 301) {
-        // Fizikai könyvek csomag
-        if (variant === 'physical') {
-            const product = {
-                id: 301,
-                name: "Complete Physical Collection (Notes + User Manual)",
-                price: 49.49,
-                image: "./assets/img/ketkonyv.png",
-                size: "A5",
-                quantity: 1,
-                isLimited: true,
-                isPhysicalBundle: true
-            };
-            cart = [product];
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Kosár megnyitása
-            closeLimitedPopup();
-            openSidebar('cart');
-        }
+    if (productId === 300 && variant === 'bundle') {
+        cart = [{
+            id: 300,
+            name: "Complete Digital Collection (Notes + User Manual)",
+            price: 19.99,
+            image: "./assets/img/ketkonyv.png",
+            isBundle: true,
+            isLimited: true
+        }];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        window.location.href = 'checkout2.html';
+    } else if (productId === 301 && variant === 'physical') {
+        cart = [{
+            id: 301,
+            name: "Complete Physical Collection (Notes + User Manual)",
+            price: 49.49,
+            image: "./assets/img/ketkonyv.png",
+            size: "A5",
+            quantity: 1,
+            isLimited: true,
+            isPhysicalBundle: true
+        }];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        closeLimitedPopup();
+        openSidebar('cart');
     }
 }
 
-// Inicializálás
-document.addEventListener('DOMContentLoaded', function() {
-    initLimitedPopup();
-});
-
-// ESC billentyű
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.getElementById('limited-popup').classList.contains('active')) {
-        closeLimitedPopup();
+// ========================================
+// COOKIE BANNER
+// ========================================
+function initializeCookieBanner() {
+    const cookieChoice = localStorage.getItem('cookieChoice');
+    
+    if (!cookieChoice) {
+        setTimeout(() => {
+            document.getElementById('cookie-banner').classList.add('show');
+        }, 2000);
     }
-});
+}
 
-// Kattintás az overlay-re
-document.querySelector('.limited-popup-overlay')?.addEventListener('click', closeLimitedPopup);
-// Global export
+function acceptCookies() {
+    localStorage.setItem('cookieChoice', 'accepted');
+    hideCookieBanner();
+}
+
+function declineCookies() {
+    localStorage.setItem('cookieChoice', 'declined');
+    hideCookieBanner();
+}
+
+function acceptNecessaryCookies() {
+    localStorage.setItem('cookieChoice', 'necessary');
+    hideCookieBanner();
+}
+
+function hideCookieBanner() {
+    const banner = document.getElementById('cookie-banner');
+    banner.classList.add('hide');
+    setTimeout(() => banner.style.display = 'none', 500);
+}
+
+// ========================================
+// EVENT LISTENERS
+// ========================================
+function attachEventListeners() {
+    // ESC key support
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeProductModal();
+            closeSidebar();
+            closeMobileMenu();
+            if (document.getElementById('limited-popup').classList.contains('active')) {
+                closeLimitedPopup();
+            }
+        }
+    });
+
+    // Sidebar triggers
+    document.getElementById('cart-icon').addEventListener('click', () => openSidebar('cart'));
+    document.getElementById('wishlist-icon').addEventListener('click', () => openSidebar('wishlist'));
+    document.getElementById('menu-icon').addEventListener('click', openMobileMenu);
+    
+    // Modal triggers
+    document.getElementById('modal-add-to-cart').addEventListener('click', function() {
+        if (!selectedProduct || !selectedSize) {
+            alert('Please select a size!');
+            return;
+        }
+        addToCart({...selectedProduct, size: selectedSize});
+        closeProductModal();
+    });
+    
+    document.getElementById('modal-add-to-wishlist').addEventListener('click', function() {
+        if (selectedProduct) addToWishlist(selectedProduct);
+    });
+    
+    // Limited popup overlay
+    document.querySelector('.limited-popup-overlay')?.addEventListener('click', closeLimitedPopup);
+    
+    // Size selection
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('size-option')) {
+            const card = e.target.closest('.product-card');
+            if (card) {
+                card.querySelectorAll('.size-option').forEach(btn => btn.classList.remove('selected'));
+                e.target.classList.add('selected');
+            }
+        }
+    });
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+}
+
+// ========================================
+// MOBILE MENU
+// ========================================
+function openMobileMenu() {
+    document.getElementById('mobile-menu').classList.add('active');
+}
+
+function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.remove('active');
+}
+
+// ========================================
+// GLOBAL EXPORTS
+// ========================================
+window.updateQuantity = updateQuantity;
+window.openProductModal = openProductModal;
+window.closeProductModal = closeProductModal;
+window.selectModalSize = selectModalSize;
+window.addToCartFromCard = addToCartFromCard;
+window.addToCart = addToCart;
+window.addToWishlist = addToWishlist;
+window.removeFromCart = removeFromCart;
+window.removeFromWishlist = removeFromWishlist;
+window.moveToCart = moveToCart;
+window.goToCheckout = goToCheckout;
+window.openSidebar = openSidebar;
+window.closeSidebar = closeSidebar;
+window.openMobileMenu = openMobileMenu;
+window.closeMobileMenu = closeMobileMenu;
+window.acceptCookies = acceptCookies;
+window.declineCookies = declineCookies;
+window.acceptNecessaryCookies = acceptNecessaryCookies;
+window.revealProducts = revealProducts;
 window.openLimitedPopup = openLimitedPopup;
 window.closeLimitedPopup = closeLimitedPopup;
 window.addLimitedProduct = addLimitedProduct;

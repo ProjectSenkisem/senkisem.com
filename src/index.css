@@ -284,3 +284,246 @@ body {
 .animate-scroll {
   animation: scrollLeft 20s linear infinite;
 }
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS CSS
+   Add ezt a meglévő CSS-edhez
+   ======================================== */
+
+/* GPU Acceleration csak ahol szükséges */
+.product-card,
+.modal-content,
+.sidebar,
+.mobile-menu {
+    will-change: auto;
+    transform: translateZ(0); /* Force GPU layer */
+    backface-visibility: hidden;
+}
+
+/* Only enable will-change during interaction */
+.product-card:hover,
+.modal-content.active,
+.sidebar.active {
+    will-change: transform;
+}
+
+/* Video optimalizáció */
+video {
+    will-change: auto !important;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Scroll performance */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reduce paint areas */
+.glitch-lines,
+.background-watermark {
+    contain: layout style paint;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Image loading optimization */
+img {
+    content-visibility: auto;
+    loading: lazy;
+}
+
+/* Lazy load offscreen content */
+.products-section-wrapper {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 5000px;
+}
+
+/* Smooth transforms */
+.hero-rotating-word,
+.animated-word,
+.product-card {
+    transform: translate3d(0, 0, 0);
+}
+
+/* Disable pointer events during scroll */
+body.scrolling * {
+    pointer-events: none !important;
+}
+
+body.scrolling {
+    pointer-events: auto !important;
+}
+
+/* Container queries for better performance */
+@supports (container-type: inline-size) {
+    .products-grid {
+        container-type: inline-size;
+    }
+}
+
+/* Reduce repaints */
+.section {
+    contain: layout style;
+}
+
+/* Optimize blurs */
+.sidebar,
+.mobile-menu,
+.modal-content {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+@media (max-width: 768px) {
+    /* Reduce blur on mobile for better performance */
+    .sidebar,
+    .mobile-menu,
+    .modal-content {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+/* Prevent layout shifts */
+.product-image {
+    aspect-ratio: 1 / 1;
+}
+
+.modal-image {
+    aspect-ratio: 1 / 1;
+}
+
+/* Optimize shadows */
+.product-card,
+.modal-content {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.product-card:hover {
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.2));
+}
+
+/* Grid optimization */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    will-change: auto;
+}
+
+/* Intersection observer loading states */
+.lazy-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.lazy-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Reduce animation complexity on mobile */
+@media (max-width: 768px) {
+    .sakura-petal,
+    .paint-splatter,
+    .led-line,
+    .svg-decoration {
+        display: none;
+    }
+    
+    .glitch-effects-container {
+        display: none;
+    }
+}
+
+/* Hardware acceleration hints */
+.animated-title,
+.hero-message-text,
+.typing {
+    transform: translateZ(0);
+    perspective: 1000px;
+}
+
+/* Optimize fixed elements */
+.header,
+.limited-float-btn {
+    position: fixed;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Contain layout shifts */
+.nav,
+.footer-content {
+    contain: layout;
+}
+
+/* Optimize product cards */
+.product-card {
+    contain: layout style paint;
+}
+
+/* Reduce complexity of gradients on mobile */
+@media (max-width: 768px) {
+    .merch-about::before,
+    .merch-about::after,
+    .section::before,
+    .section::after {
+        opacity: 0.5;
+        filter: none;
+    }
+}
+
+/* Debounce rapid updates */
+input,
+textarea,
+select {
+    ime-mode: auto;
+}
+
+/* Optimize text rendering */
+.product-title,
+.section-title,
+.modal-product-title {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Prevent unnecessary reflows */
+.size-option,
+.color-option,
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Canvas optimization */
+canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Scroll snap for smoother experience (optional) */
+@media (min-width: 1024px) {
+    .section {
+        scroll-snap-align: start;
+    }
+    
+    main {
+        scroll-snap-type: y proximity;
+    }
+}
