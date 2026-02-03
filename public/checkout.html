@@ -877,7 +877,7 @@
     async function processOrder(orderData) {
       try {
         // Create Stripe payment session
-        const response = await fetch('https://senkisem.com/create-payment-session', {
+        const response = await fetch('/create-payment-session', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
