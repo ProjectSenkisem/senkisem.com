@@ -122,7 +122,7 @@ async function getSheet(sheetId) {
       sheetCount: doc.sheetCount,
       firstSheetTitle: doc.sheetsByIndex[0]?.title
     });
-    return doc.sheetsByIndex[0];
+    return doc.sheetsByTitle['2026'];
   } catch (error) {
     log.error('Failed to load Google Sheet', error);
     throw error;
