@@ -1,292 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Senkisem - Checkout (Digital)</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #000 0%, #111 25%, #1a1a1a 50%, #0f0f0f 100%);
-      min-height: 100vh; color: #fff; padding: 20px;
-    }
-    .container {
-      max-width: 720px; margin: 0 auto;
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px; padding: 2rem; backdrop-filter: blur(20px);
-    }
-    .checkout-header { text-align:center; margin-bottom:2rem; }
-    .checkout-header h1 { font-size:2.2rem; font-weight:300; margin-bottom:0.5rem; }
-    .checkout-header p  { color:rgba(255,255,255,0.6); font-size:1rem; }
-
-    .form-section {
-      background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1);
-      border-radius:12px; padding:2rem; margin-bottom:1.5rem;
-    }
-    .section-title { font-size:1.2rem; font-weight:500; margin-bottom:1.2rem; }
-
-    .input-group { margin-bottom:1.2rem; }
-    .input-group label { display:block; margin-bottom:0.4rem; color:rgba(255,255,255,0.8); font-weight:500; font-size:0.95rem; }
-    .input-group input, .input-group select {
-      width:100%; padding:0.9rem 1rem; border:1px solid rgba(255,255,255,0.2); border-radius:8px;
-      background:rgba(255,255,255,0.05); color:#fff; font-size:1rem; transition:all 0.3s;
-    }
-    .input-group input:focus, .input-group select:focus { outline:none; border-color:#fff; background:rgba(255,255,255,0.1); }
-    .input-group input::placeholder { color:rgba(255,255,255,0.4); }
-    .input-group select option { background:#222; color:#fff; }
-    .flex { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-
-    /* cart */
-    .cart-section { margin-bottom:1.5rem; }
-    .cart-item { display:flex; align-items:center; gap:1rem; padding:0.9rem 0; border-bottom:1px solid rgba(255,255,255,0.1); }
-    .cart-item:last-child { border-bottom:none; }
-    .cart-item img { width:56px; height:56px; object-fit:cover; border-radius:8px; background:rgba(255,255,255,0.1); }
-    .cart-item-details { flex:1; }
-    .cart-item-name  { font-weight:500; margin-bottom:0.2rem; }
-    .cart-item-price { color:rgba(255,255,255,0.6); font-size:0.95rem; }
-    .cart-item-tag   { font-size:0.8rem; color:rgba(255,255,255,0.45); margin-top:0.2rem; }
-
-    /* totals */
-    .totals-row { display:flex; justify-content:space-between; padding:0.5rem 0; color:rgba(255,255,255,0.75); }
-    .totals-row.total { font-weight:700; font-size:1.15rem; color:#fff; border-top:1px solid rgba(255,255,255,0.2); margin-top:0.6rem; padding-top:0.8rem; }
-
-    /* terms */
-    .terms-acceptance {
-      margin:1.5rem 0; padding:1rem; background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.1); border-radius:8px;
-    }
-    .terms-checkbox { display:flex; align-items:flex-start; gap:0.75rem; cursor:pointer; user-select:none; margin-bottom:0.75rem; }
-    .terms-checkbox:last-child { margin-bottom:0; }
-    .terms-checkbox input[type="checkbox"] { width:20px; height:20px; cursor:pointer; flex-shrink:0; margin-top:2px; accent-color:#fff; }
-    .terms-text { color:rgba(255,255,255,0.9); font-size:0.93rem; line-height:1.5; }
-    .terms-link { color:#fff; text-decoration:underline; font-weight:600; }
-    .terms-link:hover { opacity:0.8; }
-
-    .back-btn {
-      display:inline-flex; align-items:center; gap:0.4rem; padding:0.6rem 1.2rem;
-      background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
-      border-radius:8px; color:#fff; text-decoration:none; font-size:0.9rem;
-      margin-bottom:1.5rem; transition:background 0.3s;
-    }
-    .back-btn:hover { background:rgba(255,255,255,0.15); }
-
-    .submit-btn {
-      width:100%; padding:1.1rem; background:linear-gradient(135deg,#fff,#f0f0f0); color:#000;
-      border:none; border-radius:8px; font-size:1.05rem; font-weight:600;
-      cursor:pointer; transition:all 0.3s; text-transform:uppercase; letter-spacing:0.05em;
-    }
-    .submit-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(255,255,255,0.2); }
-    .submit-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; box-shadow:none; }
-
-    @media (max-width:600px) {
-      .flex { grid-template-columns:1fr; }
-      .container { padding:1rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Senkisem (Digital)</title>
+    <link rel="stylesheet" href="./assets/css/checkout.css">
 </head>
+
 <body>
-  <div class="container">
-    <div class="checkout-header">
-      <h1>Checkout</h1>
-      <p>Your e-book will be delivered to your email after payment.</p>
+    <div class="container">
+        <form id="checkout-form">
+            <div class="row">
+                <div class="column">
+                    <h3 class="title">Billing and Delivery Information</h3>
+                    <p>The ordered product will be sent to the provided email address after payment.</p>
+
+                    <div class="input-box">
+                        <span>Full Name:</span>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-box">
+                        <span>Email Address:</span>
+                        <input type="email" name="email" placeholder="email@email.com" required>
+                    </div>
+                    <div class="input-box">
+                        <span>Address (street, number):</span>
+                        <input type="text" name="address" placeholder="Street, Number">
+                    </div>
+                    <div class="input-box">
+                        <span>City:</span>
+                        <input type="text" name="city" placeholder="City">
+                    </div>
+
+                    <div class="flex">
+                        <div class="input-box">
+                            <span>Country:</span>
+                            <input type="text" name="country" placeholder="United States">
+                        </div>
+                        <div class="input-box">
+                            <span>ZIP/Postal Code:</span>
+                            <input type="text" name="zip" placeholder="12345">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-section">
+                <h3 class="title">Cart Contents</h3>
+                <a href="index.html" class="back-btn">Back to homepage</a>
+                <div id="cart-items" class="cart-items"></div>
+
+                <h3 class="title">Shipping Fee</h3>
+                <div id="shipping-fee" class="shipping-fee"></div>
+                <h3 class="title">Total</h3>
+                <div id="total-price" class="total-price">$0</div>
+            </div>
+
+            <div class="terms-acceptance">
+              <label class="terms-checkbox">
+                <input type="checkbox" id="terms-agree" name="terms-agree" required>
+                <span class="checkmark"></span>
+                <span class="terms-text">
+                  I have read and accept the 
+                  <a href="assets/ÁSZF.pdf" target="_blank" class="terms-link">Terms and Conditions</a>
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn">Place Order and Pay</button>
+        </form>
     </div>
 
-    <a href="index.html" class="back-btn">← Back to Store</a>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    const shippingFeeElement = document.getElementById('shipping-fee');
+    const checkoutForm = document.getElementById('checkout-form');
 
-    <form id="checkout-form">
-
-      <!-- BILLING -->
-      <div class="form-section">
-        <h3 class="section-title">📋 Your Details</h3>
-        <div class="input-group">
-          <label for="fullName">Full Name *</label>
-          <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
-        </div>
-        <div class="input-group">
-          <label for="email">Email Address * <span style="color:rgba(255,255,255,0.5);font-weight:400;">(e-book sent here)</span></label>
-          <input type="email" id="email" name="email" required placeholder="you@example.com">
-        </div>
-        <div class="input-group">
-          <label for="phone">Phone Number</label>
-          <input type="text" id="phone" name="phone" placeholder="+1 555 123 4567">
-        </div>
-        <div class="input-group">
-          <label for="address">Street Address</label>
-          <input type="text" id="address" name="address" placeholder="123 Main St">
-        </div>
-        <div class="input-group">
-          <label for="city">City</label>
-          <input type="text" id="city" name="city" placeholder="New York">
-        </div>
-        <div class="flex">
-          <div class="input-group">
-            <label for="country">Country</label>
-            <select id="country" name="country">
-              <option value="">Select country</option>
-              <option value="United States">United States</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Canada">Canada</option>
-              <option value="Australia">Australia</option>
-              <option value="Germany">Germany</option>
-              <option value="France">France</option>
-              <option value="Hungary">Hungary</option>
-              <option value="Netherlands">Netherlands</option>
-              <option value="Spain">Spain</option>
-              <option value="Italy">Italy</option>
-              <option value="Poland">Poland</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label for="zip">ZIP / Postal Code</label>
-            <input type="text" id="zip" name="zip" placeholder="10001">
-          </div>
-        </div>
-      </div>
-
-      <!-- CART -->
-      <div class="form-section cart-section">
-        <h3 class="section-title">🛒 Your Order</h3>
-        <div id="cart-items"></div>
-
-        <div class="totals-row"><span>Subtotal:</span><span id="subtotal">$0.00</span></div>
-        <div class="totals-row"><span>Shipping:</span><span id="shipping-cost">$0.00 (Digital)</span></div>
-        <div class="totals-row total"><span>Total:</span><span id="total-price">$0.00</span></div>
-      </div>
-
-      <!-- TERMS + CONSENT -->
-      <div class="terms-acceptance">
-        <label class="terms-checkbox">
-          <input type="checkbox" id="terms-agree" name="terms-agree">
-          <span class="terms-text">I have read and accept the <a href="assets/ÁSZF.pdf" target="_blank" class="terms-link">Terms and Conditions</a></span>
-        </label>
-        <label class="terms-checkbox">
-          <input type="checkbox" id="email-consent" name="email-consent">
-          <span class="terms-text">I agree my data will be handled as described in the <a href="assets/adatvedelmi-tájékoztató.pdf" target="_blank" class="terms-link">Privacy Policy</a></span>
-        </label>
-      </div>
-
-      <button type="submit" class="submit-btn">Complete Purchase</button>
-    </form>
-  </div>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // ============================================================
-    // LOAD CART
-    // ============================================================
     let cart = [];
-    try { cart = JSON.parse(localStorage.getItem('cart') || '[]'); } catch(e) { cart=[]; }
+    let totalPrice = 0;
+    const shippingCost = 0; // $0 for e-books
 
-    const cartEl    = document.getElementById('cart-items');
-    const subtotalEl  = document.getElementById('subtotal');
-    const shippingEl  = document.getElementById('shipping-cost');
-    const totalEl     = document.getElementById('total-price');
-    const submitBtn   = document.querySelector('.submit-btn');
-
-    function px(v) { return typeof v==='string' ? parseFloat(v.replace(/[^0-9.]/g,'')) : v; }
-
-    if (!cart.length) {
-      cartEl.innerHTML = '<p style="color:rgba(255,255,255,0.5);">Your cart is empty. <a href="index.html" style="color:#fff;">Back to store</a></p>';
-      if (submitBtn) submitBtn.disabled = true;
-      return;
+    try {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            cart = JSON.parse(storedCart);
+        }
+    } catch (e) {
+        console.error('Error loading cart:', e);
+        cart = []; 
     }
 
-    // ============================================================
-    // RENDER CART + TOTALS
-    // ============================================================
-    let subtotal = 0;
-    cart.forEach(item => {
-      const price = px(item.price);
-      const qty   = item.quantity || 1;
-      const total = price * qty;
-      subtotal   += total;
-
-      const div = document.createElement('div');
-      div.classList.add('cart-item');
-      div.innerHTML = `
-        <img src="${item.image}" alt="${item.name}">
-        <div class="cart-item-details">
-          <div class="cart-item-name">${item.name}${qty>1 ? ` (×${qty})` : ''}</div>
-          <div class="cart-item-price">$${total.toFixed(2)}</div>
-          <div class="cart-item-tag">Digital – delivered via email</div>
-        </div>`;
-      cartEl.appendChild(div);
-    });
-
-    subtotalEl.textContent  = `$${subtotal.toFixed(2)}`;
-    shippingEl.textContent  = '$0.00 (Digital)';
-    totalEl.textContent     = `$${subtotal.toFixed(2)}`;
-
-    // ============================================================
-    // SUBMIT
-    // ============================================================
-    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // --- validate ---
-      const fd       = new FormData(e.target);
-      const fullName = (fd.get('fullName') || '').trim();
-      const email    = (fd.get('email')    || '').trim();
-
-      if (!fullName || !email) { alert('Please enter your name and email.'); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email.'); return; }
-      if (!document.getElementById('terms-agree').checked)   { alert('Please accept the Terms and Conditions.'); return; }
-      if (!document.getElementById('email-consent').checked) { alert('Please accept the Privacy Policy.'); return; }
-
-      // --- disable btn ---
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Processing…'; }
-
-      // --- build payload: ALL fields server_en.js expects ---
-      const customerData = {
-        fullName:        fullName,
-        email:           email,
-        phone:           fd.get('phone')    || '',   // optional, always sent
-        address:         fd.get('address')  || '',
-        city:            fd.get('city')     || '',
-        country:         fd.get('country')  || '',
-        zip:             fd.get('zip')      || '',
-        // No shipping for digital — send empty strings so server doesn't break
-        deliveryAddress: 'Email Delivery',
-        deliveryCity:    '',
-        deliveryZip:     '',
-        deliveryCountry: '',
-        deliveryNote:    ''
-      };
-
-      const cartForPayment = cart.map(item => ({
-        id:       item.id,
-        name:     item.name,
-        price:    px(item.price),
-        quantity: item.quantity || 1
-        // no size for ebooks
-      }));
-
-      // --- fetch ---
-      try {
-        const res  = await fetch('/create-payment-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ cart: cartForPayment, customerData })
-        });
-        const data = await res.json();
-
-        if (res.ok && data.payment_url) {
-          localStorage.removeItem('cart');
-          window.location.href = data.payment_url;
-        } else {
-          throw new Error(data.error || 'Unknown error');
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Your cart is empty. <a href='index.html'>Back to homepage</a></p>";
+        shippingFeeElement.textContent = '$0 (Digital product)';
+        totalPriceElement.textContent = "$0";
+        if (checkoutForm.querySelector('.btn')) {
+            checkoutForm.querySelector('.btn').disabled = true; 
         }
-      } catch (err) {
-        console.error(err);
-        alert('An error occurred. Please try again.');
-      } finally {
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Complete Purchase'; }
-      }
+        return;
+    }
+
+    cart.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('item'); 
+        
+        itemElement.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="item-details">
+                <p class="item-name"><strong>${item.name}</strong></p>
+                <p class="item-price">${typeof item.price === 'string' ? item.price : '$' + item.price}</p>
+            </div>
+        `;
+        cartItemsContainer.appendChild(itemElement);
+
+        // Price calculation fix
+        const numericPrice = typeof item.price === 'string' ? 
+            parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
+        totalPrice += numericPrice;
     });
-  });
-  </script>
+
+    shippingFeeElement.textContent = `$${shippingCost.toFixed(2)} (Digital product)`;
+    totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+
+    checkoutForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Check terms acceptance
+        const termsCheckbox = document.getElementById('terms-agree');
+        if (!termsCheckbox.checked) {
+          alert('Please accept the Terms and Conditions to continue!');
+          termsCheckbox.focus();
+          return;
+        }
+
+        // ✅ CREATE FormData
+        const formData = new FormData(checkoutForm);
+        
+        const customerData = {
+            fullName: formData.get('fullName'),
+            email: formData.get('email'),
+            phone: '',
+            address: formData.get('address') || '-',
+            city: formData.get('city') || '-',
+            country: formData.get('country') || 'United States',
+            zip: formData.get('zip') || '-',
+            shippingMethod: 'digital', // ✅ Digital indicator
+            deliveryAddress: '',
+            deliveryCity: '',
+            deliveryZip: '',
+            deliveryCountry: '',
+            deliveryNote: ''
+        };
+
+        if (!customerData.fullName || !customerData.email) {
+            alert('Please fill in your full name and email address!');
+            return;
+        }
+
+        const cartForPayment = cart.map(item => ({
+            id: item.id, 
+            name: item.name,
+            price: typeof item.price === 'string' ? 
+                parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price,
+            image: item.image,
+            quantity: item.quantity || 1 // ✅ Quantity support
+        }));
+
+        try {
+            const response = await fetch('/create-payment-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    cart: cartForPayment,
+                    customerData: customerData
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.payment_url) {
+                localStorage.removeItem('cart');
+                window.location.href = data.payment_url;
+            } else {
+                console.error('Error:', data.error);
+                alert(`An error occurred: ${data.error || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+            alert('A network error occurred. Please try again!');
+        }
+    });
+});
+</script>
+
 </body>
 </html>

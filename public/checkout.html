@@ -389,12 +389,8 @@
     </div>
 
     <div class="back-links">
-      <a href="index.html" class="back-btn">
-        ← Back to homepage
-      </a>
-      <a href="index.html#clothing" class="back-btn">
-        🛒 Modify cart
-      </a>
+      <a href="index.html" class="back-btn">← Back to homepage</a>
+      <a href="index.html#clothing" class="back-btn">🛒 Modify cart</a>
     </div>
 
     <form id="checkout-form">
@@ -402,9 +398,7 @@
         <div class="left-column">
           <!-- Billing Information -->
           <div class="form-section">
-            <h3 class="section-title">
-              📋 Billing Information
-            </h3>
+            <h3 class="section-title">📋 Billing Information</h3>
             
             <div class="input-group">
               <label for="fullName">Full Name *</label>
@@ -417,8 +411,8 @@
             </div>
 
             <div class="input-group">
-              <label for="phone">Phone Number *</label>
-              <input type="text" id="phone" name="phone" required placeholder="+1 234 567 8900 or any format">
+              <label for="phone">Phone Number</label>
+              <input type="text" id="phone" name="phone" placeholder="+1 234 567 8900 or any format">
             </div>
             
             <div class="flex">
@@ -464,14 +458,10 @@
 
           <!-- Shipping Information -->
           <div class="form-section">
-            <h3 class="section-title">
-              🚚 Shipping Information
-            </h3>
+            <h3 class="section-title">🚚 Shipping Information</h3>
             
             <div class="shipping-info">
-              <div class="shipping-info-title">
-                🏠 Home Delivery - $15.00
-              </div>
+              <div class="shipping-info-title">🏠 Home Delivery - $15.00</div>
               <div class="shipping-info-desc">
                 All orders are shipped to your address. Delivery typically takes 5-10 business days depending on your location. You'll receive a tracking number once your order ships.
               </div>
@@ -543,19 +533,7 @@
               </label>
             </div>
 
-            <div class="terms-acceptance">
-              <label class="terms-checkbox">
-                <input type="checkbox" id="email-consent" name="email-consent" required>
-                <span class="checkmark"></span>
-                <span class="terms-text">
-                  I agree to receive order confirmations and updates via email
-                </span>
-              </label>
-            </div>
-
-            <button type="submit" class="submit-btn">
-              Place Order
-            </button>
+            <button type="submit" class="submit-btn">Place Order</button>
           </div>
         </div>
       </div>
@@ -610,7 +588,7 @@
         const totalPrice = price * quantity;
         
         // E-book
-        if (item.id === ebookId) {
+        if (item.id === ebookId || item.id === 4 || item.id === 300) {
           return `
             <div class="cart-item">
               <img src="${item.image}" alt="${item.name}">
@@ -623,7 +601,7 @@
           `;
         }
         
-        // Physical book (ID = 1) - A5 size automatic
+        // Physical book (ID = 1)
         if (item.id === physicalBookId) {
           return `
             <div class="cart-item">
@@ -683,14 +661,10 @@
           document.getElementById('deliveryCity').value = this.value;
         }
       });
-
-      document.getElementById('country').addEventListener('change', function() {
-        calculateTotals();
-      });
     }
 
     function calculateTotals() {
-      const ebookId = 2;
+      const ebookIds = [2, 4, 300];
       
       // Calculate subtotal with quantity support
       const subtotal = cart.reduce((sum, item) => {
@@ -702,10 +676,10 @@
       
       // Calculate shipping cost
       let shippingCost = 0;
-      const hasPhysicalProducts = cart.some(item => item.id !== ebookId);
+      const hasPhysicalProducts = cart.some(item => !ebookIds.includes(item.id));
       
       if (hasPhysicalProducts) {
-        shippingCost = 15; // Unified $15 shipping for all non-digital products
+        shippingCost = 15; // $15.00 for all physical products
       }
       
       const total = subtotal + shippingCost;
@@ -737,7 +711,7 @@
     }
 
     function validateForm() {
-      const requiredFields = ['fullName', 'email', 'phone', 'address', 'city', 'country', 'zip'];
+      const requiredFields = ['fullName', 'email', 'address', 'city', 'country', 'zip'];
       let isValid = true;
       
       // Check required fields
@@ -758,20 +732,12 @@
         termsCheckbox.focus();
         return false;
       }
-
-      // Check email consent
-      const emailConsent = document.getElementById('email-consent');
-      if (!emailConsent.checked) {
-        alert('Please agree to receive order confirmations via email!');
-        emailConsent.focus();
-        return false;
-      }
       
       // Check size selection for physical products (excluding book ID = 1)
-      const ebookId = 2;
+      const ebookIds = [2, 4, 300];
       const physicalBookId = 1;
       const needsSizeSelection = cart.some(item => 
-        item.id !== ebookId && 
+        !ebookIds.includes(item.id) && 
         item.id !== physicalBookId && 
         !item.size
       );
@@ -809,7 +775,7 @@
     function collectOrderData() {
       const form = document.getElementById('checkout-form');
       const formData = new FormData(form);
-      const ebookId = 2;
+      const ebookIds = [2, 4, 300];
       const physicalBookId = 1;
       
       // Collect size selections
@@ -833,7 +799,7 @@
         }
       });
       
-      // Prepare customer data
+      // ✅ Prepare customer data
       const customerData = {
         fullName: formData.get('fullName'),
         email: formData.get('email'),
@@ -842,7 +808,7 @@
         city: formData.get('city'),
         country: formData.get('country'),
         zip: formData.get('zip'),
-        shippingMethod: 'home',
+        shippingMethod: 'home', // ✅ Fixed home delivery
         deliveryAddress: formData.get('deliveryAddress'),
         deliveryCity: formData.get('deliveryCity'),
         deliveryZip: formData.get('deliveryZip'),
@@ -850,7 +816,7 @@
         deliveryNote: formData.get('deliveryNote')
       };
       
-      // Prepare cart for payment with quantity support
+      // ✅ Prepare cart for payment with quantity support
       const cartForPayment = cart.map(item => {
         const baseItem = {
           id: item.id,
@@ -861,7 +827,7 @@
           quantity: item.quantity || 1
         };
         
-        if (item.id !== ebookId && sizeMap[item.id]) {
+        if (!ebookIds.includes(item.id) && sizeMap[item.id]) {
           baseItem.size = sizeMap[item.id];
         }
         

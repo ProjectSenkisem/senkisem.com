@@ -8,39 +8,8 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { JWT } = require('google-auth-library');
 
 // ============================================
-// LOGGING UTILITY
-// ============================================
-const log = {
-  info: (msg, data = null) => {
-    console.log(`ℹ️  [INFO] ${msg}`);
-    if (data) console.log(JSON.stringify(data, null, 2));
-  },
-  success: (msg, data = null) => {
-    console.log(`✅ [SUCCESS] ${msg}`);
-    if (data) console.log(JSON.stringify(data, null, 2));
-  },
-  error: (msg, error = null) => {
-    console.error(`❌ [ERROR] ${msg}`);
-    if (error) {
-      console.error('Error details:', error.message);
-      console.error('Stack trace:', error.stack);
-    }
-  },
-  warn: (msg, data = null) => {
-    console.warn(`⚠️  [WARNING] ${msg}`);
-    if (data) console.log(JSON.stringify(data, null, 2));
-  },
-  debug: (msg, data = null) => {
-    console.log(`🔍 [DEBUG] ${msg}`);
-    if (data) console.log(JSON.stringify(data, null, 2));
-  }
-};
-
-// ============================================
 // ENV VALIDATION
 // ============================================
-log.info('Starting environment validation...');
-
 const requiredEnvVars = [
   'STRIPE_SECRET_KEY',
   'STRIPE_WEBHOOK_SECRET',
@@ -51,16 +20,11 @@ const requiredEnvVars = [
 
 const missingVars = requiredEnvVars.filter(v => !process.env[v]);
 if (missingVars.length > 0) {
-  log.error(`Missing environment variables: ${missingVars.join(', ')}`);
+  console.error(`❌ Missing environment variables:\n${missingVars.join('\n')}`);
   process.exit(1);
 }
 
-log.success('Environment variables validated');
-log.debug('Environment config', {
-  DOMAIN: process.env.DOMAIN,
-  STRIPE_KEY_PREFIX: process.env.STRIPE_SECRET_KEY?.substring(0, 10) + '...',
-  GOOGLE_EMAIL: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
-});
+console.log('✅ Environment variables OK\n');
 
 const app = express();
 
@@ -72,403 +36,285 @@ const CONFIG = {
     ORDERS: '1ysbyF0uCl1W03aGArpFYDIU6leFFRJb0R1AaadVarGk',
   },
   SHIPPING: {
-    HOME_DELIVERY_COST: 1500, // $15.00 in cents
+    HOME_DELIVERY_COST: 15, // $15.00
   }
 };
-
-log.info('Configuration loaded', CONFIG);
 
 // ============================================
 // LOAD PRODUCTS
 // ============================================
 let products = [];
 try {
-  log.info('Loading products from product.json...');
   const data = fs.readFileSync(path.join(__dirname, 'product.json'), 'utf8');
   products = JSON.parse(data).products || JSON.parse(data);
-  log.success(`${products.length} products loaded`, products.map(p => ({ id: p.id, name: p.name, price: p.price })));
+  console.log(`✅ ${products.length} products loaded`);
 } catch (err) {
-  log.error('Failed to load product.json', err);
-  process.exit(1);
+  console.error('❌ product.json error:', err.message);
 }
 
 // ============================================
 // GOOGLE CLIENT SETUP
 // ============================================
 function getGoogleAuth() {
-  log.debug('Creating Google JWT authentication...');
-  try {
-    const auth = new JWT({
-      email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    });
-    log.success('Google JWT created successfully');
-    return auth;
-  } catch (error) {
-    log.error('Failed to create Google JWT', error);
-    throw error;
-  }
+  return new JWT({
+    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
 }
 
 async function getSheet(sheetId) {
-  log.info(`Accessing Google Sheet: ${sheetId}...`);
-  try {
-    const doc = new GoogleSpreadsheet(sheetId, getGoogleAuth());
-    await doc.loadInfo();
-    log.success(`Sheet loaded: ${doc.title}`);
-    log.debug('Available sheets', {
-      sheets: Object.keys(doc.sheetsByTitle)
-    });
-
-    const sheet = doc.sheetsByTitle['2026'];
-    if (!sheet) {
-      throw new Error(`Sheet "2026" not found! Available: ${Object.keys(doc.sheetsByTitle).join(', ')}`);
-    }
-    log.success('Sheet "2026" found');
-    return sheet;
-  } catch (error) {
-    log.error('Failed to load Google Sheet', error);
-    throw error;
+  const doc = new GoogleSpreadsheet(sheetId, getGoogleAuth());
+  await doc.loadInfo();
+  
+  // ✅ NÉV ALAPJÁN KERESÉS (biztonságosabb)
+  const sheet = doc.sheetsByTitle['2026'];
+  
+  if (!sheet) {
+    throw new Error('❌ 2026 worksheet not found!');
   }
+  
+  console.log(`✅ Worksheet loaded: ${sheet.title}`);
+  return sheet;
 }
 
 // ============================================
-// SAVE ORDER TO SHEETS
+// SAVE ORDER TO SHEETS (2026 FIELDS)
 // ============================================
-async function saveOrder(orderData) {
-  log.info('Starting order save process...');
-  log.debug('Order data received', orderData);
-
+async function saveOrderToSheets(orderData, sessionId) {
   try {
     const sheet = await getSheet(CONFIG.SHEETS.ORDERS);
-
-    const totalAmount = orderData.items.reduce((sum, i) => sum + i.price, 0);
-    const isEbook = orderData.items.every(i => i.id === 2 || i.id === 4 || i.id === 300);
-
-    // Shipping logic
-    let shippingMethod = '-';
-    let shippingAddress = '-';
-    let shippingCost = 0;
-    let pickupPointName = '-';
-
-    if (isEbook) {
-      shippingMethod = 'Digitális letöltés';
-      shippingAddress = 'E-mail küldés';
-    } else {
-      shippingMethod = 'Házhozszállítás';
-      shippingAddress = orderData.shippingAddress || '-';
-      shippingCost = orderData.shippingCost || 0;
+    
+    const { cart, customerData } = orderData;
+    
+    // Calculate totals
+    const productTotal = cart.reduce((sum, item) => {
+      const price = typeof item.price === 'string' ? 
+        parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
+      const quantity = item.quantity || 1;
+      return sum + (price * quantity);
+    }, 0);
+    
+    const shippingCost = calculateShippingCost(cart, customerData.shippingMethod);
+    const totalAmount = productTotal + shippingCost;
+    
+    // Product names and sizes
+    const productNames = cart.map(item => {
+      const quantity = item.quantity || 1;
+      return quantity > 1 ? `${item.name} (${quantity}x)` : item.name;
+    }).join(', ');
+    
+    const sizes = cart.map(item => item.size || '-').join(', ');
+    
+    // Product type
+    const isEbook = cart.every(item => item.id === 2 || item.id === 4 || item.id === 300);
+    const productType = isEbook ? 'E-book' : 'Physical';
+    
+    // Shipping method text
+    let shippingMethodText = '-';
+    if (customerData.shippingMethod === 'home') {
+      shippingMethodText = 'Home Delivery';
+    } else if (customerData.shippingMethod === 'digital') {
+      shippingMethodText = 'Digital Download';
     }
-
-    // Build the row — ALL 21 columns, '-' fallback everywhere
-    const rowData = {
-      'Dátum':                 new Date().toLocaleString('hu-HU'),
-      'Név':                   orderData.customerName || '-',
-      'Email':                 orderData.customerEmail || '-',
-      'Cím':                   orderData.billingAddress || '-',
-      'Város':                 orderData.customerCity || '-',
-      'Ország':                orderData.customerCountry || '-',
-      'Irányítószám':          orderData.customerZip || '-',
-      'Termékek':              orderData.items.map(i => i.name).join(', ') || '-',
-      'Méretek':               orderData.items.map(i => i.size || 'N/A').join(', ') || '-',
-      'Összeg':                `$${(totalAmount / 100).toFixed(2)}`,
-      'Típus':                 isEbook ? 'E-könyv' : 'Fizikai termék',
-      'Szállítási mód':        shippingMethod,
-      'Szállítási cím':        shippingAddress,
-      'Csomagpont név':        pickupPointName,
-      'Szállítási díj':        `$${(shippingCost / 100).toFixed(2)}`,
-      'Végösszeg':             `$${((totalAmount + shippingCost) / 100).toFixed(2)}`,
-      'Foxpost követés':       '-',
-      'Rendelés ID':           orderData.sessionId || '-',
-      'Státusz':               'Fizetés Teljesítve',
-      'Szállítási megjegyzés': orderData.deliveryNote || '-',
-      'Telefonszám':           orderData.phone || '-'
-    };
-
-    log.debug('Row data to be saved', rowData);
-
-    await sheet.addRow(rowData);
-
-    log.success('Order saved to Google Sheets successfully', {
-      orderId: orderData.sessionId,
-      customer: orderData.customerEmail,
-      total: rowData['Végösszeg']
+    
+    // Delivery address (only for home delivery)
+    let deliveryAddress = '-';
+    if (customerData.shippingMethod === 'home') {
+      const addr = customerData.deliveryAddress || customerData.address;
+      const city = customerData.deliveryCity || customerData.city;
+      const zip = customerData.deliveryZip || customerData.zip;
+      const country = customerData.deliveryCountry || customerData.country;
+      deliveryAddress = `${zip} ${city}, ${addr}, ${country}`;
+    }
+    
+    // ✅ ADD ROW - ALL 2026 FIELDS IN ENGLISH
+    await sheet.addRow({
+      'Date': new Date().toLocaleString('en-US', { timeZone: 'UTC' }),
+      'Name': customerData.fullName || '-',
+      'Email': customerData.email || '-',
+      'Address': customerData.address || '-',
+      'City': customerData.city || '-',
+      'Country': customerData.country || '-',
+      'ZIP Code': customerData.zip || '-',
+      'Products': productNames,
+      'Sizes': sizes,
+      'Amount': `$${productTotal.toFixed(2)}`,
+      'Type': productType,
+      'Shipping Method': shippingMethodText,
+      'Delivery Address': deliveryAddress,
+      'Pickup Point Name': '-', // Not used for international shipping
+      'Shipping Cost': `$${shippingCost.toFixed(2)}`,
+      'Total': `$${totalAmount.toFixed(2)}`,
+      'Tracking Number': '-', // Will be filled manually
+      'Order ID': sessionId || '-',
+      'Status': 'Awaiting Payment',
+      'Delivery Note': customerData.deliveryNote || '-',
+      'Phone': customerData.phone || '-'
     });
+    
+    console.log('✅ Sheets save OK - Order ID:', sessionId);
   } catch (error) {
-    log.error('Failed to save order to Google Sheets', error);
+    console.error('⚠️ Sheets save error:', error.message);
     throw error;
   }
 }
 
 // ============================================
-// WEBHOOK - MUST BE BEFORE express.json()!
+// CALCULATE SHIPPING COST
 // ============================================
-app.post('/webhook/stripe', express.raw({type: 'application/json'}), async (req, res) => {
-  log.info('Webhook received from Stripe');
-
-  const sig = req.headers['stripe-signature'];
-  let event;
-
-  try {
-    log.debug('Verifying webhook signature...');
-    event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
-    log.success('Webhook signature verified', { eventType: event.type, eventId: event.id });
-  } catch (err) {
-    log.error('Webhook signature verification failed', err);
-    return res.status(400).send(`Webhook Error: ${err.message}`);
+function calculateShippingCost(cart, shippingMethod) {
+  const ebookIds = [2, 4, 300]; // E-book IDs
+  const isAllDigital = cart.every(item => ebookIds.includes(item.id));
+  
+  if (isAllDigital || shippingMethod === 'digital') {
+    return 0;
   }
-
-  if (event.type !== 'checkout.session.completed') {
-    log.info(`Ignoring event type: ${event.type}`);
-    return res.json({ received: true });
+  
+  if (shippingMethod === 'home') {
+    return CONFIG.SHIPPING.HOME_DELIVERY_COST;
   }
-
-  const session = event.data.object;
-  log.success('Payment completed', { sessionId: session.id, amount: session.amount_total });
-  log.debug('Full session metadata', session.metadata);
-
-  try {
-    // 1. Get line items from Stripe
-    log.info('Fetching line items from Stripe...');
-    const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
-    log.debug('Raw line items from Stripe', lineItems.data);
-
-    // Parse items — size comes from price.metadata.size
-    const items = lineItems.data.map(item => ({
-      id:       parseInt(item.price.metadata?.productId || 0),
-      name:     item.description,
-      price:    item.amount_total,   // in cents
-      quantity: item.quantity,
-      size:     item.price.metadata?.size || '-'
-    }));
-
-    log.debug('Parsed items', items);
-
-    // 2. Separate shipping from products
-    const shippingItem = items.find(i =>
-      i.name.includes('Home Delivery') ||
-      i.name.includes('Házhozszállítás') ||
-      i.name.includes('Foxpost')
-    );
-    const productItems = items.filter(i =>
-      !i.name.includes('Home Delivery') &&
-      !i.name.includes('Házhozszállítás') &&
-      !i.name.includes('Foxpost')
-    );
-
-    log.debug('Separated items', { shippingItem, productItems });
-
-    // 3. Build order data — pull everything from metadata, fallback '-'
-    const orderData = {
-      sessionId:       session.id,
-      customerName:    session.metadata.customerName    || '-',
-      customerEmail:   session.customer_email           || '-',
-      billingAddress:  session.metadata.customerAddress || '-',
-      customerCity:    session.metadata.customerCity    || '-',
-      customerZip:     session.metadata.customerZip     || '-',
-      customerCountry: session.metadata.customerCountry || '-',
-      phone:           session.metadata.customerPhone   || '-',
-      items:           productItems,
-      shippingCost:    shippingItem?.price || 0,
-      shippingAddress: session.metadata.deliveryAddress || '-',
-      deliveryNote:    session.metadata.deliveryNote    || '-'
-    };
-
-    log.debug('Order data constructed', orderData);
-
-    // 4. Save to Sheets
-    log.info('Saving order to Google Sheets...');
-    await saveOrder(orderData);
-
-    log.success('Order processed successfully', { sessionId: session.id });
-
-  } catch (error) {
-    log.error('Webhook processing failed', error);
-    // Still return 200 so Stripe doesn't keep retrying
-  }
-
-  res.json({ received: true });
-});
+  
+  return 0;
+}
 
 // ============================================
 // MIDDLEWARE
 // ============================================
-log.info('Setting up middleware...');
 app.use(cors());
+app.use('/webhook/stripe', express.raw({type: 'application/json'}));
 app.use(express.json());
-log.success('Middleware configured');
 
 // ============================================
 // ROUTES
 // ============================================
 
-// Create Stripe payment session
+// Create Stripe payment session + IMMEDIATE SHEETS SAVE
 app.post('/create-payment-session', async (req, res) => {
-  log.info('Payment session creation requested');
-  log.debug('Request body', req.body);
-
   const { cart, customerData } = req.body;
 
-  if (!Array.isArray(cart) || cart.length === 0) {
-    log.warn('Cart is empty or invalid', { cart });
-    return res.status(400).json({ error: 'Cart is empty' });
-  }
-
-  if (!customerData) {
-    log.warn('Customer data missing');
-    return res.status(400).json({ error: 'Missing customer data' });
-  }
-
   try {
-    // Check if order contains only e-books
-    const isOnlyEbook = cart.every(item =>
-      parseInt(item.id) === 2 ||
-      parseInt(item.id) === 4 ||
-      parseInt(item.id) === 300
-    );
+    const ebookIds = [2, 4, 300];
+    const isEbook = cart.every(item => ebookIds.includes(item.id));
 
-    log.debug('Order type analysis', {
-      isOnlyEbook,
-      cartItems: cart.map(i => ({ id: i.id, quantity: i.quantity, size: i.size }))
-    });
-
-    // Build Stripe line items
-    log.info('Building Stripe line items...');
+    // ✅ BUILD STRIPE LINE ITEMS
     const lineItems = cart.map(item => {
       const product = products.find(p => p.id === parseInt(item.id));
-      if (!product) {
-        log.error(`Product not found: ${item.id}`);
-        throw new Error(`Product not found: ${item.id}`);
-      }
-
-      log.debug('Product found', { id: product.id, name: product.name, price: product.price });
-
+      if (!product) throw new Error(`Product not found: ${item.id}`);
+      
+      const quantity = item.quantity || 1;
+      
       return {
         price_data: {
           currency: 'usd',
-          product_data: {
+          product_data: { 
             name: product.name,
-            metadata: {
-              productId: product.id.toString(),
-              size: item.size || 'N/A'
-            }
+            metadata: { productId: product.id }
           },
-          unit_amount: Math.round(product.price * 100),
+          unit_amount: Math.round(product.price * 100), // Convert to cents
         },
-        quantity: item.quantity || 1,
+        quantity: quantity,
       };
     });
 
     // Add shipping for physical products
-    if (!isOnlyEbook) {
-      const deliveryAddr    = customerData.deliveryAddress  || customerData.address  || '';
-      const deliveryCity    = customerData.deliveryCity     || customerData.city     || '';
-      const deliveryZip     = customerData.deliveryZip      || customerData.zip      || '';
-      const deliveryCountry = customerData.deliveryCountry  || customerData.country  || '';
-
-      log.info('Adding home delivery shipping', {
-        address: deliveryAddr, city: deliveryCity, zip: deliveryZip, country: deliveryCountry
-      });
-
+    if (!isEbook) {
       lineItems.push({
         price_data: {
           currency: 'usd',
-          product_data: {
-            name: 'Home Delivery',
-            description: `Delivery to: ${deliveryZip} ${deliveryCity}, ${deliveryAddr}, ${deliveryCountry}`
-          },
-          unit_amount: CONFIG.SHIPPING.HOME_DELIVERY_COST,
+          product_data: { name: 'Home Delivery' },
+          unit_amount: CONFIG.SHIPPING.HOME_DELIVERY_COST * 100, // $15.00
         },
         quantity: 1,
       });
     }
 
-    log.debug('Final line items', lineItems);
-
-    // Success URL based on order type
-    const successUrl = isOnlyEbook
-      ? `${process.env.DOMAIN}/success2.html?session_id={CHECKOUT_SESSION_ID}`
-      : `${process.env.DOMAIN}/success.html?session_id={CHECKOUT_SESSION_ID}`;
-
-    log.info('Success URL selected', { successUrl, isOnlyEbook });
-
-    // Create Stripe session
-    log.info('Creating Stripe checkout session...');
+    // ✅ CREATE STRIPE SESSION
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
       line_items: lineItems,
-      success_url: successUrl,
+      success_url: isEbook 
+        ? `${process.env.DOMAIN}/success2.html?session_id={CHECKOUT_SESSION_ID}`
+        : `${process.env.DOMAIN}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.DOMAIN}/cancel.html`,
       metadata: {
-        customerName:    customerData.fullName        || '',
-        customerEmail:   customerData.email           || '',
-        customerAddress: customerData.address         || '',
-        customerCity:    customerData.city            || '',
-        customerZip:     customerData.zip             || '',
-        customerCountry: customerData.country         || '',
-        customerPhone:   customerData.phone           || '',
-        deliveryAddress: !isOnlyEbook
-          ? `${customerData.deliveryZip || customerData.zip || ''} ${customerData.deliveryCity || customerData.city || ''}, ${customerData.deliveryAddress || customerData.address || ''}, ${customerData.deliveryCountry || customerData.country || ''}`
-          : 'Digital Download',
-        deliveryNote: customerData.deliveryNote || '',
-        orderType:    isOnlyEbook ? 'ebook' : 'physical'
+        customerName: customerData.fullName,
+        customerEmail: customerData.email,
+        shippingMethod: customerData.shippingMethod || 'digital',
       },
       customer_email: customerData.email,
     });
 
-    log.success('Stripe session created successfully', {
-      sessionId: session.id,
-      paymentUrl: session.url,
-      amount: session.amount_total
-    });
+    // ✅ IMMEDIATE SAVE TO GOOGLE SHEETS (before payment)
+    await saveOrderToSheets(
+      { cart, customerData }, 
+      session.id
+    );
 
+    // ✅ Response to frontend
     res.json({ payment_url: session.url });
 
   } catch (error) {
-    log.error('Session creation failed', error);
+    console.error('❌ Session/Sheets error:', error);
     res.status(500).json({ error: error.message });
   }
 });
 
+// ============================================
+// WEBHOOK (status update after payment)
+// ============================================
+app.post('/webhook/stripe', async (req, res) => {
+  const sig = req.headers['stripe-signature'];
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+  } catch (err) {
+    console.error('❌ Webhook signature error:', err.message);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+    console.log('✅ Payment completed:', session.id);
+
+    try {
+      // Update status in Sheets
+      const sheet = await getSheet(CONFIG.SHEETS.ORDERS);
+      const rows = await sheet.getRows();
+      
+      const orderRow = rows.find(row => row.get('Order ID') === session.id);
+      
+      if (orderRow) {
+        orderRow.set('Status', 'Paid');
+        await orderRow.save();
+        console.log('✅ Status updated: Paid');
+      }
+    } catch (error) {
+      console.error('⚠️ Webhook status update error:', error.message);
+    }
+  }
+
+  res.json({ received: true });
+});
+
 // Health check
 app.get('/health', (req, res) => {
-  log.info('Health check requested');
-  res.json({
-    status: 'OK',
+  res.json({ 
+    status: 'OK', 
     timestamp: new Date().toISOString(),
     currency: 'USD',
-    shipping: { homeDelivery: '$15.00' },
-    environment: { nodeVersion: process.version, port: PORT }
+    shipping: '$15.00'
   });
 });
 
 // ============================================
 // STATIC FILES
 // ============================================
-log.info('Setting up static file serving...');
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
-app.use('/img',    express.static(path.join(__dirname, 'public/img')));
 app.use(express.static(path.join(__dirname, 'dist')));
-log.success('Static file routes configured');
-
-// SPA routing
 app.get('*', (req, res) => {
-  log.debug('SPA route requested', { path: req.path });
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
-
-// ============================================
-// ERROR HANDLING
-// ============================================
-process.on('unhandledRejection', (reason, promise) => {
-  log.error('Unhandled Promise Rejection', { reason, promise });
-});
-
-process.on('uncaughtException', (error) => {
-  log.error('Uncaught Exception', error);
-  process.exit(1);
 });
 
 // ============================================
@@ -477,25 +323,16 @@ process.on('uncaughtException', (error) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`
-╔════════════════════════════════════════════════════╗
-║       🚀 SENKISEM SERVER STARTED (EN / USD)       ║
-╠════════════════════════════════════════════════════╣
-║  Port:                ${PORT}                      ║
-║  Environment:         ${process.env.NODE_ENV || 'development'}
-║  Node Version:        ${process.version}           ║
-║  Currency:            USD ($)                      ║
-║  Shipping:            $15.00 (Home Delivery)       ║
-╠════════════════════════════════════════════════════╣
-║  ✅ Stripe integration:        Active              ║
-║  ✅ Google Sheets → 2026:      Active              ║
-║  ✅ Webhook handling:          Active              ║
-║  ✅ All 21 columns mapped:     Active              ║
-╚════════════════════════════════════════════════════╝
+╔═══════════════════════════════════════╗
+║   🚀 SENKISEM SERVER STARTED (EN)    ║
+╠═══════════════════════════════════════╣
+║   Port: ${PORT}                       ║
+║   Currency: USD ($)                   ║
+║   Shipping: $15.00 (Home Delivery)    ║
+╠═══════════════════════════════════════╣
+║   ✅ Stripe + Webhook                ║
+║   ✅ Google Sheets (2026 fields)     ║
+║   ✅ IMMEDIATE save after checkout   ║
+╚═══════════════════════════════════════╝
   `);
-
-  log.success('Server started successfully', {
-    port: PORT,
-    productCount: products.length,
-    environment: process.env.NODE_ENV || 'development'
-  });
 });
