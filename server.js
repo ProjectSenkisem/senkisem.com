@@ -67,7 +67,7 @@ async function getSheet(sheetId) {
   const doc = new GoogleSpreadsheet(sheetId, getGoogleAuth());
   await doc.loadInfo();
   
-  // ✅ NÉV ALAPJÁN KERESÉS (biztonságosabb)
+  // ✅ NÉV ALAPJÁN KERESÉS
   const sheet = doc.sheetsByTitle['2026'];
   
   if (!sheet) {
@@ -79,7 +79,7 @@ async function getSheet(sheetId) {
 }
 
 // ============================================
-// SAVE ORDER TO SHEETS (2026 FIELDS)
+// SAVE ORDER TO SHEETS (2026 MAGYAR MEZŐK!)
 // ============================================
 async function saveOrderToSheets(orderData, sessionId) {
   try {
@@ -101,21 +101,21 @@ async function saveOrderToSheets(orderData, sessionId) {
     // Product names and sizes
     const productNames = cart.map(item => {
       const quantity = item.quantity || 1;
-      return quantity > 1 ? `${item.name} (${quantity}x)` : item.name;
+      return quantity > 1 ? `${item.name} (${quantity} db)` : item.name;
     }).join(', ');
     
     const sizes = cart.map(item => item.size || '-').join(', ');
     
     // Product type
     const isEbook = cart.every(item => item.id === 2 || item.id === 4 || item.id === 300);
-    const productType = isEbook ? 'E-book' : 'Physical';
+    const productType = isEbook ? 'E-könyv' : 'Fizikai'; // ✅ Magyar
     
     // Shipping method text
     let shippingMethodText = '-';
     if (customerData.shippingMethod === 'home') {
-      shippingMethodText = 'Home Delivery';
+      shippingMethodText = 'Házhozszállítás'; // ✅ Magyar
     } else if (customerData.shippingMethod === 'digital') {
-      shippingMethodText = 'Digital Download';
+      shippingMethodText = 'Digitális'; // ✅ Magyar
     }
     
     // Delivery address (only for home delivery)
@@ -128,29 +128,29 @@ async function saveOrderToSheets(orderData, sessionId) {
       deliveryAddress = `${zip} ${city}, ${addr}, ${country}`;
     }
     
-    // ✅ ADD ROW - ALL 2026 FIELDS IN ENGLISH
+    // ✅ ADD ROW - MAGYAR MEZŐNEVEK!
     await sheet.addRow({
-      'Date': new Date().toLocaleString('en-US', { timeZone: 'UTC' }),
-      'Name': customerData.fullName || '-',
+      'Dátum': new Date().toLocaleString('hu-HU', { timeZone: 'Europe/Budapest' }),
+      'Név': customerData.fullName || '-',
       'Email': customerData.email || '-',
-      'Address': customerData.address || '-',
-      'City': customerData.city || '-',
-      'Country': customerData.country || '-',
-      'ZIP Code': customerData.zip || '-',
-      'Products': productNames,
-      'Sizes': sizes,
-      'Amount': `$${productTotal.toFixed(2)}`,
-      'Type': productType,
-      'Shipping Method': shippingMethodText,
-      'Delivery Address': deliveryAddress,
-      'Pickup Point Name': '-', // Not used for international shipping
-      'Shipping Cost': `$${shippingCost.toFixed(2)}`,
-      'Total': `$${totalAmount.toFixed(2)}`,
-      'Tracking Number': '-', // Will be filled manually
-      'Order ID': sessionId || '-',
-      'Status': 'Awaiting Payment',
-      'Delivery Note': customerData.deliveryNote || '-',
-      'Phone': customerData.phone || '-'
+      'Cím': customerData.address || '-',
+      'Város': customerData.city || '-',
+      'Ország': customerData.country || '-',
+      'Irányítószám': customerData.zip || '-',
+      'Termékek': productNames,
+      'Méretek': sizes,
+      'Összeg': `$${productTotal.toFixed(2)}`,
+      'Típus': productType,
+      'Szállítási mód': shippingMethodText,
+      'Szállítási cím': deliveryAddress,
+      'Csomagpont név': '-', // Nincs használva nemzetközi szállításnál
+      'Szállítási díj': `$${shippingCost.toFixed(2)}`,
+      'Végösszeg': `$${totalAmount.toFixed(2)}`,
+      'Foxpost követés': '-', // Nincs használva
+      'Rendelés ID': sessionId || '-',
+      'Státusz': 'Fizetésre vár',
+      'Szállítási megjegyzés': customerData.deliveryNote || '-',
+      'Telefonszám': customerData.phone || '-'
     });
     
     console.log('✅ Sheets save OK - Order ID:', sessionId);
@@ -164,7 +164,7 @@ async function saveOrderToSheets(orderData, sessionId) {
 // CALCULATE SHIPPING COST
 // ============================================
 function calculateShippingCost(cart, shippingMethod) {
-  const ebookIds = [2, 4, 300]; // E-book IDs
+  const ebookIds = [2, 4, 300];
   const isAllDigital = cart.every(item => ebookIds.includes(item.id));
   
   if (isAllDigital || shippingMethod === 'digital') {
@@ -211,7 +211,7 @@ app.post('/create-payment-session', async (req, res) => {
             name: product.name,
             metadata: { productId: product.id }
           },
-          unit_amount: Math.round(product.price * 100), // Convert to cents
+          unit_amount: Math.round(product.price * 100),
         },
         quantity: quantity,
       };
@@ -223,7 +223,7 @@ app.post('/create-payment-session', async (req, res) => {
         price_data: {
           currency: 'usd',
           product_data: { name: 'Home Delivery' },
-          unit_amount: CONFIG.SHIPPING.HOME_DELIVERY_COST * 100, // $15.00
+          unit_amount: CONFIG.SHIPPING.HOME_DELIVERY_COST * 100,
         },
         quantity: 1,
       });
@@ -284,12 +284,12 @@ app.post('/webhook/stripe', async (req, res) => {
       const sheet = await getSheet(CONFIG.SHEETS.ORDERS);
       const rows = await sheet.getRows();
       
-      const orderRow = rows.find(row => row.get('Order ID') === session.id);
+      const orderRow = rows.find(row => row.get('Rendelés ID') === session.id);
       
       if (orderRow) {
-        orderRow.set('Status', 'Paid');
+        orderRow.set('Státusz', 'Fizetve'); // ✅ Magyar
         await orderRow.save();
-        console.log('✅ Status updated: Paid');
+        console.log('✅ Status updated: Fizetve');
       }
     } catch (error) {
       console.error('⚠️ Webhook status update error:', error.message);
@@ -331,7 +331,7 @@ app.listen(PORT, () => {
 ║   Shipping: $15.00 (Home Delivery)    ║
 ╠═══════════════════════════════════════╣
 ║   ✅ Stripe + Webhook                ║
-║   ✅ Google Sheets (2026 fields)     ║
+║   ✅ Google Sheets (MAGYAR mezők)    ║
 ║   ✅ IMMEDIATE save after checkout   ║
 ╚═══════════════════════════════════════╝
   `);
