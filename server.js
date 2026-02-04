@@ -6,7 +6,6 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const path = require('path');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { JWT } = require('google-auth-library');
-const PDFDocument = require('pdfkit');
 
 // ============================================
 // ENV VALIDATION
@@ -38,12 +37,6 @@ const CONFIG = {
   },
   SHIPPING: {
     HOME_DELIVERY_COST: 15, // $15.00
-  },
-  INVOICE: {
-    SELLER_NAME: 'SENKISEM EV',
-    SELLER_TAX_NUMBER: '91113654-1-25',
-    SELLER_ADDRESS: '3600 Ózd, Bolyki Tamás utca 15. A épület 1. emelet 5-6. ajtó',
-    SELLER_ID_NUMBER: '60502292'
   }
 };
 
@@ -74,6 +67,7 @@ async function getSheet(sheetId) {
   const doc = new GoogleSpreadsheet(sheetId, getGoogleAuth());
   await doc.loadInfo();
   
+  // ✅ NÉV ALAPJÁN KERESÉS
   const sheet = doc.sheetsByTitle['2026'];
   
   if (!sheet) {
@@ -82,279 +76,6 @@ async function getSheet(sheetId) {
   
   console.log(`✅ Worksheet loaded: ${sheet.title}`);
   return sheet;
-}
-
-// ============================================
-// GENERATE INVOICE NUMBER
-// ============================================
-async function generateInvoiceNumber() {
-  try {
-    const sheet = await getSheet(CONFIG.SHEETS.ORDERS);
-    const rows = await sheet.getRows();
-    
-    // Count existing invoices in 2026
-    const invoiceCount = rows.filter(row => {
-      const date = row.get('Dátum') || '';
-      return date.includes('2026');
-    }).length;
-    
-    const nextNumber = (invoiceCount + 1).toString().padStart(3, '0');
-    return `E-SEN-2026-${nextNumber}`;
-  } catch (error) {
-    console.error('⚠️ Invoice number generation error:', error.message);
-    return `E-SEN-2026-001`;
-  }
-}
-
-// ============================================
-// CREATE PDF INVOICE
-// ============================================
-async function createInvoicePDF(orderData, invoiceNumber) {
-  return new Promise((resolve, reject) => {
-    try {
-      const doc = new PDFDocument({ size: 'A4', margin: 50 });
-      const chunks = [];
-      
-      doc.on('data', chunk => chunks.push(chunk));
-      doc.on('end', () => resolve(Buffer.concat(chunks)));
-      doc.on('error', reject);
-
-      const primaryColor = '#1a1a1a';
-      const accentColor = '#4a90e2';
-      const lightGray = '#f5f5f5';
-      
-      // HEADER - Company Info
-      doc.fontSize(24)
-         .fillColor(primaryColor)
-         .font('Helvetica-Bold')
-         .text('SENKISEM EV', 50, 50);
-      
-      doc.fontSize(10)
-         .fillColor('#666666')
-         .font('Helvetica')
-         .text(CONFIG.INVOICE.SELLER_ID_NUMBER, 50, 80)
-         .text(CONFIG.INVOICE.SELLER_ADDRESS, 50, 95)
-         .text(`Adószám: ${CONFIG.INVOICE.SELLER_TAX_NUMBER}`, 50, 110);
-
-      // INVOICE TYPE
-      doc.fontSize(14)
-         .fillColor(accentColor)
-         .font('Helvetica-Bold')
-         .text('ELEKTRONIKUS SZÁMLA', 400, 50, { align: 'right' });
-
-      // INVOICE NUMBER
-      doc.fontSize(11)
-         .fillColor(primaryColor)
-         .font('Helvetica')
-         .text(`Sorszám: ${invoiceNumber}`, 400, 75, { align: 'right' });
-
-      // DIVIDER LINE
-      doc.moveTo(50, 140)
-         .lineTo(545, 140)
-         .strokeColor(accentColor)
-         .lineWidth(2)
-         .stroke();
-
-      // BUYER SECTION
-      doc.fontSize(12)
-         .fillColor(accentColor)
-         .font('Helvetica-Bold')
-         .text('VEVŐ', 50, 160);
-
-      doc.fontSize(10)
-         .fillColor(primaryColor)
-         .font('Helvetica')
-         .text(orderData.customerName, 50, 180)
-         .text(orderData.customerAddress, 50, 195);
-
-      // INVOICE DETAILS BOX
-      const detailsBoxY = 160;
-      doc.rect(350, detailsBoxY, 195, 80)
-         .fillAndStroke(lightGray, primaryColor);
-
-      doc.fontSize(9)
-         .fillColor(primaryColor)
-         .font('Helvetica-Bold')
-         .text('Fizetési mód:', 360, detailsBoxY + 10)
-         .text('Teljesítés dátuma:', 360, detailsBoxY + 30)
-         .text('Kiállítás dátuma:', 360, detailsBoxY + 50);
-
-      doc.font('Helvetica')
-         .text('Bankkártya', 460, detailsBoxY + 10)
-         .text(orderData.completionDate, 460, detailsBoxY + 30)
-         .text(orderData.issueDate, 460, detailsBoxY + 50);
-
-      // PRODUCTS TABLE
-      const tableTop = 270;
-      
-      // Table Header
-      doc.rect(50, tableTop, 495, 30)
-         .fillAndStroke(accentColor, accentColor);
-
-      doc.fontSize(10)
-         .fillColor('#ffffff')
-         .font('Helvetica-Bold')
-         .text('Megnevezés', 60, tableTop + 10, { width: 200 })
-         .text('Menny.', 270, tableTop + 10, { width: 50 })
-         .text('Egységár', 330, tableTop + 10, { width: 60 })
-         .text('Nettó ár', 400, tableTop + 10, { width: 60 })
-         .text('Áfa', 470, tableTop + 10, { width: 30 });
-
-      // Table Rows
-      let currentY = tableTop + 40;
-      let totalNet = 0;
-      let totalGross = 0;
-
-      orderData.items.forEach((item, index) => {
-        const rowColor = index % 2 === 0 ? '#ffffff' : lightGray;
-        doc.rect(50, currentY, 495, 25)
-           .fillAndStroke(rowColor, '#e0e0e0');
-
-        doc.fontSize(9)
-           .fillColor(primaryColor)
-           .font('Helvetica')
-           .text(item.name, 60, currentY + 8, { width: 200 })
-           .text(`${item.quantity} db`, 270, currentY + 8, { width: 50 })
-           .text(`$${item.unitPrice.toFixed(2)}`, 330, currentY + 8, { width: 60 })
-           .text(`$${item.totalPrice.toFixed(2)}`, 400, currentY + 8, { width: 60 })
-           .text('AAM', 470, currentY + 8, { width: 30 });
-
-        totalNet += item.totalPrice;
-        totalGross += item.totalPrice;
-        currentY += 25;
-      });
-
-      // Add shipping if applicable
-      if (orderData.shippingCost > 0) {
-        const rowColor = orderData.items.length % 2 === 0 ? '#ffffff' : lightGray;
-        doc.rect(50, currentY, 495, 25)
-           .fillAndStroke(rowColor, '#e0e0e0');
-
-        doc.fontSize(9)
-           .fillColor(primaryColor)
-           .font('Helvetica')
-           .text('Szállítási díj', 60, currentY + 8, { width: 200 })
-           .text('1 db', 270, currentY + 8, { width: 50 })
-           .text(`$${orderData.shippingCost.toFixed(2)}`, 330, currentY + 8, { width: 60 })
-           .text(`$${orderData.shippingCost.toFixed(2)}`, 400, currentY + 8, { width: 60 })
-           .text('AAM', 470, currentY + 8, { width: 30 });
-
-        totalNet += orderData.shippingCost;
-        totalGross += orderData.shippingCost;
-        currentY += 25;
-      }
-
-      // SUMMARY SECTION
-      currentY += 20;
-      
-      doc.rect(350, currentY, 195, 80)
-         .fillAndStroke(lightGray, primaryColor);
-
-      doc.fontSize(10)
-         .fillColor(primaryColor)
-         .font('Helvetica')
-         .text('Összesen:', 360, currentY + 10)
-         .text('Alanyi adómentes:', 360, currentY + 30)
-         .text('Áfaérték:', 360, currentY + 50);
-
-      doc.font('Helvetica-Bold')
-         .text(`$${totalNet.toFixed(2)}`, 460, currentY + 10)
-         .text('0', 460, currentY + 30)
-         .text(`$${totalGross.toFixed(2)}`, 460, currentY + 50);
-
-      // TOTAL AMOUNT
-      currentY += 90;
-      doc.rect(350, currentY, 195, 40)
-         .fillAndStroke(accentColor, accentColor);
-
-      doc.fontSize(14)
-         .fillColor('#ffffff')
-         .font('Helvetica-Bold')
-         .text('Összesen:', 360, currentY + 12)
-         .text(`$${totalGross.toFixed(2)}`, 460, currentY + 12);
-
-      // FOOTER
-      doc.fontSize(8)
-         .fillColor('#999999')
-         .font('Helvetica')
-         .text('Oldal 1/1', 50, 750, { align: 'center' });
-
-      doc.end();
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
-
-// ============================================
-// GENERATE AND SAVE INVOICE TO SHEETS
-// ============================================
-async function generateAndSaveInvoice(orderData, sessionId) {
-  try {
-    // Generate invoice number
-    const invoiceNumber = await generateInvoiceNumber();
-    
-    // Get the latest order data from sheets
-    const sheet = await getSheet(CONFIG.SHEETS.ORDERS);
-    const rows = await sheet.getRows();
-    const orderRow = rows.find(row => row.get('Rendelés ID') === sessionId);
-    
-    if (!orderRow) {
-      throw new Error('Order not found in sheets');
-    }
-
-    // Parse order data
-    const dateStr = orderRow.get('Dátum');
-    const date = new Date(dateStr);
-    const formattedDate = date.toLocaleDateString('hu-HU');
-
-    const fullAddress = `${orderRow.get('Ország')}, ${orderRow.get('Irányítószám')} ${orderRow.get('Város')}, ${orderRow.get('Cím')}`;
-    
-    // Parse products
-    const items = orderData.cart.map(item => {
-      const price = typeof item.price === 'string' ? 
-        parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
-      const quantity = item.quantity || 1;
-      
-      return {
-        name: item.name,
-        quantity: quantity,
-        unitPrice: price,
-        totalPrice: price * quantity
-      };
-    });
-
-    const shippingCost = calculateShippingCost(orderData.cart, orderData.customerData.shippingMethod);
-
-    const invoiceData = {
-      customerName: orderRow.get('Név'),
-      customerAddress: fullAddress,
-      completionDate: formattedDate,
-      issueDate: formattedDate,
-      items: items,
-      shippingCost: shippingCost
-    };
-
-    // Create PDF
-    const pdfBuffer = await createInvoicePDF(invoiceData, invoiceNumber);
-    
-    // Convert PDF to base64
-    const pdfBase64 = pdfBuffer.toString('base64');
-    
-    // Create download link
-    const downloadLink = `https://drive.google.com/uc?export=download&id=MANUAL_DOWNLOAD`;
-    
-    // Update the row with invoice data
-    orderRow.set('Számla szám', invoiceNumber);
-    orderRow.set('Számla PDF', `=HYPERLINK("data:application/pdf;base64,${pdfBase64.substring(0, 50)}...","Letöltés")`);
-    await orderRow.save();
-
-    console.log(`✅ Invoice generated and saved to sheet: ${invoiceNumber}`);
-    return invoiceNumber;
-  } catch (error) {
-    console.error('⚠️ Invoice generation error:', error.message);
-    throw error;
-  }
 }
 
 // ============================================
@@ -387,14 +108,14 @@ async function saveOrderToSheets(orderData, sessionId) {
     
     // Product type
     const isEbook = cart.every(item => item.id === 2 || item.id === 4 || item.id === 300);
-    const productType = isEbook ? 'E-könyv' : 'Fizikai';
+    const productType = isEbook ? 'E-könyv' : 'Fizikai'; // ✅ Magyar
     
     // Shipping method text
     let shippingMethodText = '-';
     if (customerData.shippingMethod === 'home') {
-      shippingMethodText = 'Házhozszállítás';
+      shippingMethodText = 'Házhozszállítás'; // ✅ Magyar
     } else if (customerData.shippingMethod === 'digital') {
-      shippingMethodText = 'Digitális';
+      shippingMethodText = 'Digitális'; // ✅ Magyar
     }
     
     // Delivery address (only for home delivery)
@@ -407,7 +128,7 @@ async function saveOrderToSheets(orderData, sessionId) {
       deliveryAddress = `${zip} ${city}, ${addr}, ${country}`;
     }
     
-    // ADD ROW
+    // ✅ ADD ROW - MAGYAR MEZŐNEVEK!
     await sheet.addRow({
       'Dátum': new Date().toLocaleString('hu-HU', { timeZone: 'Europe/Budapest' }),
       'Név': customerData.fullName || '-',
@@ -422,16 +143,14 @@ async function saveOrderToSheets(orderData, sessionId) {
       'Típus': productType,
       'Szállítási mód': shippingMethodText,
       'Szállítási cím': deliveryAddress,
-      'Csomagpont név': '-',
+      'Csomagpont név': '-', // Nincs használva nemzetközi szállításnál
       'Szállítási díj': `$${shippingCost.toFixed(2)}`,
       'Végösszeg': `$${totalAmount.toFixed(2)}`,
-      'Foxpost követés': '-',
+      'Foxpost követés': '-', // Nincs használva
       'Rendelés ID': sessionId || '-',
       'Státusz': 'Fizetésre vár',
       'Szállítási megjegyzés': customerData.deliveryNote || '-',
-      'Telefonszám': customerData.phone || '-',
-      'Számla szám': '',  // ✅ Új oszlop
-      'Számla PDF': ''    // ✅ Új oszlop
+      'Telefonszám': customerData.phone || '-'
     });
     
     console.log('✅ Sheets save OK - Order ID:', sessionId);
@@ -470,7 +189,7 @@ app.use(express.json());
 // ROUTES
 // ============================================
 
-// Create Stripe payment session + IMMEDIATE SHEETS SAVE + INVOICE
+// Create Stripe payment session + IMMEDIATE SHEETS SAVE
 app.post('/create-payment-session', async (req, res) => {
   const { cart, customerData } = req.body;
 
@@ -478,7 +197,7 @@ app.post('/create-payment-session', async (req, res) => {
     const ebookIds = [2, 4, 300];
     const isEbook = cart.every(item => ebookIds.includes(item.id));
 
-    // BUILD STRIPE LINE ITEMS
+    // ✅ BUILD STRIPE LINE ITEMS
     const lineItems = cart.map(item => {
       const product = products.find(p => p.id === parseInt(item.id));
       if (!product) throw new Error(`Product not found: ${item.id}`);
@@ -510,7 +229,7 @@ app.post('/create-payment-session', async (req, res) => {
       });
     }
 
-    // CREATE STRIPE SESSION
+    // ✅ CREATE STRIPE SESSION
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
@@ -527,24 +246,13 @@ app.post('/create-payment-session', async (req, res) => {
       customer_email: customerData.email,
     });
 
-    // IMMEDIATE SAVE TO GOOGLE SHEETS
+    // ✅ IMMEDIATE SAVE TO GOOGLE SHEETS (before payment)
     await saveOrderToSheets(
       { cart, customerData }, 
       session.id
     );
 
-    // GENERATE AND SAVE INVOICE TO SHEET
-    try {
-      await generateAndSaveInvoice(
-        { cart, customerData },
-        session.id
-      );
-    } catch (invoiceError) {
-      console.error('⚠️ Invoice save to sheet failed:', invoiceError.message);
-      // Continue even if invoice generation fails
-    }
-
-    // Response to frontend
+    // ✅ Response to frontend
     res.json({ payment_url: session.url });
 
   } catch (error) {
@@ -579,7 +287,7 @@ app.post('/webhook/stripe', async (req, res) => {
       const orderRow = rows.find(row => row.get('Rendelés ID') === session.id);
       
       if (orderRow) {
-        orderRow.set('Státusz', 'Fizetve');
+        orderRow.set('Státusz', 'Fizetve'); // ✅ Magyar
         await orderRow.save();
         console.log('✅ Status updated: Fizetve');
       }
@@ -625,7 +333,6 @@ app.listen(PORT, () => {
 ║   ✅ Stripe + Webhook                ║
 ║   ✅ Google Sheets (MAGYAR mezők)    ║
 ║   ✅ IMMEDIATE save after checkout   ║
-║   ✅ Invoice saved to Sheet row      ║
 ╚═══════════════════════════════════════╝
   `);
 });
