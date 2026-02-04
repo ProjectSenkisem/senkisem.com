@@ -6,6 +6,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const path = require('path');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { JWT } = require('google-auth-library');
+const { Resend } = require('resend');
 
 // ============================================
 // ENV VALIDATION
@@ -15,7 +16,9 @@ const requiredEnvVars = [
   'STRIPE_WEBHOOK_SECRET',
   'GOOGLE_SERVICE_ACCOUNT_EMAIL',
   'GOOGLE_PRIVATE_KEY',
-  'DOMAIN'
+  'DOMAIN',
+  'RESEND_API_KEY',
+  'RESEND_FROM_EMAIL'
 ];
 
 const missingVars = requiredEnvVars.filter(v => !process.env[v]);
@@ -27,6 +30,7 @@ if (missingVars.length > 0) {
 console.log('✅ Environment variables OK\n');
 
 const app = express();
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ============================================
 // CONFIG
@@ -37,6 +41,9 @@ const CONFIG = {
   },
   SHIPPING: {
     HOME_DELIVERY_COST: 15, // $15.00
+  },
+  EMAIL: {
+    FROM: process.env.RESEND_FROM_EMAIL,
   }
 };
 
@@ -67,7 +74,6 @@ async function getSheet(sheetId) {
   const doc = new GoogleSpreadsheet(sheetId, getGoogleAuth());
   await doc.loadInfo();
   
-  // ✅ NÉV ALAPJÁN KERESÉS
   const sheet = doc.sheetsByTitle['2026'];
   
   if (!sheet) {
@@ -79,7 +85,178 @@ async function getSheet(sheetId) {
 }
 
 // ============================================
-// SAVE ORDER TO SHEETS (2026 MAGYAR MEZŐK!)
+// EMAIL TEMPLATE GENERATOR
+// ============================================
+function generateOrderConfirmationEmail(orderData, totalAmount) {
+  const { customerData, cart } = orderData;
+  
+  // Product list HTML
+  const productRows = cart.map(item => {
+    const quantity = item.quantity || 1;
+    const price = typeof item.price === 'string' ? 
+      parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
+    const itemTotal = price * quantity;
+    
+    return `
+      <tr>
+        <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">${item.name}</td>
+        <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: center;">${quantity} db</td>
+        <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">$${itemTotal.toFixed(2)}</td>
+      </tr>
+    `;
+  }).join('');
+
+  const isEbook = cart.every(item => item.id === 2 || item.id === 4 || item.id === 300);
+  
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rendelés visszaigazolás - Senkisem.com</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td align="center" style="padding: 40px 0;">
+        <table role="presentation" style="width: 600px; max-width: 100%; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          
+          <!-- Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; text-align: center; border-radius: 8px 8px 0 0;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Köszönjük a rendelést!</h1>
+              <p style="margin: 10px 0 0 0; color: #e0e7ff; font-size: 16px;">Sikeres vásárlás a Senkisem.com-on</p>
+            </td>
+          </tr>
+          
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+              
+              <!-- Greeting -->
+              <p style="margin: 0 0 20px 0; font-size: 16px; color: #374151;">
+                Kedves <strong>${customerData.fullName}</strong>!
+              </p>
+              
+              <p style="margin: 0 0 30px 0; font-size: 15px; color: #6b7280; line-height: 1.6;">
+                Sikeresen rögzítettük rendelését. A fizetés visszaigazolását követően az alábbi ${isEbook ? 'e-könyv(ek)' : 'termék(ek)'} kerül(nek) feldolgozásra:
+              </p>
+              
+              <!-- Order Summary -->
+              <div style="background-color: #f9fafb; border-radius: 8px; padding: 24px; margin-bottom: 30px;">
+                <h2 style="margin: 0 0 20px 0; font-size: 18px; color: #111827; font-weight: 600;">Rendelés részletei</h2>
+                
+                <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                  <thead>
+                    <tr style="background-color: #e5e7eb;">
+                      <th style="padding: 12px; text-align: left; font-size: 14px; font-weight: 600; color: #374151;">Termék</th>
+                      <th style="padding: 12px; text-align: center; font-size: 14px; font-weight: 600; color: #374151;">Mennyiség</th>
+                      <th style="padding: 12px; text-align: right; font-size: 14px; font-weight: 600; color: #374151;">Ár</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${productRows}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2" style="padding: 16px 12px 0 12px; text-align: right; font-size: 16px; font-weight: 600; color: #111827;">Végösszeg:</td>
+                      <td style="padding: 16px 12px 0 12px; text-align: right; font-size: 18px; font-weight: 700; color: #667eea;">$${totalAmount.toFixed(2)}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              
+              <!-- Next Steps -->
+              <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px; margin-bottom: 30px; border-radius: 4px;">
+                <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #1e40af; font-weight: 600;">📧 Következő lépések</h3>
+                <p style="margin: 0; font-size: 14px; color: #1e3a8a; line-height: 1.6;">
+                  ${isEbook 
+                    ? 'A sikeres fizetés után <strong>külön emailben</strong> elküldjük a letöltési linket az e-könyv(ek)hez, valamint a számlát is.' 
+                    : 'A sikeres fizetés után <strong>külön emailben</strong> elküldjük a szállítási információkat és a számlát is.'}
+                </p>
+              </div>
+              
+              <!-- Contact Info -->
+              <p style="margin: 0 0 10px 0; font-size: 14px; color: #6b7280;">
+                Ha bármilyen kérdése van, írjon nekünk bizalommal:
+              </p>
+              <p style="margin: 0 0 30px 0; font-size: 14px;">
+                <a href="mailto:${CONFIG.EMAIL.FROM}" style="color: #667eea; text-decoration: none; font-weight: 600;">${CONFIG.EMAIL.FROM}</a>
+              </p>
+              
+              <!-- Closing -->
+              <p style="margin: 0; font-size: 15px; color: #374151;">
+                Üdvözlettel,<br>
+                <strong>Senkisem.com csapata</strong>
+              </p>
+              
+            </td>
+          </tr>
+          
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f9fafb; padding: 24px; text-align: center; border-radius: 0 0 8px 8px; border-top: 1px solid #e5e7eb;">
+              <p style="margin: 0; font-size: 12px; color: #9ca3af;">
+                © ${new Date().getFullYear()} Senkisem.com | Minden jog fenntartva
+              </p>
+            </td>
+          </tr>
+          
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `;
+}
+
+// ============================================
+// SEND ORDER CONFIRMATION EMAIL
+// ============================================
+async function sendOrderConfirmationEmail(orderData, totalAmount) {
+  try {
+    const { customerData } = orderData;
+    
+    const emailHtml = generateOrderConfirmationEmail(orderData, totalAmount);
+    
+    const result = await resend.emails.send({
+      from: `Senkisem.com <${CONFIG.EMAIL.FROM}>`,
+      to: customerData.email,
+      subject: `✅ Rendelés visszaigazolás - Senkisem.com`,
+      html: emailHtml,
+    });
+    
+    console.log('✅ Email sent successfully:', result.id);
+    return result;
+    
+  } catch (error) {
+    console.error('❌ Email send error:', error);
+    throw error;
+  }
+}
+
+// ============================================
+// CALCULATE SHIPPING COST
+// ============================================
+function calculateShippingCost(cart, shippingMethod) {
+  const ebookIds = [2, 4, 300];
+  const isAllDigital = cart.every(item => ebookIds.includes(item.id));
+  
+  if (isAllDigital || shippingMethod === 'digital') {
+    return 0;
+  }
+  
+  if (shippingMethod === 'home') {
+    return CONFIG.SHIPPING.HOME_DELIVERY_COST;
+  }
+  
+  return 0;
+}
+
+// ============================================
+// SAVE ORDER TO SHEETS + SEND EMAIL
 // ============================================
 async function saveOrderToSheets(orderData, sessionId) {
   try {
@@ -108,14 +285,14 @@ async function saveOrderToSheets(orderData, sessionId) {
     
     // Product type
     const isEbook = cart.every(item => item.id === 2 || item.id === 4 || item.id === 300);
-    const productType = isEbook ? 'E-könyv' : 'Fizikai'; // ✅ Magyar
+    const productType = isEbook ? 'E-könyv' : 'Fizikai';
     
     // Shipping method text
     let shippingMethodText = '-';
     if (customerData.shippingMethod === 'home') {
-      shippingMethodText = 'Házhozszállítás'; // ✅ Magyar
+      shippingMethodText = 'Házhozszállítás';
     } else if (customerData.shippingMethod === 'digital') {
-      shippingMethodText = 'Digitális'; // ✅ Magyar
+      shippingMethodText = 'Digitális';
     }
     
     // Delivery address (only for home delivery)
@@ -128,7 +305,7 @@ async function saveOrderToSheets(orderData, sessionId) {
       deliveryAddress = `${zip} ${city}, ${addr}, ${country}`;
     }
     
-    // ✅ ADD ROW - MAGYAR MEZŐNEVEK!
+    // ✅ ADD ROW TO GOOGLE SHEETS
     await sheet.addRow({
       'Dátum': new Date().toLocaleString('hu-HU', { timeZone: 'Europe/Budapest' }),
       'Név': customerData.fullName || '-',
@@ -143,10 +320,10 @@ async function saveOrderToSheets(orderData, sessionId) {
       'Típus': productType,
       'Szállítási mód': shippingMethodText,
       'Szállítási cím': deliveryAddress,
-      'Csomagpont név': '-', // Nincs használva nemzetközi szállításnál
+      'Csomagpont név': '-',
       'Szállítási díj': `$${shippingCost.toFixed(2)}`,
       'Végösszeg': `$${totalAmount.toFixed(2)}`,
-      'Foxpost követés': '-', // Nincs használva
+      'Foxpost követés': '-',
       'Rendelés ID': sessionId || '-',
       'Státusz': 'Fizetésre vár',
       'Szállítási megjegyzés': customerData.deliveryNote || '-',
@@ -154,28 +331,20 @@ async function saveOrderToSheets(orderData, sessionId) {
     });
     
     console.log('✅ Sheets save OK - Order ID:', sessionId);
+    
+    // ✅ SEND CONFIRMATION EMAIL IMMEDIATELY
+    try {
+      await sendOrderConfirmationEmail(orderData, totalAmount);
+      console.log('✅ Confirmation email sent to:', customerData.email);
+    } catch (emailError) {
+      console.error('⚠️ Email send failed (but order saved):', emailError.message);
+      // Don't throw - order is already saved to sheets
+    }
+    
   } catch (error) {
     console.error('⚠️ Sheets save error:', error.message);
     throw error;
   }
-}
-
-// ============================================
-// CALCULATE SHIPPING COST
-// ============================================
-function calculateShippingCost(cart, shippingMethod) {
-  const ebookIds = [2, 4, 300];
-  const isAllDigital = cart.every(item => ebookIds.includes(item.id));
-  
-  if (isAllDigital || shippingMethod === 'digital') {
-    return 0;
-  }
-  
-  if (shippingMethod === 'home') {
-    return CONFIG.SHIPPING.HOME_DELIVERY_COST;
-  }
-  
-  return 0;
 }
 
 // ============================================
@@ -189,7 +358,7 @@ app.use(express.json());
 // ROUTES
 // ============================================
 
-// Create Stripe payment session + IMMEDIATE SHEETS SAVE
+// Create Stripe payment session + IMMEDIATE SHEETS SAVE + EMAIL
 app.post('/create-payment-session', async (req, res) => {
   const { cart, customerData } = req.body;
 
@@ -246,7 +415,7 @@ app.post('/create-payment-session', async (req, res) => {
       customer_email: customerData.email,
     });
 
-    // ✅ IMMEDIATE SAVE TO GOOGLE SHEETS (before payment)
+    // ✅ IMMEDIATE SAVE TO GOOGLE SHEETS + SEND EMAIL
     await saveOrderToSheets(
       { cart, customerData }, 
       session.id
@@ -256,7 +425,7 @@ app.post('/create-payment-session', async (req, res) => {
     res.json({ payment_url: session.url });
 
   } catch (error) {
-    console.error('❌ Session/Sheets error:', error);
+    console.error('❌ Session/Sheets/Email error:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -287,7 +456,7 @@ app.post('/webhook/stripe', async (req, res) => {
       const orderRow = rows.find(row => row.get('Rendelés ID') === session.id);
       
       if (orderRow) {
-        orderRow.set('Státusz', 'Fizetve'); // ✅ Magyar
+        orderRow.set('Státusz', 'Fizetve');
         await orderRow.save();
         console.log('✅ Status updated: Fizetve');
       }
@@ -305,7 +474,8 @@ app.get('/health', (req, res) => {
     status: 'OK', 
     timestamp: new Date().toISOString(),
     currency: 'USD',
-    shipping: '$15.00'
+    shipping: '$15.00',
+    email_enabled: true
   });
 });
 
@@ -323,16 +493,17 @@ app.get('*', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`
-╔═══════════════════════════════════════╗
-║   🚀 SENKISEM SERVER STARTED (EN)    ║
-╠═══════════════════════════════════════╣
-║   Port: ${PORT}                       ║
-║   Currency: USD ($)                   ║
-║   Shipping: $15.00 (Home Delivery)    ║
-╠═══════════════════════════════════════╣
-║   ✅ Stripe + Webhook                ║
-║   ✅ Google Sheets (MAGYAR mezők)    ║
-║   ✅ IMMEDIATE save after checkout   ║
-╚═══════════════════════════════════════╝
+╔═══════════════════════════════════════════╗
+║   🚀 SENKISEM SERVER STARTED (EN)        ║
+╠═══════════════════════════════════════════╣
+║   Port: ${PORT}                           ║
+║   Currency: USD ($)                       ║
+║   Shipping: $15.00 (Home Delivery)        ║
+╠═══════════════════════════════════════════╣
+║   ✅ Stripe + Webhook                    ║
+║   ✅ Google Sheets (MAGYAR mezők)        ║
+║   ✅ Resend Email (rendelés konfirmáció) ║
+║   ✅ IMMEDIATE save + email after checkout║
+╚═══════════════════════════════════════════╝
   `);
 });
