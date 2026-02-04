@@ -37,13 +37,13 @@ const About = () => {
         <div className="flex flex-col items-center gap-6">
           <AnimateTitle
             sectionId="about"
-            title={`Nem<b> Egy</b> Brand;`}
+            title={`Not<b> A</b> Brand;`}
             containerClass="mt-5 text-center !text-black animate-title"
           />
 
           <AnimateTitle
             sectionId="about-message"
-            title={`Üzenet.`}
+            title={`Message.`}
             containerClass="text-center !text-black animate-title"
           />
         </div>
