@@ -7,7 +7,6 @@ const path = require('path');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { JWT } = require('google-auth-library');
 const { Resend } = require('resend');
-const { spawn } = require('child_process');
 
 // ============================================
 // ENV VALIDATION
@@ -45,13 +44,6 @@ const CONFIG = {
   },
   EMAIL: {
     FROM: process.env.RESEND_FROM_EMAIL,
-  },
-  SELLER: {
-    NAME: 'SENKISEM EV',
-    TAX_NUMBER: '91113654-1-25',
-    COMPANY_ID: '60502292',
-    ADDRESS: '3600 Ózd, Bolyki Tamás utca 15. A épület 1. emelet 5-6. ajtó',
-    COUNTRY: 'Hungary'
   }
 };
 
@@ -93,260 +85,9 @@ async function getSheet(sheetId) {
 }
 
 // ============================================
-// GET NEXT INVOICE NUMBER
+// EMAIL TEMPLATE GENERATOR
 // ============================================
-async function getNextInvoiceNumber() {
-  try {
-    const sheet = await getSheet(CONFIG.SHEETS.ORDERS);
-    const rows = await sheet.getRows();
-    
-    // Find the highest invoice number
-    let maxNumber = 0;
-    
-    for (const row of rows) {
-      const invoiceNum = row.get('Számla szám');
-      if (invoiceNum && invoiceNum.startsWith('E-SEN-2026-')) {
-        const numStr = invoiceNum.replace('E-SEN-2026-', '');
-        const num = parseInt(numStr, 10);
-        if (!isNaN(num) && num > maxNumber) {
-          maxNumber = num;
-        }
-      }
-    }
-    
-    const nextNumber = maxNumber + 1;
-    return `E-SEN-2026-${String(nextNumber).padStart(3, '0')}`;
-    
-  } catch (error) {
-    console.error('⚠️ Error getting invoice number, using 001:', error.message);
-    return 'E-SEN-2026-001';
-  }
-}
-
-// ============================================
-// GENERATE PDF INVOICE
-// ============================================
-async function generateInvoicePDF(orderData, invoiceNumber, totalAmount) {
-  const { customerData, cart } = orderData;
-  
-  // Calculate product total
-  const productTotal = cart.reduce((sum, item) => {
-    const price = typeof item.price === 'string' ? 
-      parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
-    const quantity = item.quantity || 1;
-    return sum + (price * quantity);
-  }, 0);
-  
-  const shippingCost = calculateShippingCost(cart, customerData.shippingMethod);
-  
-  // Format dates
-  const currentDate = new Date().toLocaleDateString('hu-HU', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  });
-  
-  // Customer address
-  const customerAddress = `${customerData.country}\n${customerData.zip} ${customerData.city}, ${customerData.address}`;
-  
-  // Create Python script for PDF generation
-  const pythonScript = `
-import sys
-from reportlab.lib.pagesizes import A4
-from reportlab.lib import colors
-from reportlab.lib.units import mm
-from reportlab.pdfgen import canvas
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import Table, TableStyle
-
-# Create PDF
-pdf_path = "${path.join(__dirname, 'temp', `invoice_${invoiceNumber}.pdf`)}"
-c = canvas.Canvas(pdf_path, pagesize=A4)
-width, height = A4
-
-# Colors
-brand_color = colors.HexColor('#667eea')
-dark_color = colors.HexColor('#1f2937')
-gray_color = colors.HexColor('#6b7280')
-light_gray = colors.HexColor('#f3f4f6')
-
-# Header with brand color bar
-c.setFillColor(brand_color)
-c.rect(0, height - 15*mm, width, 15*mm, fill=1, stroke=0)
-
-c.setFillColor(colors.white)
-c.setFont("Helvetica-Bold", 20)
-c.drawString(20*mm, height - 11*mm, "ELECTRONIC INVOICE")
-
-# Invoice number
-c.setFont("Helvetica-Bold", 11)
-c.drawRightString(width - 20*mm, height - 11*mm, "${invoiceNumber}")
-
-# Seller information box
-c.setFillColor(light_gray)
-c.roundRect(20*mm, height - 60*mm, 80*mm, 35*mm, 3*mm, fill=1, stroke=0)
-
-c.setFillColor(dark_color)
-c.setFont("Helvetica-Bold", 10)
-c.drawString(25*mm, height - 25*mm, "SELLER:")
-
-c.setFont("Helvetica-Bold", 11)
-c.drawString(25*mm, height - 30*mm, "${CONFIG.SELLER.NAME}")
-
-c.setFont("Helvetica", 9)
-c.drawString(25*mm, height - 35*mm, "${CONFIG.SELLER.ADDRESS}")
-c.drawString(25*mm, height - 40*mm, "${CONFIG.SELLER.COUNTRY}")
-c.drawString(25*mm, height - 45*mm, f"Company ID: ${CONFIG.SELLER.COMPANY_ID}")
-c.drawString(25*mm, height - 50*mm, f"Tax Number: ${CONFIG.SELLER.TAX_NUMBER}")
-c.drawString(25*mm, height - 55*mm, "VAT Status: TAM (Exempt)")
-
-# Buyer information box
-c.setFillColor(colors.white)
-c.setStrokeColor(gray_color)
-c.setLineWidth(1)
-c.roundRect(110*mm, height - 60*mm, 80*mm, 35*mm, 3*mm, fill=1, stroke=1)
-
-c.setFillColor(dark_color)
-c.setFont("Helvetica-Bold", 10)
-c.drawString(115*mm, height - 25*mm, "BUYER:")
-
-c.setFont("Helvetica-Bold", 11)
-c.drawString(115*mm, height - 30*mm, "${customerData.fullName}")
-
-c.setFont("Helvetica", 9)
-# Handle multi-line address
-address_lines = """${customerAddress}""".strip().split('\\n')
-y_pos = height - 35*mm
-for line in address_lines:
-    c.drawString(115*mm, y_pos, line)
-    y_pos -= 4*mm
-
-# Invoice details
-c.setFillColor(dark_color)
-c.setFont("Helvetica", 9)
-c.drawString(20*mm, height - 70*mm, f"Issue Date: ${currentDate}")
-c.drawString(20*mm, height - 75*mm, f"Performance Date: ${currentDate}")
-c.drawString(20*mm, height - 80*mm, f"Payment Method: Bank Card")
-
-# Products table
-table_data = [
-    ['Description', 'Quantity', 'Unit Price', 'Net Amount', 'VAT', 'Gross Amount']
-]
-
-${cart.map(item => {
-  const price = typeof item.price === 'string' ? 
-    parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
-  const quantity = item.quantity || 1;
-  const itemTotal = price * quantity;
-  return `table_data.append(['${item.name.replace(/'/g, "\\'")}', '${quantity} pcs', '$${price.toFixed(2)}', '$${itemTotal.toFixed(2)}', 'TAM', '$${itemTotal.toFixed(2)}'])`;
-}).join('\n')}
-
-${shippingCost > 0 ? `table_data.append(['Home Delivery', '1 pcs', '$${shippingCost.toFixed(2)}', '$${shippingCost.toFixed(2)}', 'TAM', '$${shippingCost.toFixed(2)}'])` : ''}
-
-# Create table
-table = Table(table_data, colWidths=[65*mm, 20*mm, 25*mm, 25*mm, 15*mm, 25*mm])
-table.setStyle(TableStyle([
-    ('BACKGROUND', (0, 0), (-1, 0), brand_color),
-    ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
-    ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-    ('ALIGN', (0, 1), (0, -1), 'LEFT'),
-    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-    ('FONTSIZE', (0, 0), (-1, 0), 9),
-    ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
-    ('FONTSIZE', (0, 1), (-1, -1), 8),
-    ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
-    ('TOPPADDING', (0, 0), (-1, 0), 8),
-    ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
-    ('TOPPADDING', (0, 1), (-1, -1), 6),
-    ('GRID', (0, 0), (-1, -1), 0.5, gray_color),
-    ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, light_gray]),
-]))
-
-# Draw table
-table.wrapOn(c, width, height)
-table.drawOn(c, 20*mm, height - 145*mm)
-
-# Summary box
-summary_y = height - 165*mm
-c.setFillColor(light_gray)
-c.roundRect(110*mm, summary_y - 25*mm, 80*mm, 25*mm, 3*mm, fill=1, stroke=0)
-
-c.setFillColor(dark_color)
-c.setFont("Helvetica", 10)
-c.drawString(115*mm, summary_y - 5*mm, "Subtotal:")
-c.drawRightString(185*mm, summary_y - 5*mm, "$${productTotal.toFixed(2)}")
-
-${shippingCost > 0 ? `
-c.drawString(115*mm, summary_y - 10*mm, "Shipping:")
-c.drawRightString(185*mm, summary_y - 10*mm, "$${shippingCost.toFixed(2)}")
-` : ''}
-
-c.drawString(115*mm, summary_y - 15*mm, "VAT (TAM - Exempt):")
-c.drawRightString(185*mm, summary_y - 15*mm, "$0.00")
-
-# Total
-c.setFont("Helvetica-Bold", 12)
-c.drawString(115*mm, summary_y - 22*mm, "TOTAL:")
-c.drawRightString(185*mm, summary_y - 22*mm, "$${totalAmount.toFixed(2)}")
-
-# Footer
-c.setFillColor(gray_color)
-c.setFont("Helvetica-Oblique", 8)
-c.drawCentredString(width/2, 20*mm, "Thank you for your purchase!")
-c.drawCentredString(width/2, 16*mm, "For any questions, contact us at ${CONFIG.EMAIL.FROM}")
-c.setFont("Helvetica", 7)
-c.drawCentredString(width/2, 12*mm, "This is an electronically generated invoice and is valid without signature.")
-
-# Page number
-c.drawRightString(width - 20*mm, 10*mm, "Page 1/1")
-
-c.save()
-print(f"PDF generated: {pdf_path}")
-`;
-
-  return new Promise((resolve, reject) => {
-    // Ensure temp directory exists
-    const tempDir = path.join(__dirname, 'temp');
-    if (!fs.existsSync(tempDir)) {
-      fs.mkdirSync(tempDir, { recursive: true });
-    }
-
-    // Write Python script to temp file
-    const scriptPath = path.join(tempDir, 'generate_invoice.py');
-    fs.writeFileSync(scriptPath, pythonScript);
-
-    // Execute Python script
-    const pythonProcess = spawn('python3', [scriptPath]);
-
-    let output = '';
-    let errorOutput = '';
-
-    pythonProcess.stdout.on('data', (data) => {
-      output += data.toString();
-    });
-
-    pythonProcess.stderr.on('data', (data) => {
-      errorOutput += data.toString();
-    });
-
-    pythonProcess.on('close', (code) => {
-      if (code === 0) {
-        const pdfPath = path.join(tempDir, `invoice_${invoiceNumber}.pdf`);
-        console.log('✅ PDF generated:', pdfPath);
-        resolve(pdfPath);
-      } else {
-        console.error('❌ Python script error:', errorOutput);
-        reject(new Error(`PDF generation failed: ${errorOutput}`));
-      }
-    });
-  });
-}
-
-// ============================================
-// EMAIL TEMPLATE GENERATOR (ENGLISH)
-// ============================================
-function generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
+function generateOrderConfirmationEmail(orderData, totalAmount) {
   const { customerData, cart } = orderData;
   
   // Product list HTML
@@ -359,7 +100,7 @@ function generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
     return `
       <tr>
         <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">${item.name}</td>
-        <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: center;">${quantity} pcs</td>
+        <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: center;">${quantity} db</td>
         <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">$${itemTotal.toFixed(2)}</td>
       </tr>
     `;
@@ -373,7 +114,7 @@ function generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order Confirmation - Senkisem.com</title>
+  <title>Rendelés visszaigazolás - Senkisem.com</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6;">
   <table role="presentation" style="width: 100%; border-collapse: collapse;">
@@ -384,8 +125,8 @@ function generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
           <!-- Header -->
           <tr>
             <td style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; text-align: center; border-radius: 8px 8px 0 0;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Thank You for Your Order!</h1>
-              <p style="margin: 10px 0 0 0; color: #e0e7ff; font-size: 16px;">Successful Purchase at Senkisem.com</p>
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Köszönjük a rendelést!</h1>
+              <p style="margin: 10px 0 0 0; color: #e0e7ff; font-size: 16px;">Sikeres vásárlás a Senkisem.com-on</p>
             </td>
           </tr>
           
@@ -395,23 +136,23 @@ function generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
               
               <!-- Greeting -->
               <p style="margin: 0 0 20px 0; font-size: 16px; color: #374151;">
-                Dear <strong>${customerData.fullName}</strong>,
+                Kedves <strong>${customerData.fullName}</strong>!
               </p>
               
               <p style="margin: 0 0 30px 0; font-size: 15px; color: #6b7280; line-height: 1.6;">
-                We have successfully received your order. After payment confirmation, the following ${isEbook ? 'e-book(s)' : 'product(s)'} will be processed:
+                Sikeresen rögzítettük rendelését. A fizetés visszaigazolását követően az alábbi ${isEbook ? 'e-könyv(ek)' : 'termék(ek)'} kerül(nek) feldolgozásra:
               </p>
               
               <!-- Order Summary -->
               <div style="background-color: #f9fafb; border-radius: 8px; padding: 24px; margin-bottom: 30px;">
-                <h2 style="margin: 0 0 20px 0; font-size: 18px; color: #111827; font-weight: 600;">Order Details</h2>
+                <h2 style="margin: 0 0 20px 0; font-size: 18px; color: #111827; font-weight: 600;">Rendelés részletei</h2>
                 
                 <table role="presentation" style="width: 100%; border-collapse: collapse;">
                   <thead>
                     <tr style="background-color: #e5e7eb;">
-                      <th style="padding: 12px; text-align: left; font-size: 14px; font-weight: 600; color: #374151;">Product</th>
-                      <th style="padding: 12px; text-align: center; font-size: 14px; font-weight: 600; color: #374151;">Quantity</th>
-                      <th style="padding: 12px; text-align: right; font-size: 14px; font-weight: 600; color: #374151;">Price</th>
+                      <th style="padding: 12px; text-align: left; font-size: 14px; font-weight: 600; color: #374151;">Termék</th>
+                      <th style="padding: 12px; text-align: center; font-size: 14px; font-weight: 600; color: #374151;">Mennyiség</th>
+                      <th style="padding: 12px; text-align: right; font-size: 14px; font-weight: 600; color: #374151;">Ár</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -419,34 +160,26 @@ function generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colspan="2" style="padding: 16px 12px 0 12px; text-align: right; font-size: 16px; font-weight: 600; color: #111827;">Total:</td>
+                      <td colspan="2" style="padding: 16px 12px 0 12px; text-align: right; font-size: 16px; font-weight: 600; color: #111827;">Végösszeg:</td>
                       <td style="padding: 16px 12px 0 12px; text-align: right; font-size: 18px; font-weight: 700; color: #667eea;">$${totalAmount.toFixed(2)}</td>
                     </tr>
                   </tfoot>
                 </table>
               </div>
               
-              <!-- Invoice Info -->
-              <div style="background-color: #ecfdf5; border-left: 4px solid #10b981; padding: 16px; margin-bottom: 30px; border-radius: 4px;">
-                <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #065f46; font-weight: 600;">📄 Invoice Attached</h3>
-                <p style="margin: 0; font-size: 14px; color: #064e3b; line-height: 1.6;">
-                  Your invoice (<strong>${invoiceNumber}</strong>) is attached to this email as a PDF document.
-                </p>
-              </div>
-              
               <!-- Next Steps -->
               <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px; margin-bottom: 30px; border-radius: 4px;">
-                <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #1e40af; font-weight: 600;">📧 Next Steps</h3>
+                <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #1e40af; font-weight: 600;">📧 Következő lépések</h3>
                 <p style="margin: 0; font-size: 14px; color: #1e3a8a; line-height: 1.6;">
                   ${isEbook 
-                    ? 'After successful payment, we will send you a <strong>separate email</strong> with the download link(s) for your e-book(s).' 
-                    : 'After successful payment, we will send you a <strong>separate email</strong> with shipping information.'}
+                    ? 'A sikeres fizetés után <strong>külön emailben</strong> elküldjük a letöltési linket az e-könyv(ek)hez, valamint a számlát is.' 
+                    : 'A sikeres fizetés után <strong>külön emailben</strong> elküldjük a szállítási információkat és a számlát is.'}
                 </p>
               </div>
               
               <!-- Contact Info -->
               <p style="margin: 0 0 10px 0; font-size: 14px; color: #6b7280;">
-                If you have any questions, please feel free to contact us:
+                Ha bármilyen kérdése van, írjon nekünk bizalommal:
               </p>
               <p style="margin: 0 0 30px 0; font-size: 14px;">
                 <a href="mailto:${CONFIG.EMAIL.FROM}" style="color: #667eea; text-decoration: none; font-weight: 600;">${CONFIG.EMAIL.FROM}</a>
@@ -454,8 +187,8 @@ function generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
               
               <!-- Closing -->
               <p style="margin: 0; font-size: 15px; color: #374151;">
-                Best regards,<br>
-                <strong>Senkisem.com Team</strong>
+                Üdvözlettel,<br>
+                <strong>Senkisem.com csapata</strong>
               </p>
               
             </td>
@@ -465,7 +198,7 @@ function generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
           <tr>
             <td style="background-color: #f9fafb; padding: 24px; text-align: center; border-radius: 0 0 8px 8px; border-top: 1px solid #e5e7eb;">
               <p style="margin: 0; font-size: 12px; color: #9ca3af;">
-                © ${new Date().getFullYear()} Senkisem.com | All rights reserved
+                © ${new Date().getFullYear()} Senkisem.com | Minden jog fenntartva
               </p>
             </td>
           </tr>
@@ -480,41 +213,22 @@ function generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
 }
 
 // ============================================
-// SEND ORDER CONFIRMATION EMAIL WITH PDF
+// SEND ORDER CONFIRMATION EMAIL
 // ============================================
-async function sendOrderConfirmationEmail(orderData, totalAmount, invoiceNumber, pdfPath) {
+async function sendOrderConfirmationEmail(orderData, totalAmount) {
   try {
     const { customerData } = orderData;
     
-    const emailHtml = generateOrderConfirmationEmail(orderData, totalAmount, invoiceNumber);
-    
-    // Read PDF file as base64
-    const pdfBuffer = fs.readFileSync(pdfPath);
-    const pdfBase64 = pdfBuffer.toString('base64');
+    const emailHtml = generateOrderConfirmationEmail(orderData, totalAmount);
     
     const result = await resend.emails.send({
       from: `Senkisem.com <${CONFIG.EMAIL.FROM}>`,
       to: customerData.email,
-      subject: `✅ Order Confirmation - ${invoiceNumber} - Senkisem.com`,
+      subject: `✅ Rendelés visszaigazolás - Senkisem.com`,
       html: emailHtml,
-      attachments: [
-        {
-          filename: `${invoiceNumber}.pdf`,
-          content: pdfBase64,
-        }
-      ]
     });
     
-    console.log('✅ Email with PDF sent successfully:', result.id);
-    
-    // Clean up temp PDF file
-    try {
-      fs.unlinkSync(pdfPath);
-      console.log('✅ Temp PDF cleaned up');
-    } catch (err) {
-      console.warn('⚠️ Could not delete temp PDF:', err.message);
-    }
-    
+    console.log('✅ Email sent successfully:', result.id);
     return result;
     
   } catch (error) {
@@ -542,7 +256,7 @@ function calculateShippingCost(cart, shippingMethod) {
 }
 
 // ============================================
-// SAVE ORDER TO SHEETS + GENERATE PDF + SEND EMAIL
+// SAVE ORDER TO SHEETS + SEND EMAIL
 // ============================================
 async function saveOrderToSheets(orderData, sessionId) {
   try {
@@ -560,10 +274,6 @@ async function saveOrderToSheets(orderData, sessionId) {
     
     const shippingCost = calculateShippingCost(cart, customerData.shippingMethod);
     const totalAmount = productTotal + shippingCost;
-    
-    // Get next invoice number
-    const invoiceNumber = await getNextInvoiceNumber();
-    console.log('📄 Generated invoice number:', invoiceNumber);
     
     // Product names and sizes
     const productNames = cart.map(item => {
@@ -617,38 +327,22 @@ async function saveOrderToSheets(orderData, sessionId) {
       'Rendelés ID': sessionId || '-',
       'Státusz': 'Fizetésre vár',
       'Szállítási megjegyzés': customerData.deliveryNote || '-',
-      'Telefonszám': customerData.phone || '-',
-      'Számla szám': invoiceNumber
+      'Telefonszám': customerData.phone || '-'
     });
     
     console.log('✅ Sheets save OK - Order ID:', sessionId);
     
-    // ✅ GENERATE PDF INVOICE
-    let pdfPath;
+    // ✅ SEND CONFIRMATION EMAIL IMMEDIATELY
     try {
-      pdfPath = await generateInvoicePDF(orderData, invoiceNumber, totalAmount);
-      console.log('✅ PDF invoice generated:', pdfPath);
-    } catch (pdfError) {
-      console.error('❌ PDF generation failed:', pdfError.message);
-      throw pdfError;
-    }
-    
-    // ✅ SEND CONFIRMATION EMAIL WITH PDF ATTACHMENT
-    try {
-      await sendOrderConfirmationEmail(orderData, totalAmount, invoiceNumber, pdfPath);
-      console.log('✅ Confirmation email with invoice sent to:', customerData.email);
+      await sendOrderConfirmationEmail(orderData, totalAmount);
+      console.log('✅ Confirmation email sent to:', customerData.email);
     } catch (emailError) {
       console.error('⚠️ Email send failed (but order saved):', emailError.message);
-      // Clean up PDF even if email fails
-      try {
-        fs.unlinkSync(pdfPath);
-      } catch (err) {
-        // Ignore cleanup errors
-      }
+      // Don't throw - order is already saved to sheets
     }
     
   } catch (error) {
-    console.error('⚠️ Order processing error:', error.message);
+    console.error('⚠️ Sheets save error:', error.message);
     throw error;
   }
 }
@@ -664,7 +358,7 @@ app.use(express.json());
 // ROUTES
 // ============================================
 
-// Create Stripe payment session + IMMEDIATE SHEETS SAVE + PDF + EMAIL
+// Create Stripe payment session + IMMEDIATE SHEETS SAVE + EMAIL
 app.post('/create-payment-session', async (req, res) => {
   const { cart, customerData } = req.body;
 
@@ -721,7 +415,7 @@ app.post('/create-payment-session', async (req, res) => {
       customer_email: customerData.email,
     });
 
-    // ✅ IMMEDIATE SAVE TO GOOGLE SHEETS + GENERATE PDF + SEND EMAIL
+    // ✅ IMMEDIATE SAVE TO GOOGLE SHEETS + SEND EMAIL
     await saveOrderToSheets(
       { cart, customerData }, 
       session.id
@@ -731,7 +425,7 @@ app.post('/create-payment-session', async (req, res) => {
     res.json({ payment_url: session.url });
 
   } catch (error) {
-    console.error('❌ Session/Sheets/PDF/Email error:', error);
+    console.error('❌ Session/Sheets/Email error:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -781,8 +475,7 @@ app.get('/health', (req, res) => {
     timestamp: new Date().toISOString(),
     currency: 'USD',
     shipping: '$15.00',
-    email_enabled: true,
-    pdf_invoices: true
+    email_enabled: true
   });
 });
 
@@ -809,9 +502,8 @@ app.listen(PORT, () => {
 ╠═══════════════════════════════════════════╣
 ║   ✅ Stripe + Webhook                    ║
 ║   ✅ Google Sheets (MAGYAR mezők)        ║
-║   ✅ PDF Invoices (Auto-numbered)        ║
-║   ✅ Resend Email (with PDF attachment)  ║
-║   ✅ IMMEDIATE: Save → PDF → Email       ║
+║   ✅ Resend Email (rendelés konfirmáció) ║
+║   ✅ IMMEDIATE save + email after checkout║
 ╚═══════════════════════════════════════════╝
   `);
 });
