@@ -294,6 +294,9 @@ async function createInvoicePDF(orderData, invoiceNumber) {
 // ============================================
 // UPLOAD TO GOOGLE DRIVE
 // ============================================
+// ============================================
+// UPLOAD TO GOOGLE DRIVE (FIXED FOR SERVICE ACCOUNT)
+// ============================================
 async function uploadToDrive(pdfBuffer, fileName) {
   try {
     const auth = getGoogleAuth();
@@ -312,7 +315,8 @@ async function uploadToDrive(pdfBuffer, fileName) {
     const response = await drive.files.create({
       requestBody: fileMetadata,
       media: media,
-      fields: 'id, name, webViewLink'
+      fields: 'id, name, webViewLink',
+      supportsAllDrives: true  // ✅ HOZZÁADVA
     });
 
     console.log(`✅ Invoice uploaded to Drive: ${response.data.name}`);
