@@ -3968,6 +3968,161 @@ padding: 0.8rem;
         justify-items: center;
     }
 }
+
+@media (max-width: 768px) {
+    /* ... meglévő szabályok ... */
+
+    /* ========================================
+       MOBILON ANIMÁCIÓK KIKAPCSOLÁSA / LASSÍTÁSA
+       ======================================== */
+    
+    /* SVG decorations eltüntetése mobilon */
+    .svg-decoration,
+    .paint-splatter,
+    .led-line {
+        display: none !important;
+    }
+
+    /* Grid és glow animációk lassítása/halványítása */
+    .merch-about::before {
+        animation: none;
+        opacity: 0.2;
+    }
+
+    .merch-about::after {
+        animation: none;
+        opacity: 0.15;
+    }
+
+    /* LED line-ok eltüntetése */
+    .led-line.led-1,
+    .led-line.led-2 {
+        display: none;
+    }
+
+    /* Sakura heritage section animációk */
+    .sakura-heritage-section::before {
+        animation: none;
+        opacity: 0.2;
+    }
+
+    .sakura-heritage-section::after {
+        animation: none;
+        opacity: 0.15;
+    }
+
+    .sakura-petals {
+        display: none; /* Sakura szirmok mobilon ki */
+    }
+
+    .sakura-tech-grid {
+        animation: none;
+        opacity: 0.1;
+    }
+
+    .sakura-led-accent {
+        display: none;
+    }
+
+    /* Phantom section animációk */
+    .phantom-section::before {
+        animation: none;
+        opacity: 0.15;
+    }
+
+    .phantom-section::after {
+        animation: none;
+        opacity: 0.2;
+    }
+
+    .phantom-smoke {
+        animation: none;
+        opacity: 0.2;
+    }
+
+    /* Accessories section */
+    .accessories-section::before {
+        animation: none;
+        opacity: 0.2;
+    }
+
+    .accessories-section::after {
+        animation: none;
+        opacity: 0.15;
+    }
+
+    /* Signature section */
+    .signature-section::before {
+        opacity: 0.15;
+    }
+
+    .signature-section::after {
+        opacity: 0.08;
+    }
+
+    /* Featured section rotation */
+    .featured-section::before {
+        animation: none;
+        opacity: 0.15;
+    }
+
+    /* Heritage section */
+    .heritage-section::before {
+        opacity: 0.15;
+    }
+
+    .heritage-section::after {
+        animation: none;
+        opacity: 0.15;
+    }
+
+    /* Glitch title animáció lassítása */
+    .merch-about__title {
+        animation: none;
+        text-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.3),
+            0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Border pulse animációk kikapcsolása */
+    .merch-about__image::before,
+    .merch-about__bottom-image::before {
+        animation: none;
+        opacity: 0.3;
+    }
+
+    /* Text glitch subtle kikapcsolása */
+    .merch-about__desc p,
+    .merch-about__bottom-text p {
+        animation: none;
+        text-shadow: none;
+    }
+
+    /* Sidebar bar animációk */
+    .merch-about__desc::before,
+    .merch-about__bottom-text::after {
+        animation: none;
+        opacity: 0.5;
+    }
+
+    /* Product card hover animációk egyszerűsítése */
+    .product-card:hover {
+        transform: none !important;
+    }
+
+    /* Sale badge pulse */
+    .sale-badge {
+        animation: none;
+    }
+
+    /* Featured badge */
+    .featured-badge {
+        animation: none;
+    }
+
+    /* MEGTARTJUK: merch-more (typing section) animációkat */
+    /* Ez marad, ahogy van - nincs módosítás */
+}
 </style>
 </head>
 <body>
