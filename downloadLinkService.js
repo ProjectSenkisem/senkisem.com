@@ -228,8 +228,8 @@ function getProductFilePath(productId) {
  */
 function getProductFileName(productId) {
   const nameMap = {
-    2: 'Senkisem_Notes_From_a_Stranger.pdf',
-    4: 'Senkisem_User_Manual_for_Life.pdf'
+    2: 'Senkisem - Notes From a Stranger.pdf',
+    4: 'Senkisem - User Manual for Life.pdf'
   };
   
   return nameMap[productId] || 'ebook.pdf';
