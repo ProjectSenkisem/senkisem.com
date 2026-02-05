@@ -122,6 +122,18 @@ function generateProductRows(cart) {
  * Download button component
  */
 function getDownloadButton(downloadUrl, buttonText = 'Download Your Ebook') {
+  // Security check - don't show button if no URL
+  if (!downloadUrl || downloadUrl === '#' || downloadUrl === 'undefined') {
+    console.warn('⚠️ Missing download URL for button:', buttonText);
+    return `
+      <div style="background-color: #ffebee; border-left: 4px solid #f44336; padding: 15px; margin: 25px 0; border-radius: 4px;">
+        <p style="margin: 0; color: #c62828; font-size: 14px;">
+          ⚠️ An error occurred generating the download link. Please contact support.
+        </p>
+      </div>
+    `;
+  }
+  
   return `
     <div style="text-align: center; margin: 30px 0;">
       <a href="${downloadUrl}" 
@@ -138,9 +150,16 @@ function getDownloadButton(downloadUrl, buttonText = 'Download Your Ebook') {
 /**
  * TEMPLATE A: Digital Product 1 - Notes From a Stranger (ID 2)
  */
-function templateDigitalProduct1(orderData, totalAmount, downloadLink) {
+function templateDigitalProduct1(orderData, totalAmount, downloadLinks) {
   const { customerData, cart } = orderData;
   const productRows = generateProductRows(cart);
+  
+  // ✅ Extract download link (from object or string)
+  const downloadLink = typeof downloadLinks === 'string' 
+    ? downloadLinks 
+    : (downloadLinks?.product2 || '#');
+  
+  console.log('📧 [Template A] Download link:', downloadLink?.substring(0, 50) + '...');
   
   const content = `
     <div style="padding: 40px 30px;">
@@ -217,9 +236,16 @@ function templateDigitalProduct1(orderData, totalAmount, downloadLink) {
 /**
  * TEMPLATE B: Digital Product 2 - User Manual for Life (ID 4)
  */
-function templateDigitalProduct2(orderData, totalAmount, downloadLink) {
+function templateDigitalProduct2(orderData, totalAmount, downloadLinks) {
   const { customerData, cart } = orderData;
   const productRows = generateProductRows(cart);
+  
+  // ✅ Extract download link (from object or string)
+  const downloadLink = typeof downloadLinks === 'string' 
+    ? downloadLinks 
+    : (downloadLinks?.product4 || '#');
+  
+  console.log('📧 [Template B] Download link:', downloadLink?.substring(0, 50) + '...');
   
   const content = `
     <div style="padding: 40px 30px;">
@@ -300,6 +326,18 @@ function templateDigitalBundle(orderData, totalAmount, downloadLinks) {
   const { customerData, cart } = orderData;
   const productRows = generateProductRows(cart);
   
+  // ✅ Security checks
+  if (!downloadLinks || typeof downloadLinks !== 'object') {
+    console.error('❌ [Template C] Missing or invalid downloadLinks object:', downloadLinks);
+    downloadLinks = { product2: '#', product4: '#' };
+  }
+  
+  const link2 = downloadLinks.product2 || '#';
+  const link4 = downloadLinks.product4 || '#';
+  
+  console.log('📧 [Template C] Link 2:', link2?.substring(0, 50) + '...');
+  console.log('📧 [Template C] Link 4:', link4?.substring(0, 50) + '...');
+  
   const content = `
     <div style="padding: 40px 30px;">
       <!-- Greeting -->
@@ -314,13 +352,13 @@ function templateDigitalBundle(orderData, totalAmount, downloadLinks) {
           📚 Download Your Ebooks
         </h3>
         
-        ${getDownloadButton(downloadLinks.product2, 'Download "Notes From a Stranger"')}
+        ${getDownloadButton(link2, 'Download "Notes From a Stranger"')}
         
         <div style="text-align: center; margin: 20px 0; color: #999999; font-size: 14px;">
           ━━━━━━━━━━━━━━━━
         </div>
         
-        ${getDownloadButton(downloadLinks.product4, 'Download "User Manual for Life"')}
+        ${getDownloadButton(link4, 'Download "User Manual for Life"')}
       </div>
       
       <!-- Warning Box -->
@@ -500,6 +538,11 @@ function determineEmailTemplate(cart) {
  * Generate email based on template type
  */
 function generateEmail(templateType, orderData, totalAmount, downloadLinks = null) {
+  console.log('📧 Email generation:', {
+    templateType,
+    downloadLinks: downloadLinks ? Object.keys(downloadLinks) : 'null'
+  });
+  
   switch (templateType) {
     case 'digitalProduct1':
       return {

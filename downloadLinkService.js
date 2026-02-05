@@ -88,7 +88,7 @@ async function generateDownloadToken(email, productId, invoiceNumber) {
       'Invoice_Number': invoiceNumber
     });
     
-    console.log(`✅ Download token generated for product ${productId}:`, token.substring(0, 8) + '...');
+    console.log(`✅ Token generated [Product ${productId}]:`, token.substring(0, 8) + '...');
     
     return token;
     
@@ -103,6 +103,11 @@ async function generateDownloadToken(email, productId, invoiceNumber) {
  */
 async function generateDownloadLinks(cart, email, invoiceNumber, domain) {
   try {
+    console.log('🔗 Generating download links...');
+    console.log('   - Email:', email);
+    console.log('   - Invoice:', invoiceNumber);
+    console.log('   - Domain:', domain);
+    
     const links = {};
     
     // Check what products need download links
@@ -110,18 +115,30 @@ async function generateDownloadLinks(cart, email, invoiceNumber, domain) {
     const hasProduct4 = cart.some(item => item.id === 4);
     const hasBundle = cart.some(item => item.id === 300);
     
-    // Generate tokens
+    console.log('   - Products:', {
+      hasProduct2,
+      hasProduct4,
+      hasBundle
+    });
+    
+    // Generate token for Product 2
     if (hasProduct2 || hasBundle) {
+      console.log('   📥 Generating Product 2 token...');
       const token2 = await generateDownloadToken(email, 2, invoiceNumber);
       links.product2 = `${domain}/download/${token2}`;
+      console.log('   ✅ Product 2 link:', links.product2.substring(0, 60) + '...');
     }
     
+    // Generate token for Product 4
     if (hasProduct4 || hasBundle) {
+      console.log('   📥 Generating Product 4 token...');
       const token4 = await generateDownloadToken(email, 4, invoiceNumber);
       links.product4 = `${domain}/download/${token4}`;
+      console.log('   ✅ Product 4 link:', links.product4.substring(0, 60) + '...');
     }
     
-    console.log('✅ Download links generated:', Object.keys(links));
+    console.log('✅ Download links ready:', Object.keys(links));
+    console.log('   Full object:', JSON.stringify(links, null, 2));
     
     return links;
     

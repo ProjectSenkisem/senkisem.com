@@ -1,5 +1,5 @@
 {
-  "name": "senkisem-hu",
+  "name": "senkisem-com",
   "version": "2.0.0",
   "description": "Senkisem E-commerce webshop with React frontend and Express backend, Stripe payments, PDF generation, email system and secure download links",
   "main": "server.js",
