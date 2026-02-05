@@ -20,7 +20,7 @@ const socialLinks = [
     label: "TikTok"
   },
   { 
-    href: "mailto:senkisem.info@gmail.com", 
+    href: "mailto:info@senkisem.com", 
     icon: <FaEnvelope />,
     label: "Email"
   },
@@ -66,10 +66,10 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a 
-                  href="mailto:senkisem.info@gmail.com"
+                  href="mailto:info@senkisem.com"
                   className="text-white/60 text-sm hover:text-white transition-colors duration-300"
                 >
-                  senkisem.info@gmail.com
+                  info@senkisem.com
                 </a>
               </li>
             </ul>
@@ -132,10 +132,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-medium mb-3">Support</h3>
             <a 
-              href="mailto:senkisem.info@gmail.com"
+              href="mailto:info@senkisem.com"
               className="text-white/60 text-sm hover:text-white transition-colors duration-300"
             >
-              senkisem.info@gmail.com
+              info@senkisem.com
             </a>
           </div>
 
