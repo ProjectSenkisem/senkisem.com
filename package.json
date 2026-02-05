@@ -1,20 +1,31 @@
 {
   "name": "senkisem-hu",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "Senkisem E-commerce webshop with React frontend and Express backend, Stripe payments, PDF generation, email system and secure download links",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
     "dev": "vite",
+    "dev:server": "nodemon server.js",
     "build": "vite build",
     "preview": "vite preview",
     "server": "node server.js",
     "start": "node server.js",
     "deploy": "npm run build && npm run start"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "senkisem",
+    "ecommerce",
+    "react",
+    "vite",
+    "express",
+    "stripe",
+    "email",
+    "pdf",
+    "download-links"
+  ],
+  "author": "Senkisem",
   "license": "ISC",
-  "description": "Senkisem webshop with React frontend and Express backend",
   "dependencies": {
     "@google-cloud/storage": "^7.17.3",
     "@gsap/react": "^2.1.2",
@@ -27,8 +38,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^4.18.2",
+    "express-rate-limit": "^7.5.1",
     "firebase-admin": "^13.3.0",
-    "google-auth-library": "^9.0.0",
+    "google-auth-library": "^9.4.1",
     "google-spreadsheet": "^4.1.5",
     "googleapis": "^143.0.0",
     "gsap": "^3.12.0",
@@ -43,6 +55,13 @@
     "stripe": "^18.0.0",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.6.2",
+    "uuid": "^9.0.1",
     "vite": "^6.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

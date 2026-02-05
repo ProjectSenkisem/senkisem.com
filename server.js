@@ -7,7 +7,23 @@ const path = require('path');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { JWT } = require('google-auth-library');
 const { Resend } = require('resend');
-const PDFDocument = require('pdfkit');
+const rateLimit = require('express-rate-limit');
+
+// Import new modules
+const { 
+  determineEmailTemplate, 
+  generateEmail 
+} = require('./emailTemplates');
+
+const {
+  generateDownloadLinks,
+  validateDownloadToken,
+  markTokenAsUsed,
+  getProductFilePath,
+  getProductFileName
+} = require('./downloadLinkService');
+
+const { generateInvoicePDF } = require('./pdfInvoiceGenerator');
 
 // ============================================
 // ENV VALIDATION
@@ -46,12 +62,7 @@ const CONFIG = {
   EMAIL: {
     FROM: process.env.RESEND_FROM_EMAIL,
   },
-  INVOICE: {
-    SELLER_NAME: 'SENKISEM EV',
-    SELLER_ID: '60502292',
-    SELLER_ADDRESS: '3600 Ózd Bolyki Tamás utca 15. A épület 1. emelet 5-6. ajtó',
-    SELLER_TAX_NUMBER: '91113654-1-25',
-  }
+  DOMAIN: process.env.DOMAIN
 };
 
 // ============================================
@@ -124,295 +135,6 @@ async function generateNextInvoiceNumber() {
 }
 
 // ============================================
-// GENERATE PDF INVOICE
-// ============================================
-async function generateInvoicePDF(orderData, totalAmount, invoiceNumber) {
-  return new Promise((resolve, reject) => {
-    try {
-      const { customerData, cart } = orderData;
-      const doc = new PDFDocument({ size: 'A4', margin: 50 });
-      
-      const chunks = [];
-      doc.on('data', chunk => chunks.push(chunk));
-      doc.on('end', () => resolve(Buffer.concat(chunks)));
-      doc.on('error', reject);
-      
-      // Header - Company Info
-      doc.fontSize(20).font('Helvetica-Bold').text('ELECTRONIC INVOICE', { align: 'center' });
-      doc.moveDown(0.5);
-      
-      // Seller info box
-      doc.fontSize(10).font('Helvetica-Bold').text('SELLER:', 50, 100);
-      doc.fontSize(9).font('Helvetica')
-        .text(CONFIG.INVOICE.SELLER_NAME, 50, 115)
-        .text(`Registration: ${CONFIG.INVOICE.SELLER_ID}`, 50, 128)
-        .text(CONFIG.INVOICE.SELLER_ADDRESS, 50, 141)
-        .text(`Tax Number: ${CONFIG.INVOICE.SELLER_TAX_NUMBER}`, 50, 154);
-      
-      // Invoice details box (right side)
-      doc.fontSize(10).font('Helvetica-Bold').text('Invoice Number:', 350, 100);
-      doc.fontSize(9).font('Helvetica').text(invoiceNumber, 350, 115);
-      
-      doc.fontSize(10).font('Helvetica-Bold').text('Issue Date:', 350, 135);
-      doc.fontSize(9).font('Helvetica').text(new Date().toLocaleDateString('en-US'), 350, 150);
-      
-      doc.fontSize(10).font('Helvetica-Bold').text('Payment Method:', 350, 170);
-      doc.fontSize(9).font('Helvetica').text('Bank Card', 350, 185);
-      
-      // Separator line
-      doc.moveTo(50, 210).lineTo(545, 210).stroke();
-      
-      // Buyer info
-      doc.moveDown(2);
-      doc.fontSize(10).font('Helvetica-Bold').text('BUYER:', 50, 230);
-      doc.fontSize(9).font('Helvetica')
-        .text(customerData.fullName || '-', 50, 245);
-      
-      const buyerAddress = `${customerData.country || ''}, ${customerData.zip || ''} ${customerData.city || ''}, ${customerData.address || ''}`.trim();
-      doc.text(buyerAddress, 50, 258, { width: 490 });
-      
-      // Items table header
-      doc.moveDown(2);
-      const tableTop = 300;
-      
-      doc.fontSize(9).font('Helvetica-Bold');
-      doc.text('Item', 50, tableTop);
-      doc.text('Qty', 300, tableTop, { width: 50, align: 'center' });
-      doc.text('Unit Price', 360, tableTop, { width: 80, align: 'right' });
-      doc.text('VAT', 450, tableTop, { width: 45, align: 'center' });
-      doc.text('Total', 500, tableTop, { width: 95, align: 'right' });
-      
-      // Table line
-      doc.moveTo(50, tableTop + 15).lineTo(545, tableTop + 15).stroke();
-      
-      // Items
-      let yPosition = tableTop + 25;
-      doc.font('Helvetica');
-      
-      cart.forEach((item, index) => {
-        const quantity = item.quantity || 1;
-        const price = typeof item.price === 'string' ? 
-          parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
-        const itemTotal = price * quantity;
-        
-        doc.text(item.name, 50, yPosition, { width: 240 });
-        doc.text(`${quantity} pcs`, 300, yPosition, { width: 50, align: 'center' });
-        doc.text(`$${price.toFixed(2)}`, 360, yPosition, { width: 80, align: 'right' });
-        doc.text('AAM', 450, yPosition, { width: 45, align: 'center' });
-        doc.text(`$${itemTotal.toFixed(2)}`, 500, yPosition, { width: 95, align: 'right' });
-        
-        yPosition += 20;
-      });
-      
-      // Separator before totals
-      doc.moveTo(50, yPosition + 5).lineTo(545, yPosition + 5).stroke();
-      yPosition += 20;
-      
-      // Totals
-      doc.fontSize(10).font('Helvetica-Bold');
-      doc.text('TOTAL:', 400, yPosition);
-      doc.text(`$${totalAmount.toFixed(2)}`, 500, yPosition, { width: 95, align: 'right' });
-      
-      yPosition += 20;
-      doc.fontSize(9).font('Helvetica');
-      doc.text('Tax-exempt (AAM)', 400, yPosition);
-      doc.text('$0.00', 500, yPosition, { width: 95, align: 'right' });
-      
-      yPosition += 25;
-      doc.fontSize(11).font('Helvetica-Bold');
-      doc.text('GRAND TOTAL:', 400, yPosition);
-      doc.text(`$${totalAmount.toFixed(2)}`, 500, yPosition, { width: 95, align: 'right' });
-      
-      // Footer note
-      doc.fontSize(8).font('Helvetica').fillColor('#666666');
-      doc.text(
-        'This is an electronically generated invoice. Thank you for your purchase!',
-        50,
-        750,
-        { align: 'center', width: 495 }
-      );
-      
-      doc.end();
-      
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
-
-// ============================================
-// EMAIL TEMPLATE GENERATOR (ENGLISH)
-// ============================================
-function generateOrderConfirmationEmail(orderData, totalAmount) {
-  const { customerData, cart } = orderData;
-  
-  // Product list HTML
-  const productRows = cart.map(item => {
-    const quantity = item.quantity || 1;
-    const price = typeof item.price === 'string' ? 
-      parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
-    const itemTotal = price * quantity;
-    
-    return `
-      <tr>
-        <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">${item.name}</td>
-        <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: center;">${quantity} pcs</td>
-        <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">$${itemTotal.toFixed(2)}</td>
-      </tr>
-    `;
-  }).join('');
-
-  const isEbook = cart.every(item => item.id === 2 || item.id === 4 || item.id === 300);
-  
-  return `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order Confirmation - Senkisem.com</title>
-</head>
-<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6;">
-  <table role="presentation" style="width: 100%; border-collapse: collapse;">
-    <tr>
-      <td align="center" style="padding: 40px 0;">
-        <table role="presentation" style="width: 600px; max-width: 100%; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-          
-          <!-- Header -->
-          <tr>
-            <td style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; text-align: center; border-radius: 8px 8px 0 0;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Thank You for Your Order!</h1>
-              <p style="margin: 10px 0 0 0; color: #e0e7ff; font-size: 16px;">Successful purchase at Senkisem.com</p>
-            </td>
-          </tr>
-          
-          <!-- Content -->
-          <tr>
-            <td style="padding: 40px;">
-              
-              <!-- Greeting -->
-              <p style="margin: 0 0 20px 0; font-size: 16px; color: #374151;">
-                Dear <strong>${customerData.fullName}</strong>,
-              </p>
-              
-              <p style="margin: 0 0 30px 0; font-size: 15px; color: #6b7280; line-height: 1.6;">
-                We have successfully received your order! Your payment has been confirmed and the following ${isEbook ? 'e-book(s)' : 'product(s)'} will be processed:
-              </p>
-              
-              <!-- Order Summary -->
-              <div style="background-color: #f9fafb; border-radius: 8px; padding: 24px; margin-bottom: 30px;">
-                <h2 style="margin: 0 0 20px 0; font-size: 18px; color: #111827; font-weight: 600;">Order Details</h2>
-                
-                <table role="presentation" style="width: 100%; border-collapse: collapse;">
-                  <thead>
-                    <tr style="background-color: #e5e7eb;">
-                      <th style="padding: 12px; text-align: left; font-size: 14px; font-weight: 600; color: #374151;">Product</th>
-                      <th style="padding: 12px; text-align: center; font-size: 14px; font-weight: 600; color: #374151;">Quantity</th>
-                      <th style="padding: 12px; text-align: right; font-size: 14px; font-weight: 600; color: #374151;">Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${productRows}
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colspan="2" style="padding: 16px 12px 0 12px; text-align: right; font-size: 16px; font-weight: 600; color: #111827;">Total Amount:</td>
-                      <td style="padding: 16px 12px 0 12px; text-align: right; font-size: 18px; font-weight: 700; color: #667eea;">$${totalAmount.toFixed(2)}</td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-              
-              <!-- Next Steps -->
-              <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px; margin-bottom: 30px; border-radius: 4px;">
-                <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #1e40af; font-weight: 600;">📧 What's Next?</h3>
-                <p style="margin: 0; font-size: 14px; color: #1e3a8a; line-height: 1.6;">
-                  ${isEbook 
-                    ? 'You will receive a <strong>separate email</strong> with the download link(s) for your e-book(s) shortly, along with your official invoice attached.' 
-                    : 'You will receive a <strong>separate email</strong> with shipping information and your official invoice shortly.'}
-                </p>
-              </div>
-              
-              <!-- Invoice Attached -->
-              <div style="background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 16px; margin-bottom: 30px; border-radius: 4px;">
-                <h3 style="margin: 0 0 8px 0; font-size: 16px; color: #047857; font-weight: 600;">📄 Invoice Attached</h3>
-                <p style="margin: 0; font-size: 14px; color: #065f46; line-height: 1.6;">
-                  Please find your official invoice attached to this email (PDF format).
-                </p>
-              </div>
-              
-              <!-- Contact Info -->
-              <p style="margin: 0 0 10px 0; font-size: 14px; color: #6b7280;">
-                If you have any questions, feel free to contact us:
-              </p>
-              <p style="margin: 0 0 30px 0; font-size: 14px;">
-                <a href="mailto:${CONFIG.EMAIL.FROM}" style="color: #667eea; text-decoration: none; font-weight: 600;">${CONFIG.EMAIL.FROM}</a>
-              </p>
-              
-              <!-- Closing -->
-              <p style="margin: 0; font-size: 15px; color: #374151;">
-                Best regards,<br>
-                <strong>Senkisem.com Team</strong>
-              </p>
-              
-            </td>
-          </tr>
-          
-          <!-- Footer -->
-          <tr>
-            <td style="background-color: #f9fafb; padding: 24px; text-align: center; border-radius: 0 0 8px 8px; border-top: 1px solid #e5e7eb;">
-              <p style="margin: 0; font-size: 12px; color: #9ca3af;">
-                © ${new Date().getFullYear()} Senkisem.com | All rights reserved
-              </p>
-            </td>
-          </tr>
-          
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>
-  `;
-}
-
-// ============================================
-// SEND ORDER CONFIRMATION EMAIL WITH PDF
-// ============================================
-async function sendOrderConfirmationEmail(orderData, totalAmount, invoiceNumber) {
-  try {
-    const { customerData } = orderData;
-    
-    // Generate PDF invoice
-    const pdfBuffer = await generateInvoicePDF(orderData, totalAmount, invoiceNumber);
-    
-    // Generate email HTML
-    const emailHtml = generateOrderConfirmationEmail(orderData, totalAmount);
-    
-    // Send email with PDF attachment
-    const result = await resend.emails.send({
-      from: `Senkisem.com <${CONFIG.EMAIL.FROM}>`,
-      to: customerData.email,
-      subject: `✅ Order Confirmation - Senkisem.com`,
-      html: emailHtml,
-      attachments: [
-        {
-          filename: `Invoice_${invoiceNumber}.pdf`,
-          content: pdfBuffer,
-        }
-      ]
-    });
-    
-    console.log('✅ Email with invoice PDF sent successfully:', result.id);
-    return result;
-    
-  } catch (error) {
-    console.error('❌ Email send error:', error);
-    throw error;
-  }
-}
-
-// ============================================
 // CALCULATE SHIPPING COST
 // ============================================
 function calculateShippingCost(cart, shippingMethod) {
@@ -428,6 +150,48 @@ function calculateShippingCost(cart, shippingMethod) {
   }
   
   return 0;
+}
+
+// ============================================
+// SEND ORDER EMAIL WITH PDF INVOICE
+// ============================================
+async function sendOrderEmail(orderData, totalAmount, invoiceNumber, downloadLinks = null) {
+  try {
+    const { customerData, cart } = orderData;
+    
+    // Determine template type
+    const templateType = determineEmailTemplate(cart);
+    console.log(`📧 Using email template: ${templateType}`);
+    
+    // Generate PDF invoice
+    console.log('📄 Generating PDF invoice...');
+    const pdfBuffer = await generateInvoicePDF(orderData, totalAmount, invoiceNumber);
+    console.log('✅ PDF invoice generated');
+    
+    // Generate email content
+    const { subject, html } = generateEmail(templateType, orderData, totalAmount, downloadLinks);
+    
+    // Send email with PDF attachment
+    const result = await resend.emails.send({
+      from: `Senkisem.com <${CONFIG.EMAIL.FROM}>`,
+      to: customerData.email,
+      subject: subject,
+      html: html,
+      attachments: [
+        {
+          filename: `Invoice_${invoiceNumber}.pdf`,
+          content: pdfBuffer,
+        }
+      ]
+    });
+    
+    console.log('✅ Email sent successfully:', result.id);
+    return result;
+    
+  } catch (error) {
+    console.error('❌ Email send error:', error);
+    throw error;
+  }
 }
 
 // ============================================
@@ -511,10 +275,25 @@ async function saveOrderToSheets(orderData, sessionId) {
     
     console.log('✅ Sheets save OK - Order ID:', sessionId, 'Invoice:', invoiceNumber);
     
-    // ✅ SEND CONFIRMATION EMAIL WITH PDF IMMEDIATELY
+    // ✅ GENERATE DOWNLOAD LINKS (if digital products)
+    let downloadLinks = null;
+    const hasDigitalProducts = cart.some(item => [2, 4, 300].includes(item.id));
+    
+    if (hasDigitalProducts) {
+      console.log('📥 Generating download links...');
+      downloadLinks = await generateDownloadLinks(
+        cart, 
+        customerData.email, 
+        invoiceNumber,
+        CONFIG.DOMAIN
+      );
+      console.log('✅ Download links generated');
+    }
+    
+    // ✅ SEND CONFIRMATION EMAIL WITH PDF & DOWNLOAD LINKS
     try {
-      await sendOrderConfirmationEmail(orderData, totalAmount, invoiceNumber);
-      console.log('✅ Confirmation email with PDF sent to:', customerData.email);
+      await sendOrderEmail(orderData, totalAmount, invoiceNumber, downloadLinks);
+      console.log('✅ Confirmation email sent to:', customerData.email);
     } catch (emailError) {
       console.error('⚠️ Email send failed (but order saved):', emailError.message);
       // Don't throw - order is already saved to sheets
@@ -532,6 +311,15 @@ async function saveOrderToSheets(orderData, sessionId) {
 app.use(cors());
 app.use('/webhook/stripe', express.raw({type: 'application/json'}));
 app.use(express.json());
+
+// Rate limiting for download endpoint
+const downloadLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 5, // 5 requests per minute per IP
+  message: 'Too many download attempts. Please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // ============================================
 // ROUTES
@@ -594,7 +382,7 @@ app.post('/create-payment-session', async (req, res) => {
       customer_email: customerData.email,
     });
 
-    // ✅ IMMEDIATE SAVE TO GOOGLE SHEETS + SEND EMAIL WITH PDF
+    // ✅ IMMEDIATE SAVE TO GOOGLE SHEETS + SEND EMAIL WITH PDF & DOWNLOAD LINKS
     await saveOrderToSheets(
       { cart, customerData }, 
       session.id
@@ -606,6 +394,57 @@ app.post('/create-payment-session', async (req, res) => {
   } catch (error) {
     console.error('❌ Session/Sheets/Email error:', error);
     res.status(500).json({ error: error.message });
+  }
+});
+
+// ============================================
+// DOWNLOAD ROUTE
+// ============================================
+app.get('/download/:token', downloadLimiter, async (req, res) => {
+  const { token } = req.params;
+  const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  
+  console.log(`📥 Download attempt - Token: ${token.substring(0, 8)}... IP: ${ipAddress}`);
+  
+  try {
+    // Validate token
+    const validation = await validateDownloadToken(token, ipAddress);
+    
+    if (!validation.valid) {
+      console.log(`❌ Download denied - Reason: ${validation.reason}`);
+      return res.redirect(`/download-error.html?reason=${validation.reason}`);
+    }
+    
+    // Get product file path
+    const filePath = getProductFilePath(validation.productId);
+    
+    if (!filePath || !fs.existsSync(filePath)) {
+      console.error(`❌ File not found: ${filePath}`);
+      return res.redirect('/download-error.html?reason=server-error');
+    }
+    
+    // Mark token as used
+    await markTokenAsUsed(validation.tokenRow, ipAddress);
+    
+    // Get download filename
+    const fileName = getProductFileName(validation.productId);
+    
+    // Send file
+    console.log(`✅ Sending file: ${fileName}`);
+    res.download(filePath, fileName, (err) => {
+      if (err) {
+        console.error('❌ File send error:', err);
+        if (!res.headersSent) {
+          res.redirect('/download-error.html?reason=server-error');
+        }
+      } else {
+        console.log(`✅ Download complete: ${fileName} to ${validation.email}`);
+      }
+    });
+    
+  } catch (error) {
+    console.error('❌ Download error:', error);
+    res.redirect('/download-error.html?reason=server-error');
   }
 });
 
@@ -655,7 +494,9 @@ app.get('/health', (req, res) => {
     currency: 'USD',
     shipping: '$15.00',
     email_enabled: true,
-    pdf_invoice_enabled: true
+    pdf_invoice_enabled: true,
+    download_links_enabled: true,
+    templates: ['digitalProduct1', 'digitalProduct2', 'digitalBundle', 'physicalProduct']
   });
 });
 
@@ -663,6 +504,12 @@ app.get('/health', (req, res) => {
 // STATIC FILES
 // ============================================
 app.use(express.static(path.join(__dirname, 'dist')));
+
+// Serve download-error.html from root directory
+app.get('/download-error.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'download-error.html'));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
@@ -673,18 +520,25 @@ app.get('*', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`
-╔═══════════════════════════════════════════╗
-║   🚀 SENKISEM SERVER STARTED (EN)        ║
-╠═══════════════════════════════════════════╣
-║   Port: ${PORT}                           ║
-║   Currency: USD ($)                       ║
-║   Shipping: $15.00 (Home Delivery)        ║
-╠═══════════════════════════════════════════╣
-║   ✅ Stripe + Webhook                    ║
-║   ✅ Google Sheets (MAGYAR mezők)        ║
-║   ✅ Resend Email (ORDER CONFIRMATION)   ║
-║   ✅ PDF Invoice Generation (PDFKit)     ║
-║   ✅ Auto Invoice Numbering (E-SEN-2026) ║
-╚═══════════════════════════════════════════╝
+╔═══════════════════════════════════════════════════════╗
+║   🚀 SENKISEM SERVER - REFACTORED V2.0               ║
+╠═══════════════════════════════════════════════════════╣
+║   Port: ${PORT}                                       ║
+║   Currency: USD ($)                                   ║
+║   Shipping: $15.00 (Home Delivery)                    ║
+╠═══════════════════════════════════════════════════════╣
+║   ✅ Stripe + Webhook                                ║
+║   ✅ Google Sheets (Orders + Download Links)         ║
+║   ✅ Professional Email Templates (4 types)          ║
+║   ✅ Redesigned PDF Invoice (PDFKit)                 ║
+║   ✅ Download Link System (UUID + 7-day expiry)      ║
+║   ✅ IP Logging + One-time Use Security              ║
+║   ✅ Rate Limiting (5 req/min on downloads)          ║
+╠═══════════════════════════════════════════════════════╣
+║   📧 Template A: Digital Product 1 (ID 2)            ║
+║   📧 Template B: Digital Product 2 (ID 4)            ║
+║   📧 Template C: Digital Bundle (ID 300)             ║
+║   📧 Template D: Physical Products                   ║
+╚═══════════════════════════════════════════════════════╝
   `);
 });

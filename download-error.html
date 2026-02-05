@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Error - Senkisem</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #000000;
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .brand-name {
+      color: #ffffff;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+
+    .brand-tagline {
+      color: #999999;
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    .content {
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    .error-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+
+    .error-title {
+      color: #d32f2f;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .error-message {
+      color: #666666;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .error-details {
+      background-color: #f5f5f5;
+      border-left: 4px solid #d32f2f;
+      padding: 20px;
+      margin: 30px 0;
+      text-align: left;
+      border-radius: 4px;
+    }
+
+    .error-details h3 {
+      color: #d32f2f;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .error-details ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .error-details li {
+      color: #666666;
+      font-size: 14px;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .error-details li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #d32f2f;
+      font-weight: bold;
+    }
+
+    .solution-box {
+      background-color: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 20px;
+      margin: 30px 0;
+      text-align: left;
+      border-radius: 4px;
+    }
+
+    .solution-box h3 {
+      color: #1565c0;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .solution-box p {
+      color: #0d47a1;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .button-group {
+      margin-top: 40px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: #f5f5f5;
+      color: #333333;
+      border: 2px solid #e0e0e0;
+    }
+
+    .btn-secondary:hover {
+      background-color: #e0e0e0;
+    }
+
+    .contact-email {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-email:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      background-color: #f5f5f5;
+      padding: 20px;
+      text-align: center;
+      color: #999999;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        padding: 40px 20px;
+      }
+
+      .error-title {
+        font-size: 24px;
+      }
+
+      .error-message {
+        font-size: 14px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="brand-name">SENKISEM</div>
+      <div class="brand-tagline">Not a Brand; Message.</div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="error-icon" id="errorIcon">⚠️</div>
+      <h1 class="error-title" id="errorTitle">Download Link Error</h1>
+      <p class="error-message" id="errorMessage">
+        We couldn't process your download request.
+      </p>
+
+      <div class="error-details" id="errorDetails">
+        <h3>Possible Reasons:</h3>
+        <ul id="reasonsList">
+          <li>The download link has expired (links are valid for 7 days)</li>
+          <li>The download link has already been used (one-time use only)</li>
+          <li>The download link is invalid or corrupted</li>
+          <li>Technical issue on our end</li>
+        </ul>
+      </div>
+
+      <div class="solution-box">
+        <h3>📧 What to Do Next:</h3>
+        <p>
+          <strong>Check your email:</strong> Look for the original order confirmation email from Senkisem.com. 
+          Make sure you're using the correct download link.<br><br>
+          <strong>Contact Support:</strong> If the problem persists, please reach out to us at 
+          <a href="mailto:orders@senkisem.com" class="contact-email">orders@senkisem.com</a> 
+          and we'll send you a new download link.
+        </p>
+      </div>
+
+      <div class="button-group">
+        <a href="/" class="btn btn-primary">Return to Homepage</a>
+        <a href="mailto:orders@senkisem.com" class="btn btn-secondary">Contact Support</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      © 2026 Senkisem | All rights reserved
+    </div>
+  </div>
+
+  <script>
+    // Parse URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const reason = urlParams.get('reason');
+
+    // Update content based on error reason
+    const errorIcon = document.getElementById('errorIcon');
+    const errorTitle = document.getElementById('errorTitle');
+    const errorMessage = document.getElementById('errorMessage');
+    const reasonsList = document.getElementById('reasonsList');
+
+    switch(reason) {
+      case 'invalid':
+        errorIcon.textContent = '🔗';
+        errorTitle.textContent = 'Invalid Download Link';
+        errorMessage.textContent = 'This download link is not valid. Please check your email for the correct link.';
+        reasonsList.innerHTML = `
+          <li>You may have clicked a broken or incomplete link</li>
+          <li>The link may have been copied incorrectly</li>
+          <li>The link doesn't exist in our system</li>
+        `;
+        break;
+
+      case 'already-used':
+        errorIcon.textContent = '✅';
+        errorTitle.textContent = 'Link Already Used';
+        errorMessage.textContent = 'This download link has already been used. Each link can only be used once for security reasons.';
+        reasonsList.innerHTML = `
+          <li>You have already downloaded this ebook</li>
+          <li>Each download link is for single use only</li>
+          <li>Check your downloads folder for the previously downloaded file</li>
+        `;
+        break;
+
+      case 'expired':
+        errorIcon.textContent = '⏰';
+        errorTitle.textContent = 'Link Expired';
+        errorMessage.textContent = 'This download link has expired. Download links are valid for 7 days from the date of purchase.';
+        reasonsList.innerHTML = `
+          <li>Your download link expired 7 days after purchase</li>
+          <li>This is a security measure to protect your purchase</li>
+          <li>Contact support to receive a new download link</li>
+        `;
+        break;
+
+      case 'server-error':
+        errorIcon.textContent = '⚙️';
+        errorTitle.textContent = 'Server Error';
+        errorMessage.textContent = 'A technical error occurred while processing your request. Please try again in a few moments.';
+        reasonsList.innerHTML = `
+          <li>Temporary server issue</li>
+          <li>Database connection problem</li>
+          <li>Please try again in a few minutes</li>
+        `;
+        break;
+
+      default:
+        errorIcon.textContent = '⚠️';
+        errorTitle.textContent = 'Download Link Error';
+        errorMessage.textContent = 'We couldn\'t process your download request. Please check the link or contact support.';
+    }
+  </script>
+</body>
+</html>
