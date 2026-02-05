@@ -523,15 +523,25 @@
             </div>
 
             <div class="terms-acceptance">
-              <label class="terms-checkbox">
-                <input type="checkbox" id="terms-agree" name="terms-agree" required>
-                <span class="checkmark"></span>
-                <span class="terms-text">
-                  I have read and accept the 
-                  <a href="assets/ASZF.pdf" target="_blank" class="terms-link">Terms and Conditions</a>
-                </span>
-              </label>
-            </div>
+  <label class="terms-checkbox">
+    <input type="checkbox" id="terms-agree" name="terms-agree" required>
+    <span class="checkmark"></span>
+    <span class="terms-text">
+      I have read and accept the 
+      <a href="assets/ÁSZF.pdf" target="_blank" class="terms-link">Terms and Conditions</a>
+    </span>
+  </label>
+</div>
+
+<div class="terms-acceptance" style="margin-top: 1rem;">
+  <label class="terms-checkbox">
+    <input type="checkbox" id="email-consent" name="email-consent" required>
+    <span class="checkmark"></span>
+    <span class="terms-text">
+      I agree to be contacted via email regarding my order (order confirmation, shipping updates, and delivery notifications)
+    </span>
+  </label>
+</div>
 
             <button type="submit" class="submit-btn">Place Order</button>
           </div>
@@ -726,12 +736,21 @@
       });
 
       // Check terms acceptance
-      const termsCheckbox = document.getElementById('terms-agree');
-      if (!termsCheckbox.checked) {
-        alert('Please accept the Terms and Conditions to continue!');
-        termsCheckbox.focus();
-        return false;
-      }
+      // Check terms acceptance
+const termsCheckbox = document.getElementById('terms-agree');
+if (!termsCheckbox.checked) {
+  alert('Please accept the Terms and Conditions to continue!');
+  termsCheckbox.focus();
+  return false;
+}
+
+// Check email consent
+const emailConsent = document.getElementById('email-consent');
+if (!emailConsent.checked) {
+  alert('Please accept email communication to receive order updates!');
+  emailConsent.focus();
+  return false;
+}
       
       // Check size selection for physical products (excluding book ID = 1)
       const ebookIds = [2, 4, 300];

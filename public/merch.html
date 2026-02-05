@@ -4470,20 +4470,7 @@ In a world where technology and culture collide with brutal force, we represent 
 
 <script>
 
-    (function() {
-    const video = document.querySelector('.hero-bg-video');
-    if (!video) return;
-
-    // Csak 1025px-nél és fölebb töltjük be a videót
-    if (window.innerWidth >= 1025) {
-        const source = document.createElement('source');
-        source.setAttribute('src', 'assets/img/merchvid.mp4');
-        source.setAttribute('type', 'video/mp4');
-        video.appendChild(source);
-        video.load();
-    }
-})();
-// ========================================
+    // ========================================
 // PRODUCTS DATA
 // ========================================
 const products = [
@@ -4719,6 +4706,27 @@ function createProductCard(product) {
     const saleBadge = product.sale ? 
         `<div class="sale-badge">-${Math.round((1 - product.price/product.oldPrice) * 100)}%</div>` : '';
 
+    // Random készlet generálás (5-10 között)
+    const randomStock = product.outOfStock ? 0 : Math.floor(Math.random() * 6) + 5; // 5-10
+    const stockHTML = `
+        <div class="product-stock" style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.5rem;
+            background: ${randomStock === 0 ? 'rgba(255, 100, 100, 0.1)' : randomStock <= 7 ? 'rgba(255, 165, 0, 0.1)' : 'rgba(100, 255, 100, 0.1)'};
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+            font-size: 0.75rem;
+            color: ${randomStock === 0 ? 'rgba(255, 150, 150, 0.9)' : randomStock <= 7 ? 'rgba(255, 200, 100, 0.9)' : 'rgba(150, 255, 150, 0.9)'};
+            font-weight: 600;
+        ">
+            <i class="ri-inbox-line"></i>
+            <span>In stock: <strong>${randomStock}</strong> pcs</span>
+        </div>
+    `;
+
     return `
         <div class="product-card ${product.featured ? 'featured-product' : ''}">
             ${saleBadge}
@@ -4729,6 +4737,7 @@ function createProductCard(product) {
                 <div class="product-category">${product.category || 'Collection'}</div>
                 <h3 class="product-title">${product.name}</h3>
                 ${priceHTML}
+                ${stockHTML}
                 
                 <div class="size-selection">
                     <label class="size-label">Size:</label>
