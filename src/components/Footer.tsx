@@ -36,8 +36,8 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-medium mb-4">Senkisem</h3>
             <p className="text-white/60 text-sm leading-relaxed">
-              Nem egy brand;<br />
-              Üzenet.
+              Not a Brand;<br />
+              Message.
             </p>
           </div>
 
