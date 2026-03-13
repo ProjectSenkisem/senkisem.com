@@ -4191,8 +4191,7 @@ padding: 0.8rem;
             <i class="ri-error-warning-line"></i>
             <span>Limited copies · no reprint planned</span>
         </div>
-        <button class="limited-btn secondary" onclick="addLimitedProduct(301, 'physical')">
-            Add to Cart <i class="ri-shopping-cart-line"></i>
+<button class="limited-btn secondary" onclick="addLimitedProduct(311, 'physical')">            Add to Cart <i class="ri-shopping-cart-line"></i>
         </button>
     </div>
 </div>
@@ -5606,9 +5605,9 @@ function addLimitedProduct(productId, variant) {
         }];
         localStorage.setItem('cart', JSON.stringify(cart));
         window.location.href = 'checkout2.html';
-    } else if (productId === 301 && variant === 'physical') {
+    } else if (productId === 311 && variant === 'physical') {
         cart = [{
-            id: 301,
+            id: 311,
             name: "Complete Physical Collection (Notes + User Manual)",
             price: 49.49,
             image: "./assets/img/ketkonyv.png",
