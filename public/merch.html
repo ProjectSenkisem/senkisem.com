@@ -4907,11 +4907,11 @@ function createProductCard(product) {
                     </button>
                 ` : `
                     <button class="btn btn-primary" onclick="addToCartFromCard(${product.id}, this)">
-                        Add to Cart
+                        <i class="ri-shopping-cart-line"></i>
                     </button>
                 `}
                 <button class="btn btn-secondary" onclick="addToWishlist(${JSON.stringify(product).replace(/"/g, '&quot;')})">
-                    Favorites
+                    <i class="ri-heart-line"></i>
                 </button>
             </div>
         </div>
