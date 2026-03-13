@@ -3012,80 +3012,70 @@ padding: 0.8rem;
             box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
         }
     }
-    /* ========================================
-   KIEGÉSZÍTŐK SZEKCIÓ - Luxus, arany árnyalatok
-   ======================================== */
-.accessories-section {
-    background: linear-gradient(135deg, 
-        #0a0a0a 0%, 
-        #1a0f12 25%,
-        #0f0a0d 50%,
-        #0a0a0a 100%);
+
+    /* ID: SENKISEM SZEKCIÓ */
+.id-senkisem-section {
+    background: linear-gradient(135deg,
+        #000000 0%,
+        #0d0005 30%,
+        #080010 60%,
+        #000000 100%);
     position: relative;
     overflow: hidden;
 }
 
-.accessories-section::before {
+.id-senkisem-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(183, 110, 121, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(232, 165, 163, 0.06) 0%, transparent 50%);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent, transparent 3px,
+            rgba(255, 0, 110, 0.03) 3px, rgba(255, 0, 110, 0.03) 4px
+        );
     pointer-events: none;
-    animation: timelessPulse 8s ease-in-out infinite;
+    animation: scanlines 8s linear infinite;
 }
 
-@keyframes timelessPulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(8px); }
 }
-.accessories-section::after {
-    content: '';
+
+.id-senkisem-section::after {
+    content: 'ID:0000';
     position: absolute;
-    bottom: 10%;
-    right: 8%;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(183, 110, 121, 0.15) 0%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(60px);
-    animation: softGlow 10s ease-in-out infinite;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-family: 'Courier New', monospace;
+    font-size: 180px;
+    font-weight: 900;
+    color: rgba(255, 0, 110, 0.03);
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: -0.05em;
 }
 
-@keyframes softGlow {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.3;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 0.6;
-    }
+.id-senkisem-section .product-card {
+    border-color: rgba(255, 0, 110, 0.2);
+    background: rgba(255, 0, 110, 0.03);
 }
 
-.accessories-section .section-badge {
-    background: linear-gradient(135deg, 
-        rgba(183, 110, 121, 0.2) 0%, 
-        rgba(232, 165, 163, 0.1) 100%);
-    border-color: rgba(183, 110, 121, 0.4);
-    color: #E8A5A3;
-    text-shadow: 0 0 10px rgba(232, 165, 163, 0.5);
-    font-weight: 400;
-    letter-spacing: 0.15em;
+.id-senkisem-section .product-card:hover {
+    border-color: rgba(255, 0, 110, 0.5);
+    box-shadow: 
+        0 12px 40px rgba(255, 0, 110, 0.2),
+        0 0 20px rgba(255, 0, 110, 0.1);
+    transform: translateY(-6px);
 }
 
-.accessories-section .product-card {
-    border-color: rgba(183, 110, 121, 0.2);
-    background: rgba(183, 110, 121, 0.03);
-}
-
-.accessories-section .product-card:hover {
-    border-color: rgba(183, 110, 121, 0.4);
-    box-shadow: 0 12px 40px rgba(183, 110, 121, 0.2);
+.id-senkisem-section .product-category {
+    color: rgba(255, 0, 110, 0.8);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
 }
 
 /* ========================================
@@ -4389,20 +4379,54 @@ In a world where technology and culture collide with brutal force, we represent 
 
 <div class="products-section-wrapper" id="products-section-wrapper">
     
-    <!-- ACCESSORIES SECTION -->
-    <section class="section accessories-section" id="accessories">
-    <div class="section-header">
-        <div class="section-badge">
-            <i class="ri-time-line"></i> Timeless
-        </div>
-        <h2 class="section-title">Timeless Collection</h2>
+<!-- ID: SENKISEM SECTION -->
+<section class="section id-senkisem-section" style="
+    background: linear-gradient(135deg, #0a0005 0%, #150010 50%, #0a0005 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 3rem;
+">
+    <!-- Pink scanline -->
+    <div style="
+        position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+        background: linear-gradient(90deg, transparent, #ff006e, transparent);
+        animation: scanline 6s linear infinite; pointer-events: none; z-index: 1;
+    "></div>
+    <!-- Watermark -->
+    <div style="
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        font-family: 'Courier New', monospace; font-size: 180px; color: rgba(255,0,110,0.03);
+        font-weight: 900; pointer-events: none; white-space: nowrap; z-index: 0;
+    ">ID:0000</div>
+
+    <div class="section-header" style="position: relative; z-index: 2;">
+        <div class="section-badge" style="
+            background: rgba(255,0,110,0.15); border-color: rgba(255,0,110,0.4);
+            color: #ff006e; font-family: 'Courier New', monospace; letter-spacing: 0.2em;
+        ">IDENTITY REMOVED</div>
+        <h2 class="section-title" style="font-family: 'Courier New', monospace; letter-spacing: 0.1em;">
+            ID: SENKISEM
+        </h2>
         <p class="section-description">
-            Because you're never late when you live at your own pace.
-            
+            The face that becomes unrecognizable — yet entirely yours.<br>
+            No two alike. No copies. Only one exists: yours.
         </p>
     </div>
-    
-    <div class="products-grid" id="accessories-products-grid"></div>
+
+    <div class="products-grid" id="id-senkisem-products-grid" style="position: relative; z-index: 2;"></div>
+
+    <!-- Info sáv -->
+    <div style="
+        max-width: 600px; margin: 3rem auto 0; text-align: center;
+        padding: 1.2rem 2rem; border: 1px solid rgba(255,0,110,0.3);
+        border-radius: 10px; background: rgba(255,0,110,0.06);
+        font-family: 'Courier New', monospace; font-size: 0.85rem;
+        color: rgba(255,255,255,0.6); line-height: 1.7; position: relative; z-index: 2;
+    ">
+        <i class="ri-information-line" style="color: #ff006e; margin-right: 0.5rem;"></i>
+        After placing the order, send a picture by replying to the confirmation email. <br>
+We will send all related information via email.
+    </div>
 </section>
 
     
@@ -4422,41 +4446,6 @@ In a world where technology and culture collide with brutal force, we represent 
         </div>
         
         <div class="products-grid" id="phantom-products-grid"></div>
-    </section>
-
-    <!-- SAKURA HERITAGE SECTION -->
-    <section class="section sakura-heritage-section" id="sakura-heritage">
-    <!-- LED Lines -->
-    <div class="sakura-petals">
-        <div class="sakura-petal"></div>
-        <div class="sakura-petal"></div>
-        <div class="sakura-petal"></div>
-        <div class="sakura-petal"></div>
-        <div class="sakura-petal"></div>
-        <div class="sakura-petal"></div>
-    </div>
-    
-    <!-- Tech Grid Overlay -->
-    <div class="sakura-tech-grid"></div>
-    
-    <!-- LED Accent Lines -->
-    <div class="sakura-led-accent"></div>
-    <div class="sakura-led-accent"></div>
-    
-    <div class="section-header">
-        
-        <div class="section-header">
-            <div class="section-badge">
-    <i class="ri-moon-line"></i> Shadow Garden
-</div>
-<h2 class="section-title">Japanese Shadow Garden</h2>
-<p class="section-description">
-    
-    Black kimono pieces in modern urban interpretation. <br>The contrast of nature and urbanism.
-</p>
-        </div>
-        
-        <div class="products-grid" id="sakura-products-grid"></div>
     </section>
 
     <!-- SIGNATURE EDITION SECTION -->
@@ -4652,73 +4641,58 @@ In a world where technology and culture collide with brutal force, we represent 
 // PRODUCTS DATA
 // ========================================
 const products = [
-    // ACCESSORIES
+    // ID: SENKISEM
     {
-        id: 201,
-        name: "Senkisem Watch - Gold",
-        price: 69.99,
-        image: "./assets/img/watch-gold.png",
-        sizes: ["Universal"],
-        category: "Accessories",
-        sectionId: "accessories"
-    },
-    {
-        id: 202,
-        name: "Senkisem Watch - Silver",
-        price: 69.99,
-        image: "./assets/img/watch-silver.png",
-        sizes: ["Universal"],
-        category: "Accessories",
-        sectionId: "accessories"
-    },
-    {
-        id: 203,
-        name: "Senkisem Women's Watch - White Strap",
-        price: 69.99,
-        image: "./assets/img/watch-white-women.png",
-        sizes: ["Universal"],
-        category: "Accessories",
-        sectionId: "accessories",
-        outOfStock: true
-    },
-    {
-        id: 204,
-        name: "Senkisem Women's Watch - Black Strap",
-        price: 69.99,
-        image: "./assets/img/watch-black-women.png",
-        sizes: ["Universal"],
-        category: "Accessories",
-        sectionId: "accessories",
-        outOfStock: true
-    },
-    
-    // SHADOW GARDEN
-    {
-        id: 301,
-        name: "Long Sleeve V-Neck Kimono",
-        price: 22.99,
-        image: "./assets/img/kimono-vneck.png",
-        sizes: ["S", "M", "L", "XL"],
-        category: "Shadow Garden",
-        sectionId: "sakura-heritage"
-    },
-    {
-        id: 302,
-        name: "Twisted Tie Pants",
+        id: 601,
+        name: "ID: SENKISEM Hoodie – Pixel",
         price: 39.99,
-        image: "./assets/img/pants-twisted.png",
+        oldPrice: 64.99,
+        sale: true,
+        image: "./assets/img/id-sweater-pixel.png",
         sizes: ["S", "M", "L", "XL"],
-        category: "Shadow Garden",
-        sectionId: "sakura-heritage"
+        category: "ID: SENKISEM",
+        sectionId: "id-senkisem",
+        limited: true,
+        customPhoto: true
     },
     {
-        id: 303,
-        name: "Senkisem Short Kimono",
-        price: 49.99,
-        image: "./assets/img/kimono-short.png",
+        id: 602,
+        name: "ID: SENKISEM T-Shirt – Pixel",
+        price: 29.99,
+        oldPrice: 49.99,
+        sale: true,
+        image: "./assets/img/id-tshirt-pixel.png",
         sizes: ["S", "M", "L", "XL"],
-        category: "Shadow Garden",
-        sectionId: "sakura-heritage"
+        category: "ID: SENKISEM",
+        sectionId: "id-senkisem",
+        limited: true,
+        customPhoto: true
+    },
+    {
+        id: 603,
+        name: "ID: SENKISEM Hoodie – Corrupted",
+        price: 39.99,
+        oldPrice: 64.99,
+        sale: true,
+        image: "./assets/img/id-sweater-corrupted.png",
+        sizes: ["S", "M", "L", "XL"],
+        category: "ID: SENKISEM",
+        sectionId: "id-senkisem",
+        limited: true,
+        customPhoto: true
+    },
+    {
+        id: 604,
+        name: "ID: SENKISEM T-Shirt – Corrupted",
+        price: 29.99,
+        oldPrice: 49.99,
+        sale: true,
+        image: "./assets/img/id-tshirt-corrupted.png",
+        sizes: ["S", "M", "L", "XL"],
+        category: "ID: SENKISEM",
+        sectionId: "id-senkisem",
+        limited: true,
+        customPhoto: true
     },
     
     // PHANTOM
@@ -4857,7 +4831,7 @@ function initializePage() {
 function loadProducts() {
     const sections = [
         { grid: 'accessories-products-grid', sectionId: 'accessories' },
-        { grid: 'sakura-products-grid', sectionId: 'sakura-heritage' },
+        { grid: 'id-senkisem-products-grid', sectionId: 'id-senkisem' },
         { grid: 'phantom-products-grid', sectionId: 'phantom' },
         { grid: 'signature-products-grid', sectionId: 'signature' }
     ];
@@ -4886,7 +4860,7 @@ function createProductCard(product) {
 
     // Random készlet generálás (5-10 között)
     const randomStock = product.outOfStock ? 0 : Math.floor(Math.random() * 6) + 5; // 5-10
-    const stockHTML = `
+    const stockHTML = product.sectionId === 'id-senkisem' ? '' : `
         <div class="product-stock" style="
             display: flex;
             align-items: center;
