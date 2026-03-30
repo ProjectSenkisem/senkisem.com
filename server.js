@@ -67,6 +67,13 @@ const CONFIG = {
 };
 
 // ============================================
+// PROMO CODES
+// ============================================
+const PROMO_CODES = {
+  'FREESHIP0808': { type: 'free_shipping' }
+};
+
+// ============================================
 // LOAD PRODUCTS
 // ============================================
 let products = [];
@@ -127,12 +134,24 @@ async function generateNextInvoiceNumber() {
 // ============================================
 // CALCULATE SHIPPING COST
 // ============================================
-function calculateShippingCost(cart, shippingMethod) {
+// ============================================
+// CALCULATE SHIPPING COST
+// ============================================
+function calculateShippingCost(cart, shippingMethod, promoCode = '') {
   const ebookIds = [2, 4, 300];
   const isAllDigital = cart.every(item => ebookIds.includes(item.id));
-  
+
   if (isAllDigital || shippingMethod === 'digital') return 0;
-  if (shippingMethod === 'home') return CONFIG.SHIPPING.HOME_DELIVERY_COST;
+
+  if (shippingMethod === 'home') {
+    const promo = PROMO_CODES[(promoCode || '').toUpperCase()];
+    if (promo && promo.type === 'free_shipping') {
+      console.log(`Promo code applied: ${promoCode} — free shipping`);
+      return 0;
+    }
+    return CONFIG.SHIPPING.HOME_DELIVERY_COST;
+  }
+
   return 0;
 }
 
@@ -194,7 +213,7 @@ async function saveOrderToSheets(orderData, sessionId) {
       return sum + (price * quantity);
     }, 0);
     
-    const shippingCost = calculateShippingCost(cart, customerData.shippingMethod);
+const shippingCost = calculateShippingCost(cart, customerData.shippingMethod, customerData.promoCode);
     const totalAmount = productTotal + shippingCost;
     
     const productNames = cart.map(item => {
@@ -308,16 +327,17 @@ app.post('/create-payment-session', async (req, res) => {
       };
     });
 
-    if (!isEbook) {
-      lineItems.push({
-        price_data: {
-          currency: 'usd',
-          product_data: { name: 'Home Delivery' },
-          unit_amount: CONFIG.SHIPPING.HOME_DELIVERY_COST * 100,
-        },
-        quantity: 1,
-      });
-    }
+    const shippingCost = calculateShippingCost(cart, customerData.shippingMethod, customerData.promoCode);
+if (!isEbook && shippingCost > 0) {
+  lineItems.push({
+    price_data: {
+      currency: 'usd',
+      product_data: { name: 'Home Delivery' },
+      unit_amount: shippingCost * 100,
+    },
+    quantity: 1,
+  });
+}
 
     // FIX: metadata only contains a short identifier, orderData is stored in Sheets
     const session = await stripe.checkout.sessions.create({
@@ -411,7 +431,7 @@ app.post('/webhook/stripe', async (req, res) => {
         return sum + (price * quantity);
       }, 0);
       
-      const shippingCost = calculateShippingCost(cart, customerData.shippingMethod);
+const shippingCost = calculateShippingCost(cart, customerData.shippingMethod, customerData.promoCode);
       const totalAmount = productTotal + shippingCost;
 
       // 4. GENERATE DOWNLOAD LINKS (if digital)
@@ -511,14 +531,10 @@ app.get('/health', (req, res) => {
 // ============================================
 // STATIC FILES
 // ============================================
-app.use(express.static(path.join(__dirname, 'dist')));
-
-app.get('/download-error.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'download-error.html'));
-});
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // ============================================

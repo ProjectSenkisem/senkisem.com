@@ -27,41 +27,21 @@
   "author": "Senkisem",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/storage": "^7.17.3",
-    "@gsap/react": "^2.1.2",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
-    "axios": "^1.6.2",
-    "clsx": "^2.1.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^4.18.2",
-    "express-rate-limit": "^7.5.1",
-    "firebase-admin": "^13.3.0",
-    "google-auth-library": "^9.4.1",
-    "google-spreadsheet": "^4.1.5",
-    "googleapis": "^143.0.0",
-    "gsap": "^3.12.0",
-    "jsonwebtoken": "^9.0.3",
-    "nodemailer": "^6.10.1",
-    "pdfkit": "^0.17.2",
-    "postcss": "^8.4.49",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.5.0",
-    "resend": "^4.8.0",
-    "stripe": "^18.0.0",
-    "tailwindcss": "^3.4.17",
-    "typescript": "~5.6.2",
-    "uuid": "^9.0.1",
-    "vite": "^6.0.3"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  }
+  "cors": "^2.8.5",
+  "dotenv": "^16.5.0",
+  "express": "^4.18.2",
+  "express-rate-limit": "^7.5.1",
+  "google-auth-library": "^9.4.1",
+  "google-spreadsheet": "^4.1.5",
+  "googleapis": "^143.0.0",
+  "jsonwebtoken": "^9.0.3",
+  "nodemailer": "^6.10.1",
+  "pdfkit": "^0.17.2",
+  "resend": "^4.8.0",
+  "stripe": "^18.0.0",
+  "uuid": "^9.0.1"
+},
+"devDependencies": {
+  "nodemon": "^3.0.2"
+}
 }

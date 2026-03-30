@@ -160,7 +160,7 @@
     },
     {
       "id": 302,
-      "name": "Twisted Tie Pants",
+      "name": "Digital Yakuza Pants",
       "category": "clothing",
       "type": "physical",
       "price": 39.99,
@@ -174,7 +174,7 @@
     },
     {
       "id": 303,
-      "name": "Senkisem Short Kimono",
+      "name": "Digital Yakuza Short Kimono",
       "category": "clothing",
       "type": "physical",
       "price": 49.99,
@@ -188,11 +188,11 @@
     },
     {
       "id": 304,
-      "name": "Complete Set",
+      "name": "Digital Yakuza Complete Set",
       "category": "clothing",
       "type": "physical",
-      "price": 99.99,
-      "oldPrice": 114.97,
+      "price": 75.99,
+      "oldPrice": 90.98,
       "description": "Complete Shadow Garden set - kimono, pants and accessories",
       "image": "./assets/img/full-set.png",
       "sizes": ["S", "M", "L", "XL"],

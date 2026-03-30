@@ -14,7 +14,6 @@
 
   gtag('config', 'G-P9Q1NRNRGP');
 </script>
-    
     <!-- Basic SEO -->
     <meta name="description" content="Senkisem - Not a brand; message. Hungarian streetwear brand with limited collections: Sakura Heritage, Phantom, Signature. Notes From a Stranger book: self-knowledge journal for the digital age. User Manual for Life - Senkisem's second book. Urban fashion, philosophy and community in one place.">
     <meta name="keywords" content="senkisem, senkisem brand, hungarian streetwear, urban fashion hungary, limited clothing, notes from a stranger, self-knowledge book, User Manual for Life book, senkisem second book, Shadow Garden, phantom collection, signature edition, hungarian fashion brand, streetwear budapest, cyberpunk fashion, japanese style clothing, modern kimono, urban fashion, alternative fashion, underground streetwear, digital generation, self-knowledge book 2026, User Manual for Life, hungarian influencer brand, tiktok brand, instagram fashion, limited pieces, exclusive collection, premium streetwear, hungarian design, local brand, senkisem.hu, senkisem t-shirt, senkisem hoodie, senkisem book, senkisem watch, senkisem accessories">
@@ -22,17 +21,17 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="language" content="English">
     <meta name="revisit-after" content="7 days">
-    <meta name="geo.region" content="HU">
-    <meta name="geo.placename" content="Hungary">
+    <meta name="geo.region" content="EN">
+    <meta name="geo.placename" content="USA">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://senkisem.hu/">
+    <meta property="og:url" content="https://senkisem.com/">
     <meta property="og:site_name" content="Senkisem">
     <meta property="og:locale" content="en_US">
     <meta property="og:title" content="Senkisem - Not a Brand; Message | Streetwear, Books, Philosophy">
     <meta property="og:description" content="Hungarian streetwear brand with limited collections (Garden, Phantom, Signature). Notes From a Stranger: self-knowledge book for the digital age. User Manual for Life: Senkisem's second book. Urban fashion and philosophy in one place.">
-    <meta property="og:image" content="https://senkisem.hu/img/og-image.jpg">
+    <meta property="og:image" content="https://senkisem.com/img/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     
@@ -41,10 +40,10 @@
     <meta name="twitter:site" content="@senkisem">
     <meta name="twitter:title" content="Senkisem - Not a Brand; Message | Streetwear & Books">
     <meta name="twitter:description" content="Hungarian streetwear brand (Sakura Heritage, Phantom, Signature) + Notes From a Stranger book. Urban fashion and philosophy.">
-    <meta name="twitter:image" content="https://senkisem.hu/img/og-image.jpg">
+    <meta name="twitter:image" content="https://senkisem.com/img/og-image.jpg">
     
     <!-- Canonical & Mobile -->
-    <link rel="canonical" href="https://senkisem.hu/">
+    <link rel="canonical" href="https://senkisem.com/">
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     
@@ -58,129 +57,1025 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Senkisem",
-      "url": "https://senkisem.hu/",
-      "logo": "https://senkisem.hu/img/favicon.svg",
+      "url": "https://senkisem.com/",
+      "logo": "https://senkisem.com/img/favicon.svg",
       "description": "Hungarian streetwear brand with unique identity. Limited collections: Sakura Heritage, Phantom, Signature.",
-      "email": "info@senkisem.com",
+      "email": "senkisem.info@gmail.com",
       "sameAs": [
-        "https://www.instagram.com/senkisem.hu/",
-        "https://www.tiktok.com/@senkisem.hu"
+        "https://www.instagram.com/senkisem.com/",
+        "https://www.tiktok.com/@senkisem.com"
       ]
     }
     </script>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-      :root {
-        --primary-dark: #0a0a0a;
-        --text-primary: #ffffff;
+      *{margin:0;padding:0;box-sizing:border-box;scrollbar-width:none;-ms-overflow-style:none}
+      *::-webkit-scrollbar{display:none}
+      html,body{overflow-x:hidden;max-width:100vw;scroll-behavior:smooth}
+      :root{
+        --primary-dark:#0a0a0a;
+        --accent-subtle:#333333;
+        --glass-white:rgba(255,255,255,0.08);
+        --glass-border:rgba(255,255,255,0.12);
+        --text-primary:#ffffff;
+        --text-secondary:rgba(255,255,255,0.6);
+        --text-muted:rgba(255,255,255,0.4);
+        --transition:all 0.3s ease;
+        --neon-cyan:#00ffff;
+        --neon-magenta:#ff00ff;
+      }
+      body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#000 0%,#111 25%,#1a1a1a 50%,#0f0f0f 100%);min-height:100vh;color:#fff;line-height:1.6}
+
+      /* GLITCH */
+      .glitch-effects-container{position:fixed;top:0;left:0;width:100%;height:100vh;pointer-events:none;z-index:1000}
+      .glitch-lines{position:absolute;top:0;left:0;width:100%;height:100vh;pointer-events:none;mix-blend-mode:difference}
+      .glitch-film{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
+      .glitch-film__noise{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.05;background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==');animation:noise 0.3s linear infinite}
+      @keyframes noise{0%,100%{transform:translate(0,0)}10%{transform:translate(-1%,-1%)}20%{transform:translate(1%,1%)}30%{transform:translate(-2%,-2%)}40%{transform:translate(2%,2%)}50%{transform:translate(-1%,1%)}60%{transform:translate(1%,-1%)}70%{transform:translate(2%,1%)}80%{transform:translate(-2%,-1%)}90%{transform:translate(1%,2%)}}
+
+      /* HERO */
+      .merch-hero{height:100vh;position:relative;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
+      .hero-background{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
+      .hero-bg-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.6}
+      .background-watermark{position:absolute;width:100%;height:100%;opacity:0.15}
+
+      /* SCROLL HINT */
+      .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:10;color:rgba(215, 211, 211, 0.5);font-size:0.75rem;letter-spacing:0.14em;font-family:'Inter',sans-serif;font-weight:300;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity 1.4s ease;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:0.55rem}
+      .scroll-hint.visible{opacity:1}
+      .scroll-hint-arrow{width:1px;height:26px;background:linear-gradient(to bottom,transparent,rgba(160,160,160,0.45));animation:arrowPulse 2.2s ease-in-out infinite}
+      @keyframes arrowPulse{0%,100%{opacity:0.35;transform:scaleY(1)}50%{opacity:0.8;transform:scaleY(1.12)}}
+
+      /* ABOUT */
+      .merch-about{padding:10rem 0 5rem;position:relative;background:#000;color:#fff;overflow:hidden}
+      .merch-about::after{content:'';position:absolute;top:10%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(0,255,100,0.1) 0%,transparent 70%);border-radius:50%;filter:blur(80px);animation:organicFloat 15s ease-in-out infinite;z-index:1}
+      @keyframes organicFloat{0%,100%{transform:translate(0,0) scale(1);opacity:0.3}50%{transform:translate(-50px,50px) scale(1.2);opacity:0.6}}
+      @keyframes gridPulse{0%,100%{opacity:0.5}50%{opacity:1}}
+      .svg-decoration{position:absolute;opacity:0.1;z-index:1;pointer-events:none}
+      .svg-decoration.circuit-1{top:15%;left:5%;width:200px;height:200px;animation:circuitGlow 6s ease-in-out infinite}
+      .svg-decoration.circuit-2{bottom:20%;right:8%;width:250px;height:250px;animation:circuitGlow 8s ease-in-out infinite 2s}
+      .svg-decoration.leaf-1{top:30%;right:15%;width:150px;height:150px;animation:leafFloat 10s ease-in-out infinite}
+      @keyframes circuitGlow{0%,100%{opacity:0.1;filter:drop-shadow(0 0 5px rgba(0,255,255,0.3))}50%{opacity:0.3;filter:drop-shadow(0 0 15px rgba(0,255,255,0.6))}}
+      @keyframes leafFloat{0%,100%{transform:translateY(0) rotate(0deg);opacity:0.15}50%{transform:translateY(-20px) rotate(5deg);opacity:0.25}}
+      .paint-splatter{position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(40px);z-index:1;pointer-events:none}
+      .splatter-1{top:5%;left:10%;background:radial-gradient(circle,rgba(255,0,255,0.15) 0%,transparent 70%);animation:splatPulse 7s ease-in-out infinite}
+      .splatter-2{bottom:15%;left:20%;background:radial-gradient(circle,rgba(0,255,255,0.15) 0%,transparent 70%);animation:splatPulse 9s ease-in-out infinite 3s}
+      @keyframes splatPulse{0%,100%{transform:scale(1);opacity:0.3}50%{transform:scale(1.3);opacity:0.6}}
+      .led-line{position:absolute;height:2px;z-index:1;opacity:0;animation:ledSweep 8s ease-in-out infinite}
+      .led-1{top:25%;left:0;width:40%;background:linear-gradient(90deg,transparent 0%,#00ffff 50%,transparent 100%)}
+      .led-2{bottom:35%;right:0;width:50%;background:linear-gradient(90deg,transparent 0%,#ff00ff 50%,transparent 100%);animation-delay:4s}
+      @keyframes ledSweep{0%,100%{opacity:0;transform:scaleX(0)}20%,80%{opacity:0.8;transform:scaleX(1)}}
+      .merch-about .container{max-width:1400px;margin:0 auto;padding:0 2rem;position:relative;z-index:2}
+      .header-with-lines{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:2rem;gap:0.75rem}
+      .bebas-40{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;text-transform:uppercase}
+      .animated-lines{width:21rem;margin-right:-1rem}
+      .animated-lines rect{animation:line-pulse 2s ease-in-out infinite}
+      .animated-lines rect:nth-child(2){animation-delay:0.1s}
+      .animated-lines rect:nth-child(3){animation-delay:0.2s}
+      .animated-lines rect:nth-child(4){animation-delay:0.3s}
+      .animated-lines rect:nth-child(5){animation-delay:0.4s}
+      @keyframes line-pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+      .merch-about__title{margin-bottom:6rem;text-wrap:balance;font-size:clamp(2rem,4vw,4rem);position:relative;z-index:2;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;animation:glitchTitle 8s infinite}
+      @keyframes glitchTitle{0%,90%,100%{text-shadow:0 0 10px rgba(255,255,255,0.3),0 0 20px rgba(255,255,255,0.2);transform:translate(0,0)}91%{text-shadow:2px 0 #f00,-2px 0 #0ff;transform:translate(-2px,0)}93%{text-shadow:-2px 0 #f00,2px 0 #0ff;transform:translate(2px,0)}95%{text-shadow:0 0 10px rgba(255,255,255,0.3);transform:translate(0,0)}}
+      .merch-about__content{position:relative;display:flex;align-items:center;gap:6rem;margin-bottom:12rem;z-index:2;min-height:400px}
+      .merch-about__desc{flex:1;max-width:600px;line-height:1.9;text-wrap:balance;font-size:clamp(1.1rem,1.5vw,1.35rem);color:#fff;position:relative;padding:0;opacity:0;transform:translateX(-100px);animation:slideInLeft 1.2s ease forwards 0.3s}
+      @keyframes slideInLeft{to{opacity:1;transform:translateX(0)}}
+      .merch-about__desc::before{content:'';position:absolute;left:-30px;top:0;width:4px;height:100%;background:linear-gradient(180deg,transparent 0%,#00ffff 20%,#00ffff 80%,transparent 100%);animation:pulseBar 2s ease-in-out infinite;box-shadow:0 0 10px #00ffff}
+      @keyframes pulseBar{0%,100%{opacity:0.5;box-shadow:0 0 10px #00ffff}50%{opacity:1;box-shadow:0 0 20px #00ffff}}
+      .merch-about__desc p{animation:textGlitch 6s infinite}
+      @keyframes textGlitch{0%,96%,100%{text-shadow:0 0 5px rgba(255,255,255,0.1)}97%{text-shadow:1px 0 #f00,-1px 0 #0ff}98%{text-shadow:-1px 0 #f00,1px 0 #0ff}}
+      .merch-about__image{width:400px;height:auto;flex-shrink:0;position:relative;opacity:0;transform:translateX(100px);animation:slideInRight 1.2s ease forwards 0.5s;filter:grayscale(0.3) contrast(1.1)}
+      @keyframes slideInRight{to{opacity:1;transform:translateX(0)}}
+      .merch-about__image::before{content:'';position:absolute;top:-10px;left:-10px;right:10px;bottom:10px;border:2px solid rgba(0,255,255,0.4);z-index:-1;animation:borderPulse 3s ease-in-out infinite;box-shadow:0 0 15px rgba(0,255,255,0.3)}
+      @keyframes borderPulse{0%,100%{border-color:rgba(0,255,255,0.4);transform:translate(0,0)}50%{border-color:rgba(0,255,255,0.8);transform:translate(-5px,-5px)}}
+      .merch-about__bottom-section{position:relative;display:flex;align-items:center;gap:6rem;z-index:2;min-height:400px}
+      .merch-about__bottom-image{width:400px;height:auto;flex-shrink:0;position:relative;opacity:0;transform:translateX(-100px);animation:slideInLeft 1.2s ease forwards 0.5s;filter:grayscale(0.3) contrast(1.1)}
+      .merch-about__bottom-image::before{content:'';position:absolute;top:10px;left:10px;right:-10px;bottom:-10px;border:2px solid rgba(255,0,255,0.4);z-index:-1;animation:borderPulseM 3s ease-in-out infinite;box-shadow:0 0 15px rgba(255,0,255,0.3)}
+      @keyframes borderPulseM{0%,100%{border-color:rgba(255,0,255,0.4);transform:translate(0,0)}50%{border-color:rgba(255,0,255,0.8);transform:translate(5px,5px)}}
+      .merch-about__bottom-text{flex:1;max-width:600px;line-height:1.9;font-size:clamp(1.1rem,1.5vw,1.35rem);color:#fff;position:relative;padding:0;opacity:0;transform:translateX(100px);animation:slideInRight 1.2s ease forwards 0.7s}
+      .merch-about__bottom-text::after{content:'';position:absolute;right:-30px;top:0;width:4px;height:100%;background:linear-gradient(180deg,transparent 0%,#ff00ff 20%,#ff00ff 80%,transparent 100%);animation:pulseBar 2s ease-in-out infinite 0.5s;box-shadow:0 0 10px #ff00ff}
+      .merch-about__bottom-text p{animation:textGlitch 6s infinite 1s}
+
+      /* TYPING */
+      .merch-more{
+  padding: 6rem 0 0;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.merch-more .container{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+      .merch-more::after{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,255,255,0.1) 0%,transparent 70%);transform:translate(-50%,-50%);animation:bgPulse 3s ease-in-out infinite;pointer-events:none}
+      @keyframes bgPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.3}50%{transform:translate(-50%,-50%) scale(1.2);opacity:0.6}}
+      .merch-more__inner{display:flex;flex-direction:column;gap:3rem;position:relative;z-index:2}
+      .merch-more__typing{max-width:900px;margin:0 auto;min-height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3rem}
+      .typing{position:relative;font-family:'Courier New',monospace;font-size:clamp(1.25rem,2vw,1.75rem);text-transform:uppercase;white-space:pre-wrap;text-align:center;color:#fff;line-height:1.8;min-height:300px;text-shadow:0 0 10px rgba(0,255,255,0.5),0 0 20px rgba(0,255,255,0.3);animation:textFlicker 3s infinite;display:inline-block}
+      @keyframes textFlicker{0%,100%{text-shadow:0 0 10px rgba(0,255,255,0.5),0 0 20px rgba(0,255,255,0.3)}50%{text-shadow:0 0 20px rgba(0,255,255,0.8),0 0 30px rgba(0,255,255,0.5)}}
+      .typing-cursor{display:inline-block;animation:blink 1s infinite;margin-left:2px;color:#00ffff}
+      @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+      .merch-more__cta{display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-top:2rem}
+      .cyber-login-btn{position:relative;padding:1.2rem 3rem;background:transparent;border:2px solid #00ffff;color:#00ffff;font-family:'Courier New',monospace;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;cursor:pointer;overflow:hidden;transition:all 0.3s ease;text-decoration:none;display:inline-block;box-shadow:0 0 10px rgba(0,255,255,0.3),inset 0 0 10px rgba(0,255,255,0.1);animation:borderGlow 2s ease-in-out infinite}
+      @keyframes borderGlow{0%,100%{box-shadow:0 0 10px rgba(0,255,255,0.3),inset 0 0 10px rgba(0,255,255,0.1)}50%{box-shadow:0 0 20px rgba(0,255,255,0.6),inset 0 0 20px rgba(0,255,255,0.2)}}
+      .cyber-login-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,255,255,0.3),transparent);transition:left 0.5s ease}
+      .cyber-login-btn:hover::before{left:100%}
+      .cyber-login-btn:hover{background:rgba(0,255,255,0.1);transform:translateY(-2px)}
+      .cyber-login-btn::after{content:'►';position:absolute;right:1rem;opacity:0;transition:all 0.3s ease}
+      .cyber-login-btn:hover::after{opacity:1;right:1.5rem}
+      .cyber-subtext{font-family:'Courier New',monospace;font-size:0.9rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.15em;text-align:center;max-width:500px;line-height:1.6;position:relative;padding:0 2rem}
+      .cyber-subtext::before,.cyber-subtext::after{content:'///';position:absolute;color:#ff00ff;opacity:0.3;font-size:0.8rem}
+      .cyber-subtext::before{left:0;top:50%;transform:translateY(-50%)}
+      .cyber-subtext::after{right:0;top:50%;transform:translateY(-50%)}
+      .glitch-overlay{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+      .glitch-overlay::before,.glitch-overlay::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;animation:glitchSweep 5s infinite}
+      .glitch-overlay::before{background:linear-gradient(90deg,transparent 0%,rgba(255,0,255,0.1) 50%,transparent 100%)}
+      .glitch-overlay::after{background:linear-gradient(90deg,transparent 0%,rgba(0,255,255,0.1) 50%,transparent 100%);animation-delay:2.5s}
+      @keyframes glitchSweep{0%,100%{opacity:0;transform:translateX(-100%)}10%,20%{opacity:1;transform:translateX(100%)}21%{opacity:0}}
+
+      /* CONTAINER */
+      .container{max-width:1400px;margin:0 auto;padding:0 2rem;position:relative;z-index:2}
+      /* COOKIE */
+      .cookie-banner{position:fixed;bottom:2rem;left:2rem;right:2rem;max-width:500px;margin:0 auto;background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:2rem;z-index:4000;box-shadow:0 8px 32px rgba(0,0,0,0.3);transform:translateY(100px);opacity:0;transition:all 0.5s ease;display:none}
+      .cookie-banner.show{display:block;transform:translateY(0);opacity:1}
+      .cookie-banner.hide{transform:translateY(100px);opacity:0}
+      .cookie-content{display:flex;flex-direction:column;gap:1.5rem}
+      .cookie-icon{font-size:2rem;text-align:center;opacity:0.8}
+      .cookie-title{font-size:1.2rem;font-weight:600;color:#fff;text-align:center;margin-bottom:0.5rem}
+      .cookie-text{font-size:0.9rem;color:rgba(255,255,255,0.6);line-height:1.5;text-align:center}
+      .cookie-buttons{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap}
+      .cookie-btn{padding:0.7rem 1.5rem;border-radius:8px;border:1px solid transparent;font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.3s ease;text-transform:uppercase;letter-spacing:0.05em}
+      .cookie-btn-accept{background:#fff;color:#0a0a0a}
+      .cookie-btn-accept:hover{background:#888;color:#fff;transform:translateY(-2px)}
+      .cookie-btn-decline{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.2)}
+      .cookie-btn-decline:hover{background:rgba(255,255,255,0.15);color:#fff;transform:translateY(-2px)}
+      .cookie-btn-necessary{background:transparent;color:rgba(255,255,255,0.4);border-color:rgba(255,255,255,0.1);font-size:0.8rem}
+      .cookie-btn-necessary:hover{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6)}
+
+      /* RESPONSIVE */
+      @media (max-width:768px){
+        .svg-decoration,.paint-splatter,.led-line{display:none}
+        .merch-about{padding:6rem 0 3rem}
+        .merch-about__title{font-size:clamp(1.8rem,6vw,2.5rem);margin-bottom:3rem;animation:none;text-shadow:0 0 10px rgba(255,255,255,0.3)}
+        .merch-about__content{flex-direction:column;gap:0;margin-bottom:6rem;min-height:auto}
+        .merch-about__desc{padding:2rem 1rem 2rem 2rem;max-width:100%;animation:none;opacity:1;transform:none;position:relative;z-index:2}
+        .merch-about__desc::before{display:none}
+        .merch-about__desc p{animation:none;text-shadow:none}
+        .merch-about__image{position:absolute;right:-10%;top:50%;transform:translateY(-50%);width:60%;max-width:250px;opacity:0.4;z-index:1;animation:none;filter:grayscale(0.2) contrast(1.1)}
+        .merch-about__image::before{display:none}
+        .merch-about__bottom-section{flex-direction:column;gap:0;min-height:auto}
+        .merch-about__bottom-text{padding:2rem 2rem 2rem 1rem;max-width:100%;animation:none;opacity:1;transform:none;text-align:right;position:relative;z-index:2}
+        .merch-about__bottom-text::after{display:none}
+        .merch-about__bottom-text p{animation:none}
+        .merch-about__bottom-image{position:absolute;left:-10%;top:50%;transform:translateY(-50%);width:60%;max-width:250px;opacity:0.4;z-index:1;animation:none}
+        .merch-about__bottom-image::before{display:none}
+        .merch-more{padding:6rem 0}
+        .merch-more__typing{min-height:300px;padding:0 1rem;gap:2rem}
+        .typing{font-size:clamp(1rem,3vw,1.25rem);line-height:1.6}
+        .cyber-login-btn{padding:1rem 2rem;font-size:0.9rem;letter-spacing:0.15em}
+        .cyber-subtext{font-size:0.75rem;padding:0 1rem}
+        .cyber-subtext::before,.cyber-subtext::after{display:none}
+        .header-with-lines{flex-direction:column}
+        .animated-lines{width:100%}
+        .footer{padding:4rem 2rem 2rem}
+        .cookie-banner{bottom:1rem;left:1rem;right:1rem;padding:1.5rem}
+        .cookie-buttons{flex-direction:column;gap:0.5rem}
+        .cookie-btn{width:100%;display:flex;align-items:center;justify-content:center}
+        .merch-about::before{animation:none;opacity:0.2}
+        .merch-about::after{animation:none;opacity:0.15}
+        .scroll-hint{font-size:0.7rem;letter-spacing:0.1em}
       }
 
-      .loading {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--primary-dark);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        transition: opacity 0.6s ease;
-        flex-direction: column;
-      }
-
-      .loading.hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .loading-content {
-        text-align: center;
-        animation: fadeIn 1.8s ease forwards;
-      }
-
-      .loading-text {
-        color: var(--text-primary);
-        font-size: 2rem;
-        font-weight: 500;
-        letter-spacing: 0.4em;
-        animation: pulse 2.4s ease-in-out infinite;
-        text-transform: uppercase;
-      }
-
-      .loading-subtext {
-        margin-top: 1rem;
-        font-size: 0.9rem;
-        font-weight: 300;
-        letter-spacing: 0.15em;
-        background: linear-gradient(90deg, #ffffff, #b8b8b8, #ffffff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        opacity: 0;
-        animation: fadeInSub 3s ease forwards 1.5s;
-      }
-
-      @keyframes pulse {
-        0%, 100% { opacity: 0.4; text-shadow: 0 0 6px rgba(255,255,255,0.2); }
-        50% { opacity: 1; text-shadow: 0 0 12px rgba(255,255,255,0.6); }
-      }
-
-      @keyframes fadeInSub {
-        from { opacity: 0; transform: translateY(5px); }
-        to { opacity: 0.9; transform: translateY(0); }
-      }
-
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      /* Hide scrollbar in all browsers */
-* {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+.we-are-section {
+    overflow: hidden;
+    padding: 1rem 0;
+    background: #000;
+    position: relative;
 }
 
-*::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+/* Blur-olt színes háttér */
+.we-are-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(0,255,200,0.25) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
 }
 
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
+.we-are-section::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 180px;
+    background: radial-gradient(ellipse, rgba(255,0,180,0.2) 0%, transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
 }
+
+.we-are-track {
+    display: flex;
+    gap: 1rem;
+    white-space: nowrap;
+    will-change: transform;
+    position: relative;
+    z-index: 1;
+}
+
+/* SENKISEM — fehér, teli */
+.we-are-track span.solid {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: rgba(255, 255, 255, 0.92);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    -webkit-text-stroke: 0px;
+    text-shadow: 0 0 30px rgba(255,255,255,0.15);
+}
+
+/* WE ARE — outline, átlátszó fill */
+.we-are-track span.outline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+/* KÖNYVEK SZEKCIÓ */
+.books-header {
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+}
+.books-subtitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  color: #fff;
+}
+.books-subtitle span {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.5);
+}
+.books-kep1-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  margin-bottom: 12rem;
+  z-index: 2;
+  min-height: 400px;
+}
+.books-kep1-desc {
+  flex: 1;
+  max-width: 600px;
+  line-height: 1.9;
+  text-wrap: balance;
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  color: #fff;
+  position: relative;
+  padding: 0;
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideInLeft 1.2s ease forwards 0.3s;
+}
+.books-kep1-desc::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, #b8ff00 20%, #b8ff00 80%, transparent 100%);
+  animation: pulseBarGreen 2s ease-in-out infinite;
+  box-shadow: 0 0 10px #b8ff00;
+}
+@keyframes pulseBarGreen {
+  0%,100% { opacity: 0.5; box-shadow: 0 0 10px #b8ff00; }
+  50% { opacity: 1; box-shadow: 0 0 20px #b8ff00; }
+}
+.books-kep1-image {
+  width: 400px;
+  height: auto;
+  flex-shrink: 0;
+  position: relative;
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideInRight 1.2s ease forwards 0.5s;
+  filter: grayscale(0.2) contrast(1.1);
+}
+.books-kep1-image::before {
+  content: '';
+  position: absolute;
+  top: -10px; left: -10px; right: 10px; bottom: 10px;
+  border: 2px solid rgba(184,255,0,0.4);
+  z-index: -1;
+  animation: borderPulseGreen 3s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(184,255,0,0.3);
+}
+@keyframes borderPulseGreen {
+  0%,100% { border-color: rgba(184,255,0,0.4); transform: translate(0,0); }
+  50% { border-color: rgba(184,255,0,0.8); transform: translate(-5px,-5px); }
+}
+.books-kep2-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  z-index: 2;
+  min-height: 400px;
+}
+.books-kep2-image {
+  width: 400px;
+  height: auto;
+  flex-shrink: 0;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideInLeft 1.2s ease forwards 0.5s;
+  filter: grayscale(0.2) contrast(1.1);
+}
+.books-kep2-image::before {
+  content: '';
+  position: absolute;
+  top: 10px; left: 10px; right: -10px; bottom: -10px;
+  border: 2px solid rgba(255,180,0,0.4);
+  z-index: -1;
+  animation: borderPulseOrange 3s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(255,180,0,0.3);
+}
+@keyframes borderPulseOrange {
+  0%,100% { border-color: rgba(255,180,0,0.4); transform: translate(0,0); }
+  50% { border-color: rgba(255,180,0,0.8); transform: translate(5px,5px); }
+}
+.books-kep2-text {
+  flex: 1;
+  max-width: 600px;
+  line-height: 1.9;
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  color: #fff;
+  position: relative;
+  padding: 0;
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideInRight 1.2s ease forwards 0.7s;
+}
+.books-kep2-text::after {
+  content: '';
+  position: absolute;
+  right: -30px; top: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(180deg, transparent 0%, #ffb400 20%, #ffb400 80%, transparent 100%);
+  animation: pulseBarOrange 2s ease-in-out infinite 0.5s;
+  box-shadow: 0 0 10px #ffb400;
+}
+@keyframes pulseBarOrange {
+  0%,100% { opacity: 0.5; box-shadow: 0 0 10px #ffb400; }
+  50% { opacity: 1; box-shadow: 0 0 20px #ffb400; }
+}
+
+/* Unique canvas decoration for books */
+.books-canvas-deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.07;
+}
+.books-canvas-deco.top-left { top: 0; left: 0; width: 320px; height: 320px; }
+.books-canvas-deco.bottom-right { bottom: 0; right: 0; width: 280px; height: 280px; }
+
+@media (max-width: 768px) {
+  .books-kep1-content { flex-direction: column; gap: 0; margin-bottom: 6rem; min-height: auto; }
+  .books-kep1-desc { padding: 2rem 1rem 2rem 2rem; max-width: 100%; animation: none; opacity: 1; transform: none; }
+  .books-kep1-desc::before { display: none; }
+  .books-kep1-image { position: absolute; right: -10%; top: 50%; transform: translateY(-50%); width: 60%; max-width: 250px; opacity: 0.4; z-index: 1; animation: none; }
+  .books-kep1-image::before { display: none; }
+  .books-kep2-section { flex-direction: column; gap: 0; min-height: auto; }
+  .books-kep2-text { padding: 2rem 2rem 2rem 1rem; max-width: 100%; animation: none; opacity: 1; transform: none; text-align: right; }
+  .books-kep2-text::after { display: none; }
+  .books-kep2-image { position: absolute; left: -10%; top: 50%; transform: translateY(-50%); width: 60%; max-width: 250px; opacity: 0.4; z-index: 1; animation: none; }
+  .books-kep2-image::before { display: none; }
+}
+
+.login-copyright{
+  margin-top:8.5rem;
+  text-align:center;
+  font-family:'Inter',sans-serif;
+  font-size:0.9rem;
+  color:rgba(255,255,255,0.52);
+  letter-spacing:0.04em;
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.12),
+    0 0 12px rgba(255,255,255,0.06);
+  -webkit-text-stroke:0.35px rgba(255,255,255,0.18);
+}
+
+.login-copyright{
+  margin-top:8.5rem;
+  margin-bottom:1.2rem;
+  font-size:0.8rem;
+  padding:0 1rem;
+}
+@media (max-width: 768px) {
+  .merch-about__desc {
+    max-width: 100%; /* volt: 100% */
+    margin-left: -85px;
+  }
+
+  .merch-about__bottom-text {
+    max-width: 100%; /* volt: 100% */
+    margin-right: -65px;
+  }
+
+    .books-kep1-desc {
+      max-width: 100%; /* volt: 100% */
+    margin-left: -85px;
+    }
+    
+    .books-kep2-text {
+    max-width: 100%;
+    margin-right: -65px;
+  }
+}
+
+@media (max-width: 768px) {
+  .merch-about__desc,
+  .merch-about__bottom-text,
+  .books-kep1-desc,
+  .books-kep2-text {
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,0.85) 60%,
+      transparent 100%
+    );
+    border-radius: 4px;
+  }
+
+  .merch-about__bottom-text,
+  .books-kep2-text {
+    background: linear-gradient(
+      to left,
+      rgba(0,0,0,0.85) 60%,
+      transparent 100%
+    );
+  }
+}
+
+@media (max-width: 768px) {
+  .merch-about__desc,
+  .merch-about__bottom-text,
+  .books-kep1-desc,
+  .books-kep2-text {
+    position: relative;
+    z-index: 3;
+    mix-blend-mode: normal;
+    isolation: isolate;
+  }
+}
+@media (max-width: 768px) {
+  .login-copyright {
+    margin-top:70%;
+  }
+}
+
+/* LANGUAGE SWITCHER */
+.lang-switcher {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+.lang-switcher.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+.lang-current {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.25s, background 0.25s;
+  user-select: none;
+}
+.lang-current:hover {
+  border-color: rgba(255,255,255,0.35);
+  background: rgba(0,0,0,0.75);
+}
+.lang-flag {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.lang-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+.lang-arrow {
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.4);
+  transition: transform 0.25s ease;
+  margin-left: 2px;
+}
+.lang-switcher.open .lang-arrow {
+  transform: rotate(180deg);
+}
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.12);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+.lang-switcher.open .lang-dropdown {
+  max-height: 80px;
+  opacity: 1;
+}
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+.lang-option:hover {
+  background: rgba(255,255,255,0.07);
+}
+.lang-option .lang-label {
+  color: rgba(255,255,255,0.6);
+  transition: color 0.2s;
+}
+.lang-option:hover .lang-label {
+  color: #fff;
+}
+
     </style>
   </head>
   <body>
-    <div class="loading" id="loading">
-      <div class="loading-content">
-        <div class="loading-text">SENKISEM</div>
-        <div class="loading-subtext">Not a Brand;<br>Message.</div>
+
+    <!-- GLITCH EFFECTS -->
+    <div class="glitch-effects-container">
+      <canvas class="glitch-lines"></canvas>
+      <div class="glitch-film">
+        <div class="glitch-film__scanline"></div>
+        <div class="glitch-film__noise"></div>
       </div>
     </div>
 
-    <div id="root"></div>
+    <!-- HERO -->
+    <section class="merch-hero">
+      <div class="hero-background">
+        <canvas class="background-watermark"></canvas>
+        <video class="hero-bg-video" autoplay muted loop playsinline></video>
+      </div>
+      <div class="scroll-hint" id="scroll-hint">
+        <span>Scroll for more</span>
+        <div class="scroll-hint-arrow"></div>
+      </div>
+    </section>
 
-    <script type="module" src="/src/main.tsx"></script>
-    
+    <div class="lang-switcher" id="lang-switcher">
+  <div class="lang-current" id="lang-current">
+    <span class="lang-label">ENG</span>
+    <span class="lang-arrow">▼</span>
+  </div>
+  <div class="lang-dropdown">
+    <a class="lang-option" href="https://senkisem.hu" target="_blank">
+      <span class="lang-label">HUN</span>
+    </a>
+  </div>
+</div>
+
+<section class="we-are-section">
+    <div class="we-are-track" id="weAreTrack">
+        <span class="outline">WE ARE</span><span class="solid">SENKISEM</span>
+        <span class="outline">WE ARE</span><span class="solid">SENKISEM</span>
+        <span class="outline">WE ARE</span><span class="solid">SENKISEM</span>
+        <span class="outline">WE ARE</span><span class="solid">SENKISEM</span>
+        <span class="outline">WE ARE</span><span class="solid">SENKISEM</span>
+        <span class="outline">WE ARE</span><span class="solid">SENKISEM</span>
+        <span class="outline">WE ARE</span><span class="solid">SENKISEM</span>
+        <span class="outline">WE ARE</span><span class="solid">SENKISEM</span>
+    </div>
+</section>
+
+    <!-- ABOUT -->
+    <section class="merch-about">
+      <svg class="svg-decoration circuit-1" viewBox="0 0 200 200">
+        <path d="M20,100 L80,100 L80,60 L120,60 L120,140 L180,140" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="80" cy="100" r="5" fill="currentColor"/>
+        <circle cx="120" cy="60" r="5" fill="currentColor"/>
+        <circle cx="120" cy="140" r="5" fill="currentColor"/>
+      </svg>
+      <svg class="svg-decoration circuit-2" viewBox="0 0 200 200">
+        <path d="M180,50 L140,50 L140,100 L100,100 L100,150 L20,150" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="140" cy="50" r="5" fill="currentColor"/>
+        <circle cx="100" cy="100" r="5" fill="currentColor"/>
+        <circle cx="100" cy="150" r="5" fill="currentColor"/>
+      </svg>
+      <svg class="svg-decoration leaf-1" viewBox="0 0 100 100">
+        <path d="M50,10 Q70,30 50,50 Q30,30 50,10 Z M50,10 L50,50" fill="currentColor" opacity="0.3"/>
+      </svg>
+      <div class="paint-splatter splatter-1"></div>
+      <div class="paint-splatter splatter-2"></div>
+      <div class="led-line led-1"></div>
+      <div class="led-line led-2"></div>
+      <div class="container">
+        <div class="header-with-lines">
+          <p class="bebas-40">Our Mission</p>
+          <svg class="animated-lines" viewBox="0 0 505 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <rect width="4" height="16"/><rect x="15" width="4" height="16"/><rect x="81" width="4" height="16"/>
+            <rect x="131" width="4" height="16"/><rect x="143" width="4" height="16"/><rect x="179" width="4" height="16"/>
+            <rect x="220" width="4" height="16"/><rect x="229" width="4" height="16"/><rect x="307" width="4" height="16"/>
+            <rect x="342" width="4" height="16"/><rect x="375" width="4" height="16"/><rect x="387" width="4" height="16"/>
+            <rect x="426" width="4" height="16"/><rect x="439" width="4" height="16"/><rect x="501" width="4" height="16"/>
+          </svg>
+        </div>
+        <div class="merch-about__title">
+          <h2>We don’t wait for change.
+ <br> We create it.</h2>
+        </div>
+        <div class="merch-about__content">
+          <div class="merch-about__desc">
+            <p>Senkisem is more than a brand.
+It’s a movement born from the digital revolution, rooted in the mindset of high-end streetwear culture.</p>
+          </div>
+          <img src="assets/img/ggg.png" alt="Product" class="merch-about__image">
+        </div>
+        <div class="merch-about__bottom-section">
+          <img src="assets/img/herop.png" alt="Product" class="merch-about__bottom-image">
+          <div class="merch-about__bottom-text">
+            <p>In a world where technology and culture collide with brutal force, we stand for the bold, the forward-thinking, and the unstoppable.</p>
+          </div>
+        </div>
+
+        <!-- KÖNYVEK SZEKCIÓ -->
+<div class="books-canvas-deco top-left" id="booksDeco1"></div>
+<div class="books-canvas-deco bottom-right" id="booksDeco2"></div>
+
+<div class="books-header">
+  <div class="header-with-lines">
+    <p class="bebas-40">The Foundations of Senkisem</p>
+    <svg class="animated-lines" viewBox="0 0 505 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <rect width="4" height="16"/><rect x="15" width="4" height="16"/><rect x="81" width="4" height="16"/>
+      <rect x="131" width="4" height="16"/><rect x="143" width="4" height="16"/><rect x="179" width="4" height="16"/>
+      <rect x="220" width="4" height="16"/><rect x="229" width="4" height="16"/><rect x="307" width="4" height="16"/>
+      <rect x="342" width="4" height="16"/><rect x="375" width="4" height="16"/><rect x="387" width="4" height="16"/>
+      <rect x="426" width="4" height="16"/><rect x="439" width="4" height="16"/><rect x="501" width="4" height="16"/>
+    </svg>
+  </div>
+  <p class="books-subtitle">Senkisem <span>I.</span> and <span>II.</span><br> Two different books.<br> Both about the same thing: <br> <span>You.</span></p>
+</div>
+
+<div class="books-kep1-content">
+  <div class="books-kep1-desc">
+    Questions that break you apart.
+Thoughts that rebuild you.
+This isn’t a book you “read”;
+it’s a mirror you can’t avoid.
+  </div>
+  <img src="assets/img/könyv1.png" alt="Senkisem I. könyv" class="books-kep1-image">
+</div>
+
+<div class="books-kep2-section">
+  <img src="assets/img/huae.png" alt="Senkisem II. könyv" class="books-kep2-image">
+  <div class="books-kep2-text">
+    <p>The thoughts born from the silent dialogues of the first volume have now evolved into system-level diagnostics.
+This is not self-improvement.
+This is exposure.
+The realization that your personality is an algorithm.
+Your decisions are survival protocols.</p>
+  </div>
+</div>
+        <canvas class="background-watermark"></canvas>
+      </div>
+    </section>
+
+
+
+    <!-- TYPING -->
+    <section class="merch-more">
+      <div class="glitch-overlay"></div>
+      <div class="container">
+        <div class="merch-more__inner">
+          <div class="merch-more__typing">
+            <div class="typing" id="typing-text"></div>
+            <div class="merch-more__cta">
+  <a href="merch.html" class="cyber-login-btn">ENTER</a>
+</div>
+
+<p class="login-copyright">&copy; 2026 Senkisem - All rights reserved</p>
+          </div>
+        </div>
+      </div>
+      <div>
+    </section>
+
+    <!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-content">
+    <div class="cookie-icon">🍪</div>
+    <h3 class="cookie-title">Cookies & Privacy</h3>
+    <p class="cookie-text">
+      We use essential cookies to keep the site working properly. Analytics cookies help us improve the user experience.
+      Read more in our <a href="/public/assets/ÁSZF.pdf" style="color:#fff;text-decoration:underline">Privacy Policy</a>.
+    </p>
+    <div class="cookie-buttons">
+      <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">
+        <i class="ri-check-line"></i> Accept all
+      </button>
+      <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">
+        <i class="ri-close-line"></i> Decline
+      </button>
+      <button class="cookie-btn cookie-btn-necessary" onclick="acceptNecessaryCookies()">
+        Necessary only
+      </button>
+    </div>
+  </div>
+</div>
+
     <script>
-      window.loadingDone = false;
-      const minimumLoadingTime = window.innerWidth <= 768 ? 2500 : 4000;
+      // VIDEO — desktop / mobile külön videó
+  (function () {
+    var v = document.querySelector('.hero-bg-video');
+    if (!v) return;
 
-      window.addEventListener("load", () => {
-        setTimeout(() => {
-          const loading = document.getElementById("loading");
-          if (loading) {
-            loading.classList.add("hidden");
-            setTimeout(() => {
-              loading.remove();
-              window.loadingDone = true;
-            }, 600);
-          } else {
-            window.loadingDone = true;
+    var mobileBp = 768;
+    var desktopSrc = 'assets/img/merchvid.mp4';
+    var mobileSrc = 'assets/img/merchvidphone.mp4';
+
+    function setHeroVideo() {
+      var isMobile = window.innerWidth <= mobileBp;
+      var nextSrc = isMobile ? mobileSrc : desktopSrc;
+
+      if (v.getAttribute('data-current-src') === nextSrc) return;
+
+      v.setAttribute('data-current-src', nextSrc);
+      v.innerHTML = '';
+
+      var s = document.createElement('source');
+      s.src = nextSrc;
+      s.type = 'video/mp4';
+      v.appendChild(s);
+
+      v.load();
+
+      var playPromise = v.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function(){});
+      }
+    }
+
+    setHeroVideo();
+    window.addEventListener('resize', setHeroVideo);
+  })();
+
+      // SCROLL HINT — 8 mp után
+      setTimeout(function(){
+        var h = document.getElementById('scroll-hint');
+        if(h) h.classList.add('visible');
+      }, 8000);
+
+      // GLITCH CANVAS
+      (function(){
+        var c = document.querySelector('.glitch-lines');
+        if(!c) return;
+        var ctx = c.getContext('2d',{alpha:true});
+        function r(){ c.width=window.innerWidth; c.height=window.innerHeight; }
+        r();
+        var rt;
+        window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(r,250); });
+        function d(){
+          ctx.clearRect(0,0,c.width,c.height);
+          if(Math.random()>0.05) return;
+          ctx.strokeStyle='rgba(255,255,255,0.3)';
+          ctx.lineWidth=1;
+          for(var i=0;i<Math.floor(Math.random()*2)+1;i++){
+            var y=Math.random()*c.height, w=Math.random()*(c.width*0.2), x=Math.random()*(c.width-w);
+            ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+w,y); ctx.stroke();
           }
-        }, minimumLoadingTime);
+        }
+        (function loop(){ d(); setTimeout(function(){ requestAnimationFrame(loop); },2000); })();
+      })();
+
+      // WATERMARK CANVASES
+      (function(){
+        document.querySelectorAll('.background-watermark').forEach(function(c){
+          var ctx=c.getContext('2d',{alpha:true});
+          c.width=c.offsetWidth||window.innerWidth;
+          c.height=c.offsetHeight||600;
+          var pts=[];
+          for(var i=0;i<30;i++) pts.push({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,r:Math.random()*1.5+0.5});
+          var vis=false,af=null;
+          function anim(){
+            if(!vis){af=null;return;}
+            ctx.clearRect(0,0,c.width,c.height);
+            ctx.fillStyle='rgba(255,255,255,0.1)';
+            pts.forEach(function(p){
+              ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+              p.x+=p.vx;p.y+=p.vy;
+              if(p.x<0||p.x>c.width)p.vx*=-1;
+              if(p.y<0||p.y>c.height)p.vy*=-1;
+            });
+            af=requestAnimationFrame(anim);
+          }
+          new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis&&!af)anim();},{threshold:0.1}).observe(c);
+        });
+      })();
+
+      // TYPING EFFECT
+  // TYPING EFFECT
+  (function(){
+    var el = document.getElementById('typing-text');
+    if(!el) return;
+
+    // A < nincs a végleges szövegben
+    var txt = "This is not just clothing.\nThis is a statement.\nA declaration. A heartbeat for the future.\n\nWelcome to the new paradigm\nWelcome to Senkisem";
+
+    var insertIndex = "This is not just clothing.\nThis is a statement.\nA declaration. A heartbeat for the future.".length;
+
+    var i = 0;
+    var started = false;
+    var heartInjected = false;
+
+    function render(content){
+      el.innerHTML = content.replace(/\n/g,'<br>') + '<span class="typing-cursor">█</span>';
+    }
+
+    function type(){
+      if(i <= txt.length){
+
+        // amikor elérjük a pontot, ahol a < megjelent volna
+        if(i === insertIndex && !heartInjected){
+          heartInjected = true;
+
+          // mutassuk röviden a < karaktert
+          render(txt.substring(0, i) + " <");
+
+          setTimeout(function(){
+            // majd töröljük ki és folytassuk nélküle
+            render(txt.substring(0, i));
+            setTimeout(type, 120); // kicsit gyorsabb
+          }, 330); // rövidebb ideig látszik
+
+          return;
+        }
+
+        render(txt.substring(0, i));
+        i++;
+        setTimeout(type, 50);
+      }
+    }
+
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting && !started){
+          started = true;
+          type();
+        }
       });
+    }).observe(el);
+  })();
+
+      (function() {
+    const track = document.getElementById('weAreTrack');
+    if (!track) return;
+
+    window.addEventListener('scroll', function() {
+        const section = track.closest('.we-are-section');
+        const rect = section.getBoundingClientRect();
+        
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+        const progress = (window.scrollY - (section.offsetTop - window.innerHeight)) 
+                         / (window.innerHeight + section.offsetHeight);
+        
+        // -60% és -10% között mozog — bal oldaltól indul, jobbra csúszik
+        const offset = -60 + (progress * 50);
+        track.style.transform = `translateX(${offset}%)`;
+        
+    }, { passive: true });
+})();
+
+// BOOKS CANVAS DECORATIONS
+(function() {
+  var configs = [
+    { id: 'booksDeco1', color1: 'rgba(184,255,0,0.6)', color2: 'rgba(0,255,200,0.4)' },
+    { id: 'booksDeco2', color1: 'rgba(255,180,0,0.5)', color2: 'rgba(255,0,180,0.4)' }
+  ];
+  configs.forEach(function(cfg) {
+    var el = document.getElementById(cfg.id);
+    if (!el) return;
+    var c = document.createElement('canvas');
+    c.width = 320; c.height = 320;
+    c.style.width = '100%'; c.style.height = '100%';
+    el.appendChild(c);
+    var ctx = c.getContext('2d');
+    var pts = [];
+    for (var i = 0; i < 18; i++) {
+      pts.push({
+        x: Math.random() * 320, y: Math.random() * 320,
+        vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 2 + 1
+      });
+    }
+    var lines = [];
+    for (var j = 0; j < 6; j++) {
+      lines.push({
+        x1: Math.random() * 320, y1: Math.random() * 320,
+        x2: Math.random() * 320, y2: Math.random() * 320,
+        vx1: (Math.random()-0.5)*0.3, vy1: (Math.random()-0.5)*0.3,
+        vx2: (Math.random()-0.5)*0.3, vy2: (Math.random()-0.5)*0.3
+      });
+    }
+    var vis = false, af = null;
+    function draw() {
+      if (!vis) { af = null; return; }
+      ctx.clearRect(0, 0, 320, 320);
+      ctx.strokeStyle = cfg.color1;
+      ctx.lineWidth = 1;
+      lines.forEach(function(l) {
+        ctx.beginPath(); ctx.moveTo(l.x1, l.y1); ctx.lineTo(l.x2, l.y2); ctx.stroke();
+        l.x1+=l.vx1; l.y1+=l.vy1; l.x2+=l.vx2; l.y2+=l.vy2;
+        if(l.x1<0||l.x1>320)l.vx1*=-1; if(l.y1<0||l.y1>320)l.vy1*=-1;
+        if(l.x2<0||l.x2>320)l.vx2*=-1; if(l.y2<0||l.y2>320)l.vy2*=-1;
+      });
+      ctx.fillStyle = cfg.color2;
+      pts.forEach(function(p) {
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0||p.x>320)p.vx*=-1; if(p.y<0||p.y>320)p.vy*=-1;
+      });
+      af = requestAnimationFrame(draw);
+    }
+    new IntersectionObserver(function(e) {
+      vis = e[0].isIntersecting;
+      if (vis && !af) draw();
+    }, { threshold: 0.1 }).observe(el);
+  });
+})();
+
+// LANGUAGE SWITCHER — 12mp után jelenik meg
+(function() {
+  var sw = document.getElementById('lang-switcher');
+  var cur = document.getElementById('lang-current');
+  if (!sw || !cur) return;
+
+  // 12000ms = videó 1 körüljárása után
+  setTimeout(function() {
+    sw.classList.add('visible');
+  }, 8000);
+
+  cur.addEventListener('click', function(e) {
+    e.stopPropagation();
+    sw.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function() {
+    sw.classList.remove('open');
+  });
+})();
+
+      // COOKIE
+      function acceptCookies(){ localStorage.setItem('cookieChoice','accepted'); hideCB(); }
+      function declineCookies(){ localStorage.setItem('cookieChoice','declined'); hideCB(); }
+      function acceptNecessaryCookies(){ localStorage.setItem('cookieChoice','necessary'); hideCB(); }
+      function hideCB(){ var b=document.getElementById('cookie-banner'); b.classList.add('hide'); setTimeout(function(){b.style.display='none';},500); }
+      if(!localStorage.getItem('cookieChoice')) setTimeout(function(){ document.getElementById('cookie-banner').classList.add('show'); },2000);
     </script>
   </body>
 </html>
