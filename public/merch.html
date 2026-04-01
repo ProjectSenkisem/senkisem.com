@@ -506,14 +506,16 @@
         .bundle-tag-sub { font-size: 0.72rem; color: var(--text-muted); text-decoration: line-through; }
 
         .read-btn {
-            display: inline-flex; align-items: center; gap: 0.6rem;
-            padding: 0.85rem 1.8rem;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.75); text-decoration: none;
-            font-size: 0.73rem; letter-spacing: 0.13em; text-transform: uppercase;
-            border-radius: 3px; transition: all 0.25s ease;
-        }
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    padding: 0.95rem 2rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: #fff; text-decoration: none;
+    font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+    border-radius: 40px; transition: all 0.3s ease;
+    box-shadow: 0 0 18px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.12);
+    font-weight: 500;
+}
 
         .read-btn:hover { background: rgba(255,255,255,0.09); color: #fff; border-color: rgba(255,255,255,0.25); }
 
@@ -2055,7 +2057,6 @@
         <ul class="navbar-links">
             <li><a href="#id-senkisem">ID: Senkisem</a></li>
             <li><a href="#phantom">Phantom</a></li>
-            <li><a href="#digital-yakuza">Digital Yakuza</a></li>
             <li><a href="#signature">Signature</a></li>
             <li><a href="#universe">Books</a></li>
         </ul>
@@ -2080,7 +2081,6 @@
 <nav class="mobile-nav-overlay" id="mobile-nav">
     <a href="#id-senkisem" onclick="closeMobileNav()">ID: Senkisem</a>
     <a href="#phantom" onclick="closeMobileNav()">Phantom</a>
-    <a href="#digital-yakuza" onclick="closeMobileNav()">Digital Yakuza</a>
     <a href="#signature" onclick="closeMobileNav()">Signature</a>
     <a href="#universe" onclick="closeMobileNav()">Books</a>
 </nav>
@@ -2155,7 +2155,7 @@
                 you receive the Senkisem book bundle as a gift.
             </p>
             <div class="universe-cta">
-                <button class="uni-btn" onclick="addLimitedProduct(300,'bundle')">
+<button class="uni-btn" onclick="addLimitedProduct(300,'bundle')" style="background:#fff;color:#000;border-color:#fff;font-weight:600;">
                     Digital Bundle – $19.99
                 </button>
                 <button class="uni-btn" onclick="addLimitedProduct(311,'physical')">
@@ -2284,7 +2284,7 @@
 <!-- ============================================================
      DIGITAL YAKUZA
 ============================================================ -->
-<section class="yakuza-section" id="digital-yakuza">
+<section class="yakuza-section" id="digital-yakuza" style="display:none;">
     <div class="yakuza-bg"></div>
     <div class="yakuza-scanlines"></div>
     <div class="yakuza-grid"></div>
