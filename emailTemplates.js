@@ -3,7 +3,7 @@
  * 
  * Contains 4 distinct email templates:
  * - Template A: Digital Product 1 (Notes From a Stranger - ID 2)
- * - Template B: Digital Product 2 (User Manual for Life - ID 4)
+ * - Template B: Digital Product 2 (Synthetic Human - ID 4)
  * - Template C: Digital Bundle (Both ebooks - ID 300 or both ID 2 + ID 4)
  * - Template D: Physical Products
  */
@@ -234,7 +234,7 @@ function templateDigitalProduct1(orderData, totalAmount, downloadLinks) {
 }
 
 /**
- * TEMPLATE B: Digital Product 2 - User Manual for Life (ID 4)
+ * TEMPLATE B: Digital Product 2 - Synthetic Human (ID 4)
  */
 function templateDigitalProduct2(orderData, totalAmount, downloadLinks) {
   const { customerData, cart } = orderData;
@@ -252,11 +252,11 @@ function templateDigitalProduct2(orderData, totalAmount, downloadLinks) {
       <!-- Greeting -->
       <h2 style="color: #000000; font-size: 24px; margin-bottom: 10px;">Hi ${customerData.fullName}! 👋</h2>
       <p style="color: #666666; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-        Thank you for your purchase! Your ebook <strong>"User Manual for Life"</strong> is ready for download.
+        Thank you for your purchase! Your ebook <strong>"Synthetic Human"</strong> is ready for download.
       </p>
       
       <!-- Download Button -->
-      ${getDownloadButton(downloadLink, 'Download "User Manual for Life"')}
+      ${getDownloadButton(downloadLink, 'Download "Synthetic Human"')}
       
       <!-- Warning Box -->
       <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 25px 0; border-radius: 4px;">
@@ -358,7 +358,7 @@ function templateDigitalBundle(orderData, totalAmount, downloadLinks) {
           ━━━━━━━━━━━━━━━━
         </div>
         
-        ${getDownloadButton(link4, 'Download "User Manual for Life"')}
+        ${getDownloadButton(link4, 'Download "Synthetic Human"')}
       </div>
       
       <!-- Warning Box -->

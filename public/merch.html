@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senkisem — Store</title>
+    <title>Senkisem Store</title>
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
     <meta name="description" content="Senkisem Store — Limited clothing collections. ID: Senkisem, Phantom, Digital Yakuza, Signature.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9Q1NRNRGP"></script>
@@ -231,7 +231,7 @@
             .hero-left {
                 background-image:
                     linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.88) 100%),
-                    url('./assets/img/herobg.jpg');
+                    url('./assets/img/herobg.png');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -2045,6 +2045,315 @@
             .stat-item:last-child { border-bottom: none; }
             .id-steps-horizontal { grid-template-columns: 1fr; }
         }
+
+/* ============================================================
+   BUNDLE GIFT SECTION
+============================================================ */
+.bundle-gift-section {
+    padding: 9rem 0 7rem;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    border-top: 1px solid var(--glass-border);
+}
+ 
+.bg-gift-ambient {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+        radial-gradient(ellipse at 10% 50%, rgba(255,255,255,0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 30%, rgba(255,200,50,0.025) 0%, transparent 50%);
+}
+ 
+.bg-gift-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at 50% 50%, black 20%, transparent 75%);
+}
+ 
+.bundle-gift-top {
+    max-width: 1400px; margin: 0 auto;
+    padding: 0 3rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 6rem;
+    align-items: center;
+}
+ 
+.bundle-gift-eyebrow {
+    display: flex; align-items: center;
+    gap: 1rem; margin-bottom: 2rem;
+}
+ 
+.eyebrow-line {
+    width: 36px; height: 1px;
+    background: rgba(255,255,255,0.2);
+    display: block; flex-shrink: 0;
+}
+ 
+.eyebrow-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--text-muted);
+}
+ 
+.bundle-gift-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    line-height: 1.0; letter-spacing: -0.02em;
+    color: var(--text-primary); font-weight: 400;
+    margin-bottom: 1.8rem;
+}
+ 
+.bundle-gift-title em {
+    font-style: italic;
+    color: var(--text-secondary);
+}
+ 
+.bundle-gift-desc {
+    font-size: 0.95rem; color: var(--text-secondary);
+    line-height: 1.85; font-weight: 300;
+    margin-bottom: 3rem;
+    max-width: 480px;
+}
+ 
+.bundle-gift-value-row {
+    display: flex; align-items: center;
+    gap: 1.5rem; flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 3px;
+    max-width: 520px;
+}
+ 
+.bundle-gift-value-item {
+    display: flex; flex-direction: column; gap: 0.25rem;
+}
+ 
+.val-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--text-muted);
+}
+ 
+.val-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
+    color: var(--text-primary); line-height: 1;
+}
+ 
+.val-gift { display: flex; flex-direction: column; gap: 0.15rem; }
+ 
+.val-struck {
+    font-size: 0.78rem; color: rgba(255,255,255,0.2);
+    text-decoration: line-through;
+    font-family: 'Inter', sans-serif; font-weight: 300;
+}
+ 
+.val-free {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.07);
+    padding: 0.15rem 0.6rem; border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: inline-block;
+}
+ 
+.bundle-gift-value-sep {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem; color: rgba(255,255,255,0.12);
+}
+ 
+.val-pay {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3); text-transform: uppercase;
+    margin-top: 0.1rem;
+}
+ 
+.bundle-video-wrap {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 1.2rem;
+}
+ 
+.bundle-video-phone {
+    position: relative;
+    width: 220px;
+    aspect-ratio: 9/16;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.07),
+        0 40px 100px rgba(0,0,0,0.8),
+        0 0 80px rgba(255,255,255,0.03);
+}
+ 
+.bundle-video-el {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+}
+ 
+.bundle-video-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 55%);
+    pointer-events: none;
+}
+ 
+.bundle-video-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.25);
+    display: flex; align-items: center; gap: 0.5rem;
+}
+ 
+.bundle-video-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    animation: dot-blink 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+ 
+@keyframes dot-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+ 
+.bundle-gift-sep {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--glass-border) 20%, var(--glass-border) 80%, transparent);
+    max-width: 1400px; margin: 0 auto 4rem;
+}
+ 
+.bundle-prods-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    position: relative; z-index: 2;
+}
+ 
+.bundle-prods-row .prod-obj.bundle-selected {
+    outline: 2px solid rgba(255,255,255,0.5);
+    outline-offset: 2px;
+}
+ 
+.bundle-checkout-area {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 3px;
+    animation: fadeSlideUp 0.4s var(--ease) forwards;
+}
+ 
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.bundle-size-row {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+ 
+.bundle-size-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-muted);
+    flex-shrink: 0;
+}
+ 
+.bundle-size-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+ 
+.bundle-size-pill {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent; color: rgba(255,255,255,0.5);
+    font-size: 0.75rem; cursor: pointer;
+    transition: var(--transition); border-radius: 2px;
+}
+ 
+.bundle-size-pill:hover, .bundle-size-pill.selected {
+    border-color: rgba(255,255,255,0.7);
+    color: #fff; background: rgba(255,255,255,0.06);
+}
+ 
+.bundle-cta-btn {
+    width: 100%;
+    display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
+    padding: 1.2rem 2rem;
+    background: #fff; color: #000;
+    border: none; border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+}
+ 
+.bundle-cta-btn:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
+ 
+.bundle-cta-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+}
+ 
+.bundle-cta-sub {
+    font-size: 0.72rem; color: rgba(0,0,0,0.45);
+}
+ 
+.bundle-cta-icon {
+    position: absolute; right: 1.5rem; top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem; opacity: 0.35;
+}
+ 
+.bundle-footer-note {
+    max-width: 1400px; margin: 3rem auto 0;
+    padding: 0 3rem;
+    display: flex; align-items: center; gap: 0.7rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.18); text-transform: uppercase;
+    justify-content: center;
+}
+ 
+/* BUNDLE RESPONSIVE */
+@media (max-width: 1024px) {
+    .bundle-gift-top {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    .bundle-video-wrap { flex-direction: row; gap: 2rem; }
+    .bundle-video-phone { width: 160px; }
+    .bundle-prods-row { grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+}
+ 
+@media (max-width: 768px) {
+    .bundle-gift-top { padding: 0 1.5rem 3rem; }
+    .bundle-video-wrap { flex-direction: column; }
+    .bundle-video-phone { width: 180px; }
+    .bundle-prods-row { grid-template-columns: 1fr; }
+    .bundle-gift-value-row { flex-direction: column; gap: 1rem; padding: 1.2rem 1.5rem; }
+    .bundle-gift-value-sep { transform: rotate(90deg); }
+    .bundle-footer-note { padding: 0 1.5rem; text-align: center; }
+    .bundle-checkout-area { margin-top: 1.5rem; }
+}
+@media (max-width: 768px) {
+    .social-icons-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .social-icon-card {
+        min-width: unset;
+    }
+}
     </style>
 </head>
 <body>
@@ -2151,8 +2460,8 @@
                 <br><br>
             </h3>
             <p class="universe-body">
-                If you purchase items worth at least $75,<br>
-                you receive the Senkisem book bundle as a gift.
+                The two books together are cheaper.<br>
+                That's it:)
             </p>
             <div class="universe-cta">
 <button class="uni-btn" onclick="addLimitedProduct(300,'bundle')" style="background:#fff;color:#000;border-color:#fff;font-weight:600;">
@@ -2182,6 +2491,102 @@
         </div>
     </div>
 </div>
+
+
+<!-- BUNDLE GIFT SECTION -->
+<section class="bundle-gift-section" id="bundle-gift">
+    <div class="bg-gift-ambient"></div>
+    <div class="bg-gift-grid"></div>
+ 
+    <!-- Top row: text left, video right -->
+    <div class="bundle-gift-top">
+        <div class="bundle-gift-text reveal">
+            <div class="bundle-gift-eyebrow">
+                <span class="eyebrow-line"></span>
+                <span class="eyebrow-text">Included with every set</span>
+            </div>
+ 
+            <h2 class="bundle-gift-title">
+                With every limited set,<br>
+                <em>you get both books as a gift</em>
+            </h2>
+ 
+            <p class="bundle-gift-desc">
+                Not a discount. Not a bonus.<br>
+                The two Senkisem books.<br>
+            </p>
+ 
+            <div class="bundle-gift-value-row">
+                <div class="bundle-gift-value-item">
+                    <span class="val-label">Set price</span>
+                    <span class="val-num">$69.99</span>
+                </div>
+                <div class="bundle-gift-value-sep">+</div>
+                <div class="bundle-gift-value-item">
+                    <span class="val-label">2 physical books</span>
+                    <span class="val-num val-gift">
+                        <span class="val-struck">$55.98</span>
+                        <span class="val-free">Gift</span>
+                    </span>
+                </div>
+                <div class="bundle-gift-value-sep">=</div>
+                <div class="bundle-gift-value-item">
+                    <span class="val-label">Total value</span>
+                    <span class="val-num">$125.97</span>
+                    <span class="val-pay">You only pay $69.99</span>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="bundle-video-wrap reveal reveal-delay-2">
+            <div class="bundle-video-phone">
+                <video
+                    src="./assets/img/syntheticbg.mp4"
+                    autoplay loop muted playsinline
+                    class="bundle-video-el"
+                ></video>
+                <div class="bundle-video-glow"></div>
+            </div>
+            <div class="bundle-video-label">
+                <span class="bundle-video-dot"></span>
+                Synthetic Human
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Separator -->
+    <div class="bundle-gift-sep"></div>
+ 
+    <!-- 3 set cards -->
+    <div class="editorial-stage">
+        <div class="bundle-prods-row" id="bundle-prods-row">
+            <!-- populated by JS -->
+        </div>
+ 
+        <!-- Size + CTA -->
+        <div class="bundle-checkout-area" id="bundle-checkout-area" style="display:none;">
+            <div class="bundle-size-row">
+                <span class="bundle-size-label">Size:</span>
+                <div class="bundle-size-pills" id="bundle-size-pills">
+                    <button class="bundle-size-pill" data-size="S">S</button>
+                    <button class="bundle-size-pill" data-size="M">M</button>
+                    <button class="bundle-size-pill" data-size="L">L</button>
+                    <button class="bundle-size-pill" data-size="XL">XL</button>
+                </div>
+            </div>
+            <button class="bundle-cta-btn" id="bundle-add-to-cart" onclick="addBundleToCart()">
+                <span class="bundle-cta-text">Add to Cart — $69.99</span>
+                <span class="bundle-cta-sub">+ 2 Senkisem books included in the package</span>
+                <i class="ri-shopping-cart-line bundle-cta-icon"></i>
+            </button>
+        </div>
+    </div>
+ 
+    <div class="bundle-footer-note reveal">
+        <i class="ri-gift-line"></i>
+        Best Value
+    </div>
+</section>
 
 <!-- ============================================================
      ID: SENKISEM
@@ -2485,14 +2890,14 @@
                 </div>
             </a>
 
-            <a href="/user-manual.html" class="book-choice-card">
+            <a href="/synthetic-human.html" class="book-choice-card">
                 <div class="book-choice-image-wrap">
-                    <img src="assets/img/usermanualbg169.png" alt="User Manual for Life">
+                    <img src="assets/img/usermanualbg169.png" alt="Synthetic Human">
                 </div>
                 <div class="book-choice-overlay"></div>
                 <div class="book-choice-content">
                     <div class="book-choice-label">Senkisem II.</div>
-                    <h3 class="book-choice-title">User Manual for Life</h3>
+                    <h3 class="book-choice-title">Synthetic Human</h3>
                     <p class="book-choice-desc">
                         Not self-improvement. Excavation. Dissecting the algorithm of your personality.
                     </p>
@@ -2556,11 +2961,8 @@
     </div>
 </div>
 
-<!-- JAVASCRIPT -->
 <script>
-// ============================================================
-// PRODUCTS DATA — English, USD prices, matching products.json IDs
-// ============================================================
+<!-- JAVASCRIPT -->
 // ============================================================
 // PRODUCTS DATA — English, USD prices, matching products.json IDs
 // ============================================================
@@ -2577,10 +2979,10 @@ const products = [
     { id: 403, name: "Senkisem Black Sneakers",          price: 69.99, image: "./assets/img/sneakers-black.png",      sizes: ["38","39","40","41","42","43","44","45"], category: "Phantom",       sectionId: "phantom" },
     { id: 404, name: "High-Top Black Sneakers",          price: 69.99, image: "./assets/img/high-sneakers-black.png", sizes: ["38","39","40","41","42","43","44","45"], category: "Phantom",       sectionId: "phantom" },
 
-    // DIGITAL YAKUZA
-    { id: 302, name: "Digital Yakuza Pants",         price: 39.99,                      image: "./assets/img/pants-twisted.png", sizes: ["S","M","L","XL"], category: "Digital Yakuza", sectionId: "yakuza" },
-    { id: 303, name: "Digital Yakuza Short Kimono",  price: 49.99,                      image: "./assets/img/kimono-short.png",  sizes: ["S","M","L","XL"], category: "Digital Yakuza", sectionId: "yakuza" },
-    { id: 304, name: "Digital Yakuza Complete Set",  price: 75.99, oldPrice: 90.98, sale: true, image: "./assets/img/full-set.png", sizes: ["S","M","L","XL"], category: "Digital Yakuza", sectionId: "yakuza", bundle: true },
+    // SETS / BUNDLE GIFT
+    { id: 700, name: "Synthetic Human Set", price: 69.99, image: "./assets/img/sett1.png", sizes: ["S","M","L","XL"], category: "Set", sectionId: "bundle-gift", isGiftBundle: true },
+    { id: 304, name: "Digital Yakuza Set",  price: 69.99, image: "./assets/img/sett2.png", sizes: ["S","M","L","XL"], category: "Set", sectionId: "bundle-gift", isGiftBundle: true },
+    { id: 800, name: "Digital Cartel Set",  price: 69.99, image: "./assets/img/sett3.png", sizes: ["S","M","L","XL"], category: "Set", sectionId: "bundle-gift", isGiftBundle: true },
 
     // SIGNATURE EDITION
     { id: 501, name: "Senkisem T-Shirt – Printed",  price: 32.99, image: "./assets/img/tshirt-printed.png",  sizes: ["S","M","L","XL"],  category: "Signature", sectionId: "signature" },
@@ -2588,14 +2990,20 @@ const products = [
     { id: 504, name: "Senkisem Sweater – Printed",  price: 49.99, image: "./assets/img/sweater-printed.png", sizes: ["S","M","L","XL"],  category: "Signature", sectionId: "signature" },
     { id: 505, name: "Senkisem Sweater – Written",  price: 49.99, image: "./assets/img/sweater-written.png", sizes: ["S","M","L","XL"],  category: "Signature", sectionId: "signature" },
     { id: 503, name: "Baseball Cap",                price: 19.99, image: "./assets/img/cap-baseball.png",    sizes: ["Universal"],        category: "Signature", sectionId: "signature" },
-    { id: 506, name: "Beanie",                       price: 17.99, image: "./assets/img/cap-winter.png",      sizes: ["Universal"],        category: "Signature", sectionId: "signature" }
+    { id: 506, name: "Beanie",                      price: 17.99, image: "./assets/img/cap-winter.png",      sizes: ["Universal"],        category: "Signature", sectionId: "signature" },
+
+    // BOOK BUNDLES
+    { id: 300, name: "Complete Digital Collection", price: 19.99,  image: "./assets/img/ketkonyv.png", isBundle: true, isLimited: true },
+    { id: 311, name: "Complete Physical Collection",   price: 49.49, image: "./assets/img/ketkonyv.png", size: "A5", isLimited: true, isPhysicalBundle: true }
 ];
 
-let selectedProduct  = null;
-let selectedSize     = null;
-let selectedVariant  = null;
-let heroSlideIndex   = 0;
-let selectedIDColor  = null;
+let selectedProduct    = null;
+let selectedSize       = null;
+let selectedVariant    = null;
+let heroSlideIndex     = 0;
+let selectedIDColor    = null;
+let selectedBundleId   = null;
+let selectedBundleSize = null;
 const heroLabels = ['ID: Senkisem', 'Phantom', 'Signature'];
 
 // ============================================================
@@ -2634,7 +3042,7 @@ function resolveIDProductId(displayedProductId) {
 }
 
 // ============================================================
-// PRODUCT OBJECT BUILDER
+// PRODUCT OBJECT BUILDER (standard products)
 // ============================================================
 function buildProdObj(product, extraClasses) {
     const hasSale    = product.sale && product.oldPrice;
@@ -2677,6 +3085,38 @@ function buildProdObj(product, extraClasses) {
             <div class="prod-meta">
                 <div class="prod-meta-name">${product.name}</div>
                 <div class="prod-meta-price">${metaOldPrice} $${product.price.toFixed(2)}</div>
+            </div>
+        </div>`;
+}
+
+// ============================================================
+// BUNDLE SET CARD BUILDER
+// Uses selectBundle() instead of openProductModal()
+// ============================================================
+function buildBundleProdObj(product, extraClasses) {
+    const sizePills = product.sizes.map(s =>
+        `<button class="size-pill" data-size="${s}" data-bundle-product-id="${product.id}">${s}</button>`
+    ).join('');
+
+    return `
+        <div class="prod-obj ${extraClasses || ''} reveal" id="bundle-card-${product.id}">
+            <div class="prod-img-wrap" onclick="selectBundle(${product.id}, this.closest('.prod-obj'))">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
+                <div class="prod-overlay">
+                    <div class="prod-overlay-category">${product.category}</div>
+                    <div class="prod-overlay-name">${product.name}</div>
+                    <div class="prod-overlay-price">$69.99</div>
+                    <div class="prod-overlay-actions">
+                        <button class="prod-action-btn prod-action-primary" onclick="selectBundle(${product.id}, this.closest('.prod-obj'));event.stopPropagation();">
+                            <i class="ri-check-line"></i> Select
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="prod-sizes" id="sizes-bundle-${product.id}">${sizePills}</div>
+            <div class="prod-meta">
+                <div class="prod-meta-name">${product.name}</div>
+                <div class="prod-meta-price">$69.99 <span style="font-size:0.68rem;color:rgba(255,255,255,0.3);margin-left:0.3rem;">+ 2 books as gift</span></div>
             </div>
         </div>`;
 }
@@ -2775,6 +3215,71 @@ function loadProducts() {
             buildProdObj(p, `${sigClasses[i] || ''} reveal-delay-${(i % 3) + 1}`)
         ).join('');
     }
+
+    // ---- BUNDLE GIFT SETS ----
+    const bundleProdsRow = document.getElementById('bundle-prods-row');
+    if (bundleProdsRow) {
+        const bundleProds = products.filter(p => p.sectionId === 'bundle-gift');
+        bundleProdsRow.innerHTML = bundleProds.map((p, i) =>
+            buildBundleProdObj(p, `reveal-delay-${i+1}`)
+        ).join('');
+    }
+}
+
+// ============================================================
+// BUNDLE GIFT SET SELECTOR
+// ============================================================
+function selectBundle(bundleId, cardEl) {
+    selectedBundleId   = bundleId;
+    selectedBundleSize = null;
+
+    // Highlight selected card
+    document.querySelectorAll('.bundle-prods-row .prod-obj').forEach(c => c.classList.remove('bundle-selected'));
+    cardEl.classList.add('bundle-selected');
+
+    // Show checkout area with animation
+    const area = document.getElementById('bundle-checkout-area');
+    area.style.display   = 'block';
+    area.style.animation = 'none';
+    requestAnimationFrame(() => { area.style.animation = ''; });
+
+    // Reset size pills
+    document.querySelectorAll('.bundle-size-pill').forEach(p => p.classList.remove('selected'));
+}
+
+function initBundleSizePills() {
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('bundle-size-pill')) {
+            e.stopPropagation();
+            document.querySelectorAll('.bundle-size-pill').forEach(p => p.classList.remove('selected'));
+            e.target.classList.add('selected');
+            selectedBundleSize = e.target.dataset.size;
+        }
+    });
+}
+
+function addBundleToCart() {
+    if (!selectedBundleId) return;
+    if (!selectedBundleSize) {
+        showNotification('Please select a size!', '');
+        return;
+    }
+    const product = products.find(p => p.id === selectedBundleId);
+    if (!product) return;
+
+    addToCart({ ...product, size: selectedBundleSize, isGiftBundle: true });
+
+    // Button feedback
+    const btn      = document.getElementById('bundle-add-to-cart');
+    const origHtml = btn.innerHTML;
+    btn.innerHTML        = '<span class="bundle-cta-text">Added!</span><span class="bundle-cta-sub">Books will be included in the package</span>';
+    btn.style.background = '#28a745';
+    btn.style.color      = '#fff';
+    setTimeout(() => {
+        btn.innerHTML        = origHtml;
+        btn.style.background = '';
+        btn.style.color      = '';
+    }, 2000);
 }
 
 // ============================================================
@@ -2824,9 +3329,9 @@ function handleWishlistFromObj(evt, productId) {
     if (product) addToWishlist(product);
 }
 
-// SIZE PILL INTERACTION
+// SIZE PILL INTERACTION (standard products only — bundle pills handled separately)
 document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('size-pill')) {
+    if (e.target.classList.contains('size-pill') && !e.target.dataset.bundleProductId) {
         const productId = e.target.dataset.productId;
         const container = document.getElementById('sizes-' + productId);
         if (container) container.querySelectorAll('.size-pill').forEach(p => p.classList.remove('selected'));
@@ -2839,10 +3344,14 @@ document.addEventListener('click', function(e) {
 // PRODUCT MODAL
 // openProductModal receives the displayed ID (601 or 604).
 // If a color is already selected, it loads the real product.
+// Bundle gift sets bypass this modal entirely.
 // ============================================================
 function openProductModal(displayedProductId) {
     const displayedProduct = products.find(p => p.id === displayedProductId);
     if (!displayedProduct) return;
+
+    // Bundle gift sets use selectBundle() — skip modal
+    if (displayedProduct.isGiftBundle) return;
 
     // For ID: Senkisem products, if color is already chosen load the real product
     let product = displayedProduct;
@@ -3071,12 +3580,16 @@ function renderCart() {
             const qty         = item.quantity || 1;
             const sizeText    = item.size    ? ` (${item.size})`    : '';
             const variantText = item.variant ? ` — ${item.variant}` : '';
+            const giftBadge   = item.isGiftBundle
+                ? `<div style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;">+ 2 books included as gift</div>`
+                : '';
             return `
                 <div style="display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--glass-border);">
                     <img src="${item.image}" alt="${item.name}" style="width:60px;height:60px;object-fit:cover;border-radius:2px;">
                     <div style="flex:1;">
-                        <div style="font-size:0.85rem;font-weight:500;margin-bottom:0.4rem;color:var(--text-primary);">${item.name}${sizeText}${variantText}</div>
-                        <div style="font-size:0.82rem;color:var(--text-secondary);">$${item.price.toFixed(2)} / pc</div>
+                        <div style="font-size:0.85rem;font-weight:500;margin-bottom:0.2rem;color:var(--text-primary);">${item.name}${sizeText}${variantText}</div>
+                        ${giftBadge}
+                        <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:0.3rem;">$${item.price.toFixed(2)} / pc</div>
                         <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.6rem;">
                             <button onclick="updateQuantity(${item.id},'${item.size||''}','${item.variant||''}',-1);event.stopPropagation();" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:white;width:28px;height:28px;border-radius:3px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;">−</button>
                             <span style="min-width:28px;text-align:center;color:var(--text-primary);font-weight:600;font-size:0.9rem;">${qty}</span>
@@ -3121,13 +3634,13 @@ function goToCheckout() {
 }
 
 // ============================================================
-// LIMITED PRODUCT ADD
+// LIMITED PRODUCT ADD (book bundles)
 // ============================================================
 function addLimitedProduct(productId, variant) {
     if (productId === 300 && variant === 'bundle') {
         localStorage.setItem('cart', JSON.stringify([{
             id: 300,
-            name: "Complete Digital Collection (Notes + User Manual)",
+            name: "Complete Digital Collection (Notes + Synthetic Human)",
             price: 19.99,
             image: "./assets/img/ketkonyv.png",
             isBundle: true,
@@ -3137,7 +3650,7 @@ function addLimitedProduct(productId, variant) {
     } else if (productId === 311 && variant === 'physical') {
         localStorage.setItem('cart', JSON.stringify([{
             id: 311,
-            name: "Complete Physical Collection (Notes + User Manual)",
+            name: "Complete Physical Collection (Notes + Synthetic Human)",
             price: 49.49,
             image: "./assets/img/ketkonyv.png",
             size: "A5",
@@ -3334,6 +3847,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileNav();
     initHeroSlider();
     initSocialReveal();
+    initBundleSizePills();
     requestAnimationFrame(() => initScrollReveal());
 
     document.getElementById('modal-add-to-cart').addEventListener('click', function() {
@@ -3411,6 +3925,8 @@ window.handleAddFromObj       = handleAddFromObj;
 window.handleWishlistFromObj  = handleWishlistFromObj;
 window.openBooksModal         = openBooksModal;
 window.closeBooksModal        = closeBooksModal;
+window.selectBundle           = selectBundle;
+window.addBundleToCart        = addBundleToCart;
 </script>
 </body>
 </html>
