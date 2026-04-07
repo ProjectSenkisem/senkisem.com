@@ -2332,14 +2332,78 @@
 }
  
 @media (max-width: 768px) {
-    .bundle-gift-top { padding: 0 1.5rem 3rem; }
-    .bundle-video-wrap { flex-direction: column; }
-    .bundle-video-phone { width: 180px; }
-    .bundle-prods-row { grid-template-columns: 1fr; }
-    .bundle-gift-value-row { flex-direction: column; gap: 1rem; padding: 1.2rem 1.5rem; }
-    .bundle-gift-value-sep { transform: rotate(90deg); }
-    .bundle-footer-note { padding: 0 1.5rem; text-align: center; }
-    .bundle-checkout-area { margin-top: 1.5rem; }
+    .bundle-gift-top {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0 0 2.5rem;
+    }
+
+    /* Videó blokk: teljes szélesség, 16:9 arány, felül */
+    .bundle-video-wrap {
+        display: block;
+        width: 100%;
+        order: -1;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .bundle-video-phone {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: 0;
+        box-shadow: none;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* Label a videó alatt középre */
+    .bundle-video-label {
+        justify-content: center;
+        margin-top: 0.75rem;
+        padding: 0 1.5rem;
+    }
+
+    /* Szöveg blokk visszakapja a paddingot */
+    .bundle-gift-text {
+        padding: 0 1.5rem;
+    }
+
+    .bundle-gift-title {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .bundle-gift-value-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1rem 1.2rem;
+        justify-content: space-between;
+        max-width: 100%;
+    }
+
+    .bundle-gift-value-sep {
+        align-self: center;
+        transform: none;
+        font-size: 1.2rem;
+    }
+
+    .bundle-prods-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .bundle-prods-row .prod-obj .prod-img-wrap {
+        height: 280px;
+    }
+
+    .bundle-prods-row .prod-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0,0,0,0.80) 0%, transparent 60%);
+    }
+
+    .bundle-checkout-area {
+        margin-top: 1rem;
+        padding: 1.2rem;
+    }
 }
 @media (max-width: 768px) {
     .social-icons-row {
@@ -3100,7 +3164,7 @@ function buildBundleProdObj(product, extraClasses) {
 
     return `
         <div class="prod-obj ${extraClasses || ''} reveal" id="bundle-card-${product.id}">
-            <div class="prod-img-wrap" onclick="selectBundle(${product.id}, this.closest('.prod-obj'))">
+<div class="prod-img-wrap" onclick="openProductModal(${product.id})">
                 <img src="${product.image}" alt="${product.name}" loading="lazy">
                 <div class="prod-overlay">
                     <div class="prod-overlay-category">${product.category}</div>
@@ -3351,8 +3415,6 @@ function openProductModal(displayedProductId) {
     if (!displayedProduct) return;
 
     // Bundle gift sets use selectBundle() — skip modal
-    if (displayedProduct.isGiftBundle) return;
-
     // For ID: Senkisem products, if color is already chosen load the real product
     let product = displayedProduct;
     if (displayedProduct.customPhoto && selectedIDColor) {
