@@ -917,6 +917,12 @@
     document.addEventListener('change', updateProgress);
     updateProgress();
 
+        document.getElementById('terms-agree').addEventListener('change', function() {
+  if (this.checked) {
+    document.getElementById('submit-btn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });
